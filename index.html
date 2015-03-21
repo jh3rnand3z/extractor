@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,21 +8,20 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="./static/favicon.ico">
+    <link rel="icon" href="../../favicon.ico">
 
-    <title>Home</title>
+    <title>Fixed Top Navbar Example for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./static/css/font-awesome.css">
     <link rel="stylesheet" href="./static/css/bootstrap.min.css">
 
-    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
-
+   
     <!-- Custom styles for this template -->
-    <link href="./static/css/cover.css" rel="stylesheet">
+    <link href="navbar-fixed-top.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../static/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./static/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -33,79 +33,86 @@
 
   <body>
 
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <!-- navbar -->
-          <div id="fun-navbar"></div>
-
-          <!-- subheader -->
-          <div id="fun-subheader"></div>
-
-          <!-- landing --> 
-          <div id="fun-landing"></div>
-
-          <!-- dashboard --> 
-          <div id="fun-dashboard"></div>
-
-          <!-- settings -->
-          <div id="fun-settings"></div>
-
-          <!-- extra -->
-          <div id="fun-extra"></div>
-
-          <!-- signup -->
-          <div id="fun-signup"></div> 
-
-          <!-- login -->
-          <div id="fun-login"></div>
-
-          <!-- footer -->
-          <div id="fun-footer"></div>
-
-
-          <!--
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Home</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Login</a></li>
-                  <li><a href="#">Signup</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          -->
-
-
-          <!--
-          <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-          </div>
-          -->
-
-          <div class="mastfoot">
-            <div id="fun-footer" class="inner">
-              <p>A Reference <a href="http://iofun.io">fun</a> app, by <a href="https://twitter.com/jchassoul">@jchassoul</a>.</p>
-            </div>
-          </div>
-
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
         </div>
-
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
+    </nav>
 
-    </div>
+    <div class="container">
 
-    <!-- Bootstrap core JavaScript
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
+      <!-- navbar -->
+      <div id="fun-navbar"></div>
+
+      <!-- subheader -->
+      <div id="fun-subheader"></div>
+
+      <!-- landing --> 
+      <div id="fun-landing"></div>
+
+      <!-- dashboard --> 
+      <div id="fun-dashboard"></div>
+
+      <!-- settings -->
+      <div id="fun-settings"></div>
+      <!-- extra -->
+      <div id="fun-extra"></div>
+
+      <!-- signup -->
+      <div id="fun-signup"></div> 
+
+      <!-- login -->
+      <div id="fun-login"></div>
+
+      <!-- footer -->
+      <div id="fun-footer"></div>
+  
+   </div> <!-- /container -->
+
+
+   <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./static/js/jquery-2.1.3.min.js"></script>
@@ -138,6 +145,5 @@
 
     <!-- fun router -->
     <script src="./static/js/seed/fun.router.js"></script>
-
   </body>
 </html>
