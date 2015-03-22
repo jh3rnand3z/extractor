@@ -3,7 +3,7 @@
  */
 
 fun.strings = {
-    ioFun: "IO FUN",
+    ioFun: "Easiest 2 pay",
     address: "Address",
     city: "City",
     provinceState: "Province (State)",
