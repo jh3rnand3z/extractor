@@ -23,7 +23,11 @@ fun.views.landing = Backbone.View.extend({
         this.$el.html(template);
         this.$el.show();
 
-        $('#signupModal').modal('show');
+        $('#signupModal').modal({
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
+        });
     },
 
     signup: function(event){
