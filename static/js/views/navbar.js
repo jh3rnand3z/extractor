@@ -40,7 +40,11 @@ fun.views.navbar = Backbone.View.extend({
         var navLanding = this.$('#fun-nav-landing');
         navLanding.html(template);
 
-        $('#signupModal').modal('show');
+        $('#signupModal').modal({
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
+        });
     },
 
     renderDashboard: function(){
