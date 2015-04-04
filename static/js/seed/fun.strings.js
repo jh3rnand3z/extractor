@@ -29,7 +29,7 @@ fun.strings = {
     validateMin: "Please enter a value greater than or equal to {0}.",
     clickYouAgree: 'By clicking "Sign up", you agree to our',
     addFunds: "Add funds",
-    yourPhone: "Your Phone number",
+    yourPhone: "Your Phone Number",
     homePhone: "Home phone",
     ach: "ACH",
     wu: "WU",
