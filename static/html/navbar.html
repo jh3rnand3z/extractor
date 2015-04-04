@@ -13,7 +13,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#"><%= translate("home") %></a></li>
-            <li id="fun-login"><a data-toggle="modal" data-target="#loginModal"><%= translate("login") %></a></li>
+            
             <li id="fun-signup"><a data-toggle="modal" data-target="#signupModal"><%= translate("signup") %></a></li>
             
           </ul>
@@ -75,6 +75,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><%= translate("cancel") %></button>
+                <button id="fun-login" type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#loginModal"><%= translate("login") %></button>
                 <button id="signup-btn" class="btn btn-lg btn-primary btn-block" type="submit"><%= translate("signUp") %></button>
             </div>
         </div>
