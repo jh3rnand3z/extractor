@@ -4,6 +4,7 @@ fun.views.navbar = Backbone.View.extend({
         "click #details-report-btn": 'detailsReport',
         "click #fun-signup": 'signupPopup',
         "click #fun-login": 'loginPopup',
+        "click #signup-btn": 'signup',
         "click #login-btn": 'login'
 	},
 
@@ -98,6 +99,11 @@ fun.views.navbar = Backbone.View.extend({
     signupPopup: function(event){
         event.preventDefault();
         console.log("signup");
+    },
+
+    signup: function(event){
+        event.preventDefault();
+        console.log("register this stuff motherfucker");
     },
 
     login: function(event){
