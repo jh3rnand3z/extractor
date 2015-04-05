@@ -2,6 +2,31 @@
  Seed models configuration
 */
 
+
+/*
+CLX stuff
+
+"User" : 
+
+{
+
+      "Name" : "Thomas" , 
+
+      "LastName" : "Smith" , 
+
+      "Password" : "app12345" ,
+
+      "Email" : "tsmith@domain.com" ,
+
+      "CountryCode" : "1" ,
+
+      "CellPhone" : "0987654321" 
+
+}
+
+*/
+
+
 fun.models.Account = Backbone.Model.extend({
     urlRoot: fun.conf.urls.users
 });
