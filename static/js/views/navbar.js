@@ -72,25 +72,18 @@ fun.views.navbar = Backbone.View.extend({
     renderDashboard: function(){
         'use strict';
         var template,
-            navDashboard,
-            account,
-            context;
+            navLanding,
+            navDashboard;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navLanding));
 
-        navDashboard = this.$('#fun-nav-dashboard');
+        navLanding = this.$('#fun-nav-landing');
         navDashboard.html(template);
 
-        account = localStorage.getItem("username");
-        context = sessionStorage.getItem("context");
-
-        if (account !== context){
-            this.$('#nav-new-member').removeClass('hide').addClass('show');
-            this.$('#nav-new-team').removeClass('hide').addClass('show');
-        } else {
-            this.$('#nav-new-member').removeClass('show').addClass('hide');
-            this.$('#nav-new-team').removeClass('show').addClass('hide');   
-        }
+        //template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
+        
+        //navDashboard = this.$('#fun-nav-dashboard');
+        //navDashboard.html(template);
     },
 
     renderAdmin: function(){
