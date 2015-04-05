@@ -120,6 +120,13 @@ fun.views.navbar = Backbone.View.extend({
             callbacks,
             validForm;
         event.preventDefault();
+        
+        // test this shit out
+        console.log('zanahoria');
+        $('#loginModal').modal('hide');
+
+
+
         signupError = this.signupError;
         account = this.account.val();
         password = this.password.val();
