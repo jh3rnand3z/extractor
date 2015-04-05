@@ -97,13 +97,21 @@ fun.views.navbar = Backbone.View.extend({
 
     loginPopup: function(event){
         event.preventDefault();
-        console.log("login");
+        console.log("login popup event");
         // Cache the DOM stuff
         this.loginError = this.$('#signin-alert');
         
         // form inputs
         this.username = this.$('#username');
         this.password = this.$('#password');
+
+        //test this stuff out
+        $('#signupModal').modal('hide');
+        $('#loginModal').modal({
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
+        });
     },
 
     signupPopup: function(event){
