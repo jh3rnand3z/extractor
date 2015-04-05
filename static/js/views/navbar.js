@@ -2,7 +2,6 @@ fun.views.navbar = Backbone.View.extend({
 
 	events: {
         "click #details-report-btn": 'detailsReport',
-        "click #fun-signup": 'signupPopup',
         "click #fun-login": 'loginPopup',
         "click #signup-btn": 'signup',
         "click #login-btn": 'login'
@@ -104,11 +103,6 @@ fun.views.navbar = Backbone.View.extend({
         // form inputs
         this.username = this.$('#username');
         this.password = this.$('#password');
-    },
-
-    signupPopup: function(event){
-        event.preventDefault();
-        console.log("signup");
     },
 
     // missing this.[signupError, account, password, confirmPassword, email, etc] 
