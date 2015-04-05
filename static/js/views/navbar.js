@@ -171,8 +171,6 @@ fun.views.navbar = Backbone.View.extend({
         }
         validationRules = $.extend (rules, fun.utils.validationRules);
 
-        console.log(validationRules);
-
         $('#signup-form').validate(validationRules);
         
         // new user account callbacks
