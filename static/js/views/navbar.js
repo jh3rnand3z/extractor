@@ -2,6 +2,7 @@ fun.views.navbar = Backbone.View.extend({
 
 	events: {
         "click #details-report-btn": 'detailsReport',
+        "click #fun-signup": 'signupPopup',
         "click #fun-login": 'loginPopup',
         "click #signup-btn": 'signup',
         "click #login-btn": 'login'
@@ -105,6 +106,15 @@ fun.views.navbar = Backbone.View.extend({
         this.password = this.$('#password');
     },
 
+    signupPopup: function(event){
+        event.preventDefault();
+        console.log("signup");
+
+        // test this shit out
+        console.log('zanahoria');
+        $('#loginModal').modal('hide');
+    },
+
     // missing this.[signupError, account, password, confirmPassword, email, etc] 
     // basically all the signup fields, please check the example on seed signup.js view
     signup: function(event){
@@ -120,13 +130,6 @@ fun.views.navbar = Backbone.View.extend({
             callbacks,
             validForm;
         event.preventDefault();
-        
-        // test this shit out
-        console.log('zanahoria');
-        $('#loginModal').modal('hide');
-
-
-
         signupError = this.signupError;
         account = this.account.val();
         password = this.password.val();
