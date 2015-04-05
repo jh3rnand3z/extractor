@@ -187,15 +187,13 @@ fun.views.navbar = Backbone.View.extend({
                     {
                         success : function(xhr, status){
                             // the right mutherfucking stuff is send the account
-                            // to the dashboard, but you know... 
-
-                            //fun.utils.redirect(fun.conf.hash.dashboard);
-                            fun.utils.redirect(fun.conf.hash.landing);
+                            // to the dashboard, but you know...
+                            // for some reasons the callback always return an error
+                            // so we catch the status code; if 200 OK then the shit
+                            // was a success and stuff.
+                            fun.utils.redirect(fun.conf.hash.dashboard);
                         },
                         error : function(xhr, status, error){
-                            console.log('error inside fun.utils.login callbacks on navbar.js que putas...');
-                            // aqui es donde tiene sentido 
-                            // enviar al dude a login con un error.
                             fun.utils.redirect(fun.conf.hash.login);
                         }
                     }

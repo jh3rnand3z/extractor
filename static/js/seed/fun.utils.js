@@ -52,11 +52,6 @@ fun.utils.getSession = function() {
 fun.utils.loggedIn = function() {
     var session = this.getSession();
     fun.session = session;
-
-    console.log(fun.session);
-
-    console.log($.cookie('username'));
-
     return (session != null);
 };
 
