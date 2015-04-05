@@ -108,11 +108,15 @@ fun.views.navbar = Backbone.View.extend({
 
     signupPopup: function(event){
         event.preventDefault();
-        console.log("signup");
+        console.log("signup popup event");
 
         // test this shit out
-        console.log('zanahoria');
         $('#loginModal').modal('hide');
+        $('#signupModal').modal({
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
+        });
     },
 
     // missing this.[signupError, account, password, confirmPassword, email, etc] 
