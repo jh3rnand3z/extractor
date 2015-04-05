@@ -270,6 +270,7 @@ fun.views.navbar = Backbone.View.extend({
                             localStorage.setItem("username", username);
                         }
                         loginSuccess(view, loginError);
+                        $('#loginModal').modal('hide');
                         break;
                     default:
                         console.log('the monkey is down');
