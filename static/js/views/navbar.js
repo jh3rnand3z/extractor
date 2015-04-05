@@ -242,7 +242,14 @@ fun.views.navbar = Backbone.View.extend({
             view,
             loginSuccess;
 
+        this.loginError = this.$('#signin-alert');
+
+        this.username = this.$('#username');
+        this.password = this.$('#password');
+
+        // form fields and stuff
         loginError = this.loginError;
+
         username = this.username.val();
         password = this.password.val();
         view = this;
