@@ -212,7 +212,6 @@ fun.views.navbar = Backbone.View.extend({
                 else {
                     signupError.find('p').html('what daa!?');
                 }
-                
             }
         };
         
@@ -230,7 +229,7 @@ fun.views.navbar = Backbone.View.extend({
                 callbacks
             );
         }
-    }
+    },
 
     login: function(event){
         'use strict';
