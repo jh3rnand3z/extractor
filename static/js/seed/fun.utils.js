@@ -55,6 +55,8 @@ fun.utils.loggedIn = function() {
 
     console.log(fun.session);
 
+    console.log($.cookie('username'));
+
     return (session != null);
 };
 
