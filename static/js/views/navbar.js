@@ -21,11 +21,26 @@ fun.views.navbar = Backbone.View.extend({
     
     render: function(){
         'use strict';
-        var template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar));
+        var template;
+        if (!this.$el.html()){
+            template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar));
+            this.$el.html(template);
 
-        this.$el.html(template);
+            // Cache the DOM stuff
+            this.signupError = this.$('#signup-alert');
+            // Form inputs
+            this.account = this.$('#signup_username');
+            this.newAccount = this.account;
+            this.firstName = this.$('#signup_firstname')
+            this.email = this.$('#signup_email');
+            this.phoneNumber = this.$('#signup_phone');
+            this.password = this.$('#signup_password');
+            this.confirmPassword = this.$('#confirm_password');
+        }
+
         this.$el.show();
 
+        // Check for logged account and render according to it.
         if(fun.utils.loggedIn()){
             console.log('Just enter the dungeon!');
             this.renderDashboard();
