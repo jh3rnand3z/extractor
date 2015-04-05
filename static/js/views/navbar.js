@@ -188,7 +188,11 @@ fun.views.navbar = Backbone.View.extend({
                 fun.utils.login(account, password,
                     {
                         success : function(xhr, status){
-                            fun.utils.redirect(fun.conf.hash.dashboard);
+                            // the right mutherfucking stuff is send the account
+                            // to the dashboard, but you know... 
+
+                            //fun.utils.redirect(fun.conf.hash.dashboard);
+                            fun.utils.redirect(fun.conf.hash.landing);
                         },
                         error : function(xhr, status, error){
                             // aqui es donde tiene sentido 
