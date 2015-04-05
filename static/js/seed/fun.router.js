@@ -76,9 +76,6 @@ fun.Router = Backbone.Router.extend({
 
     landing: function(){
 
-        //var homeView = new HomeView();
-        //this.appView.showView(homeView);
-
         fun.utils.hideAll();
 
         fun.instances.navbar.render();
@@ -113,9 +110,10 @@ fun.Router = Backbone.Router.extend({
         //fun.instances.footer.render();
     },
     
-    dashboard: function(account, org){
+    //dashboard: function(account, org){
+    dashboard: function(){
         'use strict';
-
+        /*
         console.log(account, org);
 
         if (!account){
@@ -194,6 +192,7 @@ fun.Router = Backbone.Router.extend({
             fun.utils.redirect(fun.conf.hash.login);
         }
         fun.instances.footer.render();
+        */
     },
 
     settings: function(){
