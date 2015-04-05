@@ -30,6 +30,14 @@ fun.views.login = Backbone.View.extend({
             this.password = this.$('#password');
         }
         this.$el.show();
+
+        console.log('I was born to my own AI');
+
+        $('#loginModal').modal({
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
+        });
     },
     
     /**
