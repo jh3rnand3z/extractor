@@ -43,7 +43,7 @@ fun.views.navbar = Backbone.View.extend({
         // Check for logged account and render according to it.
         if(fun.utils.loggedIn()){
             console.log('Just enter the dungeon!');
-            this.renderDashboard();
+            //this.renderDashboard();
         } else {
             console.log('Out of the dungeon');
             //this.renderLanding();
@@ -72,18 +72,12 @@ fun.views.navbar = Backbone.View.extend({
     renderDashboard: function(){
         'use strict';
         var template,
-            navLanding,
             navDashboard;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navLanding));
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
 
-        navLanding = this.$('#fun-nav-landing');
+        navDashboard = this.$('#fun-nav-dashboard');
         navDashboard.html(template);
-
-        //template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
-        
-        //navDashboard = this.$('#fun-nav-dashboard');
-        //navDashboard.html(template);
     },
 
     renderAdmin: function(){
