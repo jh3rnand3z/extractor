@@ -20,6 +20,7 @@ fun.views.navbar = Backbone.View.extend({
     },
     
     render: function(){
+        'use strict';
         var template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar));
 
         this.$el.html(template);
@@ -36,9 +37,12 @@ fun.views.navbar = Backbone.View.extend({
     },
 
     renderLanding: function(){
-        var template = _.template(fun.utils.getTemplate(fun.conf.templates.navLanding));
+        'use strict';
+        var template,
+            navLanding;
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navLanding));
 
-        var navLanding = this.$('#fun-nav-landing');
+        navLanding = this.$('#fun-nav-landing');
         navLanding.html(template);
 
         /*
@@ -75,9 +79,13 @@ fun.views.navbar = Backbone.View.extend({
     },
 
     renderAdmin: function(){
-        var template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin));
+        'use strict';
+        var template,
+            navAdmin;
 
-        var navAdmin = this.$('#fun-nav-admin');
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin));
+
+        navAdmin = this.$('#fun-nav-admin');
         navAdmin.html(template);
     },
 
@@ -107,14 +115,21 @@ fun.views.navbar = Backbone.View.extend({
     },
 
     login: function(event){
+        'use strict';
         event.preventDefault();
-        
-        var loginError = this.loginError;
-        var username = this.username.val();
-        var password = this.password.val();
-        var view = this;
 
-        var loginSuccess = function(view, loginError){
+        var loginError,
+            username,
+            password,
+            view,
+            loginSuccess;
+
+        loginError = this.loginError;
+        username = this.username.val();
+        password = this.password.val();
+        view = this;
+
+        loginSuccess = function(view, loginError){
             // Clear the stuff from the inputs ;)
             view.$('#username').val('');
             view.$('#password').val('');
