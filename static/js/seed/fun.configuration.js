@@ -99,8 +99,8 @@ fun.conf.sip = {
  System urls
 */
 fun.conf.urls = {
-    login: '/login',
-    logout: '/logout',
+    login: '/login/',
+    logout: '/logout/',
 
     user: fun.utils.format('/users/%s', fun.conf.account),
     users: '/users/',

@@ -195,6 +195,7 @@ fun.views.navbar = Backbone.View.extend({
                             fun.utils.redirect(fun.conf.hash.landing);
                         },
                         error : function(xhr, status, error){
+                            console.log('error inside fun.utils.login callbacks on navbar.js que putas...');
                             // aqui es donde tiene sentido 
                             // enviar al dude a login con un error.
                             fun.utils.redirect(fun.conf.hash.login);
