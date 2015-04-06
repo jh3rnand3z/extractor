@@ -22,21 +22,12 @@ A request Authorization header must be similar to this one:
 var backboneSync = Backbone.sync;
 
 Backbone.sync = function (method, model, options) {
-    console.log('overriding Backbone.sync');
     /*
      * The jQuery 'ajax' method includes a 'headers' option
      * which lets you set any headers you like
      */
     options.crossDomain = true;
-        
-    options.headers = {
-        /*
-         * Set the 'Authorization' header and get the access
-         * token from the 'fun.conf' module
-         */
-        'Authorization': 'CLXTKN ' + fun.conf.clxTKN
-    };
- 
+    options.contentType = 'application/json';
     /*
      * Call the stored original Backbone.sync method with
      * extra headers argument added
@@ -83,8 +74,13 @@ fun.models.Register = Backbone.Model.extend({
     },
 
     sync: function(method, model, options){
-        options.contentType = 'application/json';
-        //options.dataType = 'jsonp';
+        options.headers = {
+            /*
+             * Set the 'Authorization' header and get the access
+             * token from the 'fun.conf' module
+             */
+            'Authorization': 'CLXTKN ' + fun.conf.clxTKN
+        };
         return Backbone.sync(method, model, options);
     }
 });
