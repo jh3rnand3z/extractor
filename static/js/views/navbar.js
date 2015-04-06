@@ -202,6 +202,7 @@ fun.views.navbar = Backbone.View.extend({
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
                         error : function(xhr, status, error){
+                            $('#signupModal').modal('hide');
                             fun.utils.redirect(fun.conf.hash.login);
                         }
                     }

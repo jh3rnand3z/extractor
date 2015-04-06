@@ -56,12 +56,8 @@ fun.models.Register = Backbone.Model.extend({
     
     idAttribute: 'UserId',
 
-    initialize: function(options) {
-        this.userId = options.userId;
-    },
-
     //{server}/CLXAPI/UserServices/User/Register
-    
+
     urlRoot: fun.conf.clxUrl + '/CLXAPI/UserServices/User/Register',
 
     url: function(){
