@@ -194,9 +194,11 @@ fun.views.navbar = Backbone.View.extend({
                             // for some reasons the callback always return an error
                             // so we catch the status code; if 200 OK then the shit
                             // was a success and stuff.
+                            console.log('bona');
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
                         error : function(xhr, status, error){
+                            console.log("parte");
                             fun.utils.redirect(fun.conf.hash.login);
                         }
                     }
