@@ -226,6 +226,7 @@ fun.views.navbar = Backbone.View.extend({
         };
 
         clxCbacks = {
+            dataType: 'jsonp',
             success: function(){
                 console.log('CLX Success');
             },
