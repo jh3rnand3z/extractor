@@ -32,6 +32,21 @@ fun.utils.appView = function(view) {
 
 
 /*
+ * Returns the HTTP headers for the API calls. Includes the session token.
+ * @return Object
+ */
+fun.utils.getHttpHeaders = function(){
+    var headers = {
+        "Content-Type" : "application/json"
+    };
+    // Add the authentication token to if if logged in
+    //if (fun.utils.loggedIn()){
+    //    headers.API_TOKEN = fun.session.authToken;
+    //}
+    return headers;
+};
+
+/*
 * Fetches the session from it's container (cookie)
 * @return Object: Session data
 */

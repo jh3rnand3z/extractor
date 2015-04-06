@@ -14,12 +14,14 @@ Backbone.sync = function (method, model, options) {
      * The jQuery 'ajax' method includes a 'headers' option
      * which lets you set any headers you like
      */
+    options.crossDomain = true;
+        
     options.headers = {
         /*
          * Set the 'Authorization' header and get the access
          * token from the 'auth' module
          */
-        'Catalina': 'ok'
+
         //'Authorization': 'Token: ' + (CheckinApp.getSession() != null) ? CheckinApp.getSession().getAuthorizationToken() : ''
     };
  
@@ -93,7 +95,7 @@ fun.models.Register = Backbone.Model.extend({
 
     sync: function(method, model, options){
         options.contentType = 'application/json';
-        options.crossDomain = true;
+        options.dataType = 'jsonp';
         return Backbone.sync(method, model, options);
     }
 });
