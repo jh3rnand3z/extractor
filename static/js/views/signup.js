@@ -29,8 +29,10 @@ fun.views.signup = Backbone.View.extend({
             this.signupError = this.$('#signup-error');
             // Form inputs
             this.account = this.$('#signup_username');
+            this.firstname = this('#signup_firstname');
             this.newAccount = this.account;
             this.email = this.$('#signup_email');
+            this.phone = this.$('#signup_phone');
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
         }
@@ -51,9 +53,11 @@ fun.views.signup = Backbone.View.extend({
         'use strict';
         var signupError,
             account,
+            firstname,
             password,
             confirmPassword,
             email,
+            phone,
             view,
             rules,
             validationRules,
@@ -62,9 +66,11 @@ fun.views.signup = Backbone.View.extend({
         event.preventDefault();
         signupError = this.signupError;
         account = this.account.val();
+        firstname = this.firstname.val();
         password = this.password.val();
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
+        phone = this.phone.val();
         // check if this view stuff is really needed
         view = this;
         // form validation rules
@@ -101,7 +107,9 @@ fun.views.signup = Backbone.View.extend({
             success: function(){
                 // Clear the stuff from the inputs ;)
                 view.$('#signup_username').val('');
+                view.$('#signup_firstname').val('');
                 view.$('#signup_email').val('');
+                view.$('#signup_phone').val('');
                 view.$('#signup_password').val('');
                 view.$('#confirm_password').val('');
                 signupError.hide();
@@ -109,6 +117,7 @@ fun.views.signup = Backbone.View.extend({
                 fun.utils.login(account, password,
                     {
                         success : function(xhr, status){
+                            $('#signupModal').modal('hide');
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
                         error : function(xhr, status, error){
@@ -141,6 +150,21 @@ fun.views.signup = Backbone.View.extend({
         validForm = $('#signup-form').valid();
         if (validForm){
             //event.preventDefault();
+
+            this.clxRegister = new fun.models.Register();
+            this.clxRegister.save({
+                "Culture" : "en-US",
+                "ApplicationId" : fun.conf.clxAppId,
+                "User" : {
+                    "Name": firstname, 
+                    "LastName": "Doe", 
+                    "Password": password,
+                    "Email": email,
+                    "CountryCode": "1",
+                    "CellPhone": phone
+                }
+            });
+
             this.model = new fun.models.Account();
             this.model.save(
                 {
