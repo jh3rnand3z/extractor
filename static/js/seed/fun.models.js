@@ -2,6 +2,33 @@
  Seed models configuration
 */
 
+/*
+ * Store a version of Backbone.sync to call from the
+ * modified version we create
+ */
+var backboneSync = Backbone.sync;
+ 
+Backbone.sync = function (method, model, options) {
+    console.log('overriding Backbone.sync');
+    /*
+     * The jQuery 'ajax' method includes a 'headers' option
+     * which lets you set any headers you like
+     */
+    options.headers = {
+        /*
+         * Set the 'Authorization' header and get the access
+         * token from the 'auth' module
+         */
+        'Catalina': 'ok'
+        //'Authorization': 'Token: ' + (CheckinApp.getSession() != null) ? CheckinApp.getSession().getAuthorizationToken() : ''
+    };
+ 
+    /*
+     * Call the stored original Backbone.sync method with
+     * extra headers argument added
+     */
+    backboneSync(method, model, options);
+};
 
 /*
 CLX stuff
@@ -66,7 +93,7 @@ fun.models.Register = Backbone.Model.extend({
 
     sync: function(method, model, options){
         options.contentType = 'application/json';
-        options.dataType = 'jsonp';
+        options.crossDomain = true;
         return Backbone.sync(method, model, options);
     }
 });
