@@ -3,11 +3,24 @@
 */
 
 /*
+
+The token needs to be passed in every request using the Authorization header.
+
+The authorization scheme for this token will be "CLXTKN".
+
+A request Authorization header must be similar to this one: 
+
+"Authorization: CLXTKN token_value"
+
+*/
+
+
+/*
  * Store a version of Backbone.sync to call from the
  * modified version we create
  */
 var backboneSync = Backbone.sync;
- 
+
 Backbone.sync = function (method, model, options) {
     console.log('overriding Backbone.sync');
     /*
@@ -19,10 +32,9 @@ Backbone.sync = function (method, model, options) {
     options.headers = {
         /*
          * Set the 'Authorization' header and get the access
-         * token from the 'auth' module
+         * token from the 'fun.conf' module
          */
-
-        //'Authorization': 'Token: ' + (CheckinApp.getSession() != null) ? CheckinApp.getSession().getAuthorizationToken() : ''
+        'Authorization': 'CLXTKN ' + fun.conf.clxTKN
     };
  
     /*
@@ -31,29 +43,6 @@ Backbone.sync = function (method, model, options) {
      */
     backboneSync(method, model, options);
 };
-
-/*
-CLX stuff
-
-"User" : 
-
-{
-
-      "Name" : "Thomas" , 
-
-      "LastName" : "Smith" , 
-
-      "Password" : "app12345" ,
-
-      "Email" : "tsmith@domain.com" ,
-
-      "CountryCode" : "1" ,
-
-      "CellPhone" : "0987654321" 
-
-}
-
-*/
 
 
 fun.models.Account = Backbone.Model.extend({
