@@ -133,20 +133,25 @@ fun.views.navbar = Backbone.View.extend({
         'use strict';
         var signupError,
             account,
+            firstName,
             password,
             confirmPassword,
             email,
+            phoneNumber,
             view,
             rules,
             validationRules,
             callbacks,
+            clxCbacks,
             validForm;
         event.preventDefault();
         signupError = this.signupError;
         account = this.account.val();
+        firstName = this.firstName.val();
         password = this.password.val();
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
+        phoneNumber = this.phoneNumber.val();
         // check if this view stuff is really needed
         view = this;
         // form validation rules
@@ -194,11 +199,9 @@ fun.views.navbar = Backbone.View.extend({
                             // for some reasons the callback always return an error
                             // so we catch the status code; if 200 OK then the shit
                             // was a success and stuff.
-                            console.log('bona');
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
                         error : function(xhr, status, error){
-                            console.log("parte");
                             fun.utils.redirect(fun.conf.hash.login);
                         }
                     }
@@ -220,11 +223,34 @@ fun.views.navbar = Backbone.View.extend({
                 }
             }
         };
+
+        clxCbacks = {
+            success: function(){
+                console.log('CLX Success');
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
         
         // check for a valid form and create the new user account
         validForm = $('#signup-form').valid();
         if (validForm){
-            //event.preventDefault();
+            
+            this.clxRegister = new fun.models.Register();
+            this.clxRegister.save({
+                "Culture" : "en-US",
+                "ApplicationId" : fun.conf.clxAppId,
+                "User" : {
+                    "Name": firstName, 
+                    "LastName": "Doe", 
+                    "Password": password,
+                    "Email": email,
+                    "CountryCode": "1",
+                    "CellPhone": phoneNumber
+                }
+            }, clxCbacks);
+
             this.model = new fun.models.Account();
             this.model.save(
                 {
