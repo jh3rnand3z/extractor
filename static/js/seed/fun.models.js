@@ -84,7 +84,7 @@ fun.models.Register = Backbone.Model.extend({
 
     sync: function(method, model, options){
         options.contentType = 'application/json';
-        options.dataType = 'jsonp';
+        //options.dataType = 'jsonp';
         return Backbone.sync(method, model, options);
     }
 });
