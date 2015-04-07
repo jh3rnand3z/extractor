@@ -240,12 +240,12 @@ fun.views.navbar = Backbone.View.extend({
             "Culture": "en-US",
             "ApplicationId": fun.conf.clxAppId,
             "User": {
-                "Name": firstName, 
-                "LastName": "Doe", 
-                "Password": password,
-                "Email": email,
+                "CellPhone": phoneNumber,
                 "CountryCode": "1",
-                "CellPhone": phoneNumber
+                "Email": email,
+                "LastName": "Doe", 
+                "Name": firstName,
+                "Password": password
             }
         };
 
