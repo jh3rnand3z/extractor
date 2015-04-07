@@ -43,6 +43,20 @@ Backbone.sync = function (method, model, options) {
 };
 
 
+fun.models.Register = Backbone.Model.extend({
+    
+    idAttribute: 'UserId',
+
+    //{server}/CLXAPI/UserServices/User/Register
+
+    urlRoot: fun.conf.clxUrl + '/CLXAPI/UserServices/User/Register',
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
 fun.models.Account = Backbone.Model.extend({
     urlRoot: fun.conf.urls.users
 });
@@ -68,25 +82,6 @@ fun.models.logout = Backbone.Model.extend({
 });
 
 
-fun.models.Register = Backbone.Model.extend({
-    
-    idAttribute: 'UserId',
-
-    //{server}/CLXAPI/UserServices/User/Register
-
-    urlRoot: fun.conf.clxUrl + '/CLXAPI/UserServices/User/Register',
-
-    url: function(){
-        return this.urlRoot;
-    },
-
-    sync: function(method, model, options){
-        delete options.headers["Authorization"];
-        return Backbone.sync(method, model, options);
-    }
-});
-
-
 fun.models.User = Backbone.Model.extend({
 
     idAttribute: 'uuid',
@@ -107,6 +102,7 @@ fun.models.User = Backbone.Model.extend({
     
     sync: function(method, model, options){
         options.contentType = 'application/json';
+        //delete options.headers["Authorization"];
         return Backbone.sync(method, model, options);
     }
 }); 
@@ -124,6 +120,7 @@ fun.models.Users = Backbone.Collection.extend({
     
     sync: function(method, model, options) {
         options.contentType = 'application/json';
+        //delete options.headers["Authorization"];
         return Backbone.sync(method, model, options);
     }
 });
