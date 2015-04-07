@@ -27,6 +27,14 @@ Backbone.sync = function (method, model, options) {
      */
     options.crossDomain = true;
     options.contentType = 'application/json';
+
+    options.headers = {
+        /*
+         * Set the 'Authorization' header and get the access
+         * token from the 'fun.conf' module
+         */
+        'Authorization': 'CLXTKN ' + fun.conf.clxTKN
+    };
     /*
      * Call the stored original Backbone.sync method with
      * extra headers argument added
@@ -73,13 +81,7 @@ fun.models.Register = Backbone.Model.extend({
     },
 
     sync: function(method, model, options){
-        options.headers = {
-            /*
-             * Set the 'Authorization' header and get the access
-             * token from the 'fun.conf' module
-             */
-            'Authorization': 'CLXTKN ' + fun.conf.clxTKN
-        };
+        delete options.headers["Authorization"];
         return Backbone.sync(method, model, options);
     }
 });
