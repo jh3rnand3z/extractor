@@ -14,7 +14,6 @@ A request Authorization header must be similar to this one:
 
 */
 
-
 /*
  * Store a version of Backbone.sync to call from the
  * modified version we create
