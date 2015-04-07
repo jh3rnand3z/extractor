@@ -143,6 +143,8 @@ fun.views.navbar = Backbone.View.extend({
             validationRules,
             callbacks,
             clxCbacks,
+            clxPayload,
+            mangoPayload,
             validForm;
         event.preventDefault();
         signupError = this.signupError;
