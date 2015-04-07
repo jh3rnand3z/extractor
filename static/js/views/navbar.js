@@ -233,32 +233,39 @@ fun.views.navbar = Backbone.View.extend({
                 console.log('CLX Error');
             }
         };
+
+        clxPayload = {
+            "Culture": "en-US",
+            "ApplicationId": fun.conf.clxAppId,
+            "User": {
+                "Name": firstName, 
+                "LastName": "Doe", 
+                "Password": password,
+                "Email": email,
+                "CountryCode": "1",
+                "CellPhone": phoneNumber
+            }
+        };
+
+        // log CLX payload
+        console.log(clxPayload);
+
+        mangoPayload = {
+            account: account,
+            password: password,
+            email: email
+        };
         
         // check for a valid form and create the new user account
         validForm = $('#signup-form').valid();
         if (validForm){
             
             this.clxRegister = new fun.models.Register();
-            this.clxRegister.save({
-                "Culture" : "en-US",
-                "ApplicationId" : fun.conf.clxAppId,
-                "User" : {
-                    "Name": firstName, 
-                    "LastName": "Doe", 
-                    "Password": password,
-                    "Email": email,
-                    "CountryCode": "1",
-                    "CellPhone": phoneNumber
-                }
-            }, clxCbacks);
+            this.clxRegister.save(clxPayload, clxCbacks);
 
             this.model = new fun.models.Account();
             this.model.save(
-                {
-                    account: account,
-                    password: password,
-                    email: email
-                },
+                mangoPayload,
                 callbacks
             );
         }
