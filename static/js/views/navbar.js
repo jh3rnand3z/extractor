@@ -237,7 +237,7 @@ fun.views.navbar = Backbone.View.extend({
                 assignPayload = {
                     "Culture": "en-US",
                     "ApplicationId": "26",
-                    "UserId": response.get('UserId')
+                    "UserId": response['UserId']
                 };
 
                 console.log(assignPayload);
