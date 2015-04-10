@@ -146,6 +146,7 @@ fun.views.navbar = Backbone.View.extend({
             clxPayload,
             assignPayload,
             assignCbacks,
+            mangoModel,
             mangoPayload,
             validForm;
         event.preventDefault();
@@ -237,11 +238,11 @@ fun.views.navbar = Backbone.View.extend({
 
                 mangoPayload['AccountNum'] = response['AccountNum'];
 
-                this.model = new fun.models.Account();
-                this.model.save(
+                mangoModel = new fun.models.Account();
+                mangoModel.save(
                     mangoPayload,
                     callbacks
-            );
+                );
 
             },
             error: function(model, error){
@@ -293,7 +294,6 @@ fun.views.navbar = Backbone.View.extend({
         // check for a valid form and create the new user account
         validForm = $('#signup-form').valid();
         if (validForm){
-            
             this.clxRegister = new fun.models.Register();
             this.clxRegister.save(clxPayload, clxCbacks);
         }
