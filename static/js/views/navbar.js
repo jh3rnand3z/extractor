@@ -230,6 +230,7 @@ fun.views.navbar = Backbone.View.extend({
         clxCbacks = {
             success: function(){
                 console.log('CLX Success');
+                console.log(this.clxRegister);
             },
             error: function(model, error){
                 console.log('CLX Error');
@@ -264,10 +265,6 @@ fun.views.navbar = Backbone.View.extend({
             
             this.clxRegister = new fun.models.Register();
             this.clxRegister.save(clxPayload, clxCbacks);
-
-            console.log(this.clxRegister.get("id"));
-            console.log(this.clxRegister.get("UserId"));
-            console.log(this.clxRegister);
             
             this.model = new fun.models.Account();
             this.model.save(
