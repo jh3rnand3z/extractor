@@ -109,6 +109,10 @@ fun.conf.urls = {
     login: '/login/',
     logout: '/logout/',
 
+    register: '/cuallix/register/',
+    assign: '/cuallix/assign/',
+    funds: '/cuallix/funds/',
+
     user: fun.utils.format('/users/%s', fun.conf.account),
     users: '/users/',
 
