@@ -57,7 +57,7 @@ fun.models.Register = Backbone.Model.extend({
 
 fun.models.Assign = Backbone.Model.extend({
     
-    idAttribute: 'UserId',
+    idAttribute: 'AccountNum',
 
     urlRoot: fun.conf.urls.assign,
 
