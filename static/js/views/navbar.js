@@ -235,6 +235,14 @@ fun.views.navbar = Backbone.View.extend({
 
                 console.log(model, response);
 
+                mangoPayload['AccountNum'] = response['AccountNum'];
+
+                this.model = new fun.models.Account();
+                this.model.save(
+                    mangoPayload,
+                    callbacks
+            );
+
             },
             error: function(model, error){
                 console.log('error! inside assignCbacks');
@@ -253,6 +261,7 @@ fun.views.navbar = Backbone.View.extend({
                 };
 
                 console.log(assignPayload);
+                mangoPayload['UserId'] = response['UserId'];
 
                 var stuff = new fun.models.Assign();
                 stuff.save(assignPayload, assignCbacks);
@@ -275,9 +284,6 @@ fun.views.navbar = Backbone.View.extend({
             }
         };
 
-        // log CLX payload
-        console.log(clxPayload);
-
         mangoPayload = {
             account: account,
             password: password,
@@ -290,12 +296,6 @@ fun.views.navbar = Backbone.View.extend({
             
             this.clxRegister = new fun.models.Register();
             this.clxRegister.save(clxPayload, clxCbacks);
-            
-            this.model = new fun.models.Account();
-            this.model.save(
-                mangoPayload,
-                callbacks
-            );
         }
     },
 
