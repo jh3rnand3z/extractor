@@ -265,7 +265,7 @@ fun.views.navbar = Backbone.View.extend({
             this.clxRegister = new fun.models.Register();
             this.clxRegister.save(clxPayload, clxCbacks);
 
-            console.log(this.clxRegister);
+            console.log(this.clxRegister.get("id"));
 
             this.model = new fun.models.Account();
             this.model.save(
