@@ -144,6 +144,8 @@ fun.views.navbar = Backbone.View.extend({
             callbacks,
             clxCbacks,
             clxPayload,
+            assignPayload,
+            assignCbacks,
             mangoPayload,
             validForm;
         event.preventDefault();
@@ -231,6 +233,14 @@ fun.views.navbar = Backbone.View.extend({
             success: function(model, response){
                 console.log('CLX Success');
                 console.log(model, response);
+
+                assignPayload = {
+                    "Culture": "en-US",
+                    "ApplicationId": "26",
+                    "UserId": response.get('UserId')
+                };
+
+                console.log(assignPayload);
             },
             error: function(model, error){
                 console.log('CLX Error');
