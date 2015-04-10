@@ -8,6 +8,7 @@ fun.conf = {
     // CLX conf stuff
     clxUrl: 'http://201.149.49.181:9027',
     clxPartner: 'Preway',
+    clxCulture: 'en-US',
     clxAppId: '26',
     clxTKN: '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=',
     clxUserId: '1517',

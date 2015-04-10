@@ -229,18 +229,33 @@ fun.views.navbar = Backbone.View.extend({
             }
         };
 
+        assignCbacks = {
+            success: function(model, response){
+                console.log('ok done!');
+
+                console.log(model, response);
+
+            },
+            error: function(model, error){
+                console.log('error! inside assignCbacks');
+            }
+        }
+
         clxCbacks = {
             success: function(model, response){
                 console.log('CLX Success');
                 console.log(model, response);
 
                 assignPayload = {
-                    "Culture": "en-US",
-                    "ApplicationId": "26",
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
                     "UserId": response['UserId']
                 };
 
                 console.log(assignPayload);
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
             },
             error: function(model, error){
                 console.log('CLX Error');
@@ -248,7 +263,7 @@ fun.views.navbar = Backbone.View.extend({
         };
 
         clxPayload = {
-            "Culture": "en-US",
+            "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "User": {
                 "CellPhone": phoneNumber,
