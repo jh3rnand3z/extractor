@@ -228,9 +228,9 @@ fun.views.navbar = Backbone.View.extend({
         };
 
         clxCbacks = {
-            success: function(){
+            success: function(model, response){
                 console.log('CLX Success');
-                console.log(this.clxRegister);
+                console.log(model, response);
             },
             error: function(model, error){
                 console.log('CLX Error');
