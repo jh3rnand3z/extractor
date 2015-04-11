@@ -77,6 +77,9 @@ fun.views.dashboard = Backbone.View.extend({
         'use strict';
         event.preventDefault();
         var view = this,
+            stuff,
+            payment,
+            payCallbacks,
             email,
             funds,
             ccNumber,
@@ -101,10 +104,36 @@ fun.views.dashboard = Backbone.View.extend({
             amount_funds: funds,
             credit_card_number: ccNumber,
             credit_card_cvc: ccCVC,
+            credit_card_type: 'diners',
             exp_month: expMonth,
             exp_year: expYear
         };
 
         console.log(stuff);
+
+        payCallbacks = {
+            success: function(model, response){
+                /*
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
+                */
+
+                console.log('payment callbacks success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        payment = new fun.models.Payment();
+        payment.save(stuff, payCallbacks);
     }
 });
