@@ -22,8 +22,12 @@ fun.views.navbar = Backbone.View.extend({
     render: function(){
         'use strict';
         var template;
+
+        data = {
+            account: this.account
+        }
         if (!this.$el.html()){
-            template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar));
+            template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar))(data);
             this.$el.html(template);
 
             // Cache the DOM stuff
