@@ -5,7 +5,10 @@ fun.views.dashboard = Backbone.View.extend({
     */
     events: {
         'click #diners-pay-btn': 'dinersAddFunds',
-        'click #discover-pay-btn': 'discoverAddFunds'
+        'click #discover-pay-btn': 'discoverAddFunds',
+        'click #master-pay-btn': 'masterAddFunds',
+        'click #visa-pay-btn': 'visaAddFunds',
+        'click #amex-pay-btn': 'amexAddFunds'
     },
 
     initialize: function(options){
@@ -51,6 +54,24 @@ fun.views.dashboard = Backbone.View.extend({
             this.masterExpYear = this.$('#master-exp-year');
             this.masterCVC = this.$('#master-cc-cvc');
             this.masterName = this.$('#master-cc-name');
+
+            // Visa
+            this.visaEmail = this.$('#visa-email');
+            this.visaFunds = this.$('#visa-funds');
+            this.visaCCnumber = this.$('#visa-cc-number');
+            this.visaExpMonth = this.$('#visa-exp-month');
+            this.visaExpYear = this.$('#visa-exp-year');
+            this.visaCVC = this.$('#visa-cc-cvc');
+            this.visaName = this.$('#visa-cc-name');
+
+            // Amex
+            this.amexEmail = this.$('#amex-email');
+            this.amexFunds = this.$('#amex-funds');
+            this.amexCCnumber = this.$('#amex-cc-number');
+            this.amexExpMonth = this.$('#amex-exp-month');
+            this.amexExpYear = this.$('#amex-exp-year');
+            this.amexCVC = this.$('#amex-cc-cvc');
+            this.amexName = this.$('#amex-cc-name');
         
 
         }
@@ -248,6 +269,134 @@ fun.views.dashboard = Backbone.View.extend({
         expYear = this.masterExpYear.val();
         ccCVC = this.masterCVC.val();
         ccName = this.masterName.val();
+
+        var stuff = {
+            email: email,
+            card_name: ccName,
+            amount_funds: funds,
+            credit_card_number: ccNumber,
+            credit_card_cvc: ccCVC,
+            credit_card_type: 'master',
+            exp_month: expMonth,
+            exp_year: expYear
+        };
+
+        console.log(stuff);
+
+        payCallbacks = {
+            success: function(model, response){
+                /*
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
+                */
+
+                console.log('payment callbacks success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        payment = new fun.models.Payment();
+        payment.save(stuff, payCallbacks);
+    },
+
+    visaAddFunds: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this,
+            stuff,
+            payment,
+            payCallbacks,
+            email,
+            funds,
+            ccNumber,
+            expYear,
+            expMonth,
+            ccCVC,
+            ccName;
+
+        console.log('add funds master card');
+
+        email = this.visaEmail.val();
+        funds = this.visaFunds.val();
+        ccNumber = this.visaCCnumber.val();
+        expMonth = this.visaExpMonth.val();
+        expYear = this.visaExpYear.val();
+        ccCVC = this.visaCVC.val();
+        ccName = this.visaName.val();
+
+        var stuff = {
+            email: email,
+            card_name: ccName,
+            amount_funds: funds,
+            credit_card_number: ccNumber,
+            credit_card_cvc: ccCVC,
+            credit_card_type: 'master',
+            exp_month: expMonth,
+            exp_year: expYear
+        };
+
+        console.log(stuff);
+
+        payCallbacks = {
+            success: function(model, response){
+                /*
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
+                */
+
+                console.log('payment callbacks success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        payment = new fun.models.Payment();
+        payment.save(stuff, payCallbacks);
+    },
+
+    amexAddFunds: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this,
+            stuff,
+            payment,
+            payCallbacks,
+            email,
+            funds,
+            ccNumber,
+            expYear,
+            expMonth,
+            ccCVC,
+            ccName;
+
+        console.log('add funds master card');
+
+        email = this.amexEmail.val();
+        funds = this.amexFunds.val();
+        ccNumber = this.amexCCnumber.val();
+        expMonth = this.amexExpMonth.val();
+        expYear = this.amexExpYear.val();
+        ccCVC = this.amexCVC.val();
+        ccName = this.amexName.val();
 
         var stuff = {
             email: email,
