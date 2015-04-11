@@ -17,6 +17,8 @@ fun.views.dashboard = Backbone.View.extend({
         fun.containers.dashboard = this.$el;
 
         this.account = localStorage.getItem("username");
+
+        this.userId = localStorage.getItem("UserId");
     },
 
     render: function(){
@@ -430,6 +432,28 @@ fun.views.dashboard = Backbone.View.extend({
                 console.log('CLX Error');
             }
         };
+
+        var addFunds = new fun.models.Funds();
+
+
+        var fundsPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": this.userId,
+            "Amount": funds
+        };
+
+        var fundsCallback = {
+            success: function(model, response){
+                console.log('CLX load funds success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        addFunds.save(fundsPayload, fundsCallback);
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
