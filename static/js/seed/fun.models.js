@@ -47,14 +47,39 @@ fun.models.Register = Backbone.Model.extend({
     
     idAttribute: 'UserId',
 
-    //{server}/CLXAPI/UserServices/User/Register
-
-    urlRoot: fun.conf.clxUrl + '/CLXAPI/UserServices/User/Register',
+    urlRoot: fun.conf.urls.register,
 
     url: function(){
         return this.urlRoot;
     },
 });
+
+
+fun.models.Assign = Backbone.Model.extend({
+    
+    idAttribute: 'AccountNum',
+
+    urlRoot: fun.conf.urls.assign,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+fun.models.Funds = Backbone.Model.extend({
+    
+    idAttribute: 'UserId',
+
+    urlRoot: fun.conf.urls.funds,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+
 
 
 fun.models.Account = Backbone.Model.extend({

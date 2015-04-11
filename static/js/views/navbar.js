@@ -144,6 +144,9 @@ fun.views.navbar = Backbone.View.extend({
             callbacks,
             clxCbacks,
             clxPayload,
+            assignPayload,
+            assignCbacks,
+            mangoModel,
             mangoPayload,
             validForm;
         event.preventDefault();
@@ -227,9 +230,42 @@ fun.views.navbar = Backbone.View.extend({
             }
         };
 
+        assignCbacks = {
+            success: function(model, response){
+                console.log('ok done!');
+
+                console.log(model, response);
+
+                mangoPayload['AccountNum'] = response['AccountNum'];
+
+                mangoModel = new fun.models.Account();
+                mangoModel.save(
+                    mangoPayload,
+                    callbacks
+                );
+
+            },
+            error: function(model, error){
+                console.log('error! inside assignCbacks');
+            }
+        }
+
         clxCbacks = {
-            success: function(){
+            success: function(model, response){
                 console.log('CLX Success');
+                console.log(model, response);
+
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+
+                console.log(assignPayload);
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
             },
             error: function(model, error){
                 console.log('CLX Error');
@@ -237,7 +273,7 @@ fun.views.navbar = Backbone.View.extend({
         };
 
         clxPayload = {
-            "Culture": "en-US",
+            "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "User": {
                 "CellPhone": phoneNumber,
@@ -249,9 +285,6 @@ fun.views.navbar = Backbone.View.extend({
             }
         };
 
-        // log CLX payload
-        console.log(clxPayload);
-
         mangoPayload = {
             account: account,
             password: password,
@@ -261,15 +294,8 @@ fun.views.navbar = Backbone.View.extend({
         // check for a valid form and create the new user account
         validForm = $('#signup-form').valid();
         if (validForm){
-            
             this.clxRegister = new fun.models.Register();
             this.clxRegister.save(clxPayload, clxCbacks);
-
-            this.model = new fun.models.Account();
-            this.model.save(
-                mangoPayload,
-                callbacks
-            );
         }
     },
 
