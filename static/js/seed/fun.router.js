@@ -140,8 +140,8 @@ fun.Router = Backbone.Router.extend({
         callbacks = {
             success: function(model, response){
                 if(++resourceCount == _.keys(resources).length){
-                    console.log(resources.user);
-                    console.log(resources.user.get('UserId'));
+                    //console.log(resources.user);
+                    localStorage.setItem("UserId", resources.user.get('UserId'));
                 }
             },
             error: function(model, error){
