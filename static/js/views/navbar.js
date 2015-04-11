@@ -66,7 +66,11 @@ fun.views.navbar = Backbone.View.extend({
         var template,
             navDashboard;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
+        data = {
+            'account': this.account
+        }
+
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard))(data);
 
         navDashboard = this.$('#fun-nav-dashboard');
         navDashboard.html(template);
@@ -75,9 +79,14 @@ fun.views.navbar = Backbone.View.extend({
     renderAdmin: function(){
         'use strict';
         var template,
+            data,
             navAdmin;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin));
+        data = {
+            'account': this.account
+        }
+
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin))(data);
 
         navAdmin = this.$('#fun-nav-admin');
         navAdmin.html(template);
