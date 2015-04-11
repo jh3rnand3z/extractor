@@ -4,7 +4,7 @@ fun.views.dashboard = Backbone.View.extend({
     * Bind the event functions to the different HTML elements
     */
     events: {
-    
+        'click #diners-pay-btn': 'dinersAddFunds',
     },
 
     initialize: function(options){
@@ -26,5 +26,9 @@ fun.views.dashboard = Backbone.View.extend({
         
         
         console.log("username = " + this.account)
+    },
+
+    dinersAddFunds: function(){
+        console.log('add funds diners');
     }
 });
