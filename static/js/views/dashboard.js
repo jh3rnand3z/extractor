@@ -436,6 +436,8 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
+                console.log(response['Status']);
+
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
