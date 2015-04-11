@@ -84,13 +84,19 @@ fun.models.Payment = Backbone.Model.extend({
     idAttribute: 'uuid',
 
     initialize: function(options) {
-        this.paymentId = options.paymentId;
+        if (options.paymentId){
+            this.paymentId = options.paymentId;
+
+        }
     },
     
     urlRoot: fun.conf.urls.payment,
 
     url: function() {
-        var url = this.urlRoot.replace(fun.conf.paymentId, this.paymentId);
+        var url;
+        if (this.paymentId){
+            url = this.urlRoot.replace(fun.conf.paymentId, this.paymentId);
+        }
         if (!this.isNew()){
             url += '/' + this.id;
         } else {
