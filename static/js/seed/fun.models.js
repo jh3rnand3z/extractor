@@ -69,7 +69,7 @@ fun.models.Assign = Backbone.Model.extend({
 
 fun.models.Funds = Backbone.Model.extend({
     
-    idAttribute: 'UserId',
+    idAttribute: 'CustomerToken',
 
     urlRoot: fun.conf.urls.funds,
 
