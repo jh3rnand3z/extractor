@@ -97,12 +97,12 @@ fun.views.dashboard = Backbone.View.extend({
 
         var stuff = {
             email: email,
-            funds: funds,
-            ccNumber: ccNumber,
-            expMonth: expMonth,
-            expYear: expYear,
-            ccCVC: ccCVC,
-            ccName: ccName
+            card_name: ccName,
+            amount_funds: funds,
+            credit_card_number: ccNumber,
+            credit_card_cvc: ccCVC,
+            exp_month: expMonth,
+            exp_year: expYear
         };
 
         console.log(stuff);

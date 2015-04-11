@@ -79,7 +79,53 @@ fun.models.Funds = Backbone.Model.extend({
 });
 
 
+fun.models.Payment = Backbone.Model.extend({
+    
+    idAttribute: 'uuid',
 
+    initialize: function(options) {
+        this.paymentId = options.paymentId;
+    },
+    
+    urlRoot: fun.conf.urls.payment,
+    
+    url: function() {
+        var url = this.urlRoot.replace(fun.conf.paymentId, this.paymentId);
+        if (!this.isNew()){
+            url += '/' + this.id;
+        }
+        return url;
+    },
+    
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    }
+})
+
+
+fun.models.Payments = Backbone.Collection.extend({
+    
+    model: fun.models.Payment,
+    
+    urlRoot: fun.conf.urls.payments,
+    
+    url: function() {
+        return this.urlRoot;
+    },
+    
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+    
+    parse: function(response) {
+        return response.payments;
+    }
+});
+
+
+// --------
 
 
 fun.models.Account = Backbone.Model.extend({
