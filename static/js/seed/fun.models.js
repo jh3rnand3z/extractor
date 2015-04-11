@@ -4,13 +4,13 @@
 
 /*
 
-The token needs to be passed in every request using the Authorization header.
+    The token needs to be passed in every request using the Authorization header.
 
-The authorization scheme for this token will be "CLXTKN".
+    The authorization scheme for this token will be "CLXTKN".
 
-A request Authorization header must be similar to this one: 
+    A request Authorization header must be similar to this one: 
 
-"Authorization: CLXTKN token_value"
+    "Authorization: CLXTKN token_value"
 
 */
 
@@ -88,11 +88,13 @@ fun.models.Payment = Backbone.Model.extend({
     },
     
     urlRoot: fun.conf.urls.payment,
-    
+
     url: function() {
         var url = this.urlRoot.replace(fun.conf.paymentId, this.paymentId);
         if (!this.isNew()){
             url += '/' + this.id;
+        } else {
+            url = fun.conf.urls.payments;
         }
         return url;
     },
