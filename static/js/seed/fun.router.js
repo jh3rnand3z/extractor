@@ -111,8 +111,42 @@ fun.Router = Backbone.Router.extend({
     },
     
     //dashboard: function(account, org){
-    dashboard: function(){
+    dashboard: function(account){
         'use strict';
+
+        var account,
+            resourceCount = 0,
+            resources,
+            callbacks,
+            dashboard,
+            message;
+
+        console.log('dashboard parsed account', account);
+
+        if (!account){
+            account = localStorage.getItem('username');
+        } else {
+            if (account.substring(0,1) == ':') {
+                account = account.substring(1);
+            }
+        }
+
+        console.log('dashboard account', account);
+
+        resources = {
+            user: new fun.models.User({'account':account})
+        };
+
+        callbacks = {
+            success: function(model, response){
+                if(++resourceCount == _.keys(resources).length){
+                    console.log(models.user)
+                }
+            },
+            error: function(model, error){
+                console.log('resources error');
+            }
+        };
 
         if(fun.utils.loggedIn()){
 
@@ -120,6 +154,10 @@ fun.Router = Backbone.Router.extend({
             fun.instances.navbar.render();
 
             fun.instances.dashboard.render();
+
+            for (message in resources){
+                resources[message].fetch(callbacks);
+            }
 
         } else {
             fun.utils.redirect(fun.conf.hash.login);
