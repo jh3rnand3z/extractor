@@ -212,9 +212,29 @@ fun.views.navbar = Backbone.View.extend({
                             // was a success and stuff.
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
-                        error : function(xhr, status, error){
-                            $('#signupModal').modal('hide');
-                            fun.utils.redirect(fun.conf.hash.login);
+                        error : function(xhr, status, error) {
+                            switch(xhr.status) {
+                                case 403:
+                                    var message = fun.utils.translate("usernameOrPasswordError");
+                                    loginError.find('p').html(message);
+                                    loginError.removeClass("hide" ).addClass("show");
+                                    break;
+                                case 200:
+                                    $('#signupModal').modal('hide');
+                                    
+                                    // Check browser support
+                                    if (typeof(Storage) != "undefined") {
+                                        // Store
+                                        localStorage.setItem("username", username);
+                                    }
+                                    fun.utils.redirect(fun.conf.hash.login);
+                                    //loginSuccess(view, loginError);
+                                    //$('#loginModal').modal('hide');
+                                    break;
+                                default:
+                                    console.log('the monkey is down');
+                                    break;
+                            }
                         }
                     }
                 );
