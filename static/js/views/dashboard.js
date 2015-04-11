@@ -71,7 +71,7 @@ fun.views.dashboard = Backbone.View.extend({
         view.$('#contact_first_name').val('');
         view.$('#contact_last_name').val('');
         view.$('#new-phone-number').val('');
-    }
+    },
 
     dinersAddFunds: function(event){
         'use strict';
