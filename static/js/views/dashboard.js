@@ -24,6 +24,8 @@ fun.views.dashboard = Backbone.View.extend({
             this.$el.html(template);
 
             // DOM cache stuff on form fields.
+
+            // Diners
             this.dinersEmail = this.$('#diners-email');
             this.dinersFunds = this.$('#diners-funds');
             this.dinersCCnumber = this.$('#diners-cc-number');
@@ -40,6 +42,17 @@ fun.views.dashboard = Backbone.View.extend({
             this.discoverExpYear = this.$('#discover-exp-year');
             this.discoverCVC = this.$('#discover-cc-cvc');
             this.discoverName = this.$('#discover-cc-name');
+        
+            // MasterCard
+            this.masterEmail = this.$('#master-email');
+            this.masterFunds = this.$('#master-funds');
+            this.masterCCnumber = this.$('#master-cc-number');
+            this.masterExpMonth = this.$('#master-exp-month');
+            this.masterExpYear = this.$('#master-exp-year');
+            this.masterCVC = this.$('#master-cc-cvc');
+            this.masterName = this.$('#master-cc-name');
+        
+
         }
         this.$el.show();
         console.log("username = " + this.account);
@@ -179,6 +192,70 @@ fun.views.dashboard = Backbone.View.extend({
             credit_card_number: ccNumber,
             credit_card_cvc: ccCVC,
             credit_card_type: 'discover',
+            exp_month: expMonth,
+            exp_year: expYear
+        };
+
+        console.log(stuff);
+
+        payCallbacks = {
+            success: function(model, response){
+                /*
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
+                */
+
+                console.log('payment callbacks success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        payment = new fun.models.Payment();
+        payment.save(stuff, payCallbacks);
+    },
+
+    masterAddFunds: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this,
+            stuff,
+            payment,
+            payCallbacks,
+            email,
+            funds,
+            ccNumber,
+            expYear,
+            expMonth,
+            ccCVC,
+            ccName;
+
+        console.log('add funds master card');
+
+        email = this.masterEmail.val();
+        funds = this.masterFunds.val();
+        ccNumber = this.masterCCnumber.val();
+        expMonth = this.masterExpMonth.val();
+        expYear = this.masterExpYear.val();
+        ccCVC = this.masterCVC.val();
+        ccName = this.masterName.val();
+
+        var stuff = {
+            email: email,
+            card_name: ccName,
+            amount_funds: funds,
+            credit_card_number: ccNumber,
+            credit_card_cvc: ccCVC,
+            credit_card_type: 'master',
             exp_month: expMonth,
             exp_year: expYear
         };
