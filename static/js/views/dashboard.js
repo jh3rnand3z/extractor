@@ -413,18 +413,6 @@ fun.views.dashboard = Backbone.View.extend({
 
         payCallbacks = {
             success: function(model, response){
-                /*
-                assignPayload = {
-                    "Culture": fun.conf.clxCulture,
-                    "ApplicationId": fun.conf.clxAppId,
-                    "UserId": response['UserId']
-                };
-                mangoPayload['UserId'] = response['UserId'];
-
-                var stuff = new fun.models.Assign();
-                stuff.save(assignPayload, assignCbacks);
-                */
-
                 console.log('payment callbacks success');
                 console.log(response);
             },
@@ -432,9 +420,6 @@ fun.views.dashboard = Backbone.View.extend({
                 console.log('CLX Error');
             }
         };
-
-        var addFunds = new fun.models.Funds();
-
 
         var fundsPayload = {
             "Culture": fun.conf.clxCulture,
@@ -447,16 +432,22 @@ fun.views.dashboard = Backbone.View.extend({
             success: function(model, response){
                 console.log('CLX load funds success');
                 console.log(response);
+                stuff['CustomerToken'] = response['CustomerToken'];
+                stuff['Transaction'] = response['Transaction'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
             },
             error: function(model, error){
                 console.log('CLX Error');
             }
         };
 
+        var addFunds = new fun.models.Funds();
         addFunds.save(fundsPayload, fundsCallback);
-
-        payment = new fun.models.Payment();
-        payment.save(stuff, payCallbacks);
 
         // Clear the stuff from the inputs
         view.$('#amex-email').val('');
