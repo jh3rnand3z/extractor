@@ -84,9 +84,8 @@ fun.models.Payment = Backbone.Model.extend({
     idAttribute: 'uuid',
 
     initialize: function(options) {
-        if (options.paymentId){
+        if (typeof options != 'undefined'){
             this.paymentId = options.paymentId;
-
         }
     },
     
