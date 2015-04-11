@@ -5,6 +5,7 @@ fun.views.dashboard = Backbone.View.extend({
     */
     events: {
         'click #diners-pay-btn': 'dinersAddFunds',
+        'click #discover-pay-btn': 'discoverAddFunds'
     },
 
     initialize: function(options){
@@ -30,6 +31,15 @@ fun.views.dashboard = Backbone.View.extend({
             this.dinersExpYear = this.$('#diners-exp-year');
             this.dinersCVC = this.$('#diners-cc-cvc');
             this.dinersName = this.$('#diners-cc-name');
+
+            // Discover
+            this.discoverEmail = this.$('#discover-email');
+            this.discoverFunds = this.$('#discover-funds');
+            this.discoverCCnumber = this.$('#discover-cc-number');
+            this.discoverExpMonth = this.$('#discover-exp-month');
+            this.discoverExpYear = this.$('#discover-exp-year');
+            this.discoverCVC = this.$('#discover-cc-cvc');
+            this.discoverName = this.$('#discover-cc-name');
         }
         this.$el.show();
         console.log("username = " + this.account);
@@ -105,6 +115,70 @@ fun.views.dashboard = Backbone.View.extend({
             credit_card_number: ccNumber,
             credit_card_cvc: ccCVC,
             credit_card_type: 'diners',
+            exp_month: expMonth,
+            exp_year: expYear
+        };
+
+        console.log(stuff);
+
+        payCallbacks = {
+            success: function(model, response){
+                /*
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                var stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCbacks);
+                */
+
+                console.log('payment callbacks success');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        payment = new fun.models.Payment();
+        payment.save(stuff, payCallbacks);
+    },
+
+    discoverAddFunds: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this,
+            stuff,
+            payment,
+            payCallbacks,
+            email,
+            funds,
+            ccNumber,
+            expYear,
+            expMonth,
+            ccCVC,
+            ccName;
+
+        console.log('add funds discover');
+
+        email = this.discoverEmail.val();
+        funds = this.discoverFunds.val();
+        ccNumber = this.discoverCCnumber.val();
+        expMonth = this.discoverExpMonth.val();
+        expYear = this.discoverExpYear.val();
+        ccCVC = this.discoverCVC.val();
+        ccName = this.discoverName.val();
+
+        var stuff = {
+            email: email,
+            card_name: ccName,
+            amount_funds: funds,
+            credit_card_number: ccNumber,
+            credit_card_cvc: ccCVC,
+            credit_card_type: 'discover',
             exp_month: expMonth,
             exp_year: expYear
         };
