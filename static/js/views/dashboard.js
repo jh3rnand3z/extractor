@@ -79,44 +79,6 @@ fun.views.dashboard = Backbone.View.extend({
         console.log("username = " + this.account);
     },
 
-    addContact: function(event){
-        'use strict';
-        event.preventDefault();
-        var view = this,
-            firstName,
-            lastName,
-            newNumber,
-            countryData,
-            numberType,
-            contact;
-
-        console.log('new contact event');
-
-        firstName = this.contactFirstName.val();
-
-        lastName = this.contactLastName.val();
-
-        newNumber = this.newPhoneNumber.intlTelInput("getNumber");
-
-        countryData = this.newPhoneNumber.intlTelInput("getSelectedCountryData");
-
-        numberType = this.newPhoneNumber.intlTelInput("getNumberType");
-
-        contact = new fun.models.Contact({
-            first_name: firstName,
-            last_name: lastName,
-            phone_number: newNumber,
-            number_type: numberType
-        });
-
-        contact.save();
-        
-        // Clear the stuff from the inputs ;)
-        view.$('#contact_first_name').val('');
-        view.$('#contact_last_name').val('');
-        view.$('#new-phone-number').val('');
-    },
-
     dinersAddFunds: function(event){
         'use strict';
         event.preventDefault();
@@ -179,6 +141,15 @@ fun.views.dashboard = Backbone.View.extend({
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
+
+        // Clear the stuff from the inputs
+        view.$('#diners-email').val('');
+        view.$('#diners-funds').val('');
+        view.$('#diners-cc-number').val('');
+        view.$('#diners-exp-month').val('');
+        view.$('#diners-exp-year').val('');
+        view.$('#diners-cc-cvc').val('');
+        view.$('#diners-cc-name').val('');
     },
 
     discoverAddFunds: function(event){
@@ -243,6 +214,15 @@ fun.views.dashboard = Backbone.View.extend({
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
+
+        // Clear the stuff from the inputs
+        view.$('#discover-email').val('');
+        view.$('#discover-funds').val('');
+        view.$('#discover-cc-number').val('');
+        view.$('#discover-exp-month').val('');
+        view.$('#discover-exp-year').val('');
+        view.$('#discover-cc-cvc').val('');
+        view.$('#discover-cc-name').val('');
     },
 
     masterAddFunds: function(event){
@@ -307,6 +287,15 @@ fun.views.dashboard = Backbone.View.extend({
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
+
+        // Clear the stuff from the inputs
+        view.$('#master-email').val('');
+        view.$('#master-funds').val('');
+        view.$('#master-cc-number').val('');
+        view.$('#master-exp-month').val('');
+        view.$('#master-exp-year').val('');
+        view.$('#master-cc-cvc').val('');
+        view.$('#master-cc-name').val('');
     },
 
     visaAddFunds: function(event){
@@ -371,6 +360,15 @@ fun.views.dashboard = Backbone.View.extend({
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
+
+        // Clear the stuff from the inputs
+        view.$('#visa-email').val('');
+        view.$('#visa-funds').val('');
+        view.$('#visa-cc-number').val('');
+        view.$('#visa-exp-month').val('');
+        view.$('#visa-exp-year').val('');
+        view.$('#visa-cc-cvc').val('');
+        view.$('#visa-cc-name').val('');
     },
 
     amexAddFunds: function(event){
@@ -435,5 +433,14 @@ fun.views.dashboard = Backbone.View.extend({
 
         payment = new fun.models.Payment();
         payment.save(stuff, payCallbacks);
+
+        // Clear the stuff from the inputs
+        view.$('#amex-email').val('');
+        view.$('#amex-funds').val('');
+        view.$('#amex-cc-number').val('');
+        view.$('#amex-exp-month').val('');
+        view.$('#amex-exp-year').val('');
+        view.$('#amex-cc-cvc').val('');
+        view.$('#amex-cc-name').val('');
     }
 });
