@@ -59,14 +59,6 @@ fun.views.navbar = Backbone.View.extend({
 
         navLanding = this.$('#fun-nav-landing');
         navLanding.html(template);
-
-        /*
-        $('#signupModal').modal({
-            'show': true,
-            'backdrop': 'static',
-            'keyboard': false
-        });
-        */
     },
 
     renderDashboard: function(){
@@ -232,36 +224,25 @@ fun.views.navbar = Backbone.View.extend({
 
         assignCbacks = {
             success: function(model, response){
-                console.log('ok done!');
-
-                console.log(model, response);
-
                 mangoPayload['AccountNum'] = response['AccountNum'];
-
                 mangoModel = new fun.models.Account();
                 mangoModel.save(
                     mangoPayload,
                     callbacks
                 );
-
             },
             error: function(model, error){
-                console.log('error! inside assignCbacks');
+                console.log('CLX error on assign callbacks!');
             }
         }
 
         clxCbacks = {
             success: function(model, response){
-                console.log('CLX Success');
-                console.log(model, response);
-
                 assignPayload = {
                     "Culture": fun.conf.clxCulture,
                     "ApplicationId": fun.conf.clxAppId,
                     "UserId": response['UserId']
                 };
-
-                console.log(assignPayload);
                 mangoPayload['UserId'] = response['UserId'];
 
                 var stuff = new fun.models.Assign();
