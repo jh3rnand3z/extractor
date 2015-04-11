@@ -21,7 +21,8 @@ fun.views.navbar = Backbone.View.extend({
     
     render: function(){
         'use strict';
-        var template;
+        var template,
+            data;
 
         data = {
             account: this.account
