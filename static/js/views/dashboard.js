@@ -313,7 +313,7 @@ fun.views.dashboard = Backbone.View.extend({
             ccCVC,
             ccName;
 
-        console.log('add funds master card');
+        console.log('add funds visa card');
 
         email = this.visaEmail.val();
         funds = this.visaFunds.val();
@@ -329,7 +329,7 @@ fun.views.dashboard = Backbone.View.extend({
             amount_funds: funds,
             credit_card_number: ccNumber,
             credit_card_cvc: ccCVC,
-            credit_card_type: 'master',
+            credit_card_type: 'visa',
             exp_month: expMonth,
             exp_year: expYear
         };
@@ -386,7 +386,7 @@ fun.views.dashboard = Backbone.View.extend({
             ccCVC,
             ccName;
 
-        console.log('add funds master card');
+        console.log('add funds amex card');
 
         email = this.amexEmail.val();
         funds = this.amexFunds.val();
@@ -402,7 +402,7 @@ fun.views.dashboard = Backbone.View.extend({
             amount_funds: funds,
             credit_card_number: ccNumber,
             credit_card_cvc: ccCVC,
-            credit_card_type: 'master',
+            credit_card_type: 'amex',
             exp_month: expMonth,
             exp_year: expYear
         };
