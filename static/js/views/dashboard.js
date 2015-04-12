@@ -436,11 +436,19 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                console.log(response['Status']);
+                console.log(response['Status']['Code']);
 
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                if (response['Status']['Code'] == 200000){
+                    var message = translate('transactionSuccessful'); 
+                    alert(message);
+                } else {
+                    var message = translate('transactionBlocked'); 
+                    alert(message);
+                }
 
             },
             error: function(model, error){
