@@ -86,6 +86,7 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this,
             stuff,
+            userId,
             payment,
             payCallbacks,
             addFunds,
@@ -106,6 +107,8 @@ fun.views.dashboard = Backbone.View.extend({
             ccName;
 
         console.log('add funds diners');
+
+        userId = localStorage.getItem("UserId");
 
         email = this.dinersEmail.val();
         funds = this.dinersFunds.val();
@@ -148,7 +151,7 @@ fun.views.dashboard = Backbone.View.extend({
         settlePayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "CustomerToken": customerToken,
             "TransactionNum": transactionNum
         }
@@ -179,6 +182,11 @@ fun.views.dashboard = Backbone.View.extend({
                 // cuallix settle transaction
 
                 settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
                 settle.save(settlePayload, settleCallback);
 
                 
