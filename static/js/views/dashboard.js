@@ -161,6 +161,9 @@ fun.views.dashboard = Backbone.View.extend({
                 console.log('settle callbacks success');
                 console.log(response);
 
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
@@ -222,6 +225,7 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this,
             stuff,
+            userId,
             payment,
             payCallbacks,
             addFunds,
@@ -230,6 +234,11 @@ fun.views.dashboard = Backbone.View.extend({
             message,
             email,
             funds,
+            settle,
+            settlePayload,
+            settleCallback,
+            customerToken,
+            transactionNum,
             ccNumber,
             expYear,
             expMonth,
@@ -259,6 +268,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log(stuff);
 
+        console.log(stuff);
+
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -276,6 +287,32 @@ fun.views.dashboard = Backbone.View.extend({
             "Amount": funds
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
+        }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
+
         fundsCallback = {
             success: function(model, response){
                 console.log('CLX load funds success');
@@ -284,10 +321,17 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                // after cuallix call store the transaction
-                payment = new fun.models.Payment();
-                payment.save(stuff, payCallbacks);
+                // cuallix settle transaction
 
+                settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle.save(settlePayload, settleCallback);
+
+                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSuccessful'); 
                     alert(message);
@@ -320,6 +364,7 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this,
             stuff,
+            userId,
             payment,
             payCallbacks,
             addFunds,
@@ -328,6 +373,11 @@ fun.views.dashboard = Backbone.View.extend({
             message,
             email,
             funds,
+            settle,
+            settlePayload,
+            settleCallback,
+            customerToken,
+            transactionNum,
             ccNumber,
             expYear,
             expMonth,
@@ -357,6 +407,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log(stuff);
 
+        console.log(stuff);
+
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -374,6 +426,32 @@ fun.views.dashboard = Backbone.View.extend({
             "Amount": funds
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
+        }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
+
         fundsCallback = {
             success: function(model, response){
                 console.log('CLX load funds success');
@@ -382,10 +460,17 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                // after cuallix call store the transaction
-                payment = new fun.models.Payment();
-                payment.save(stuff, payCallbacks);
+                // cuallix settle transaction
 
+                settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle.save(settlePayload, settleCallback);
+
+                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSuccessful'); 
                     alert(message);
@@ -418,6 +503,7 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this,
             stuff,
+            userId,
             payment,
             payCallbacks,
             addFunds,
@@ -426,6 +512,11 @@ fun.views.dashboard = Backbone.View.extend({
             message,
             email,
             funds,
+            settle,
+            settlePayload,
+            settleCallback,
+            customerToken,
+            transactionNum,
             ccNumber,
             expYear,
             expMonth,
@@ -472,6 +563,32 @@ fun.views.dashboard = Backbone.View.extend({
             "Amount": funds
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
+        }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
+
         fundsCallback = {
             success: function(model, response){
                 console.log('CLX load funds success');
@@ -480,10 +597,17 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                // after cuallix call store the transaction
-                payment = new fun.models.Payment();
-                payment.save(stuff, payCallbacks);
+                // cuallix settle transaction
 
+                settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle.save(settlePayload, settleCallback);
+
+                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSuccessful'); 
                     alert(message);
@@ -516,6 +640,7 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this,
             stuff,
+            userId,
             payment,
             payCallbacks,
             addFunds,
@@ -524,6 +649,11 @@ fun.views.dashboard = Backbone.View.extend({
             message,
             email,
             funds,
+            settle,
+            settlePayload,
+            settleCallback,
+            customerToken,
+            transactionNum,
             ccNumber,
             expYear,
             expMonth,
@@ -570,6 +700,32 @@ fun.views.dashboard = Backbone.View.extend({
             "Amount": funds
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
+        }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
+
         fundsCallback = {
             success: function(model, response){
                 console.log('CLX load funds success');
@@ -578,10 +734,17 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                // after cuallix call store the transaction
-                payment = new fun.models.Payment();
-                payment.save(stuff, payCallbacks);
+                // cuallix settle transaction
 
+                settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle.save(settlePayload, settleCallback);
+
+                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSuccessful'); 
                     alert(message);
