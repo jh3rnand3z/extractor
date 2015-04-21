@@ -79,6 +79,18 @@ fun.models.Funds = Backbone.Model.extend({
 });
 
 
+fun.models.Settle = Backbone.Model.extend({
+    
+    idAttribute: 'AuthorizationNum',
+
+    urlRoot: fun.conf.urls.settle,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
 fun.models.Payment = Backbone.Model.extend({
     
     idAttribute: 'uuid',

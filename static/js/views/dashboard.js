@@ -94,6 +94,11 @@ fun.views.dashboard = Backbone.View.extend({
             message,
             email,
             funds,
+            settle,
+            settlePayload,
+            settleCallback,
+            customerToken,
+            transactionNum,
             ccNumber,
             expYear,
             expMonth,
@@ -110,7 +115,7 @@ fun.views.dashboard = Backbone.View.extend({
         ccCVC = this.dinersCVC.val();
         ccName = this.dinersName.val();
 
-        var stuff = {
+        stuff = {
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -140,6 +145,29 @@ fun.views.dashboard = Backbone.View.extend({
             "Amount": funds
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": this.userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
+        }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
+
         fundsCallback = {
             success: function(model, response){
                 console.log('CLX load funds success');
@@ -148,10 +176,12 @@ fun.views.dashboard = Backbone.View.extend({
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
 
-                // after cuallix call store the transaction
-                payment = new fun.models.Payment();
-                payment.save(stuff, payCallbacks);
+                // cuallix settle transaction
 
+                settle = new fun.models.Settle();
+                settle.save(settlePayload, settleCallback);
+
+                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSuccessful'); 
                     alert(message);

@@ -115,6 +115,7 @@ fun.conf.urls = {
     register: '/cuallix/register/',
     assign: '/cuallix/assign/',
     funds: '/cuallix/funds/',
+    settle: '/cuallix/settle/',
 
     payment: fun.utils.format('/cuallix/payments/%s', fun.conf.uuidPayment),
     payments: '/cuallix/payments/',
