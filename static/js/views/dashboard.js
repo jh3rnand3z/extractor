@@ -144,7 +144,7 @@ fun.views.dashboard = Backbone.View.extend({
         fundsPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "Amount": funds
         };
 
@@ -247,6 +247,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log('add funds discover');
 
+        userId = localStorage.getItem("UserId");
+
         email = this.discoverEmail.val();
         funds = this.discoverFunds.val();
         ccNumber = this.discoverCCnumber.val();
@@ -283,7 +285,7 @@ fun.views.dashboard = Backbone.View.extend({
         fundsPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "Amount": funds
         };
 
@@ -386,6 +388,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log('add funds master card');
 
+        userId = localStorage.getItem("UserId");
+
         email = this.masterEmail.val();
         funds = this.masterFunds.val();
         ccNumber = this.masterCCnumber.val();
@@ -422,7 +426,7 @@ fun.views.dashboard = Backbone.View.extend({
         fundsPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "Amount": funds
         };
 
@@ -525,6 +529,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log('add funds visa card');
 
+        userId = localStorage.getItem("UserId");
+
         email = this.visaEmail.val();
         funds = this.visaFunds.val();
         ccNumber = this.visaCCnumber.val();
@@ -559,7 +565,7 @@ fun.views.dashboard = Backbone.View.extend({
         fundsPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "Amount": funds
         };
 
@@ -662,6 +668,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log('add funds amex card');
 
+        userId = localStorage.getItem("UserId");
+
         email = this.amexEmail.val();
         funds = this.amexFunds.val();
         ccNumber = this.amexCCnumber.val();
@@ -696,7 +704,7 @@ fun.views.dashboard = Backbone.View.extend({
         fundsPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
-            "UserId": this.userId,
+            "UserId": userId,
             "Amount": funds
         };
 
