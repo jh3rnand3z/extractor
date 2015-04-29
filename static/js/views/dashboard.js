@@ -32,8 +32,8 @@ fun.views.dashboard = Backbone.View.extend({
 
             // Diners
             this.dinersMerchant = this.$('#diners-merchant');
-            this.dinersAddress = this.$('#dinners-address');
-            this.dinersPhone = this.$('#dinners-phone');
+            this.dinersAddress = this.$('#diners-address');
+            this.dinersPhone = this.$('#diners-phone');
 
             this.dinersEmail = this.$('#diners-email');
             this.dinersFunds = this.$('#diners-funds');
