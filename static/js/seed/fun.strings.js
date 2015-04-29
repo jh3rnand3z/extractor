@@ -30,7 +30,7 @@ fun.strings = {
     clickYouAgree: 'By clicking "Sign up", you agree to our',
     enterPhone: "Enter Phone",
     enterAddress: "Enter Address",
-    enterMerchand: "Enter Merchand",
+    enterMerchant: "Enter Merchant",
     addFunds: "Add funds",
     yourPhone: "Your Phone Number",
     homePhone: "Home phone",
