@@ -224,7 +224,7 @@ fun.views.dashboard = Backbone.View.extend({
 
                 
                 if (response['Status']['Code'] == 200000){
-                    message = translate('transactionSuccessful'); 
+                    message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
                     var message = translate('transactionBlocked'); 
@@ -380,7 +380,7 @@ fun.views.dashboard = Backbone.View.extend({
 
                 
                 if (response['Status']['Code'] == 200000){
-                    message = translate('transactionSuccessful'); 
+                    message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
                     var message = translate('transactionBlocked'); 
@@ -535,7 +535,7 @@ fun.views.dashboard = Backbone.View.extend({
 
                 
                 if (response['Status']['Code'] == 200000){
-                    message = translate('transactionSuccessful'); 
+                    message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
                     var message = translate('transactionBlocked'); 
@@ -688,7 +688,7 @@ fun.views.dashboard = Backbone.View.extend({
 
                 
                 if (response['Status']['Code'] == 200000){
-                    message = translate('transactionSuccessful'); 
+                    message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
                     var message = translate('transactionBlocked'); 
@@ -841,7 +841,7 @@ fun.views.dashboard = Backbone.View.extend({
 
                 
                 if (response['Status']['Code'] == 200000){
-                    message = translate('transactionSuccessful'); 
+                    message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
                     var message = translate('transactionBlocked'); 
