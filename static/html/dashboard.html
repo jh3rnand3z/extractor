@@ -148,46 +148,57 @@
                 <div class="panel panel-default" >
                     <div class="panel-heading">
                         <div class="row ">
+
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Email" />
+                                <input id="diners-merchant" type="text" class="form-control" placeholder="<%= translate("enterMerchant") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="diners-address" type="text" class="form-control" placeholder="<%= translate("enterAddress") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="diners-phone" type="text" class="form-control" placeholder="<%= translate("enterPhone") %>" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Funds" />
+                                <input id="diners-email" type="text" class="form-control" placeholder="<%= translate("enterEmail") %>" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Card Number" />
+                                <input id="diners-funds" type="text" class="form-control" placeholder="<%= translate("enterFunds") %>" />
+                            </div>
+                            <div class="col-md-12">
+                                <input id="diners-cc-number" type="text" class="form-control" placeholder="<%= translate("enterCardNumber") %>" />
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" > Expiry Month</span>
-                                <input type="text" class="form-control" placeholder="MM" />
+                                <span class="help-block text-muted small-font" > <%= translate("expiryMonth") %></span>
+                                <input id="diners-exp-month" type="text" class="form-control" placeholder="MM" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" > Expiry Year</span>
-                                <input type="text" class="form-control" placeholder="YY" />
+                                <span class="help-block text-muted small-font" > <%= translate("expiryYear") %></span>
+                                <input id="diners-exp-year" type="text" class="form-control" placeholder="YY" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > CVC/CVV/CID</span>
-                                <input type="text" class="form-control" placeholder="CVC/CVV/CID" />
+                                <input id="diners-cc-cvc" type="text" class="form-control" placeholder="CVC/CVV/CID" />
                             </div>
                             
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <i class="fa fa-credit-card fa-fw"></i>
                             </div>
-                            
                         </div>
                         
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input type="text" class="form-control" placeholder="Name On The Card" />
+                                <input id="diners-cc-name" type="text" class="form-control" placeholder="<%= translate("nameOnTheCard") %>" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 pad-adjust">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" checked class="text-muted"> I agree to the terms of service and privacy policy.
+                                        <input type="checkbox" checked class="text-muted"> <%= translate("agreeTermsAndPrivacy") %>.
                                     </label>
                                 </div>
                             </div>
@@ -197,7 +208,7 @@
                                 <input type="submit"  class="btn btn-danger" value="CANCEL" />
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                                <input id="diners-pay-btn" type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
                             </div>
                         </div>
                          <div class="container-fluid" style= "  margin-top: 0px;  margin-bottom: 0px; margin-right:0px; margin-left: 0px; overflow: hidden;">
@@ -213,28 +224,41 @@
                 <div class="panel panel-default" >
                     <div class="panel-heading">
                         <div class="row ">
+
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Email" />
+                                <input id="discover-merchant" type="text" class="form-control" placeholder="<%= translate("enterMerchant") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="discover-address" type="text" class="form-control" placeholder="<%= translate("enterAddress") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="discover-phone" type="text" class="form-control" placeholder="<%= translate("enterPhone") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="discover-email" type="text" class="form-control" placeholder="Enter Email" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Funds" />
+                                <input id="discover-funds" type="text" class="form-control" placeholder="Enter Funds" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Card Number" />
+                                <input id="discover-cc-number" type="text" class="form-control" placeholder="Enter Card Number" />
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > Expiry Month</span>
-                                <input type="text" class="form-control" placeholder="MM" />
+                                <input id="discover-exp-month" type="text" class="form-control" placeholder="MM" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  Expiry Year</span>
-                                <input type="text" class="form-control" placeholder="YY" />
+                                <span class="help-block text-muted small-font" > Expiry Year</span>
+                                <input id="discover-exp-year" type="text" class="form-control" placeholder="YY" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > CVC/CVV/CID</span>
-                                <input type="text" class="form-control" placeholder="CVC/CVV/CID" />
+                                <input id="discover-cc-cvc" type="text" class="form-control" placeholder="CVC/CVV/CID" />
                             </div>
                             
                             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -245,7 +269,7 @@
                         
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input type="text" class="form-control" placeholder="Name On The Card" />
+                                <input id="discover-cc-name" type="text" class="form-control" placeholder="Name On The Card" />
                             </div>
                         </div>
                         <div class="row">
@@ -262,7 +286,7 @@
                                 <input type="submit"  class="btn btn-danger" value="CANCEL" />
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                                <input id="discover-pay-btn" type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
                             </div>
                         </div>
                          <div class="container-fluid" style= "  margin-top: 0px;  margin-bottom: 0px; margin-right:0px; margin-left: 0px; overflow: hidden;">
@@ -278,28 +302,41 @@
                 <div class="panel panel-default" >
                     <div class="panel-heading">
                         <div class="row ">
+
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Email" />
+                                <input id="master-merchant" type="text" class="form-control" placeholder="<%= translate("enterMerchant") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="master-address" type="text" class="form-control" placeholder="<%= translate("enterAddress") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="master-phone" type="text" class="form-control" placeholder="<%= translate("enterPhone") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="master-email" type="text" class="form-control" placeholder="Enter Email" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Funds" />
+                                <input id="master-funds" type="text" class="form-control" placeholder="Enter Funds" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Card Number" />
+                                <input id="master-cc-number" type="text" class="form-control" placeholder="Enter Card Number" />
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > Expiry Month</span>
-                                <input type="text" class="form-control" placeholder="MM" />
+                                <input id="master-exp-month" type="text" class="form-control" placeholder="MM" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  Expiry Year</span>
-                                <input type="text" class="form-control" placeholder="YY" />
+                                <span class="help-block text-muted small-font" > Expiry Year</span>
+                                <input id="master-exp-year" type="text" class="form-control" placeholder="YY" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  CVC</span>
-                                <input type="text" class="form-control" placeholder="CVC" />
+                                <span class="help-block text-muted small-font" > CVC</span>
+                                <input id="master-cc-cvc" type="text" class="form-control" placeholder="CVC" />
                             </div>
                             
                             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -310,7 +347,7 @@
                         
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input type="text" class="form-control" placeholder="Name On The Card" />
+                                <input id="master-cc-name" type="text" class="form-control" placeholder="Name On The Card" />
                             </div>
                         </div>
                         <div class="row">
@@ -327,7 +364,7 @@
                                 <input type="submit"  class="btn btn-danger" value="CANCEL" />
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                                <input id="master-pay-btn" type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
                             </div>
                         </div>
                           <div class="container-fluid" style= "  margin-top: 0px;  margin-bottom: 0px; margin-right:0px; margin-left: 0px; overflow: hidden;">
@@ -343,28 +380,41 @@
                 <div class="panel panel-default" >
                     <div class="panel-heading">
                         <div class="row ">
+
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Email" />
+                                <input id="visa-merchant" type="text" class="form-control" placeholder="<%= translate("enterMerchant") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="visa-address" type="text" class="form-control" placeholder="<%= translate("enterAddress") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="visa-phone" type="text" class="form-control" placeholder="<%= translate("enterPhone") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="visa-email" type="text" class="form-control" placeholder="Enter Email" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Funds" />
+                                <input id="visa-funds" type="text" class="form-control" placeholder="Enter Funds" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Card Number" />
+                                <input id="visa-cc-number" type="text" class="form-control" placeholder="Enter Card Number" />
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > Expiry Month</span>
-                                <input type="text" class="form-control" placeholder="MM" />
+                                <input id="visa-exp-month" type="text" class="form-control" placeholder="MM" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  Expiry Year</span>
-                                <input type="text" class="form-control" placeholder="YY" />
+                                <span class="help-block text-muted small-font" > Expiry Year</span>
+                                <input id="visa-exp-year" type="text" class="form-control" placeholder="YY" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  CCV</span>
-                                <input type="text" class="form-control" placeholder="CCV" />
+                                <span class="help-block text-muted small-font" > CCV</span>
+                                <input id="visa-cc-cvc" type="text" class="form-control" placeholder="CCV" />
                             </div>
                             
                             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -375,7 +425,7 @@
                         
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input type="text" class="form-control" placeholder="Name On The Card" />
+                                <input id="visa-cc-name" type="text" class="form-control" placeholder="Name On The Card" />
                             </div>
                         </div>
                         <div class="row">
@@ -392,7 +442,7 @@
                                 <input type="submit"  class="btn btn-danger" value="CANCEL" />
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                                <input id="visa-pay-btn" type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
                             </div>
                         </div>
                          <div class="container-fluid" style= "  margin-top: 0px;  margin-bottom: 0px; margin-right:0px; margin-left: 0px; overflow: hidden;">
@@ -409,27 +459,38 @@
                     <div class="panel-heading">
                         <div class="row ">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Email" />
+                                <input id="amex-merchant" type="text" class="form-control" placeholder="<%= translate("enterMerchant") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="amex-address" type="text" class="form-control" placeholder="<%= translate("enterAddress") %>" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <input id="amex-phone" type="text" class="form-control" placeholder="<%= translate("enterPhone") %>" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Funds" />
+                                <input id="amex-email" type="text" class="form-control" placeholder="Enter Email" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Enter Card Number" />
+                                <input id="amex-funds" type="text" class="form-control" placeholder="Enter Funds" />
+                            </div>
+                            <div class="col-md-12">
+                                <input id="amex-cc-number" type="text" class="form-control" placeholder="Enter Card Number" />
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font" > Expiry Month</span>
-                                <input type="text" class="form-control" placeholder="MM" />
+                                <input id="amex-exp-month" type="text" class="form-control" placeholder="MM" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  Expiry Year</span>
-                                <input type="text" class="form-control" placeholder="YY" />
+                                <span class="help-block text-muted small-font" > Expiry Year</span>
+                                <input id="amex-exp-year" type="text" class="form-control" placeholder="YY" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                                <span class="help-block text-muted small-font" >  CID</span>
-                                <input type="text" class="form-control" placeholder="CID" />
+                                <span class="help-block text-muted small-font" > CID</span>
+                                <input id="amex-cc-cvc" type="text" class="form-control" placeholder="CID" />
                             </div>
                             
                             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -440,7 +501,7 @@
                         
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input type="text" class="form-control" placeholder="Name On The Card" />
+                                <input id="amex-cc-name" type="text" class="form-control" placeholder="Name On The Card" />
                             </div>
                         </div>
                         <div class="row">
@@ -457,7 +518,7 @@
                                 <input type="submit"  class="btn btn-danger" value="CANCEL" />
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                                <input id="amex-pay-btn" type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
                             </div>
                         </div>
                         <div class="container-fluid" style= "  margin-top: 0px;  margin-bottom: 0px; margin-right:0px; margin-left: 0px; overflow: hidden;">

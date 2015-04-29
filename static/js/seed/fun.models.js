@@ -4,13 +4,13 @@
 
 /*
 
-The token needs to be passed in every request using the Authorization header.
+    The token needs to be passed in every request using the Authorization header.
 
-The authorization scheme for this token will be "CLXTKN".
+    The authorization scheme for this token will be "CLXTKN".
 
-A request Authorization header must be similar to this one: 
+    A request Authorization header must be similar to this one: 
 
-"Authorization: CLXTKN token_value"
+    "Authorization: CLXTKN token_value"
 
 */
 
@@ -69,7 +69,7 @@ fun.models.Assign = Backbone.Model.extend({
 
 fun.models.Funds = Backbone.Model.extend({
     
-    idAttribute: 'UserId',
+    idAttribute: 'CustomerToken',
 
     urlRoot: fun.conf.urls.funds,
 
@@ -79,7 +79,72 @@ fun.models.Funds = Backbone.Model.extend({
 });
 
 
+fun.models.Settle = Backbone.Model.extend({
+    
+    idAttribute: 'AuthorizationNum',
 
+    urlRoot: fun.conf.urls.settle,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+fun.models.Payment = Backbone.Model.extend({
+    
+    idAttribute: 'uuid',
+
+    initialize: function(options) {
+        if (typeof options != 'undefined'){
+            this.paymentId = options.paymentId;
+        }
+    },
+    
+    urlRoot: fun.conf.urls.payment,
+
+    url: function() {
+        var url;
+        if (this.paymentId){
+            url = this.urlRoot.replace(fun.conf.paymentId, this.paymentId);
+        }
+        if (!this.isNew()){
+            url += '/' + this.id;
+        } else {
+            url = fun.conf.urls.payments;
+        }
+        return url;
+    },
+    
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    }
+})
+
+
+fun.models.Payments = Backbone.Collection.extend({
+    
+    model: fun.models.Payment,
+    
+    urlRoot: fun.conf.urls.payments,
+    
+    url: function() {
+        return this.urlRoot;
+    },
+    
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+    
+    parse: function(response) {
+        return response.payments;
+    }
+});
+
+
+// --------
 
 
 fun.models.Account = Backbone.Model.extend({

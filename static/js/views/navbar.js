@@ -21,9 +21,14 @@ fun.views.navbar = Backbone.View.extend({
     
     render: function(){
         'use strict';
-        var template;
+        var template,
+            data;
+
+        data = {
+            account: this.account
+        }
         if (!this.$el.html()){
-            template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar));
+            template = _.template(fun.utils.getTemplate(fun.conf.templates.navbar))(data);
             this.$el.html(template);
 
             // Cache the DOM stuff
@@ -59,14 +64,6 @@ fun.views.navbar = Backbone.View.extend({
 
         navLanding = this.$('#fun-nav-landing');
         navLanding.html(template);
-
-        /*
-        $('#signupModal').modal({
-            'show': true,
-            'backdrop': 'static',
-            'keyboard': false
-        });
-        */
     },
 
     renderDashboard: function(){
@@ -74,7 +71,11 @@ fun.views.navbar = Backbone.View.extend({
         var template,
             navDashboard;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard));
+        data = {
+            'account': this.account
+        }
+
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navDashboard))(data);
 
         navDashboard = this.$('#fun-nav-dashboard');
         navDashboard.html(template);
@@ -83,9 +84,14 @@ fun.views.navbar = Backbone.View.extend({
     renderAdmin: function(){
         'use strict';
         var template,
+            data,
             navAdmin;
 
-        template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin));
+        data = {
+            'account': this.account
+        }
+
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.navAdmin))(data);
 
         navAdmin = this.$('#fun-nav-admin');
         navAdmin.html(template);
@@ -171,12 +177,12 @@ fun.views.navbar = Backbone.View.extend({
                     email: true
                 },
                 signup_password: {
-                    minlength: 6,
+                    minlength: 8,
                     required: true
                 },
                 confirm_password: {
                     required: false,
-                    minlength: 6,
+                    minlength: 8,
                     equalTo: '#signup_password'
                     
                 }
@@ -206,9 +212,29 @@ fun.views.navbar = Backbone.View.extend({
                             // was a success and stuff.
                             fun.utils.redirect(fun.conf.hash.dashboard);
                         },
-                        error : function(xhr, status, error){
-                            $('#signupModal').modal('hide');
-                            fun.utils.redirect(fun.conf.hash.login);
+                        error : function(xhr, status, error) {
+                            switch(xhr.status) {
+                                case 403:
+                                    var message = fun.utils.translate("usernameOrPasswordError");
+                                    loginError.find('p').html(message);
+                                    loginError.removeClass("hide" ).addClass("show");
+                                    break;
+                                case 200:
+                                    $('#signupModal').modal('hide');
+                                    
+                                    // Check browser support
+                                    if (typeof(Storage) != "undefined") {
+                                        // Store
+                                        localStorage.setItem("username", account);
+                                    }
+                                    fun.utils.redirect(fun.conf.hash.login);
+                                    //loginSuccess(view, loginError);
+                                    //$('#loginModal').modal('hide');
+                                    break;
+                                default:
+                                    console.log('the monkey is down');
+                                    break;
+                            }
                         }
                     }
                 );
@@ -232,36 +258,25 @@ fun.views.navbar = Backbone.View.extend({
 
         assignCbacks = {
             success: function(model, response){
-                console.log('ok done!');
-
-                console.log(model, response);
-
                 mangoPayload['AccountNum'] = response['AccountNum'];
-
                 mangoModel = new fun.models.Account();
                 mangoModel.save(
                     mangoPayload,
                     callbacks
                 );
-
             },
             error: function(model, error){
-                console.log('error! inside assignCbacks');
+                console.log('CLX error on assign callbacks!');
             }
         }
 
         clxCbacks = {
             success: function(model, response){
-                console.log('CLX Success');
-                console.log(model, response);
-
                 assignPayload = {
                     "Culture": fun.conf.clxCulture,
                     "ApplicationId": fun.conf.clxAppId,
                     "UserId": response['UserId']
                 };
-
-                console.log(assignPayload);
                 mangoPayload['UserId'] = response['UserId'];
 
                 var stuff = new fun.models.Assign();

@@ -29,6 +29,8 @@ fun.conf = {
     uuidDirectory: 'directory_uuid',
     uuidSound: 'sound_uuid',
 
+    uuidPayment: 'payment_uuid',
+
     uuidGateway: 'gateway_uuid',
     uuidPhoneNumber: 'phone_number_uuid',
 
@@ -113,6 +115,10 @@ fun.conf.urls = {
     register: '/cuallix/register/',
     assign: '/cuallix/assign/',
     funds: '/cuallix/funds/',
+    settle: '/cuallix/settle/',
+
+    payment: fun.utils.format('/cuallix/payments/%s', fun.conf.uuidPayment),
+    payments: '/cuallix/payments/',
 
     user: fun.utils.format('/users/%s', fun.conf.account),
     users: '/users/',

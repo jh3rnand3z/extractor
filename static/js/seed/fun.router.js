@@ -111,8 +111,9 @@ fun.Router = Backbone.Router.extend({
     },
     
     //dashboard: function(account, org){
-    dashboard: function(){
+    dashboard: function(account){
         'use strict';
+<<<<<<< HEAD
         //if(fun.utils.loggedIn()){
         fun.utils.hideAll();
         fun.instances.navbar.render();
@@ -120,6 +121,58 @@ fun.Router = Backbone.Router.extend({
         //} else {
         //    fun.utils.redirect(fun.conf.hash.login);
         //}
+=======
+
+        var account,
+            resourceCount = 0,
+            resources,
+            callbacks,
+            dashboard,
+            message;
+
+        console.log('dashboard parsed account', account);
+
+        if (!account){
+            account = localStorage.getItem('username');
+        } else {
+            if (account.substring(0,1) == ':') {
+                account = account.substring(1);
+            }
+        }
+
+        console.log('dashboard account', account);
+
+        resources = {
+            user: new fun.models.User({'account':account})
+        };
+
+        callbacks = {
+            success: function(model, response){
+                if(++resourceCount == _.keys(resources).length){
+                    //console.log(resources.user);
+                    localStorage.setItem("UserId", resources.user.get('UserId'));
+                }
+            },
+            error: function(model, error){
+                console.log('resources error');
+            }
+        };
+
+        if(fun.utils.loggedIn()){
+
+            fun.utils.hideAll();
+            fun.instances.navbar.render();
+
+            fun.instances.dashboard.render();
+
+            for (message in resources){
+                resources[message].fetch(callbacks);
+            }
+
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
+>>>>>>> 0d02a063a1199b51f3b6f47e34cc0204c296147a
         fun.instances.footer.render();
     },
 
