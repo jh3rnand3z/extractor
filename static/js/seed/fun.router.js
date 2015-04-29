@@ -113,15 +113,14 @@ fun.Router = Backbone.Router.extend({
     //dashboard: function(account, org){
     dashboard: function(account){
         'use strict';
-<<<<<<< HEAD
-        //if(fun.utils.loggedIn()){
-        fun.utils.hideAll();
-        fun.instances.navbar.render();
-        fun.instances.dashboard.render();
-        //} else {
-        //    fun.utils.redirect(fun.conf.hash.login);
-        //}
-=======
+
+        if(fun.utils.loggedIn()){
+            fun.utils.hideAll();
+            fun.instances.navbar.render();
+            fun.instances.dashboard.render();
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
 
         var account,
             resourceCount = 0,
@@ -172,7 +171,6 @@ fun.Router = Backbone.Router.extend({
         } else {
             fun.utils.redirect(fun.conf.hash.login);
         }
->>>>>>> 0d02a063a1199b51f3b6f47e34cc0204c296147a
         fun.instances.footer.render();
     },
 
