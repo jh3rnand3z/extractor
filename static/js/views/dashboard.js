@@ -31,9 +31,9 @@ fun.views.dashboard = Backbone.View.extend({
             // DOM cache stuff on form fields.
 
             // Diners
-            this.dinnersMerchant = this.$('#diners-merchant');
-            this.dinnersAddress = this.$('#dinners-address');
-            this.dinnersPhone = this.$('#dinners-phone');
+            this.dinersMerchant = this.$('#diners-merchant');
+            this.dinersAddress = this.$('#dinners-address');
+            this.dinersPhone = this.$('#dinners-phone');
 
             this.dinersEmail = this.$('#diners-email');
             this.dinersFunds = this.$('#diners-funds');
@@ -132,7 +132,6 @@ fun.views.dashboard = Backbone.View.extend({
         console.log('add funds diners');
 
         userId = localStorage.getItem("UserId");
-
 
         merchant = this.dinersMerchant.val();
         address = this.dinersAddress.val();
