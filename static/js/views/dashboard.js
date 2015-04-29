@@ -31,6 +31,10 @@ fun.views.dashboard = Backbone.View.extend({
             // DOM cache stuff on form fields.
 
             // Diners
+            this.dinnersMerchant = this.$('#diners-merchant');
+            this.dinnersAddress = this.$('#dinners-address');
+            this.dinnersPhone = this.$('#dinners-phone');
+
             this.dinersEmail = this.$('#diners-email');
             this.dinersFunds = this.$('#diners-funds');
             this.dinersCCnumber = this.$('#diners-cc-number');
@@ -40,6 +44,10 @@ fun.views.dashboard = Backbone.View.extend({
             this.dinersName = this.$('#diners-cc-name');
 
             // Discover
+            this.discoverMerchant = this.$('#discover-merchant');
+            this.discoverAddress = this.$('#discover-address');
+            this.discoverPhone = this.$('#discover-phone');
+
             this.discoverEmail = this.$('#discover-email');
             this.discoverFunds = this.$('#discover-funds');
             this.discoverCCnumber = this.$('#discover-cc-number');
@@ -49,6 +57,10 @@ fun.views.dashboard = Backbone.View.extend({
             this.discoverName = this.$('#discover-cc-name');
         
             // MasterCard
+            this.masterMerchant = this.$('#master-merchant');
+            this.masterAddress = this.$('#master-address');
+            this.masterPhone = this.$('#master-phone');
+
             this.masterEmail = this.$('#master-email');
             this.masterFunds = this.$('#master-funds');
             this.masterCCnumber = this.$('#master-cc-number');
@@ -58,6 +70,10 @@ fun.views.dashboard = Backbone.View.extend({
             this.masterName = this.$('#master-cc-name');
 
             // Visa
+            this.visaMerchant = this.$('#visa-merchant');
+            this.visaAddress = this.$('#visa-address');
+            this.visaPhone = this.$('#visa-phone');
+
             this.visaEmail = this.$('#visa-email');
             this.visaFunds = this.$('#visa-funds');
             this.visaCCnumber = this.$('#visa-cc-number');
@@ -67,6 +83,10 @@ fun.views.dashboard = Backbone.View.extend({
             this.visaName = this.$('#visa-cc-name');
 
             // Amex
+            this.amexMerchant = this.$('#amex-merchant');
+            this.amexAddress = this.$('#amex-address');
+            this.amexPhone = this.$('#amex-phone');
+
             this.amexEmail = this.$('#amex-email');
             this.amexFunds = this.$('#amex-funds');
             this.amexCCnumber = this.$('#amex-cc-number');
@@ -93,6 +113,9 @@ fun.views.dashboard = Backbone.View.extend({
             fundsPayload,
             fundsCallback,
             message,
+            merchant,
+            address,
+            phone,
             email,
             funds,
             settle,
@@ -110,6 +133,11 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
+
+        merchant = this.dinersMerchant.val();
+        address = this.dinersAddress.val();
+        phone = this.dinersPhone.val();
+
         email = this.dinersEmail.val();
         funds = this.dinersFunds.val();
         ccNumber = this.dinersCCnumber.val();
@@ -119,6 +147,9 @@ fun.views.dashboard = Backbone.View.extend({
         ccName = this.dinersName.val();
 
         stuff = {
+            merchant: merchant,
+            address: address,
+            phone: phone,
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -211,6 +242,11 @@ fun.views.dashboard = Backbone.View.extend({
         addFunds.save(fundsPayload, fundsCallback);
 
         // Clear the stuff from the inputs
+        view.$('#diners-merchant').val('');
+        view.$('#diners-address').val('');
+        view.$('#diners-phone').val('');
+        
+
         view.$('#diners-email').val('');
         view.$('#diners-funds').val('');
         view.$('#diners-cc-number').val('');
@@ -232,6 +268,9 @@ fun.views.dashboard = Backbone.View.extend({
             fundsPayload,
             fundsCallback,
             message,
+            merchant,
+            address,
+            phone,
             email,
             funds,
             settle,
@@ -249,6 +288,10 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
+        merchant = this.discoverMerchant.val();
+        address = this.discoverAddress.val();
+        phone = this.discoverPhone.val();
+
         email = this.discoverEmail.val();
         funds = this.discoverFunds.val();
         ccNumber = this.discoverCCnumber.val();
@@ -258,6 +301,9 @@ fun.views.dashboard = Backbone.View.extend({
         ccName = this.discoverName.val();
 
         var stuff = {
+            merchant: merchant,
+            address: address,
+            phone: phone,
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -352,6 +398,10 @@ fun.views.dashboard = Backbone.View.extend({
         addFunds.save(fundsPayload, fundsCallback);
 
         // Clear the stuff from the inputs
+        view.$('#discover-merchant').val('');
+        view.$('#discover-address').val('');
+        view.$('#discover-phone').val('');
+        
         view.$('#discover-email').val('');
         view.$('#discover-funds').val('');
         view.$('#discover-cc-number').val('');
@@ -373,6 +423,9 @@ fun.views.dashboard = Backbone.View.extend({
             fundsPayload,
             fundsCallback,
             message,
+            merchant,
+            address,
+            phone,
             email,
             funds,
             settle,
@@ -390,6 +443,10 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
+        merchant = this.masterMerchant.val();
+        address = this.masterAddress.val();
+        phone = this.masterPhone.val();
+
         email = this.masterEmail.val();
         funds = this.masterFunds.val();
         ccNumber = this.masterCCnumber.val();
@@ -399,6 +456,9 @@ fun.views.dashboard = Backbone.View.extend({
         ccName = this.masterName.val();
 
         var stuff = {
+            merchant: merchant,
+            address: address,
+            phone: phone,
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -493,6 +553,10 @@ fun.views.dashboard = Backbone.View.extend({
         addFunds.save(fundsPayload, fundsCallback);
 
         // Clear the stuff from the inputs
+        view.$('#master-merchant').val('');
+        view.$('#master-address').val('');
+        view.$('#master-phone').val('');
+
         view.$('#master-email').val('');
         view.$('#master-funds').val('');
         view.$('#master-cc-number').val('');
@@ -514,6 +578,9 @@ fun.views.dashboard = Backbone.View.extend({
             fundsPayload,
             fundsCallback,
             message,
+            merchant,
+            address,
+            phone,
             email,
             funds,
             settle,
@@ -531,6 +598,10 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
+        merchant = this.visaMerchant.val();
+        address = this.visaAddress.val();
+        phone = this.visaPhone.val();
+
         email = this.visaEmail.val();
         funds = this.visaFunds.val();
         ccNumber = this.visaCCnumber.val();
@@ -540,6 +611,9 @@ fun.views.dashboard = Backbone.View.extend({
         ccName = this.visaName.val();
 
         var stuff = {
+            merchant: merchant,
+            address: address,
+            phone: phone,
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -632,6 +706,10 @@ fun.views.dashboard = Backbone.View.extend({
         addFunds.save(fundsPayload, fundsCallback);
 
         // Clear the stuff from the inputs
+        view.$('#visa-merchant').val('');
+        view.$('#visa-address').val('');
+        view.$('#visa-phone').val('');
+
         view.$('#visa-email').val('');
         view.$('#visa-funds').val('');
         view.$('#visa-cc-number').val('');
@@ -653,6 +731,9 @@ fun.views.dashboard = Backbone.View.extend({
             fundsPayload,
             fundsCallback,
             message,
+            merchant,
+            address,
+            phone,
             email,
             funds,
             settle,
@@ -670,6 +751,10 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
+        merchant = this.amexMerchant.val();
+        address = this.amexAddress.val();
+        phone = this.amexPhone.val();
+
         email = this.amexEmail.val();
         funds = this.amexFunds.val();
         ccNumber = this.amexCCnumber.val();
@@ -679,6 +764,9 @@ fun.views.dashboard = Backbone.View.extend({
         ccName = this.amexName.val();
 
         stuff = {
+            merchant: merchant,
+            address: address,
+            phone: phone,
             email: email,
             card_name: ccName,
             amount_funds: funds,
@@ -771,6 +859,10 @@ fun.views.dashboard = Backbone.View.extend({
         addFunds.save(fundsPayload, fundsCallback);
 
         // Clear the stuff from the inputs
+        view.$('#amex-merchant').val('');
+        view.$('#amex-address').val('');
+        view.$('#amex-phone').val('');
+
         view.$('#amex-email').val('');
         view.$('#amex-funds').val('');
         view.$('#amex-cc-number').val('');
