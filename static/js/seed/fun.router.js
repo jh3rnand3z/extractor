@@ -113,17 +113,13 @@ fun.Router = Backbone.Router.extend({
     //dashboard: function(account, org){
     dashboard: function(){
         'use strict';
-
-        if(fun.utils.loggedIn()){
-
-            fun.utils.hideAll();
-            fun.instances.navbar.render();
-
-            fun.instances.dashboard.render();
-
-        } else {
-            fun.utils.redirect(fun.conf.hash.login);
-        }
+        //if(fun.utils.loggedIn()){
+        fun.utils.hideAll();
+        fun.instances.navbar.render();
+        fun.instances.dashboard.render();
+        //} else {
+        //    fun.utils.redirect(fun.conf.hash.login);
+        //}
         fun.instances.footer.render();
     },
 
