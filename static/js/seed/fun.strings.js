@@ -35,6 +35,7 @@ fun.strings = {
     yourPhone: "Your Phone Number",
     homePhone: "Home phone",
     settle: "Settle",
+    settlement: "Settlement",
     ach: "ACH",
     wu: "WU",
     mg: "MG",
