@@ -14,6 +14,9 @@ fun.Router = Backbone.Router.extend({
         "dashboard/a:account": "dashboard",
         "dashboard/a:account/o:org": "dashboard",
 
+        "reports": "reports",
+        "reports/p:page": "reports",
+
         "settings": "settings",
         "logout": "logout"
     },
@@ -44,6 +47,11 @@ fun.Router = Backbone.Router.extend({
         // dashboard
         fun.instances.dashboard = new fun.views.dashboard({
             el:"#fun-dashboard"
+        });
+
+        // reports
+        fun.instances.reports = new fun.views.reports({
+            el:"#fun-reports"
         });
 
         // signup
@@ -171,6 +179,24 @@ fun.Router = Backbone.Router.extend({
         } else {
             fun.utils.redirect(fun.conf.hash.login);
         }
+        fun.instances.footer.render();
+    },
+
+    reports: function(page){
+        'use strict';
+        if(fun.utils.loggedIn()){
+            var reports = translate('reports');
+            fun.utils.hideAll();
+            fun.instances.navbar.render();
+
+            fun.instances.subheader.render(reports);
+            fun.instances.subheader.renderHeadNavReports();
+
+            fun.instances.reports.render();
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
+        
         fun.instances.footer.render();
     },
 
