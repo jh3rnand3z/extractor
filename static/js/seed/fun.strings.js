@@ -4,6 +4,8 @@
 
 fun.strings = {
     iofun: "PreWay Pay",
+    from: "From",
+    to: "To",
     address: "Address",
     city: "City",
     merchantId: "Merchant ID",
