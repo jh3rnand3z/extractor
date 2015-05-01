@@ -79,9 +79,9 @@ fun.views.reports = Backbone.View.extend({
 
         var models = {
             payments: new fun.models.PaymentsStartEnd(startEnd),
-            summary: new fun.models.SummaryStartEnd(startEnd),
-            summaries: new fun.models.SummariesStartEnd(startEnd),
-            billing: new fun.models.BillingStartEnd(startEnd)
+            //summary: new fun.models.SummaryStartEnd(startEnd),
+            //summaries: new fun.models.SummariesStartEnd(startEnd),
+            //billing: new fun.models.BillingStartEnd(startEnd)
 
             // lapseSummary : new fun.models.LapseSummaryStartEnd(startEndLapse)
         };
@@ -89,7 +89,7 @@ fun.views.reports = Backbone.View.extend({
         var success = function() {
             if (++modelCount == _.keys(models).length) {
                 fun.instances.reports.renderRecordsDetails(models.payments);
-                fun.instances.reports.renderRecordsSummary(models.summary, models.billing);
+                //fun.instances.reports.renderRecordsSummary(models.summary, models.billing);
             }
         };
 
@@ -150,7 +150,7 @@ fun.views.reports = Backbone.View.extend({
            
             for ( i; i < length; ++i ) {
                 var data = _.extend(this.collection.at(i).toJSON(), {i:i})
-                var recordRow = _.template(fun.utils.getTemplate(fun.conf.tpls.cdrRow))(data)
+                var recordRow = _.template(fun.utils.getTemplate(fun.conf.templates.recordRow))(data)
                 
                 rows.append(recordRow);
             }
