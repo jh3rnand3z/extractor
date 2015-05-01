@@ -11,8 +11,8 @@
 .btn-warning,
 .btn-danger {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .1);
 }
 .btn-default:active,
 .btn-primary:active,
@@ -26,8 +26,8 @@
 .btn-info.active,
 .btn-warning.active,
 .btn-danger.active {
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .1);
 }
 .btn-default .badge,
 .btn-primary .badge,
@@ -489,7 +489,7 @@ body {
 body {
   color: #edecec;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(146, 198, 85, 1);
+  text-shadow: 0 1px 3px rgba(0y, 0, 0, 1);
 }
 
 
