@@ -153,8 +153,8 @@ fun.conf.urls = {
     recordsStart: fun.utils.format('/records/start/%s', fun.conf.startTime),
     recordsStartEnd: fun.utils.format('/records/start/%s/end/%s', fun.conf.startTime, fun.conf.endTime),
 
-    paymentsStart: fun.utils.format('/payments/start/%s', fun.conf.startTime),
-    paymentsStartEnd: fun.utils.format('/payments/start/%s/end/%s', fun.conf.startTime, fun.conf.endTime),
+    paymentsStart: fun.utils.format('/cuallix/payments/start/%s', fun.conf.startTime),
+    paymentsStartEnd: fun.utils.format('/cuallix/payments/start/%s/end/%s', fun.conf.startTime, fun.conf.endTime),
 
     billingsRecord: fun.utils.format('/billings/records/%s', fun.conf.uuidRecord),
     billingsRecords: '/billings/records/',
