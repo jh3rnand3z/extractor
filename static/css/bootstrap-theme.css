@@ -483,13 +483,13 @@
 
 html,
 body {
-  height: 75%;
+  height: 80%;
   background-color: #edecec;
 }
 body {
   color: #edecec;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(146, 198, 85, 1);
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 
