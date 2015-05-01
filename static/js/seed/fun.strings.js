@@ -1,11 +1,39 @@
 /**
  * Default internationalization object
+
+
+<th><%= translate("date") %></th>
+                                                <th><%= translate("merchantId") %></th>
+                                                <th><%= translate("email") %></th>
+                                                <th><%= translate("card_name") %></th>
+                                                <th><%= translate("credit_card") %></th>
+                                                <th><%= translate("credit_card_cvc") %></th>
+                                                <th><%= translate("credit_card_type") %></th>
+                                                <th><%= translate("exp_month") %></th>
+                                                <th><%= translate("exp_year") %></th>
+                                                <th><%= translate("funds") %></th>
+                                                <th><%= translate("AuthorizationNum") %></th>
+                                                <th><%= translate("TransactionNum") %></th>
+                                                <th><%= translate("uuid") %></th>
+                                                <th><%= translate("status") %></th>
+
+
+
  */
 
 fun.strings = {
     iofun: "PreWay Pay",
     from: "From",
     to: "To",
+    merchantId:"Merchant ID",
+    email: "Email",
+    card_name: "Card Name",
+    credit_card_type: "Card Type",
+    credit_card_cvc: "Card CVC",
+    credit_card: "Card number",
+    exp_year: "Exp Year",
+    exp_month: "Exp Month",
+    funds: "Funds",
     address: "Address",
     city: "City",
     merchantId: "Merchant ID",
