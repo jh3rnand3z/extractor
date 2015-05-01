@@ -360,6 +360,35 @@ fun.models.RecordsStartEnd = Backbone.Collection.extend({
     }
 });
 
+fun.models.PaymentsStartEnd = Backbone.Collection.extend({
+    
+    model: fun.models.Payment,
+
+    initialize: function(options){
+        this.start = options.start;
+        this.end = options.end;
+    },
+
+    urlRoot: fun.conf.urls.paymentsStartEnd,
+
+    url: function(){
+        var url = this.urlRoot.replace(fun.conf.startTime, this.start);
+
+        url = url.replace(fun.conf.endTime, this.end);
+        
+        return url;
+    },
+
+    sync: function(method, model, options){
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+
+    parse: function(response){
+        return response.results;
+    }
+});
+
 
 fun.models.LapseSummary = Backbone.Model.extend({
 
