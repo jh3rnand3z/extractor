@@ -297,6 +297,7 @@ fun.strings = {
     accounts: "Accounts",
     nodes: "Nodes",
     clusters: "Clusters",
+    debitCard:"Debit Card",
     clouds: "Clouds",
     campaigns: "Campaigns",
     details: "Details",
