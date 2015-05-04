@@ -5,6 +5,7 @@
 fun.strings = {
     amount: "Amount",
     eXport: "Export",
+    eXport: "Export CSV",
     approved: "Approved",
     denied: "Denied",
     manager: "Manager",
