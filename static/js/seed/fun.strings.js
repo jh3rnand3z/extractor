@@ -20,7 +20,7 @@ fun.strings = {
     credit_card: "Card number",
     exp_year: "Exp Year",
     filterByMerchant: "Filter by merchant",
-    filterByStat: "Filter by status",
+    filterByStatus: "Filter by status",
     exp_month: "Exp Month",
     funds: "Funds",
     address: "Address",
