@@ -7,7 +7,7 @@ fun.strings = {
     approved: "Approved",
     denied: "Denied",
     manager: "Manager",
-    adming: "Admin",
+    admin: "Admin",
     nameOnCard: "Name on Card",
     iofun: "PreWay Pay",
     from: "From",
