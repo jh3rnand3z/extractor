@@ -103,7 +103,7 @@ fun.strings = {
     nameOnTheCard: "Name On The Card",
     agreeTermsAndPrivacy: "I agree to the terms of service and privacy policy",
     transactionSuccessful: "Your transaction was successful",
-    transactionSubmitted: "Your transaction submitted",
+    transactionSubmitted: "Transaction Submitted",
     transactionBlocked: "Your transaction has been blocked due to authentication failure",
     oldManAristotle: "Greek philosopher Aristotle, 320 BC.",
     anAssistant: "an artificial intelligence and research assistant meant to aid on the creation of artificial intelligence technology systems.",
