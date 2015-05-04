@@ -11,6 +11,19 @@
     <td><%= amount_funds %></td>
     <td><%= AuthorizationNum %></td>
     <td><%= Transaction.TransactionNum %></td>
-    <td><%= uuid %></td>
-    <td>status</td>
+    <td><i id="<%= uuid %>"class="fa fa-eye"></i></td>
+    <td>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownStatus" data-toggle="dropdown" aria-expanded="true">
+                Select Status
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownStatus">
+                <li><a href="javascript:;" data-toggle="tab"><%= translate("approved") %></a></li>
+                <li><a href="javascript:;" data-toggle="tab"><%= translate("denied") %></a></li>
+            </ul>
+        </div>
+    </td>
 </tr>
+
+
