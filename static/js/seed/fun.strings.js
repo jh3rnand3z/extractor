@@ -19,6 +19,7 @@ fun.strings = {
     credit_card_cvc: "Card CVC",
     credit_card: "Card number",
     exp_year: "Exp Year",
+    filterByMerchant: "Filter by merchant",
     exp_month: "Exp Month",
     funds: "Funds",
     address: "Address",

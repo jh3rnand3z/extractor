@@ -15,32 +15,30 @@
             </div>
             <div class="row">
 
-                <label
-                    <input type="text" id="q-merchant"> Filter by merchant
-                </label>
+                
 
                 <div class="col-md-5">
-                    <h3><%= translate("from") %></h3>
-                    <input type="text" id="from-date">
-                    <!--
-                    <div class="bootstrap-timepicker pull-right">
-                        <input id="from-time" type="text" class="input-small">
+                    <h3><%= translate("filterByMerchant") %></h3>
+                    <input type="text" id="q-merchant">
+                </div>
+
+                <div class="col-md-5">
+                    <h3><%= translate("filterByMerchant") %></h3>
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> <%= translate("all") %>
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> <%= translate("approved") %>
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> <%= translate("denied") %>
+                      </label>
                     </div>
-                    -->
                 </div>
 
 
-                <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-primary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> <%= translate("all") %>
-                  </label>
-                  <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> <%= translate("approved") %>
-                  </label>
-                  <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option3" autocomplete="off"> <%= translate("denied") %>
-                  </label>
-                </div>
+                
             </div>
 
             <div class="row">
