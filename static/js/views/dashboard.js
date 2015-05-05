@@ -168,6 +168,7 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                console.log(error);
             }
         };
 
@@ -234,6 +235,11 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                stuff['Status'] = error['Status'];
+
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
             }
         };
 
