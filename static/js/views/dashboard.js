@@ -207,6 +207,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         fundsCallback = {
             success: function(model, response){
+                'use strict';
+                var message;
                 console.log('CLX load funds success');
                 console.log(response);
                 stuff['CustomerToken'] = response['CustomerToken'];
@@ -222,13 +224,12 @@ fun.views.dashboard = Backbone.View.extend({
                 settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
 
                 settle.save(settlePayload, settleCallback);
-
                 
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSubmitted'); 
                     alert(message);
                 } else {
-                    var message = translate('transactionBlocked'); 
+                    message = translate('transactionBlocked'); 
                     alert(message);
                 }
 
@@ -401,6 +402,14 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                console.log(error);
+
+                console.log('inside error in fundsCallback');
+
+                stuff['Status'] = error['Status'];
+
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
             }
         };
 
@@ -556,6 +565,14 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                console.log(error);
+
+                console.log('inside error in fundsCallback');
+
+                stuff['Status'] = error['Status'];
+
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
             }
         };
 
@@ -709,6 +726,14 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                console.log(error);
+
+                console.log('inside error in fundsCallback');
+
+                stuff['Status'] = error['Status'];
+
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
             }
         };
 
@@ -862,6 +887,14 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+                console.log(error);
+
+                console.log('inside error in fundsCallback');
+
+                stuff['Status'] = error['Status'];
+
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
             }
         };
 
