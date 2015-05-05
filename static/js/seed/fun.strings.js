@@ -15,6 +15,7 @@ fun.strings = {
     iofun: "PreWay Pay",
     from: "From",
     to: "To",
+    merchant: "Merchant",
     merchantId:"Merchant ID",
     email: "Email",
     card_name: "Card Name",
