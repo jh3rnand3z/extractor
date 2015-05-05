@@ -235,6 +235,11 @@ fun.views.dashboard = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error');
+
+                console.log(error);
+
+                console.log('inside error in fundsCallback');
+
                 stuff['Status'] = error['Status'];
 
                 payment = new fun.models.Payment();
