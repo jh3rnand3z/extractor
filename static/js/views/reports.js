@@ -15,9 +15,12 @@ fun.views.reports = Backbone.View.extend({
 	},
 
 	render: function(){
-		console.log('render reports view');
+        'use strict';
+        var template;
+		
+        console.log('render reports view');
 
-		var template = _.template(fun.utils.getTemplate(fun.conf.templates.reports));
+		template = _.template(fun.utils.getTemplate(fun.conf.templates.reports));
 
 		this.$el.html(template);
         this.$el.show();
@@ -26,10 +29,12 @@ fun.views.reports = Backbone.View.extend({
 	},
 
 	renderControl : function(){
+        'use strict';
+        var templateFrom, templateTo, templateFindLapse;
 
-        var templateFrom = _.template(fun.utils.getTemplate(fun.conf.templates.controlFrom));
-        var templateTo = _.template(fun.utils.getTemplate(fun.conf.templates.controlTo));
-        var templateFindLapse = _.template(fun.utils.getTemplate(fun.conf.templates.findLapse));
+        templateFrom = _.template(fun.utils.getTemplate(fun.conf.templates.controlFrom));
+        templateTo = _.template(fun.utils.getTemplate(fun.conf.templates.controlTo));
+        templateFindLapse = _.template(fun.utils.getTemplate(fun.conf.templates.findLapse));
 
         this.controlFrom = this.$('#fun-control-from');
         this.controlTo = this.$('#fun-control-to');
@@ -54,14 +59,25 @@ fun.views.reports = Backbone.View.extend({
         /*
          find report
         */
+        'use strict';
+        var modelCount = 0,
+            fromDate,
+            toDate,
+            startEnd,
+            startEndLapse,
+            models,
+            success;
+        
         event.preventDefault();
-        var modelCount = 0;
         var fromDate = this.fromDate.data('datepicker').getDate();
         var toDate = this.toDate.data('datepicker').getDate();
         
         // unix timestamps
         this.start = Math.round(fromDate.getTime()/1000);
         this.end = Math.round(toDate.getTime()/1000);
+
+
+        console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
         var startEnd = {
             start:this.start,
@@ -76,6 +92,8 @@ fun.views.reports = Backbone.View.extend({
             // lapse:this.lapse,
             lapse:this.lapse
         };
+
+        console.log(startEnd)
 
         var models = {
             payments: new fun.models.PaymentsStartEnd(startEnd),
