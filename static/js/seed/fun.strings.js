@@ -26,6 +26,13 @@ fun.strings = {
     filterByMerchant: "Filter by merchant",
     filterByStatus: "Filter by status",
     exp_month: "Exp Month",
+    
+    hours: "Hours",
+    days: "Days",
+    weeks: "Weeks",
+    months: "Months",
+    years: "Years",
+
     funds: "Funds",
     address: "Address",
     city: "City",
