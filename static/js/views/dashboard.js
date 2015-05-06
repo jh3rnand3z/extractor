@@ -94,8 +94,6 @@ fun.views.dashboard = Backbone.View.extend({
             this.amexExpYear = this.$('#amex-exp-year');
             this.amexCVC = this.$('#amex-cc-cvc');
             this.amexName = this.$('#amex-cc-name');
-        
-
         }
         this.$el.show();
         console.log("username = " + this.account);
@@ -159,8 +157,6 @@ fun.views.dashboard = Backbone.View.extend({
             exp_year: expYear
         };
 
-        console.log(stuff);
-
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -199,6 +195,8 @@ fun.views.dashboard = Backbone.View.extend({
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
 
+                console.log(stuff);
+
             },
             error: function(model, error){
                 console.log('CLX Error!');
@@ -209,8 +207,11 @@ fun.views.dashboard = Backbone.View.extend({
             success: function(model, response){
                 'use strict';
                 var message;
+
                 console.log('CLX load funds success');
+                console.log(model);
                 console.log(response);
+
                 stuff['CustomerToken'] = response['CustomerToken'];
                 stuff['Transaction'] = response['Transaction'];
                 stuff['Status'] = response['Status'];
@@ -245,6 +246,8 @@ fun.views.dashboard = Backbone.View.extend({
 
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
 
             }
         };
@@ -325,10 +328,6 @@ fun.views.dashboard = Backbone.View.extend({
             exp_year: expYear
         };
 
-        console.log(stuff);
-
-        console.log(stuff);
-
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -365,6 +364,8 @@ fun.views.dashboard = Backbone.View.extend({
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff)
 
             },
             error: function(model, error){
@@ -410,6 +411,8 @@ fun.views.dashboard = Backbone.View.extend({
 
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff)
             }
         };
 
@@ -488,10 +491,6 @@ fun.views.dashboard = Backbone.View.extend({
             exp_year: expYear
         };
 
-        console.log(stuff);
-
-        console.log(stuff);
-
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -528,6 +527,8 @@ fun.views.dashboard = Backbone.View.extend({
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
 
             },
             error: function(model, error){
@@ -573,6 +574,8 @@ fun.views.dashboard = Backbone.View.extend({
 
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
             }
         };
 
@@ -651,8 +654,6 @@ fun.views.dashboard = Backbone.View.extend({
             exp_year: expYear
         };
 
-        console.log(stuff);
-
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -689,6 +690,8 @@ fun.views.dashboard = Backbone.View.extend({
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
 
             },
             error: function(model, error){
@@ -734,6 +737,8 @@ fun.views.dashboard = Backbone.View.extend({
 
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
             }
         };
 
@@ -812,8 +817,6 @@ fun.views.dashboard = Backbone.View.extend({
             exp_year: expYear
         };
 
-        console.log(stuff);
-
         payCallbacks = {
             success: function(model, response){
                 console.log('payment callbacks success');
@@ -850,6 +853,8 @@ fun.views.dashboard = Backbone.View.extend({
                 // after cuallix call store the transaction
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
 
             },
             error: function(model, error){
@@ -895,6 +900,8 @@ fun.views.dashboard = Backbone.View.extend({
 
                 payment = new fun.models.Payment();
                 payment.save(stuff, payCallbacks);
+
+                console.log(stuff);
             }
         };
 
