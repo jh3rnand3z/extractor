@@ -158,6 +158,8 @@ fun.Router = Backbone.Router.extend({
                 if(++resourceCount == _.keys(resources).length){
                     //console.log(resources.user);
                     localStorage.setItem("UserId", resources.user.get('UserId'));
+                    localStorage.setItem("UserPhoneNumber", resources.user.get('phone_number'));
+                    localStorage.setItem("UserEmail",resources.user.get('email'));
                 }
             },
             error: function(model, error){
