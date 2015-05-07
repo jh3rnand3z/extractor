@@ -178,13 +178,13 @@ fun.views.navbar = Backbone.View.extend({
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
         
-        var dialCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+        var countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
 
         var ntlNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
         phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
 
-        console.log(dialCode, ntlNumber, phoneNumber, email);
+        console.log(countryCode, ntlNumber, phoneNumber, email);
 
         
         // form validation rules
@@ -317,8 +317,8 @@ fun.views.navbar = Backbone.View.extend({
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "User": {
-                "CellPhone": phoneNumber,
-                "CountryCode": "1",
+                "CellPhone": phoneNumber.substr(1),
+                "CountryCode": countryCode,
                 "Email": email,
                 "LastName": "Doe", 
                 "Name": firstName,
