@@ -978,6 +978,7 @@ fun.views.dashboard = Backbone.View.extend({
 
         callbackStuff = {
             success: function(model, response) {
+                fun.utils.openTab(response['Url']);
                 console.log(response);
             },
             error: function(model, error) {
