@@ -365,6 +365,7 @@ fun.views.navbar = Backbone.View.extend({
             password: password,
             email: email,
             phone_number: phoneNumber,
+            country_code: countryCode
         };
         
         // check for a valid form and create the new user account
