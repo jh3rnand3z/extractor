@@ -115,13 +115,21 @@ fun.conf.urls = {
     register: '/cuallix/register/',
     assign: '/cuallix/assign/',
     funds: '/cuallix/funds/',
-    settle: '/cuallix/settle/',
+
+    // --- start new api
 
     customerSearch: '/cuallix/customer/search', 
-    searchTransactions: '/cuallix/transactions/search/',
-    sendMoney: '/cuallix/send/money/',
+    
     paymentUrl: '/cuallix/payment/url/',
+    
+    sendMoney: '/cuallix/send/money/',
+
+    settle: '/cuallix/settle/',
+
     transactionStatus: '/cuallix/transactions/status/',
+    searchTransactions: '/cuallix/transactions/search/',
+
+    // --- end new api
 
     payment: fun.utils.format('/cuallix/payments/%s', fun.conf.uuidPayment),
     payments: '/cuallix/payments/',
