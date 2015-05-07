@@ -934,6 +934,7 @@ fun.views.dashboard = Backbone.View.extend({
             stuffCallback,
             callbackStuff,
             customer,
+            request_url,
             userId;
 
         console.log('process new payment');
@@ -972,9 +973,7 @@ fun.views.dashboard = Backbone.View.extend({
 
              "urlOk": "http://www.familiaunida.com",
 
-             "urlError": "www.cuallet.com",
-
-             "CustomerToken": "w2r42398nnx80d"
+             "urlError": "www.cuallet.com"
         },
 
         callbackStuff = {
@@ -989,6 +988,7 @@ fun.views.dashboard = Backbone.View.extend({
         stuffCallback = {
             success: function(model, response) {
                 console.log(response);
+                paymentStuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
                 request_url = new fun.models.paymentUrl();
                 request_url.save(paymentStuff, callbackStuff)
