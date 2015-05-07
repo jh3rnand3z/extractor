@@ -197,8 +197,10 @@ fun.utils.redirect = function(url) {
 * Open URL in new Tab
 */
 fun.utils.openTab = function(url){
-    var win = window.open(url, '_blank');
-    win.focus();
+
+    window.open(url, '_blank');
+    
+    //win.focus();
 };
 
 
