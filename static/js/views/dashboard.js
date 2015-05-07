@@ -926,7 +926,13 @@ fun.views.dashboard = Backbone.View.extend({
     newPayment: function(event){
         'use strict';
         event.preventDefault();
+        var view = this,
+            userId;
 
         console.log('process new payment');
+
+        userId = localStorage.getItem("UserId");
+
+        console.log(userId);
     }
 });
