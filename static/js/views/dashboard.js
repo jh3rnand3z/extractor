@@ -929,6 +929,9 @@ fun.views.dashboard = Backbone.View.extend({
         var view = this,
             countryCode,
             cellPhone,
+            stuff,
+            stuffCallback,
+            customer,
             userId;
 
         console.log('process new payment');
@@ -961,7 +964,5 @@ fun.views.dashboard = Backbone.View.extend({
         customer.save(stuff, stuffCallback);
 
         console.log('ok');
-
-
     }
 });
