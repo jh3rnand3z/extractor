@@ -938,7 +938,7 @@ fun.views.dashboard = Backbone.View.extend({
 
         userId = localStorage.getItem("UserId");
 
-        if (!userId){
+        if (typeof(userIf) != "undefined"){
             userId = fun.conf.clxUserId;
         }
 
