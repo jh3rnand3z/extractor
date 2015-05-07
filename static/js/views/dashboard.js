@@ -937,8 +937,14 @@ fun.views.dashboard = Backbone.View.extend({
         console.log('process new payment');
 
         userId = localStorage.getItem("UserId");
-        countryCode = '1';
-        cellPhone = '2125555813';
+
+        if (!userId){
+            userId = fun.conf.clxUserId;
+        }
+
+        countryCode = localStorage.getItem("UserCountryCode");
+
+        cellPhone = localStorage.getItem("UserPhoneNumber").substr(1);
 
         console.log(userId);
 
