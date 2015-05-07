@@ -38,10 +38,18 @@ fun.views.navbar = Backbone.View.extend({
             this.newAccount = this.account;
             this.firstName = this.$('#signup_firstname')
             this.email = this.$('#signup_email');
-            this.phoneNumber = this.$('#signup_phone');
+            
+            //this.phoneNumber = this.$('#signup_phone');
+
+            this.newSignupPhone = this.$('#new-signup-phone');
+
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
         }
+        
+        this.newSignupPhone.intlTelInput({
+            utilsScript: "static/js/plugins/libphonenumber/utils.js"
+        });
 
         this.$el.show();
 
