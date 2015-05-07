@@ -37,6 +37,7 @@ fun.views.navbar = Backbone.View.extend({
             this.account = this.$('#signup_username');
             this.newAccount = this.account;
             this.firstName = this.$('#signup_firstname');
+            this.lastName = this.$('signup_lastname');
             this.email = this.$('#signup_email');
             
             //this.phoneNumber = this.$('#signup_phone');
@@ -154,6 +155,7 @@ fun.views.navbar = Backbone.View.extend({
             view = this,
             account,
             firstName,
+            lastName,
             password,
             confirmPassword,
             
@@ -183,6 +185,7 @@ fun.views.navbar = Backbone.View.extend({
         signupError = this.signupError;
         account = this.account.val();
         firstName = this.firstName.val();
+        lastName = this.lastName.val();
         password = this.password.val();
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
@@ -197,6 +200,14 @@ fun.views.navbar = Backbone.View.extend({
         rules = {
             rules: {
                 signup_username: {
+                    minlength: 2,
+                    required: true
+                },
+                signup_lastname: {
+                    minlength: 2,
+                    required: true
+                },
+                signup_firstname: {
                     minlength: 2,
                     required: true
                 },
@@ -328,7 +339,20 @@ fun.views.navbar = Backbone.View.extend({
                 "CellPhone": phoneNumber.substr(1),
                 "CountryCode": countryCode,
                 "Email": email,
-                "LastName": "Doe", 
+                "LastName": lastName, 
+                "Name": firstName,
+                "Password": password
+            }
+        };
+
+        clxCustomerPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "Customer": {
+                "CellPhone": phoneNumber.substr(1),
+                "CountryCode": countryCode,
+                "Email": email,
+                "LastName": lastName, 
                 "Name": firstName,
                 "Password": password
             }
