@@ -182,9 +182,9 @@ fun.views.navbar = Backbone.View.extend({
 
         var ntlNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
-        PhoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+        phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
 
-        console.log(dialCode, ntlNumber, PhoneNumber, email);
+        console.log(dialCode, ntlNumber, phoneNumber, email);
 
         
         // form validation rules
