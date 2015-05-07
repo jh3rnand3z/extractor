@@ -945,12 +945,22 @@ fun.views.dashboard = Backbone.View.extend({
             "UserId": userId,
             "CountryCode": countryCode,
             "CellPhone": cellPhone
-        }
+        },
 
-        stuffCallback
+        stuffCallback = {
+            success: function(model, response) {
+                console.log(response);
+
+            },
+            error: function(model, error) {
+                console.log(error);
+            }
+        }
 
         customer = new fun.models.customerSearch();
         customer.save(stuff, stuffCallback);
+
+        console.log('ok');
 
 
     }
