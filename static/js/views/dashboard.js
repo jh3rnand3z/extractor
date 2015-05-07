@@ -930,7 +930,9 @@ fun.views.dashboard = Backbone.View.extend({
             countryCode,
             cellPhone,
             stuff,
+            paymentStuff
             stuffCallback,
+            callbackStuff,
             customer,
             userId;
 
