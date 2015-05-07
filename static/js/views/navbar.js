@@ -184,7 +184,7 @@ fun.views.navbar = Backbone.View.extend({
 
         var ntlNumber = this.newSignupPhone.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
-        console.log(ntlNumber,countryData);
+        console.log($.trim(ntlNumber),countryData['dialCode']);
 
         
         // form validation rules
