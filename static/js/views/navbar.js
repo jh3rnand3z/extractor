@@ -180,11 +180,13 @@ fun.views.navbar = Backbone.View.extend({
         
         phoneNumber = this.newSignupPhone.val();
 
-        var countryData = this.newSignupPhone.intlTelInput("getSelectedCountryData");
+        var dialCode = this.newSignupPhone.intlTelInput("getSelectedCountryData")['dialCode'];
 
         var ntlNumber = this.newSignupPhone.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
-        console.log($.trim(ntlNumber),countryData['dialCode']);
+        var relNumber = this.newSignupPhone.intlTelInput("getNumber");
+
+        console.log(dialCode, ntlNumber, relNumber, email);
 
         
         // form validation rules
