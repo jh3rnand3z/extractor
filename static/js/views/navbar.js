@@ -200,6 +200,10 @@ fun.views.navbar = Backbone.View.extend({
                     required: true,
                     email: true
                 },
+                new-signup-phone:{
+                    required: true
+                    minlength: 8
+                },
                 signup_password: {
                     minlength: 8,
                     required: true
