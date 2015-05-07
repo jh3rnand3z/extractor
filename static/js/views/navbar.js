@@ -169,6 +169,8 @@ fun.views.navbar = Backbone.View.extend({
 
             stuff,
             callbacks,
+
+            clxCustomerPayload,
             
             clxPayload,
             clxCallbacks,
