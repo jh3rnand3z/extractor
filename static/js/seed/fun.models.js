@@ -91,6 +91,56 @@ fun.models.Settle = Backbone.Model.extend({
 });
 
 
+fun.models.customerSearch = Backbone.Model.extend({
+    urlRoot: fun.conf.urls.customerSearch,
+
+    url: function(){
+        return this.urlRoot;
+    }, 
+});
+
+
+fun.models.transactionStatus = Backbone.Model.extend({
+    
+    idAttribute: 'TransactionStatus',
+
+    urlRoot: fun.conf.urls.transactionStatus,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+fun.models.searchTransactions = Backbone.Model.extend({
+    urlRoot: fun.conf.urls.searchTransactions,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+fun.models.sendMoney = Backbone.Model.extend({
+    
+    urlRoot: fun.conf.urls.sendMoney,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
+fun.models.paymentUrl = Backbone.Model.extend({
+    
+    urlRoot: fun.conf.urls.paymentUrl,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
 fun.models.Payment = Backbone.Model.extend({
     
     idAttribute: 'uuid',
@@ -143,6 +193,35 @@ fun.models.Payments = Backbone.Collection.extend({
     }
 });
 
+
+fun.models.PaymentsStartEnd = Backbone.Collection.extend({
+    
+    model: fun.models.Payment,
+
+    initialize: function(options){
+        this.start = options.start;
+        this.end = options.end;
+    },
+
+    urlRoot: fun.conf.urls.paymentsStartEnd,
+
+    url: function(){
+        var url = this.urlRoot.replace(fun.conf.startTime, this.start);
+
+        url = url.replace(fun.conf.endTime, this.end);
+        
+        return url;
+    },
+
+    sync: function(method, model, options){
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+
+    parse: function(response){
+        return response.results;
+    }
+});
 
 // --------
 
