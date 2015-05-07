@@ -37,7 +37,7 @@ fun.views.navbar = Backbone.View.extend({
             this.account = this.$('#signup_username');
             this.newAccount = this.account;
             this.firstName = this.$('#signup_firstname');
-            this.lastName = this.$('signup_lastname');
+            this.lastName = this.$('#signup_lastname');
             this.email = this.$('#signup_email');
             
             //this.phoneNumber = this.$('#signup_phone');
@@ -374,7 +374,7 @@ fun.views.navbar = Backbone.View.extend({
             //this.clxRegister.save(clxPayload, clxCallbacks);
 
             this.clxCustomerRegister = new fun.models.customerRegister();
-            this.clxCustomerRegister.save(clxPayload, clxCallbacks);
+            this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
         }
     },
 
