@@ -956,9 +956,40 @@ fun.views.dashboard = Backbone.View.extend({
             "CellPhone": cellPhone
         },
 
+        paymentStuff = {
+
+             "Culture": fun.conf.clxCulture,
+
+             "ApplicationId": fun.conf.clxAppId,
+
+             "UserId": userId,
+
+             "Service": 3,
+
+             "SessionDuration": 5,
+
+             "urlOk": "http://www.familiaunida.com",
+
+             "urlError": "www.cuallet.com",
+
+             "CustomerToken": "w2r42398nnx80d"
+        },
+
+        callbackStuff = {
+            success: function(model, response) {
+                console.log(response);
+            },
+            error: function(model, error) {
+                console.log(error);
+            }
+        }
+
         stuffCallback = {
             success: function(model, response) {
                 console.log(response);
+
+                request_url = new fun.models.paymentUrl();
+                request_url.save(paymentStuff, callbackStuff)
 
             },
             error: function(model, error) {
