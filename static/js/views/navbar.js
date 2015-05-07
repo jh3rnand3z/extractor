@@ -46,7 +46,7 @@ fun.views.navbar = Backbone.View.extend({
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
         }
-        
+
         this.newSignupPhone.intlTelInput({
             utilsScript: "static/js/plugins/libphonenumber/utils.js"
         });
@@ -151,13 +151,13 @@ fun.views.navbar = Backbone.View.extend({
     signup: function(event){
         'use strict';
         var signupError,
+            view = this,
             account,
             firstName,
             password,
             confirmPassword,
             email,
             phoneNumber,
-            view,
             rules,
             validationRules,
             callbacks,
@@ -168,16 +168,25 @@ fun.views.navbar = Backbone.View.extend({
             mangoModel,
             mangoPayload,
             validForm;
+        
         event.preventDefault();
+
         signupError = this.signupError;
         account = this.account.val();
         firstName = this.firstName.val();
         password = this.password.val();
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
-        phoneNumber = this.phoneNumber.val();
-        // check if this view stuff is really needed
-        view = this;
+        
+        phoneNumber = this.newSignupPhone.val();
+
+        var countryData = this.newSignupPhone.intlTelInput("getSelectedCountryData");
+
+        var ntlNumber = this.newSignupPhone.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+
+        console.log(ntlNumber,countryData);
+
+        
         // form validation rules
         rules = {
             rules: {
