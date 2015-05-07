@@ -113,6 +113,7 @@ fun.conf.urls = {
     logout: '/logout/',
 
     register: '/cuallix/register/',
+    customerRegister: '/cuallix/customer/register',
     assign: '/cuallix/assign/',
     funds: '/cuallix/funds/',
 

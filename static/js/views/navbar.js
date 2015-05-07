@@ -344,8 +344,11 @@ fun.views.navbar = Backbone.View.extend({
         // check for a valid form and create the new user account
         validForm = $('#signup-form').valid();
         if (validForm){
-            this.clxRegister = new fun.models.Register();
-            this.clxRegister.save(clxPayload, clxCallbacks);
+            //this.clxRegister = new fun.models.Register();
+            //this.clxRegister.save(clxPayload, clxCallbacks);
+
+            this.clxCustomerRegister = new fun.models.customerRegister();
+            this.clxCustomerRegister.save(clxPayload, clxCallbacks);
         }
     },
 

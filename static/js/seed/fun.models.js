@@ -100,6 +100,15 @@ fun.models.customerSearch = Backbone.Model.extend({
 });
 
 
+fun.models.customerRegister = Backbone.Model.extend({
+    urlRoot: fun.conf.urls.customerRegister,
+
+    url: function(){
+        return this.urlRoot;
+    }, 
+});
+
+
 fun.models.transactionStatus = Backbone.Model.extend({
     
     idAttribute: 'TransactionStatus',
