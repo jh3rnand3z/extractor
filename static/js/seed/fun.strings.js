@@ -26,7 +26,9 @@ fun.strings = {
     filterByMerchant: "Filter by merchant",
     filterByStatus: "Filter by status",
     exp_month: "Exp Month",
-    
+    newPayment: "New Payment",
+    newTransaction: "New transaction",
+
     hours: "Hours",
     days: "Days",
     weeks: "Weeks",

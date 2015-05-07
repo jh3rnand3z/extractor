@@ -8,7 +8,8 @@ fun.views.dashboard = Backbone.View.extend({
         'click #discover-pay-btn': 'discoverAddFunds',
         'click #master-pay-btn': 'masterAddFunds',
         'click #visa-pay-btn': 'visaAddFunds',
-        'click #amex-pay-btn': 'amexAddFunds'
+        'click #amex-pay-btn': 'amexAddFunds',
+        'click #new-cc-payment': 'newPayment'
     },
 
     initialize: function(options){
@@ -920,5 +921,12 @@ fun.views.dashboard = Backbone.View.extend({
         view.$('#amex-exp-year').val('');
         view.$('#amex-cc-cvc').val('');
         view.$('#amex-cc-name').val('');
+    },
+
+    newPayment: function(event){
+        'use strict';
+        event.preventDefault();
+
+        console.log('process new payment');
     }
 });
