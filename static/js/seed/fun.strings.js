@@ -71,6 +71,7 @@ fun.strings = {
     enterMerchant: "Merchant",
     addFunds: "Add funds",
     yourPhone: "Your Phone Number",
+    yourLastName: "Your Last Name",
     homePhone: "Home phone",
     settle: "Settle",
     settlement: "Settlement",
