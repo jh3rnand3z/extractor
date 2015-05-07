@@ -47,7 +47,7 @@ fun.views.navbar = Backbone.View.extend({
             this.confirmPassword = this.$('#confirm_password');
         }
 
-        this.PhoneNumer.intlTelInput({
+        this.PhoneNumber.intlTelInput({
             utilsScript: "static/js/plugins/libphonenumber/utils.js"
         });
 
