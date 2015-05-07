@@ -927,12 +927,31 @@ fun.views.dashboard = Backbone.View.extend({
         'use strict';
         event.preventDefault();
         var view = this,
+            countryCode,
+            cellPhone,
             userId;
 
         console.log('process new payment');
 
         userId = localStorage.getItem("UserId");
+        countryCode = '1';
+        cellPhone = '2125555813';
 
         console.log(userId);
+
+        stuff = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CountryCode": countryCode,
+            "CellPhone": cellPhone
+        }
+
+        stuffCallback
+
+        customer = new fun.models.customerSearch();
+        customer.save(stuff, stuffCallback);
+
+
     }
 });

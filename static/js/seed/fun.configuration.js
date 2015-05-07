@@ -117,6 +117,12 @@ fun.conf.urls = {
     funds: '/cuallix/funds/',
     settle: '/cuallix/settle/',
 
+    customerSearch: '/cuallix/customer/search', 
+    searchTransactions: '/cuallix/transactions/search/',
+    sendMoney: '/cuallix/send/money/',
+    paymentUrl: '/cuallix/payment/url/',
+    transactionStatus: '/cuallix/transactions/status/',
+
     payment: fun.utils.format('/cuallix/payments/%s', fun.conf.uuidPayment),
     payments: '/cuallix/payments/',
 
