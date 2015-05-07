@@ -962,7 +962,5 @@ fun.views.dashboard = Backbone.View.extend({
 
         customer = new fun.models.customerSearch();
         customer.save(stuff, stuffCallback);
-
-        console.log('ok');
     }
 });

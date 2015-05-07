@@ -11,7 +11,7 @@ fun.conf = {
     clxCulture: 'en-US',
     clxAppId: '26',
     clxTKN: '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=',
-    clxUserId: '1517',
+    clxUserId: '1517', // this is the userId of preway
 
     html: '/static/html',
     domain: 'iofun.io',
