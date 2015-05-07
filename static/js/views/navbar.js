@@ -36,18 +36,18 @@ fun.views.navbar = Backbone.View.extend({
             // Form inputs
             this.account = this.$('#signup_username');
             this.newAccount = this.account;
-            this.firstName = this.$('#signup_firstname')
+            this.firstName = this.$('#signup_firstname');
             this.email = this.$('#signup_email');
             
             //this.phoneNumber = this.$('#signup_phone');
 
-            this.newSignupPhone = this.$('#new-signup-phone');
+            this.PhoneNumber = this.$('#signup_phone');
 
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
         }
 
-        this.newSignupPhone.intlTelInput({
+        this.PhoneNumer.intlTelInput({
             utilsScript: "static/js/plugins/libphonenumber/utils.js"
         });
 
@@ -178,15 +178,13 @@ fun.views.navbar = Backbone.View.extend({
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
         
-        phoneNumber = this.newSignupPhone.val();
+        var dialCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
 
-        var dialCode = this.newSignupPhone.intlTelInput("getSelectedCountryData")['dialCode'];
+        var ntlNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
-        var ntlNumber = this.newSignupPhone.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+        PhoneNumber = this.PhoneNumber.intlTelInput("getNumber");
 
-        var relNumber = this.newSignupPhone.intlTelInput("getNumber");
-
-        console.log(dialCode, ntlNumber, relNumber, email);
+        console.log(dialCode, ntlNumber, PhoneNumber, email);
 
         
         // form validation rules
@@ -200,8 +198,8 @@ fun.views.navbar = Backbone.View.extend({
                     required: true,
                     email: true
                 },
-                new-signup-phone:{
-                    required: true
+                signup_phone: {
+                    required: true,
                     minlength: 8
                 },
                 signup_password: {
