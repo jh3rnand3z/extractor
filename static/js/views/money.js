@@ -30,6 +30,10 @@ fun.views.money = Backbone.View.extend({
         var amount,
             view = this,
             amount,
+            userId,
+            countryCode,
+            cellPhone,
+            customer,
             customerPayload,
             customerCallback,
             stuff,
@@ -58,7 +62,7 @@ fun.views.money = Backbone.View.extend({
             "Amount": amount
         };
 
-        stuffCallbacks = {
+        callbackStuff = {
             success: function(model, response){
                 console.log(response);
             },
