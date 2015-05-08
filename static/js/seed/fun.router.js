@@ -125,7 +125,6 @@ fun.Router = Backbone.Router.extend({
         //fun.instances.footer.render();
     },
     
-    //dashboard: function(account, org){
     dashboard: function(account){
         'use strict';
 
@@ -195,11 +194,15 @@ fun.Router = Backbone.Router.extend({
     money: function(){
         'use strict';
         if(fun.utils.loggedIn()){
-            var sendMoney = translate('sendMoney');
+            
+            //var sendMoney = translate('sendMoney');
+            
             fun.utils.hideAll();
+            
             fun.instances.navbar.render();
 
-            fun.instances.subheader.render(sendMoney);
+            //fun.instances.subheader.render(sendMoney);
+            
             //fun.instances.subheader.renderHeadNavReports();
 
             fun.instances.money.render();
@@ -214,14 +217,9 @@ fun.Router = Backbone.Router.extend({
         'use strict';
         if(fun.utils.loggedIn()){
 
-            var reports = translate('reports');
-
             fun.utils.hideAll();
 
             fun.instances.navbar.render();
-
-            //fun.instances.subheader.render(reports);
-            //fun.instances.subheader.renderHeadNavReports();
 
             fun.instances.reports.render();
         } else {
