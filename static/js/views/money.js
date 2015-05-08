@@ -41,7 +41,10 @@ fun.views.money = Backbone.View.extend({
             callbackStuff,
             settle,
             settlePayload,
-            settleCallback;
+            settleCallback,
+            status,
+            statusPayload,
+            statusCallback;
 
         this.amount = this.$('#s-amount');
 
@@ -66,21 +69,6 @@ fun.views.money = Backbone.View.extend({
             "Amount": amount
         };
 
-        callbackStuff = {
-            success: function(model, response){
-                console.log(response);
-
-                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
-
-                settle = new fun.models.Settle();
-
-                settle.save(settlePayload, settleCallback);
-            },
-            error: function(model, error){
-                console.log(error);
-            }
-        },
-
         customerPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
@@ -95,11 +83,35 @@ fun.views.money = Backbone.View.extend({
             "UserId": userId
         };
 
+        statusPayload = {
+            "Culture": "en-US",
+            "ApplicationId": 10,
+            "UserId": userId
+        };
+
+
+        callbackStuff = {
+            success: function(model, response){
+                console.log(response);
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+                statusPayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle = new fun.models.Settle();
+
+                settle.save(settlePayload, settleCallback);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        },
+
         customerCallback = {
             success: function(model, response){
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+                statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 
 
                 send_money = new fun.models.sendMoney();
@@ -115,6 +127,9 @@ fun.views.money = Backbone.View.extend({
                 console.log('settle callbacks success');
                 console.log(response);
 
+                status = new fun.models.transactionStatus();
+                status.save(statusPayload, statusCallback);
+
                 //stuff['AuthorizationNum'] = response['AuthorizationNum'];
                 //stuff['Status'] = response['Status'];
 
@@ -125,6 +140,16 @@ fun.views.money = Backbone.View.extend({
             },
             error: function(model, error){
                 console.log('CLX Error!');
+                console.log(error);
+            }
+        };
+
+        statusCallback = {
+            success: function(model, response){
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log(error);
             }
         };
 
