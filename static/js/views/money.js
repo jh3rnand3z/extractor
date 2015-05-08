@@ -38,7 +38,10 @@ fun.views.money = Backbone.View.extend({
             customerCallback,
             send_money,
             stuff,
-            callbackStuff;
+            callbackStuff,
+            settle,
+            settlePayload,
+            settleCallback;
 
         this.amount = this.$('#s-amount');
 
@@ -90,7 +93,35 @@ fun.views.money = Backbone.View.extend({
             error: function(model, error){
                 console.log(error);
             }
+        };
+
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CustomerToken": customerToken,
+            "TransactionNum": transactionNum
         }
+
+        settleCallback = {
+            success: function(model, response){
+                console.log('settle callbacks success');
+                console.log(response);
+
+                stuff['AuthorizationNum'] = response['AuthorizationNum'];
+                stuff['Status'] = response['Status'];
+
+                // after cuallix call store the transaction
+                payment = new fun.models.Payment();
+                payment.save(stuff, payCallbacks);
+
+                console.log(stuff)
+
+            },
+            error: function(model, error){
+                console.log('CLX Error!');
+            }
+        };
 
         customer = new fun.models.customerSearch();
         customer.save(customerPayload, customerCallback);
