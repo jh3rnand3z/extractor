@@ -44,13 +44,13 @@ fun.views.navbar = Backbone.View.extend({
 
             this.PhoneNumber = this.$('#signup_phone');
 
+            this.PhoneNumber.intlTelInput({
+                utilsScript: "static/js/plugins/libphonenumber/utils.js"
+            });
+
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
         }
-
-        this.PhoneNumber.intlTelInput({
-            utilsScript: "static/js/plugins/libphonenumber/utils.js"
-        });
 
         this.$el.show();
 
