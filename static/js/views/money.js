@@ -69,6 +69,14 @@ fun.views.money = Backbone.View.extend({
         callbackStuff = {
             success: function(model, response){
                 console.log(response);
+
+                settle = new fun.models.Settle();
+
+                settlePayload['CustomerToken'] = response['CustomerToken'];
+
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
+                settle.save(settlePayload, settleCallback);
             },
             error: function(model, error){
                 console.log(error);
@@ -83,10 +91,17 @@ fun.views.money = Backbone.View.extend({
             "CellPhone": cellPhone
         };
 
+        settlePayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId
+        };
+
         customerCallback = {
             success: function(model, response){
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 
+                settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 send_money = new fun.models.sendMoney();
                 send_money.save(stuff, callbackStuff)
             },
@@ -95,13 +110,7 @@ fun.views.money = Backbone.View.extend({
             }
         };
 
-        settlePayload = {
-            "Culture": fun.conf.clxCulture,
-            "ApplicationId": fun.conf.clxAppId,
-            "UserId": userId,
-            "CustomerToken": customerToken,
-            "TransactionNum": transactionNum
-        }
+        
 
         settleCallback = {
             success: function(model, response){

@@ -244,19 +244,12 @@ fun.views.dashboard = Backbone.View.extend({
         },
 
         paymentStuff = {
-
              "Culture": fun.conf.clxCulture,
-
              "ApplicationId": fun.conf.clxAppId,
-
              "UserId": userId,
-
              "Service": 3,
-
              "SessionDuration": 5,
-
-             "urlOk": "http://demo.techgcs.com/#send",
-
+             "urlOk": "http://demo.techgcs.com/#send", // test sending this to the backend and get the arg values.
              "urlError": "http://demo.techgcs.com"
         },
 
