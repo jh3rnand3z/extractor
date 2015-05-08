@@ -971,9 +971,9 @@ fun.views.dashboard = Backbone.View.extend({
 
              "SessionDuration": 5,
 
-             "urlOk": "http://demo.techgcs.com",
+             "urlOk": "http://demo.techgcs.com/#send",
 
-             "urlError": "www.cuallet.com"
+             "urlError": "http://demo.techgcs.com"
         },
 
         callbackStuff = {
