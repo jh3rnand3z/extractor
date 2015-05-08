@@ -27,7 +27,14 @@ fun.views.money = Backbone.View.extend({
          find report
         */
         'use strict';
+        var amount;
         console.log(this.confirmAmount.val());
+
+        this.amount = this.$('#s-amount');
+
+        amount = this.amount.val();
+
+        console.log(amount);
 
     }
 
