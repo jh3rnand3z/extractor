@@ -189,7 +189,7 @@ fun.Router = Backbone.Router.extend({
         } else {
             fun.utils.redirect(fun.conf.hash.login);
         }
-        fun.instances.footer.render();
+        //fun.instances.footer.render();
     },
 
     money: function(){
@@ -207,7 +207,7 @@ fun.Router = Backbone.Router.extend({
             fun.utils.redirect(fun.conf.hash.login);
         }
         
-        fun.instances.footer.render();
+        //fun.instances.footer.render();
     },
 
     reports: function(page){
@@ -225,7 +225,7 @@ fun.Router = Backbone.Router.extend({
             fun.utils.redirect(fun.conf.hash.login);
         }
         
-        fun.instances.footer.render();
+        //fun.instances.footer.render();
     },
 
     settings: function(){
@@ -234,7 +234,7 @@ fun.Router = Backbone.Router.extend({
         fun.instances.navbar.render();
         fun.instances.subheader.render(settings);
         fun.instances.settings.render();
-        fun.instances.footer.render();
+        //fun.instances.footer.render();
     },
 
     logout: function(){
