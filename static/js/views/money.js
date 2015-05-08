@@ -36,6 +36,7 @@ fun.views.money = Backbone.View.extend({
             customer,
             customerPayload,
             customerCallback,
+            send_money,
             stuff,
             callbackStuff;
 
