@@ -25,7 +25,7 @@ fun.views.reports = Backbone.View.extend({
 		this.$el.html(template);
         this.$el.show();
 
-        this.renderControl();
+        //this.renderControl();
 	},
 
 	renderControl : function(){
@@ -237,6 +237,5 @@ fun.views.reports = Backbone.View.extend({
     detailsReport: function() {
         console.log('navbar detail reports')
     }
-
 
 });
