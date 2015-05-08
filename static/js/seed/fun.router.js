@@ -14,6 +14,8 @@ fun.Router = Backbone.Router.extend({
         "dashboard/a:account": "dashboard",
         "dashboard/a:account/o:org": "dashboard",
 
+        "send": "money",
+
         "reports": "reports",
         "reports/p:page": "reports",
 
@@ -47,6 +49,11 @@ fun.Router = Backbone.Router.extend({
         // dashboard
         fun.instances.dashboard = new fun.views.dashboard({
             el:"#fun-dashboard"
+        });
+
+        // send money
+        fun.instances.money = new fun.views.money({
+            el:"#fun-money"
         });
 
         // reports
@@ -182,6 +189,24 @@ fun.Router = Backbone.Router.extend({
         } else {
             fun.utils.redirect(fun.conf.hash.login);
         }
+        fun.instances.footer.render();
+    },
+
+    money: function(){
+        'use strict';
+        if(fun.utils.loggedIn()){
+            var sendMoney = translate('sendMoney');
+            fun.utils.hideAll();
+            fun.instances.navbar.render();
+
+            fun.instances.subheader.render(sendMoney);
+            //fun.instances.subheader.renderHeadNavReports();
+
+            fun.instances.money.render();
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
+        
         fun.instances.footer.render();
     },
 
