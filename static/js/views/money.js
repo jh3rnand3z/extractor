@@ -147,6 +147,9 @@ fun.views.money = Backbone.View.extend({
         statusCallback = {
             success: function(model, response){
                 console.log(response);
+                var message = 'Transaction ' + response['TransactionStatus'];
+                alert(message);
+
             },
             error: function(model, error){
                 console.log(error);
