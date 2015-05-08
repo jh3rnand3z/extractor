@@ -3,7 +3,7 @@ fun.views.dashboard = Backbone.View.extend({
     /**
     * Bind the event functions to the different HTML elements
     */
-    events: {   ``
+    events: {
         'click #discover-pay-btn': 'discoverAddFunds',
         'click #new-cc-payment': 'newPayment'
     },
