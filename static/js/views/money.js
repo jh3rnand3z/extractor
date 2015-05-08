@@ -70,6 +70,8 @@ fun.views.money = Backbone.View.extend({
             success: function(model, response){
                 console.log(response);
 
+                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+
                 settle = new fun.models.Settle();
 
                 settle.save(settlePayload, settleCallback);
@@ -98,7 +100,7 @@ fun.views.money = Backbone.View.extend({
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+                
 
                 send_money = new fun.models.sendMoney();
                 send_money.save(stuff, callbackStuff)
