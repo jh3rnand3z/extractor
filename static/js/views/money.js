@@ -85,7 +85,7 @@ fun.views.money = Backbone.View.extend({
 
         statusPayload = {
             "Culture": "en-US",
-            "ApplicationId": 10,
+            "ApplicationId": fun.conf.clxAppId,
             "UserId": userId
         };
 
