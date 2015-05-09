@@ -207,7 +207,7 @@ fun.utils.openTab = function(url){
 /*
 * Open URL in iframe
 */
-fun.utils.openInIFrame = function(iframeId, url){
+fun.utils.openInIframe = function(iframeId, url){
     //open url in iframe 'iframeId'
     document.getElementByID(iframeId).src=url;
 };
