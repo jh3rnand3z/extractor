@@ -190,7 +190,7 @@ fun.utils.getTemplate = function(url){
  */
 fun.utils.redirect = function(url) {
     window.location = url;
-}
+};
 
 
 /*
@@ -201,6 +201,15 @@ fun.utils.openTab = function(url){
     window.open(url, '_blank');
     
     //win.focus();
+};
+
+
+/*
+* Open URL in iframe
+*/
+fun.utils.openInIFrame = function(iframeId, url){
+    //open url in iframe 'iframeId'
+    document.getElementByID(iframeId).src=url;
 };
 
 

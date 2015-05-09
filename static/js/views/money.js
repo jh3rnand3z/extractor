@@ -130,9 +130,6 @@ fun.views.money = Backbone.View.extend({
                 status = new fun.models.transactionStatus();
                 status.save(statusPayload, statusCallback);
 
-                //stuff['AuthorizationNum'] = response['AuthorizationNum'];
-                //stuff['Status'] = response['Status'];
-
                 // after cuallix call store the transaction
                 //payment = new fun.models.Payment();
                 //payment.save(stuff, payCallbacks);

@@ -5,7 +5,8 @@ fun.views.dashboard = Backbone.View.extend({
     */
     events: {
         'click #discover-pay-btn': 'discoverAddFunds',
-        'click #new-cc-payment': 'newPayment'
+        'click #new-cc-payment': 'newPayment',
+        'click #load-iframe': 'loadIframe',
     },
 
     initialize: function(options){
@@ -250,12 +251,16 @@ fun.views.dashboard = Backbone.View.extend({
              "Service": 3,
              "SessionDuration": 5,
              "urlOk": "http://demo.techgcs.com/#send", // test sending this to the backend and get the arg values.
-             "urlError": "http://demo.techgcs.com"
+             "urlError": "http://demo.techgcs.com#settings"
         },
 
         callbackStuff = {
             success: function(model, response) {
+
                 fun.utils.openTab(response['Url']);
+
+
+                // some stuff is missing but we don't know what stuffs ...
                 console.log(response);
             },
             error: function(model, error) {
@@ -279,5 +284,14 @@ fun.views.dashboard = Backbone.View.extend({
 
         customer = new fun.models.customerSearch();
         customer.save(stuff, stuffCallback);
+
+
+    },
+
+    loadIframe: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this;
+        console.log('log iframe bitches!');
     }
 });
