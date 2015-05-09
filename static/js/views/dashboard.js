@@ -257,7 +257,7 @@ fun.views.dashboard = Backbone.View.extend({
         callbackStuff = {
             success: function(model, response) {
 
-                fun.utils.openTab(response['Url']);
+                //fun.utils.openTab(response['Url']);
 
                 fun.utils.openInIframe('#cuallix-iframe', response['Url']);
 
