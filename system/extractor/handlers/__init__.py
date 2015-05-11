@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-    Howler HTTP base handlers.
+    Extractor HTTP base handlers.
 '''
 
 # This file is part of howler.
@@ -20,7 +20,7 @@ from tornado import web
 
 from zmq.eventloop import ioloop
 
-from howler.tools import errors, check_json
+from extractor.tools import errors, check_json
 
 
 __UPLOADS__ = "uploads/"
@@ -71,7 +71,7 @@ class BaseHandler(web.RequestHandler):
 
     def set_default_headers(self):
         '''
-            Howler default headers
+            Extractor default headers
         '''
         self.set_header("Access-Control-Allow-Origin", self.settings.get('domain', 'iofun.io'))
 

@@ -2,7 +2,7 @@
 '''
     extractor system
 
-    This is the only way for the system to collect creep gas.
+    This is the only way for the system to collect creep.
 
     It is one if the few structures which can be build outside the network.
 '''

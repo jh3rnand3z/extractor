@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-    Howler system tools.
+    Extractor system tools.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License. 
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -21,9 +21,7 @@ import logging
 import motor
 
 from tornado import gen
-from howler.tools import errors
-
-from howler.messages import campaigns
+from extractor.tools import errors
 
 
 @gen.coroutine
@@ -130,9 +128,9 @@ def new_resource(db, struct, collection=None, scheme=None):
     from schematics import types as _types
 
 
-    class HowlerResource(_models.Model):
+    class ExtractorResource(_models.Model):
         '''
-            Howler resource
+            Extractor resource
         '''
         uuid = _types.UUIDType(default=_uuid.uuid4)
         campaign = _types.UUIDType(required=False)
@@ -144,7 +142,7 @@ def new_resource(db, struct, collection=None, scheme=None):
     collection = getattr(db, collection)    
     
     try:
-        message = HowlerResource(struct)
+        message = ExtractorResource(struct)
         message.validate()
         message = message.to_primitive()
     except Exception, e:

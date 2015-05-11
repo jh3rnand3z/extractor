@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-    Howler system message models.
+    Extractor system message models.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -47,8 +47,6 @@ class Resource(models.Model):
     ''' 
         Resource
     '''
-    calls = compound.ModelType(SimpleResource)
-    contacts = compound.ModelType(SimpleResource)
-    directories = compound.ModelType(SimpleResource)
-
+    payments = compound.ModelType(SimpleResource)
+    
     total = types.IntType()
