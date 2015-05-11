@@ -625,15 +625,31 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         #account = (query_args.get('account', [username])[0] if not account else None)
 
         #logging.info(account)
-        
-        stuffPayload = {
-            "Culture" : "en-US" ,
-            "ApplicationId" : 26 ,
-            "UserId" : 1517 ,
-            "TransactionNum" : None
+
+        # write temporal stuff in a db then when jose click on confirm re-load the stuff.
+
+        system_id = '1517'
+
+        struct = {
+            'user_id': query_args.get('user', system_id),
+            'transaction': query_args.get('transaction'),
+            'authorization': query_args.get('authorization', None),
+            'culture': 'en-US',
+            'application_id': 26,
+            'system_id': system_id
         }
 
-        self.finish({'args':query_args, 'payload': stuffPayload})
+
+        # search customer to renew the token
+
+        # to renew the stuff we need a phone_numer and country code.
+
+        # execute get_payment_url function
+        new_transaccion = yield self.new_transaccion(struct)
+
+        # then send money
+
+        self.finish({'args':new_transaccion})
 
         #self.redirect('http://demo.techgcs.com#send')
 

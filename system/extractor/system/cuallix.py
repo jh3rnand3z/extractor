@@ -313,3 +313,16 @@ class Cuallix(object):
         logging.warning(r.content)
 
         raise gen.Return(r.content)
+
+    @gen.coroutine
+    def new_transaction(self, struct):
+        '''
+            Store new transaction before validate
+        '''
+        try:
+            result = yield self.db.transactions.insert(struct)
+        except Exception, e:
+            logging.error(e)
+            raise e
+
+        raise gen.Return(result)
