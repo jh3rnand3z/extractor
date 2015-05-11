@@ -599,14 +599,39 @@ class RequestPaymentURLHandler(cuallix.Cuallix, BaseHandler):
         self.finish(request_url)
 
 
-
-@content_type_validation
+#@content_type_validation
 class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
     '''
         HTTP request handlers
 
         Cuallix SendMoney
     '''
+
+    @gen.coroutine
+    def get(self):
+        '''
+            Get stuff from cuallix before send money
+        '''
+        # logging request query arguments
+        logging.info('logging request query arguments... {0}'.format(
+            str(self.request.arguments))
+        )
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get account from new struct
+        account = struct.get('account', None)
+
+        # get the current frontend logged username
+        username = self.get_current_username()
+
+        # if the user don't provide an account we use the frontend username as last resort
+        account = (query_args.get('account', [username])[0] if not account else account)
+
+        logging.info(account)
+        self.finish()
+
 
     @gen.coroutine
     def post(self):
