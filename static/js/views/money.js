@@ -29,7 +29,7 @@ fun.views.money = Backbone.View.extend({
         'use strict';
         var amount,
             view = this,
-            stuffx
+            stuffx,
             amount,
             userId,
             countryCode,
