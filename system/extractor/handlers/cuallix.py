@@ -3,7 +3,7 @@
     HTTP cuallix handlers.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -26,13 +26,13 @@ from tornado import httpclient
 import urllib
 
 # import system, messages and tool for work on cuallix
-from howler.system import cuallix
-from howler.messages import cuallix as models
-from howler.tools import content_type_validation
-from howler.tools import check_json
-from howler.tools import errors
+from extractor.system import cuallix
+from extractor.messages import cuallix as models
+from extractor.tools import content_type_validation
+from extractor.tools import check_json
+from extractor.tools import errors
 
-from howler.handlers import BaseHandler
+from extractor.handlers import BaseHandler
 
 
 # missing acknowledgement and become
@@ -599,14 +599,35 @@ class RequestPaymentURLHandler(cuallix.Cuallix, BaseHandler):
         self.finish(request_url)
 
 
-
-@content_type_validation
+#@content_type_validation
 class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
     '''
         HTTP request handlers
 
         Cuallix SendMoney
     '''
+
+    @gen.coroutine
+    def get(self):
+        '''
+            Get stuff from cuallix before send money
+        '''
+         # logging request query arguments
+        logging.info('request query arguments {0}'.format(self.request.arguments))
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get the current frontend logged username
+        username = self.get_current_username()
+
+        # if the user don't provide an account we use the frontend username as last resort
+        #account = (query_args.get('account', [username])[0] if not account else None)
+
+        #logging.info(account)
+        
+        self.finish({'args':query_args})
+
 
     @gen.coroutine
     def post(self):

@@ -3,7 +3,7 @@
     Payments system logic.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -19,9 +19,9 @@ import logging
 
 from tornado import gen
 
-from howler.messages import payments
+from extractor.messages import payments
 
-from howler.tools import clean_structure, clean_results
+from extractor.tools import clean_structure, clean_results
 
 
 class Payments(object):

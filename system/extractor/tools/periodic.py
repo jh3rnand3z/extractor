@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-    Howler periodic tools.
+    Extractor periodic tools.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License. 
 # The full license is in the file LICENCE, distributed as part of this software.

@@ -44,7 +44,10 @@ fun.views.money = Backbone.View.extend({
             settleCallback,
             status,
             statusPayload,
-            statusCallback;
+            statusCallback,
+            search_trans,
+            searchTransPayload,
+            searchTransCallback;
 
         this.amount = this.$('#s-amount');
 
@@ -89,6 +92,19 @@ fun.views.money = Backbone.View.extend({
             "UserId": userId
         };
 
+        searchTransPayload = {
+
+        };
+
+        searchTransCallback = {
+            success: function(model, response){
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
 
         callbackStuff = {
             success: function(model, response){
@@ -104,7 +120,7 @@ fun.views.money = Backbone.View.extend({
             error: function(model, error){
                 console.log(error);
             }
-        },
+        };
 
         customerCallback = {
             success: function(model, response){
@@ -112,6 +128,9 @@ fun.views.money = Backbone.View.extend({
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+
+                search_trans = new fun.models.searchTransactions();
+                search_trans.save()
                 
 
                 send_money = new fun.models.sendMoney();
