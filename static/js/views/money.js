@@ -20,6 +20,10 @@ fun.views.money = Backbone.View.extend({
         }
         
         this.$el.show();
+
+        stuffx = fun.utils.getParameterByName('transaction');
+
+        console.log(stuffx);
     },
 
     sendMoney: function (event){
@@ -49,12 +53,6 @@ fun.views.money = Backbone.View.extend({
             search_trans,
             searchTransPayload,
             searchTransCallback;
-
-
-        
-        stuffx = fun.utils.getParameterByName('transaction');
-
-        console.log(stuffx);
 
 
         this.amount = this.$('#s-amount');
