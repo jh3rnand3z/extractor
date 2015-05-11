@@ -626,7 +626,14 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         #logging.info(account)
         
-        self.finish({'args':query_args})
+        stuffPayload = {
+            "Culture" : "en-US" ,
+            "ApplicationId" : 26 ,
+            "UserId" : 1517 ,
+            "TransactionNum" : None
+        }
+
+        self.finish({'args':query_args, 'payload': stuffPayload})
 
         #self.redirect('http://demo.techgcs.com#send')
 
