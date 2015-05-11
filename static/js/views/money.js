@@ -48,11 +48,12 @@ fun.views.money = Backbone.View.extend({
             settlePayload,
             settleCallback,
             status,
+            callbacks,
             statusPayload,
             statusCallback,
-            transaction,
-            transactionCallback,
-            transactionPayload,
+            transactions,
+            transactionsCallback,
+            transactionsPayload,
             search_trans,
             searchTransPayload,
             searchTransCallback;
@@ -101,13 +102,13 @@ fun.views.money = Backbone.View.extend({
             "UserId": userId
         };
 
-        transaction = {};
+        transactions = {};
 
-        transactionCallback = {
+        transactionsCallback = {
 
         };
 
-        transactionPayload = {
+        transactionsPayload = {
 
         };
 
@@ -141,6 +142,24 @@ fun.views.money = Backbone.View.extend({
             }
         };
 
+        callbacks = {
+            success: function(model, response){
+
+                console.log(response);
+
+                //if(++resourceCount == _.keys(resources).length){
+                //    //console.log(resources.user);
+                //    localStorage.setItem("UserId", resources.user.get('UserId'));
+                //    localStorage.setItem("UserCountryCode", resources.user.get('country_code'));
+                //    localStorage.setItem("UserPhoneNumber", resources.user.get('phone_number'));
+                //    localStorage.setItem("UserEmail",resources.user.get('email'));
+                //}
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
         customerCallback = {
             success: function(model, response){
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
@@ -151,7 +170,11 @@ fun.views.money = Backbone.View.extend({
                 //search_trans = new fun.models.searchTransactions();
                 //search_trans.save()
                     
-                console.log('Chumster CEO');
+                //console.log('Chumster CEO');
+
+                transactions = new fun.models.Transactions();
+
+                transactions.fetch(callbacks)
 
                 //send_money = new fun.models.sendMoney();
                 //send_money.save(stuff, callbackStuff)
