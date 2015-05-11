@@ -612,16 +612,11 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         '''
             Get stuff from cuallix before send money
         '''
-        # logging request query arguments
-        logging.info('logging request query arguments... {0}'.format(
-            str(self.request.arguments))
-        )
+         # logging request query arguments
+        logging.info('request query arguments {0}'.format(self.request.arguments))
 
         # request query arguments
         query_args = self.request.arguments
-
-        # get account from new struct
-        account = struct.get('account', None)
 
         # get the current frontend logged username
         username = self.get_current_username()
@@ -630,7 +625,8 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         account = (query_args.get('account', [username])[0] if not account else account)
 
         logging.info(account)
-        self.finish()
+        
+        self.finish({'args':query_args})
 
 
     @gen.coroutine
