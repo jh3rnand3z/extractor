@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-    Howler cuallix message models.
+    Extractor cuallix message models.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -17,7 +17,7 @@ from schematics import models
 from schematics import types
 from schematics.types import compound
 
-from howler.messages import Resource
+from extractor.messages import Resource
 
 
 class User(models.Model):

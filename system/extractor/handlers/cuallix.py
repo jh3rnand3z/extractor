@@ -3,7 +3,7 @@
     HTTP cuallix handlers.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -26,13 +26,13 @@ from tornado import httpclient
 import urllib
 
 # import system, messages and tool for work on cuallix
-from howler.system import cuallix
-from howler.messages import cuallix as models
-from howler.tools import content_type_validation
-from howler.tools import check_json
-from howler.tools import errors
+from extractor.system import cuallix
+from extractor.messages import cuallix as models
+from extractor.tools import content_type_validation
+from extractor.tools import check_json
+from extractor.tools import errors
 
-from howler.handlers import BaseHandler
+from extractor.handlers import BaseHandler
 
 
 # missing acknowledgement and become

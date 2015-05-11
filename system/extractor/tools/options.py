@@ -9,11 +9,11 @@ from tornado.options import parse_config_file
 # ownership missing
 
 secret = base64.b64encode("I've said before that I'm a remarkably unsentimental monkey.")
-config_path = 'howler.conf'
+config_path = 'extractor.conf'
 
 def options():
     '''
-        Howler monkey configuration options
+        Extractor monkey configuration options
     '''
     tornado.options.define('ensure_indexes', 
         default=True, type=bool,

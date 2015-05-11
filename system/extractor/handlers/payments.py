@@ -3,7 +3,7 @@
     HTTP payment handlers.
 '''
 
-# This file is part of howler.
+# This file is part of extractor.
 
 # Distributed under the terms of the last AGPL License.
 # The full license is in the file LICENCE, distributed as part of this software.
@@ -20,14 +20,14 @@ from tornado import web
 import logging
 
 # system payments
-from howler.system import payments
+from extractor.system import payments
 
 # errors, string to boolean, check JSON, new resource, content type validation.
-from howler.tools import str2bool, check_json, new_resource, content_type_validation
-from howler.tools import errors
+from extractor.tools import str2bool, check_json, new_resource, content_type_validation
+from extractor.tools import errors
 
 # system handler.
-from howler.handlers import BaseHandler
+from extractor.handlers import BaseHandler
 
 
 @content_type_validation
