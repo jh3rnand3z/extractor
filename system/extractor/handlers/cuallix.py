@@ -12,6 +12,7 @@ __author__ = 'Jean Chassoul'
 
 
 import ujson as json
+import uuid
 import time
 import arrow
 import motor
@@ -631,6 +632,7 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         system_id = '1517'
 
         struct = {
+            'uuid': uuid.uuid4(),
             'user_id': query_args.get('user', system_id),
             'transaction': query_args.get('transaction'),
             'authorization': query_args.get('authorization', None),
@@ -638,7 +640,6 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
             'application_id': 26,
             'system_id': system_id
         }
-
 
         # search customer to renew the token
 

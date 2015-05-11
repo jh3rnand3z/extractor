@@ -325,4 +325,4 @@ class Cuallix(object):
             logging.error(e)
             raise e
 
-        raise gen.Return(result)
+        raise gen.Return(struct.get('uuid'))
