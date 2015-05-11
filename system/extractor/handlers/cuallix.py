@@ -622,9 +622,9 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         username = self.get_current_username()
 
         # if the user don't provide an account we use the frontend username as last resort
-        account = (query_args.get('account', [username])[0] if not account else None)
+        #account = (query_args.get('account', [username])[0] if not account else None)
 
-        logging.info(account)
+        #logging.info(account)
         
         self.finish({'args':query_args})
 
