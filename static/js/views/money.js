@@ -55,9 +55,9 @@ fun.views.money = Backbone.View.extend({
             searchTransCallback;
 
 
-        this.amount = this.$('#s-amount');
+        //this.amount = this.$('#s-amount');
 
-        amount = this.amount.val();
+        //amount = this.amount.val();
 
         userId = localStorage.getItem("UserId");
 
@@ -135,12 +135,13 @@ fun.views.money = Backbone.View.extend({
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
-                search_trans = new fun.models.searchTransactions();
-                search_trans.save()
-                
+                //search_trans = new fun.models.searchTransactions();
+                //search_trans.save()
+                    
+                console.log('Chumster CEO');
 
-                send_money = new fun.models.sendMoney();
-                send_money.save(stuff, callbackStuff)
+                //send_money = new fun.models.sendMoney();
+                //send_money.save(stuff, callbackStuff)
             },
             error: function(model, error){
                 console.log(error);
