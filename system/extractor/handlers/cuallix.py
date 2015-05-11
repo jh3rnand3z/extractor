@@ -626,7 +626,9 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         #logging.info(account)
         
-        self.finish({'args':query_args})
+        #self.finish({'args':query_args})
+
+        self.redirect('http://demo.techgcs.com#send')
 
 
     @gen.coroutine
