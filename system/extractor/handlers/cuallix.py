@@ -632,7 +632,7 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         system_id = '1517'
 
         struct = {
-            'uuid': uuid.uuid4(),
+            'uuid': str(uuid.uuid4()),
             'user_id': query_args.get('user', system_id),
             'transaction': query_args.get('transaction'),
             'authorization': query_args.get('authorization', None),
