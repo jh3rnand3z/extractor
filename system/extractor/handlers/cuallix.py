@@ -645,11 +645,11 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
         # to renew the stuff we need a phone_numer and country code.
 
         # execute get_payment_url function
-        new_transaccion = yield self.new_transaccion(struct)
+        new_transaction = yield self.new_transaction(struct)
 
         # then send money
 
-        self.finish({'args':new_transaccion})
+        self.finish({'args':new_transaction})
 
         #self.redirect('http://demo.techgcs.com#send')
 
