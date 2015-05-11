@@ -146,6 +146,7 @@ fun.strings = {
     password: "Password",
     daemons: "Daemons",
     confirmPassword: "Confirm Password",
+    confirmTransaction: "Confirm Transaction",
     signUp: "Sign Up",
     signIn: "Sign In",
     featuresBanner: "",
