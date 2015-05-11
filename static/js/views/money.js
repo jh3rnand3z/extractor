@@ -29,6 +29,7 @@ fun.views.money = Backbone.View.extend({
         'use strict';
         var amount,
             view = this,
+            stuffx
             amount,
             userId,
             countryCode,
@@ -48,6 +49,13 @@ fun.views.money = Backbone.View.extend({
             search_trans,
             searchTransPayload,
             searchTransCallback;
+
+
+        
+        stuffx = fun.utils.getParameterByName('transaction');
+
+        console.log(stuffx);
+
 
         this.amount = this.$('#s-amount');
 
