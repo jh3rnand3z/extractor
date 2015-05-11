@@ -629,13 +629,13 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         # write temporal stuff in a db then when jose click on confirm re-load the stuff.
 
-        system_id = '1517'
+        system_id = ['1517']
 
         struct = {
             'uuid': str(uuid.uuid4()),
-            'user_id': query_args.get('user', system_id),
-            'transaction': query_args.get('transaction'),
-            'authorization': query_args.get('authorization', None),
+            'user_id': query_args.get('user', system_id)[0],
+            'transaction': query_args.get('transaction')[0],
+            'authorization': query_args.get('authorization', None)[0],
             'culture': 'en-US',
             'application_id': 26,
             'system_id': system_id
