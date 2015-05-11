@@ -21,7 +21,7 @@ fun.views.money = Backbone.View.extend({
         
         this.$el.show();
 
-        stuffx = fun.utils.getParameterByName('transaction');
+        var stuffx = fun.utils.getParameterByName('transaction');
 
         console.log(stuffx);
     },
