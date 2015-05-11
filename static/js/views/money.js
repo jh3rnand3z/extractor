@@ -50,6 +50,9 @@ fun.views.money = Backbone.View.extend({
             status,
             statusPayload,
             statusCallback,
+            transaction,
+            transactionCallback,
+            transactionPayload,
             search_trans,
             searchTransPayload,
             searchTransCallback;
@@ -96,6 +99,16 @@ fun.views.money = Backbone.View.extend({
             "Culture": "en-US",
             "ApplicationId": fun.conf.clxAppId,
             "UserId": userId
+        };
+
+        transaction = {};
+
+        transactionCallback = {
+
+        };
+
+        transactionPayload = {
+
         };
 
         searchTransPayload = {
