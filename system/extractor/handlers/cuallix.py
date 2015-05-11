@@ -638,7 +638,8 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
             'authorization': query_args.get('authorization', None)[0],
             'culture': 'en-US',
             'application_id': 26,
-            'system_id': system_id
+            'system_id': system_id[0],
+            'checked': False
         }
 
         # search customer to renew the token
@@ -650,9 +651,9 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         # then send money
 
-        self.finish({'args':new_transaction})
+        #self.finish({'args':new_transaction})
 
-        #self.redirect('http://demo.techgcs.com#send')
+        self.redirect('http://demo.techgcs.com#send')
 
 
     @gen.coroutine
