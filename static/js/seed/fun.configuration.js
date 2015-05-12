@@ -22,6 +22,8 @@ fun.conf = {
     uuidBilling: 'billing_uuid',
 
     uuidPayment: 'payment_uuid',
+    uuidTransaction: 'transaction_uuid',
+    // end CLX stuff
 
 
     lapse: 'lapse',
@@ -66,6 +68,9 @@ fun.conf.urls = {
     funds: '/cuallix/funds/',
 
     // --- start new api
+
+    transaction: fun.utils.format('/cuallix/transactions/%s', fun.conf.uuidTransaction),
+    transactions: '/cuallix/transactions/',
 
     customerSearch: '/cuallix/customer/search', 
     

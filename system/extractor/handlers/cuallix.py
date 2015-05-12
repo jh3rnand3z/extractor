@@ -12,6 +12,7 @@ __author__ = 'Jean Chassoul'
 
 
 import ujson as json
+import uuid
 import time
 import arrow
 import motor
@@ -30,6 +31,7 @@ from extractor.system import cuallix
 from extractor.messages import cuallix as models
 from extractor.tools import content_type_validation
 from extractor.tools import check_json
+from extractor.tools import str2bool
 from extractor.tools import errors
 
 from extractor.handlers import BaseHandler
@@ -354,6 +356,66 @@ class StatusTransactionHandler(cuallix.Cuallix, BaseHandler):
 
 
 @content_type_validation
+class TransactionsHandler(cuallix.Cuallix, BaseHandler):
+    '''
+        HTTP request handlers
+
+        Cuallix Transactions
+    '''
+
+    @gen.coroutine
+    def get(self, account=None, transaction_uuid=None, page_num=0):
+        '''
+            Get transactions
+        '''
+        # logging request query arguments
+        logging.info('request query arguments {0}'.format(self.request.arguments))
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get the current frontend logged username
+        username = self.get_current_username()
+
+        # if the user don't provide an account we use the frontend username as last resort
+        account = (query_args.get('account', [username])[0] if not account else account)
+
+        # query string checked from string to boolean
+        checked = str2bool(str(query_args.get('checked', [False])[0]))
+
+        if not transaction_uuid:
+            # get list of directories
+            transactions = yield self.get_transaction_list(account, checked, page_num)
+            self.set_status(200)
+            self.finish({'transactions':transactions})
+        else:
+            # try to get stuff from cache first
+            logging.info('transaction_uuid {0}'.format(transaction_uuid.rstrip('/')))
+            
+            data = self.cache.get('transactions:{0}'.format(transaction_uuid))
+
+            if data is not None:
+                logging.info('transactions:{0} done retrieving!'.format(transaction_uuid))
+                result = data
+            else:
+                data = yield self.get_transaction(account, transaction_uuid.rstrip('/'))
+                if self.cache.add('transactions:{0}'.format(transaction_uuid), data, 60):
+                    logging.info('new cache entry {0}'.format(str(data)))
+                    result = data
+
+            if not result:
+
+                # -- need moar info
+
+                self.set_status(400)
+                self.finish({'missing account {0} transaction_uuid {1} page_num {2} checked {3}'.format(
+                    account, transaction_uuid.rstrip('/'), page_num, checked):result})
+            else:
+                self.set_status(200)
+                self.finish(result)
+
+
+@content_type_validation
 class SearchTransactionsHandler(cuallix.Cuallix, BaseHandler):
     '''
         HTTP request handlers
@@ -628,30 +690,31 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         # write temporal stuff in a db then when jose click on confirm re-load the stuff.
 
-        system_id = '1517'
+        system_id = ['1517']
 
         struct = {
-            'user_id': query_args.get('user', system_id),
-            'transaction': query_args.get('transaction'),
-            'authorization': query_args.get('authorization', None),
+            'uuid': str(uuid.uuid4()),
+            'user_id': query_args.get('user', system_id)[0],
+            'transaction': query_args.get('transaction')[0],
+            'authorization': query_args.get('authorization', None)[0],
             'culture': 'en-US',
             'application_id': 26,
-            'system_id': system_id
+            'system_id': system_id[0],
+            'checked': False
         }
-
 
         # search customer to renew the token
 
         # to renew the stuff we need a phone_numer and country code.
 
         # execute get_payment_url function
-        new_transaccion = yield self.new_transaccion(struct)
+        new_transaction = yield self.new_transaction(struct)
 
         # then send money
 
-        self.finish({'args':new_transaccion})
+        #self.finish({'args':new_transaction})
 
-        #self.redirect('http://demo.techgcs.com#send')
+        self.redirect('http://demo.techgcs.com#send')
 
 
     @gen.coroutine

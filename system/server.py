@@ -202,6 +202,8 @@ if __name__ == '__main__':
 
             (r'/cuallix/send/money/?', cuallix.SendMoneyHandler),
 
+            (r'/cuallix/transactions/?', cuallix.TransactionsHandler),
+
             (r'/cuallix/transactions/status/?', cuallix.StatusTransactionHandler),
 
             (r'/cuallix/transactions/search/?', cuallix.SearchTransactionsHandler),

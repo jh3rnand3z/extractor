@@ -182,6 +182,45 @@ fun.models.Payment = Backbone.Model.extend({
 })
 
 
+fun.models.Transaction = Backbone.Model.extend({
+    idAttribute: 'uuid',
+
+    initialize: function(options) {
+        if (typeof options != 'undefined'){
+            this.transactionId = options.transactionId;
+        }
+    },
+
+    urlRoot: fun.conf.urls.transaction,
+
+    url: function() {
+        var url;
+        if (this.transactionId){
+            url = this.urlRoot.replace(fun.conf.transactionId, this.transactionId);
+        }
+    }
+});
+
+
+fun.models.Transactions = Backbone.Collection.extend({
+    model: fun.models.Transaction,
+
+    urlRoot: fun.conf.urls.transactions,
+
+    url: function(){
+        return this.urlRoot;
+    },
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+    
+    parse: function(response) {
+        return response.transactions;
+    }
+});
+
+
 fun.models.Payments = Backbone.Collection.extend({
     
     model: fun.models.Payment,
@@ -231,6 +270,7 @@ fun.models.PaymentsStartEnd = Backbone.Collection.extend({
         return response.results;
     }
 });
+
 
 // --------
 
