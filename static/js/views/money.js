@@ -143,16 +143,8 @@ fun.views.money = Backbone.View.extend({
 
                 statusPayload['TransactionNum'] = transaction_num;
 
-                var confirm = new fun.models.Transactions({'TransactionNum':transaction_num});
-                confirm.save(
-                    {'checked': true},
-                    {
-                        patch: true, 
-                        error: function(model, error){
-                            console.log(error);
-                        }
-                    }
-                )
+                var confirm = new fun.models.Transaction({'TransactionNum':transaction_num});
+                confirm.save({'checked': true}, {patch: true});
 
                 settle = new fun.models.Settle();
                 settle.save(settlePayload, settleCallback);
