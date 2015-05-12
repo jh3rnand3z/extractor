@@ -250,8 +250,8 @@ fun.views.dashboard = Backbone.View.extend({
              "UserId": userId,
              "Service": 3,
              "SessionDuration": 5,
-             "urlOk": "http://demo.techgcs.com/cuallix/send/money/", // test sending this to the backend and get the arg values.
-             "urlError": "http://demo.techgcs.com#settings"
+             "urlOk": "http://demo.techgcs.com/cuallix/send/money/",
+             "urlError": "http://demo.techgcs.com/#error" // test sending this to the backend and get the arg values.
         },
 
         callbackStuff = {
