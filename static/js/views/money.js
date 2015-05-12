@@ -137,8 +137,22 @@ fun.views.money = Backbone.View.extend({
             success: function(model, response){
                 console.log(response);
 
-                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
-                statusPayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+                var transaction_num = response['Transaction']['TransactionNum'];
+
+                settlePayload['TransactionNum'] = transaction_num;
+
+                statusPayload['TransactionNum'] = transaction_num;
+
+                var confirm = new fun.models.Transactions({'TransactionNum':transaction_num});
+                confirm.save(
+                    {'checked': true},
+                    {
+                        patch: true, 
+                        error: function(model, error){
+                            console.log(error);
+                        }
+                    }
+                )
 
                 settle = new fun.models.Settle();
                 settle.save(settlePayload, settleCallback);
@@ -186,9 +200,6 @@ fun.views.money = Backbone.View.extend({
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-
-                //search_trans = new fun.models.searchTransactions();
-                //search_trans.save()
  
                 transactions = new fun.models.Transactions();
                 transactions.fetch(resourceCallbacks);
