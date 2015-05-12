@@ -63,7 +63,7 @@ class Cuallix(object):
 
         try:
             while (yield q.fetch_next):
-                transaction = transactions.Transaction(q.next_object())
+                transaction = cuallix.Transaction(q.next_object())
                 transaction_list.append(clean_structure(transaction))
         except Exception, e:
             logging.exception(e)
@@ -86,10 +86,10 @@ class Cuallix(object):
             )
 
             logging.info('{0} this is the result'.format(str(result)))
-            #if result:
-            #    contact = contacts.Contact(result)
-            #    contact.validate()
-            #    message = clean_structure(contact)
+            if result:
+                transaction = cuallix.Transaction(result)
+                transaction.validate()
+                message = clean_structure(transaction)
         except Exception, e:
             logging.exception(e)
             raise e
