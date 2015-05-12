@@ -189,12 +189,12 @@ fun.models.Transaction = Backbone.Model.extend({
     urlRoot: fun.conf.urls.transaction,
 
     url: function(){
-        var url = this.urlRoot.replace(fun.conf.uuidTransaction, this.id);
+        'use strict';
+        var url;
         if (!this.isNew()){
-            console.log("wtf i'm trying to do here?")
-            url += '/' + this.id;
-
-            console.log(url);
+            url = this.urlRoot.replace(fun.conf.uuidTransaction, this.id);
+        } else {
+            url = fun.conf.urls.transactions;
         }
         return url;
     }
