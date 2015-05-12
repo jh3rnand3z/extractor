@@ -27,7 +27,6 @@ fun.conf = {
     uuidError: 'error_uuid',
     // end CLX stuff
 
-
     lapse: 'lapse',
 
     startTime: 'start_time',
