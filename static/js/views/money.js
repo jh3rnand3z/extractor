@@ -53,6 +53,7 @@ fun.views.money = Backbone.View.extend({
             callbacks,
             statusPayload,
             statusCallback,
+            transaction,
             transactions,
             transactionsCallback,
             transactionsPayload,
@@ -108,9 +109,12 @@ fun.views.money = Backbone.View.extend({
 
         transactionsPayload = {};
 
-        searchTransPayload = {};
-
-
+        searchTransPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId
+            //"TransactionNum": "2341100093"
+        };
 
         searchTransCallback = {
             success: function(model, response){
@@ -142,15 +146,16 @@ fun.views.money = Backbone.View.extend({
         var resourceCallbacks = {
             success: function(model, response){
 
-                console.log(response.transactions);
-
-                //_.each(response.transactions, alert); //
-
                 _.each(response.transactions, function(o) {
-                    console.log(o);
-                    alert(o.transaction);
-                });
 
+                    //console.log(o);
+                    //alert(o.transaction);
+
+                    searchTransPayload['TransactionNum'] = o.transaction;
+
+                    transaction = new fun.models.searchTransactions();
+                    transaction.save(searchTransPayload, searchTransCallback);
+                });
 
             },
             error: function(model, error){
