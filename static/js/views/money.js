@@ -20,10 +20,6 @@ fun.views.money = Backbone.View.extend({
         }
         
         this.$el.show();
-
-        var stuffx = fun.utils.getParameterByName('transaction');
-
-        console.log(stuffx);
     },
 
     sendMoney: function (event){
@@ -119,6 +115,15 @@ fun.views.money = Backbone.View.extend({
         searchTransCallback = {
             success: function(model, response){
                 console.log(response);
+
+                var total = response['Transaction']['Total'];
+                var amount = response['Transaction']['Amount'];
+
+                stuff['Amount'] = response['Transaction']['Total'];
+
+
+                send_money = new fun.models.sendMoney();
+                send_money.save(stuff, callbackStuff);
             },
             error: function(model, error){
                 console.log(error);
@@ -134,7 +139,6 @@ fun.views.money = Backbone.View.extend({
                 statusPayload['TransactionNum'] = response['Transaction']['TransactionNum'];
 
                 settle = new fun.models.Settle();
-
                 settle.save(settlePayload, settleCallback);
             },
             error: function(model, error){
