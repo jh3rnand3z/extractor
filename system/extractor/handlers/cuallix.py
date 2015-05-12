@@ -414,6 +414,40 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
                 self.set_status(200)
                 self.finish(result)
 
+    @gen.coroutine
+    def patch(self, transaction_uuid):
+        '''
+            Modify transaction
+        '''
+        logging.info('request.arguments {0}'.format(self.request.arguments))
+        logging.info('request.body {0}'.format(self.request.body))
+
+        struct = yield check_json(self.request.body)
+
+        logging.info('patch received struct {0}'.format(struct))
+
+        format_pass = (True if not dict(struct).get('errors', False) else False)
+        if not format_pass:
+            self.set_status(400)
+            self.finish({'JSON':format_pass})
+            return
+
+        account = self.request.arguments.get('account', [None])[0]
+
+        logging.info('account {0} uuid {1} struct {2}'.format(account, transaction_uuid, struct))
+
+        result = yield self.modify_transaction(account, transaction_uuid, struct)
+
+        if not result:
+            self.set_status(400)
+            system_error = errors.Error('missing')
+            error = system_error.missing('transaction', transaction_uuid)
+            self.finish(error)
+            return
+
+        self.set_status(200)
+        self.finish({'message': 'update completed successfully'})
+
 
 @content_type_validation
 class SearchTransactionsHandler(cuallix.Cuallix, BaseHandler):
