@@ -144,15 +144,7 @@ fun.views.money = Backbone.View.extend({
 
                 console.log(response.transactions);
 
-                if(++count == _.keys(resources).length){
-
-                    console.log(resources.transactions.get('transaction'));
-                    
-                    //localStorage.setItem("UserId", resources.user.get('UserId'));
-                    //localStorage.setItem("UserCountryCode", resources.user.get('country_code'));
-                    //localStorage.setItem("UserPhoneNumber", resources.user.get('phone_number'));
-                    //localStorage.setItem("UserEmail",resources.user.get('email'));
-                }
+                _.each(response.transactions, alert);
             },
             error: function(model, error){
                 console.log('resources error');
