@@ -23,6 +23,7 @@ fun.conf = {
 
     uuidPayment: 'payment_uuid',
     uuidTransaction: 'transaction_uuid',
+    // end CLX stuff
 
 
     lapse: 'lapse',

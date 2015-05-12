@@ -47,6 +47,8 @@ fun.views.money = Backbone.View.extend({
             settle,
             settlePayload,
             settleCallback,
+            resources,
+            count,
             status,
             callbacks,
             statusPayload,
@@ -58,10 +60,6 @@ fun.views.money = Backbone.View.extend({
             searchTransPayload,
             searchTransCallback;
 
-
-        //this.amount = this.$('#s-amount');
-
-        //amount = this.amount.val();
 
         userId = localStorage.getItem("UserId");
 
@@ -102,19 +100,17 @@ fun.views.money = Backbone.View.extend({
             "UserId": userId
         };
 
+
+
         transactions = {};
 
-        transactionsCallback = {
+        transactionsCallback = {};
 
-        };
+        transactionsPayload = {};
 
-        transactionsPayload = {
+        searchTransPayload = {};
 
-        };
 
-        searchTransPayload = {
-
-        };
 
         searchTransCallback = {
             success: function(model, response){
@@ -142,18 +138,48 @@ fun.views.money = Backbone.View.extend({
             }
         };
 
+
+        
+
+        var resources = {
+            transactions: new fun.models.Transactions()
+        };
+
+
+        
+
+
+        var resourceCallbacks = {
+            success: function(model, response){
+
+                console.log(response);
+
+                if(++count == _.keys(resources).length){
+
+                    console.log(resources.transactions.get('transaction'));
+                    
+                    //localStorage.setItem("UserId", resources.user.get('UserId'));
+                    //localStorage.setItem("UserCountryCode", resources.user.get('country_code'));
+                    //localStorage.setItem("UserPhoneNumber", resources.user.get('phone_number'));
+                    //localStorage.setItem("UserEmail",resources.user.get('email'));
+                }
+            },
+            error: function(model, error){
+                console.log('resources error');
+            }
+        };
+
+
+
+
         callbacks = {
             success: function(model, response){
 
                 console.log(response);
 
-                //if(++resourceCount == _.keys(resources).length){
-                //    //console.log(resources.user);
-                //    localStorage.setItem("UserId", resources.user.get('UserId'));
-                //    localStorage.setItem("UserCountryCode", resources.user.get('country_code'));
-                //    localStorage.setItem("UserPhoneNumber", resources.user.get('phone_number'));
-                //    localStorage.setItem("UserEmail",resources.user.get('email'));
-                //}
+                for (var res in resources){
+                    resources[res].fetch(resourceCallbacks);
+                };
             },
             error: function(model, error){
                 console.log(error);
@@ -172,9 +198,7 @@ fun.views.money = Backbone.View.extend({
                     
                 //console.log('Chumster CEO');
 
-                transactions = new fun.models.Transactions();
-
-                transactions.fetch(callbacks)
+                
 
                 //send_money = new fun.models.sendMoney();
                 //send_money.save(stuff, callbackStuff)
