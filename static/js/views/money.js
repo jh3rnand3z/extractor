@@ -144,7 +144,14 @@ fun.views.money = Backbone.View.extend({
 
                 console.log(response.transactions);
 
-                _.each(response.transactions, alert);
+                //_.each(response.transactions, alert); //
+
+                _.each(response.transactions, function(o) {
+                    console.log(o);
+                    alert(o.transaction);
+                });
+
+
             },
             error: function(model, error){
                 console.log('resources error');
