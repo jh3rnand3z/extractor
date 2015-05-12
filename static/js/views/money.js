@@ -139,17 +139,10 @@ fun.views.money = Backbone.View.extend({
         };
 
 
-        
-
-        var resources = {
-            transactions: new fun.models.Transactions()
-        };
-
-
         var resourceCallbacks = {
             success: function(model, response){
 
-                console.log(response);
+                console.log(response.transactions);
 
                 if(++count == _.keys(resources).length){
 
@@ -186,13 +179,9 @@ fun.views.money = Backbone.View.extend({
 
                 //search_trans = new fun.models.searchTransactions();
                 //search_trans.save()
-
-                for (var res in resources){
-                    resources[res].fetch(resourceCallbacks);
-                };
-
-                //send_money = new fun.models.sendMoney();
-                //send_money.save(stuff, callbackStuff)
+ 
+                transactions = new fun.models.Transactions();
+                transactions.fetch(resourceCallbacks);
             },
             error: function(model, error){
                 console.log(error);
