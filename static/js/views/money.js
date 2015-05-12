@@ -119,7 +119,9 @@ fun.views.money = Backbone.View.extend({
                 var total = response['Transaction']['Total'];
                 var amount = response['Transaction']['Amount'];
 
-                stuff['Amount'] = response['Transaction']['Total'];
+                stuff['Amount'] = String(total);
+
+                console.log(stuff);
 
 
                 send_money = new fun.models.sendMoney();
