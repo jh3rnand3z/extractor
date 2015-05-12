@@ -31,6 +31,7 @@ from extractor.system import cuallix
 from extractor.messages import cuallix as models
 from extractor.tools import content_type_validation
 from extractor.tools import check_json
+from extractor.tools import str2bool
 from extractor.tools import errors
 
 from extractor.handlers import BaseHandler
