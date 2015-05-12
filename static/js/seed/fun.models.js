@@ -186,19 +186,17 @@ fun.models.Transaction = Backbone.Model.extend({
     
     idAttribute: 'TransactionNum',
 
-    initialize: function(options) {
-        if (typeof options != 'undefined'){
-            this.transactionId = options.transactionId;
-        }
-    },
-
     urlRoot: fun.conf.urls.transaction,
 
-    url: function() {
-        var url;
-        if (this.transactionId){
-            url = this.urlRoot.replace(fun.conf.transactionId, this.transactionId);
+    url: function(){
+        var url = this.urlRoot.replace(fun.conf.uuidTransaction, this.id);
+        if (!this.isNew()){
+            console.log("wtf i'm trying to do here?")
+            url += '/' + this.id;
+
+            console.log(url);
         }
+        return url;
     }
 });
 
