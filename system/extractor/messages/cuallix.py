@@ -136,3 +136,14 @@ class SearchTransactions(models.Model):
     ApplicationId = types.StringType()
     UserId = types.StringType()
     TransactionNum = types.StringType()
+
+
+class Transaction(models.Model):
+    culture = types.StringType()
+    transaction = types.StringType()
+    user_id = types.StringType()
+    uuid = types.StringType()
+    checked = types.StringType()
+    application_id = types.StringType()
+    system_id = types.StringType()
+    authorization = types.StringType()
