@@ -183,7 +183,8 @@ fun.models.Payment = Backbone.Model.extend({
 
 
 fun.models.Transaction = Backbone.Model.extend({
-    idAttribute: 'uuid',
+    
+    idAttribute: 'TransactionNum',
 
     initialize: function(options) {
         if (typeof options != 'undefined'){
