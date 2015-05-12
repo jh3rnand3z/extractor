@@ -355,6 +355,66 @@ class StatusTransactionHandler(cuallix.Cuallix, BaseHandler):
 
 
 @content_type_validation
+class TransactionsHandler(cuallix.Cuallix, BaseHandler):
+    '''
+        HTTP request handlers
+
+        Cuallix Transactions
+    '''
+
+    @gen.coroutine
+    def get(self, account=None, transaction_uuid=None, page_num=0):
+        '''
+            Get transactions
+        '''
+        # logging request query arguments
+        logging.info('request query arguments {0}'.format(self.request.arguments))
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get the current frontend logged username
+        username = self.get_current_username()
+
+        # if the user don't provide an account we use the frontend username as last resort
+        account = (query_args.get('account', [username])[0] if not account else account)
+
+        # query string checked from string to boolean
+        checked = str2bool(str(query_args.get('checked', [False])[0]))
+
+        if not transaction_uuid:
+            # get list of directories
+            transactions = yield self.get_transaction_list(account, checked, page_num)
+            self.set_status(200)
+            self.finish({'transactions':transactions})
+        else:
+            # try to get stuff from cache first
+            logging.info('transaction_uuid {0}'.format(transaction_uuid.rstrip('/')))
+            
+            data = self.cache.get('transactions:{0}'.format(transaction_uuid))
+
+            if data is not None:
+                logging.info('transactions:{0} done retrieving!'.format(transaction_uuid))
+                result = data
+            else:
+                data = yield self.get_transaction(account, transaction_uuid.rstrip('/'))
+                if self.cache.add('transactions:{0}'.format(transaction_uuid), data, 60):
+                    logging.info('new cache entry {0}'.format(str(data)))
+                    result = data
+
+            if not result:
+
+                # -- need moar info
+
+                self.set_status(400)
+                self.finish({'missing account {0} transaction_uuid {1} page_num {2} checked {3}'.format(
+                    account, transaction_uuid.rstrip('/'), page_num, checked):result})
+            else:
+                self.set_status(200)
+                self.finish(result)
+
+
+@content_type_validation
 class SearchTransactionsHandler(cuallix.Cuallix, BaseHandler):
     '''
         HTTP request handlers

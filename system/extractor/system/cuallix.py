@@ -35,6 +35,68 @@ class Cuallix(object):
     '''
 
     @gen.coroutine
+    def get_transaction_list(self, account, checked, page_num):
+        '''
+            Get contact list
+        '''
+        page_num = int(page_num)
+        page_size = self.settings.get('page_size')
+        transaction_list = []
+
+        # remove phone_2, phone_3 and contact_requests from query stuff and db.
+        query = self.db.transactions.find(
+            {
+                #'account':account,
+                'checked':checked
+            },
+            {
+                '_id':0,
+                #'phone_2':0,
+                #'phone_3':0,
+                #'contact_requests':0
+            }
+        )
+
+        q = query
+
+        q = q.sort([('_id', -1)]).skip(int(page_num) * page_size).limit(page_size)
+
+        try:
+            while (yield q.fetch_next):
+                transaction = transactions.Transaction(q.next_object())
+                transaction_list.append(clean_structure(transaction))
+        except Exception, e:
+            logging.exception(e)
+            raise gen.Return(e)
+
+        finally:
+            raise gen.Return(transaction_list)
+
+    @gen.coroutine
+    def get_transaction(self, account, transaction_uuid):
+        '''
+            Get transaction
+        '''
+        message = None
+        logging.info('{0} get transaction {1}'.format(account, transaction_uuid))
+        try:
+            result = yield self.db.transactions.find_one(
+                {'uuid': transaction_uuid},
+                {'_id':0} # remove this stuff from db.
+            )
+
+            logging.info('{0} this is the result'.format(str(result)))
+            #if result:
+            #    contact = contacts.Contact(result)
+            #    contact.validate()
+            #    message = clean_structure(contact)
+        except Exception, e:
+            logging.exception(e)
+            raise e
+        finally:
+            raise gen.Return(result)
+
+    @gen.coroutine
     def user_register(self, struct):
         '''
             User register on the CLX API
