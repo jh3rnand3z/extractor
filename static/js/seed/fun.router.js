@@ -230,7 +230,7 @@ fun.Router = Backbone.Router.extend({
         }
 
         // fun.instances.footer.render();
-    }
+    },
 
     reports: function(page){
         'use strict';
