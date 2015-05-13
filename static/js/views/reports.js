@@ -77,7 +77,7 @@ fun.views.reports = Backbone.View.extend({
         this.end = Math.round(toDate.getTime()/1000);
 
 
-        var clxStart, clxEnd;
+        var clxStart, clxEnd, fromDay, fromMonth, fromYear;
 
         fromDay = fromDate.getDate();
         if (int(fromDate) < 10) {
