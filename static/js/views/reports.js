@@ -79,8 +79,24 @@ fun.views.reports = Backbone.View.extend({
 
         var clxStart, clxEnd;
 
+        fromDay = fromDate.getDate();
+        if (int(fromDate) < 10) {
+            fromDate = '0'+ String(fromDate);
+        };
 
-        clxStart = fun.utils.format('%s%s%s', fromDate.getDate(), fromDate.getMonth(), fromDate.getFullYear());
+        fromMonth = fromDate.getMonth();
+        fromMonth = int(fromMonth) + 1;
+        if (int(fromMonth) < 10) {
+            fromMonth = '0' + String(fromMonth);
+        };
+
+        fromYear = fromDate.getFullYear()
+
+        //toDate =
+        //toMonth =
+        //toYear =
+
+        clxStart = fun.utils.format('%s%s%s', fromDay, fromMonth, fromYear);
         clxEnd = fun.utils.format('%s%s%s', toDate.getDate(), toDate.getMonth(), toDate.getFullYear());
 
         <!--
