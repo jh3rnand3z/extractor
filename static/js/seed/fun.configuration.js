@@ -84,6 +84,9 @@ fun.conf.urls = {
     transactionStatus: '/cuallix/transactions/status/',
     searchTransactions: '/cuallix/transactions/search/',
 
+    dateRangeTransactions: '/cuallix/transactions/range/',
+
+
     // --- end new api
 
     payment: fun.utils.format('/cuallix/payments/%s', fun.conf.uuidPayment),
@@ -151,6 +154,7 @@ fun.conf.templates = {
     
     dashboard: fun.utils.format('%s/dashboard.html', fun.conf.html),
 
+    bannerImage: fun.utils.format('%s/bannerImage.html', fun.conf.html),
 
     accountListItem: fun.utils.format('%s/accountListItem.html', fun.conf.html),
     
@@ -185,7 +189,7 @@ fun.conf.templates = {
 
     sendMoney: fun.utils.format('%s/sendMoney.html', fun.conf.html),
 
-    cuallixError: fun.utils.format('%s/cuallixError.html'),
+    cuallixError: fun.utils.format('%s/cuallixError.html', fun.conf.html),
 
     profile: fun.utils.format('%s/profile.html', fun.conf.html),
 
