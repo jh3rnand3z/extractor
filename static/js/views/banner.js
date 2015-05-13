@@ -20,7 +20,7 @@ fun.views.banner = Backbone.View.extend({
 	render: function(){
 		console.log('render banner view');
 
-		var template = _.template(fun.utils.getTemplate(fun.conf.templates.prewayBanner));
+		var template = _.template(fun.utils.getTemplate(fun.conf.templates.bannerImage));
 
 		this.$el.html(template);
         this.$el.show();

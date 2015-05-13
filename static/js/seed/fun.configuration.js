@@ -154,8 +154,6 @@ fun.conf.templates = {
     
     dashboard: fun.utils.format('%s/dashboard.html', fun.conf.html),
 
-    bannerImage: fun.utils.format('%s/bannerImage.html', fun.conf.html),
-
     accountListItem: fun.utils.format('%s/accountListItem.html', fun.conf.html),
     
     recordRow: fun.utils.format('%s/recordRow.html', fun.conf.html),
@@ -191,6 +189,7 @@ fun.conf.templates = {
 
     cuallixError: fun.utils.format('%s/cuallixError.html', fun.conf.html),
     bannerImage: fun.utils.format('%s/bannerImage.html', fun.conf.html),
+
 
     profile: fun.utils.format('%s/profile.html', fun.conf.html),
 

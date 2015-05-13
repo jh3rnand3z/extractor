@@ -139,6 +139,9 @@ class SearchTransactions(models.Model):
 
 
 class Transaction(models.Model):
+    '''
+        Cuallix Transaction
+    '''
     culture = types.StringType()
     transaction = types.StringType()
     user_id = types.StringType()
