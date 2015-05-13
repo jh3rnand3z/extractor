@@ -77,6 +77,37 @@ fun.views.reports = Backbone.View.extend({
         this.end = Math.round(toDate.getTime()/1000);
 
 
+        var clxStart, clxEnd;
+
+
+        clxStart = fun.utils.format('%s%s%s', fromDate.getDate(), fromDate.getMonth(), fromDate.getFullYear());
+        clxEnd = fun.utils.format('%s%s%s', toDate.getDate(), toDate.getMonth(), toDate.getFullYear());
+
+        <!--
+
+        //var curr_date = d.getDate();
+
+        //var curr_month = d.getMonth();
+
+        //var curr_year = d.getFullYear();
+
+        //document.write(curr_year + curr_month + curr_date);
+
+        -->
+
+        console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
+
+        var rangeDateTransactionPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId" : fun.conf.clxUserId,
+            "DateFrom" : "20140101",
+            "DateTo" : "20140131"
+        };
+
+        console.log(rangeDateTransactionPayload);
+
+
         console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
         var startEnd = {
@@ -97,11 +128,6 @@ fun.views.reports = Backbone.View.extend({
 
         var models = {
             payments: new fun.models.PaymentsStartEnd(startEnd),
-            //summary: new fun.models.SummaryStartEnd(startEnd),
-            //summaries: new fun.models.SummariesStartEnd(startEnd),
-            //billing: new fun.models.BillingStartEnd(startEnd)
-
-            // lapseSummary : new fun.models.LapseSummaryStartEnd(startEndLapse)
         };
 
         var success = function() {
