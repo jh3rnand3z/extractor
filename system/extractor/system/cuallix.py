@@ -18,7 +18,7 @@ __author__ = 'Jean Chassoul'
     the service daemon itself acts as the monitor for the monitor daemon.
 
 
-    Some (most?) watchdog/procdoc type systems start two processes 
+    Some (most?) watchdog/supervisor type systems start two processes 
     that watch each other in addition to the target process(es).
 
 '''
@@ -56,7 +56,6 @@ class Cuallix(object):
         page_size = self.settings.get('page_size')
         transaction_list = []
 
-        # remove phone_2, phone_3 and contact_requests from query stuff and db.
         query = self.db.transactions.find(
             {
                 #'account':account,
@@ -64,9 +63,6 @@ class Cuallix(object):
             },
             {
                 '_id':0,
-                #'phone_2':0,
-                #'phone_3':0,
-                #'contact_requests':0
             }
         )
 
@@ -389,7 +385,6 @@ class Cuallix(object):
 
         raise gen.Return(r.content)
 
-
     @gen.coroutine
     def date_range_search_transactions(self, struct):
         '''
@@ -417,7 +412,6 @@ class Cuallix(object):
         logging.warning(r.content)
 
         raise gen.Return(r.content)
-
 
     @gen.coroutine
     def new_transaction(self, struct):
