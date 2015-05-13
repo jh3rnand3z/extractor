@@ -415,14 +415,12 @@ class Cuallix(object):
             logging.error(e)
             raise e
 
-        logging.info('the stuff the stuff the stuff the stuff the stuff the stuff')
-        logging.info(transaction)
+        transaction_num = int(transaction_uuid) - 1
 
         try:
-            logging.info(transaction_uuid, transaction)
             # missing account !!
             result = yield self.db.transactions.update(
-                {'transaction':transaction_uuid},
+                {'transaction':str(transaction_num)},
                 {'$set':transaction}
             )
             logging.info(result)            
