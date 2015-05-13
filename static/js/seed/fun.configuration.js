@@ -169,7 +169,10 @@ fun.conf.templates = {
     todaySummary: fun.utils.format('%s/todaySummary.html', fun.conf.html),
     todayActivityChart: fun.utils.format('%s/todayActivityChart.html', fun.conf.html),
 
-    
+    controlTo: fun.utils.format('%s/controlTo.html', fun.conf.html),
+    controlFrom: fun.utils.format('%s/controlFrom.html', fun.conf.html),
+    findLapse: fun.utils.format('%s/findLapse.html', fun.conf.html),
+
     message: fun.utils.format('%s/message.html', fun.conf.html),
     messageSmall: fun.utils.format('%s/messageSmall.html', fun.conf.html),
     messageMedium: fun.utils.format('%s/messageMedium', fun.conf.html),
