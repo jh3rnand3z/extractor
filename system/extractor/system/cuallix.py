@@ -390,9 +390,9 @@ class Cuallix(object):
         raise gen.Return(struct.get('uuid'))
 
     @gen.coroutine
-    def modify_campaign(self, account, transaction_uuid, struct):
+    def modify_transaction(self, account, transaction_uuid, struct):
         '''
-            Modify campaign
+            Modify transaction
         '''
         try:
             transaction = cuallix.Transaction(struct)
