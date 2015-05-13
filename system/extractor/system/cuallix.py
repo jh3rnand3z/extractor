@@ -11,6 +11,19 @@
 __author__ = 'Jean Chassoul'
 
 
+'''
+
+    When writing these for my own daemons I usually make an "undead mode"
+    where a monitor daemon is created to watch the service daemon, and 
+    the service daemon itself acts as the monitor for the monitor daemon.
+
+
+    Some (most?) watchdog/procdoc type systems start two processes 
+    that watch each other in addition to the target process(es).
+
+'''
+
+
 import arrow
 import motor
 import uuid
