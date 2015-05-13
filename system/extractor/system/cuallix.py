@@ -415,6 +415,9 @@ class Cuallix(object):
             logging.error(e)
             raise e
 
+        logging.info('the stuff the stuff the stuff the stuff the stuff the stuff')
+        logging.info(transaction)
+
         try:
             logging.info(transaction_uuid, transaction)
             # missing account !!
