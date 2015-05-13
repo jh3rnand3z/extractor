@@ -185,7 +185,7 @@ fun.views.reports = Backbone.View.extend({
         var htmlId = this.$('#no-records');
         htmlId.html(_.template(
                         fun.utils.getTemplate(fun.conf.templates.warning)
-                    )({msg:'noDataAvailable'})
+                    )({message:'noDataAvailable'})
         );
     },
 
