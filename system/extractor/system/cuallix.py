@@ -389,6 +389,36 @@ class Cuallix(object):
 
         raise gen.Return(r.content)
 
+
+    @gen.coroutine
+    def date_range_search_transactions(self, struct):
+        '''
+            DateRange search transactions
+        '''
+        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Transactions/DateRange'
+        try:
+            result = payments.DateRange(struct)
+            result.validate()
+            result = clean_structure(result)
+        except Exception, e:
+            logging.error(e)
+            raise e
+
+        headers = {
+            'Content-type': 'application/json',
+            'Accept': 'text/plain',
+            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+        }
+
+        logging.info(result)
+
+        r = requests.post(uri, data=json.dumps(result), headers=headers)
+
+        logging.warning(r.content)
+
+        raise gen.Return(r.content)
+
+
     @gen.coroutine
     def new_transaction(self, struct):
         '''
@@ -420,7 +450,7 @@ class Cuallix(object):
         transaction_num = int(transaction_uuid) - 1
 
         logging.info('transaction_uuid: {0} transaction_num: {1}'.format(transaction_uuid, transaction_num))
-        
+
         try:
             # missing account !!
             result = yield self.db.transactions.update(
