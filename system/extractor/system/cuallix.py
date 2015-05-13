@@ -403,6 +403,7 @@ class Cuallix(object):
             raise e
 
         try:
+            logging.info(transaction_uuid, transaction)
             # missing account !!
             result = yield self.db.transactions.update(
                 {'transaction':transaction_uuid},
