@@ -388,3 +388,29 @@ class Cuallix(object):
             raise e
 
         raise gen.Return(struct.get('uuid'))
+
+    @gen.coroutine
+    def modify_campaign(self, account, transaction_uuid, struct):
+        '''
+            Modify campaign
+        '''
+        try:
+            transaction = cuallix.Transaction(struct)
+            transaction.validate()
+            transaction = clean_structure(transaction)
+        except Exception, e:
+            logging.error(e)
+            raise e
+
+        try:
+            # missing account !!
+            result = yield self.db.transactions.update(
+                {'transaction':transaction_uuid},
+                {'$set':transaction}
+            )
+            logging.info(result)            
+        except Exception, e:
+            logging.error(e)
+            message = str(e)
+
+        raise gen.Return(bool(result.get('n')))
