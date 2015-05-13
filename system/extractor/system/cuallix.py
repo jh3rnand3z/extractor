@@ -415,8 +415,12 @@ class Cuallix(object):
             logging.error(e)
             raise e
 
+        logging.info('after the stuff after the stuff after the stuff after the stuff ')
+
         transaction_num = int(transaction_uuid) - 1
 
+        logging.info('transaction_uuid: {0} transaction_num: {1}'.format(transaction_uuid, transaction_num))
+        
         try:
             # missing account !!
             result = yield self.db.transactions.update(
