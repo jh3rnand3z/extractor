@@ -16,6 +16,7 @@ fun.Router = Backbone.Router.extend({
 
         "send": "money",
         "error": "error",
+        "banner": "banner",
 
         "reports": "reports",
         "reports/p:page": "reports",
@@ -60,6 +61,11 @@ fun.Router = Backbone.Router.extend({
         // cuallix error
         fun.instances.error = new fun.views.error({
             el: "#fun-error"
+        });
+
+        // preway banner
+        fun.instances.banner = new fun.views.banner({
+            el: "#fun-banner"
         });
 
         // reports
@@ -231,6 +237,19 @@ fun.Router = Backbone.Router.extend({
 
         // fun.instances.footer.render();
     },
+
+    banner: function(){
+        'use strict';
+        if(fun.utils.loggedIn()){
+            fun.utils.hideAll();
+            fun.instances.banner.render();
+
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
+
+        // fun.instances.footer.render();
+    }
 
     reports: function(page){
         'use strict';

@@ -11,7 +11,7 @@ fun.views.banner = Backbone.View.extend({
 	* Class constructor
 	*/
 	initialize: function(options){
-		fun.containers.error = this.$el;
+		fun.containers.banner = this.$el;
 	},
 
 	/**

@@ -190,6 +190,7 @@ fun.conf.templates = {
     sendMoney: fun.utils.format('%s/sendMoney.html', fun.conf.html),
 
     cuallixError: fun.utils.format('%s/cuallixError.html', fun.conf.html),
+    bannerImage: fun.utils.format('%s/bannerImage.html', fun.conf.html),
 
     profile: fun.utils.format('%s/profile.html', fun.conf.html),
 
@@ -223,6 +224,7 @@ fun.conf.hash = {
     landing: '#landing',
     send: '#send',
     error: '#error',
+    banner: '#banner',
     features: '#features',
     enterprise: '#enterprise',
     terms: '#terms',
