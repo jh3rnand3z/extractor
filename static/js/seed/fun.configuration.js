@@ -23,8 +23,9 @@ fun.conf = {
 
     uuidPayment: 'payment_uuid',
     uuidTransaction: 'transaction_uuid',
-    // end CLX stuff
 
+    uuidError: 'error_uuid',
+    // end CLX stuff
 
     lapse: 'lapse',
 
@@ -184,6 +185,8 @@ fun.conf.templates = {
 
     sendMoney: fun.utils.format('%s/sendMoney.html', fun.conf.html),
 
+    cuallixError: fun.utils.format('%s/cuallixError.html'),
+
     profile: fun.utils.format('%s/profile.html', fun.conf.html),
 
     activity: fun.utils.format('%s/activity.html', fun.conf.html),
@@ -215,6 +218,7 @@ fun.conf.hash = {
     home: '#home',
     landing: '#landing',
     send: '#send',
+    error: '#error',
     features: '#features',
     enterprise: '#enterprise',
     terms: '#terms',

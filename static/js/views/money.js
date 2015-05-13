@@ -20,10 +20,6 @@ fun.views.money = Backbone.View.extend({
         }
         
         this.$el.show();
-
-        var stuffx = fun.utils.getParameterByName('transaction');
-
-        console.log(stuffx);
     },
 
     sendMoney: function (event){
@@ -119,6 +115,17 @@ fun.views.money = Backbone.View.extend({
         searchTransCallback = {
             success: function(model, response){
                 console.log(response);
+
+                var total = response['Transaction']['Total'];
+                var amount = response['Transaction']['Amount'];
+
+                stuff['Amount'] = String(total);
+
+                console.log(stuff);
+
+
+                send_money = new fun.models.sendMoney();
+                send_money.save(stuff, callbackStuff);
             },
             error: function(model, error){
                 console.log(error);
@@ -130,11 +137,16 @@ fun.views.money = Backbone.View.extend({
             success: function(model, response){
                 console.log(response);
 
-                settlePayload['TransactionNum'] = response['Transaction']['TransactionNum'];
-                statusPayload['TransactionNum'] = response['Transaction']['TransactionNum'];
+                var transaction_num = response['Transaction']['TransactionNum'];
+
+                settlePayload['TransactionNum'] = transaction_num;
+
+                statusPayload['TransactionNum'] = transaction_num;
+
+                var confirm = new fun.models.Transaction({'TransactionNum':transaction_num});
+                confirm.save({'checked': true}, {patch: true});
 
                 settle = new fun.models.Settle();
-
                 settle.save(settlePayload, settleCallback);
             },
             error: function(model, error){
@@ -180,9 +192,6 @@ fun.views.money = Backbone.View.extend({
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-
-                //search_trans = new fun.models.searchTransactions();
-                //search_trans.save()
  
                 transactions = new fun.models.Transactions();
                 transactions.fetch(resourceCallbacks);

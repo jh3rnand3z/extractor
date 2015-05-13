@@ -15,6 +15,7 @@ fun.Router = Backbone.Router.extend({
         "dashboard/a:account/o:org": "dashboard",
 
         "send": "money",
+        "error": "error",
 
         "reports": "reports",
         "reports/p:page": "reports",
@@ -54,6 +55,11 @@ fun.Router = Backbone.Router.extend({
         // send money
         fun.instances.money = new fun.views.money({
             el:"#fun-money"
+        });
+
+        // cuallix error
+        fun.instances.error = new fun.views.error({
+            el: "#fun-error"
         });
 
         // reports
@@ -211,6 +217,19 @@ fun.Router = Backbone.Router.extend({
         }
         
         //fun.instances.footer.render();
+    },
+
+    error: function(){
+        'use strict';
+        if(fun.utils.loggedIn()){
+            fun.utils.hideAll();
+
+            fun.instances.error.render();
+        } else {
+            fun.utils.redirect(fun.conf.hash.login);
+        }
+
+        // fun.instances.footer.render();
     },
 
     reports: function(page){

@@ -11,6 +11,19 @@
 __author__ = 'Jean Chassoul'
 
 
+'''
+
+    When writing these for my own daemons I usually make an "undead mode"
+    where a monitor daemon is created to watch the service daemon, and 
+    the service daemon itself acts as the monitor for the monitor daemon.
+
+
+    Some (most?) watchdog/procdoc type systems start two processes 
+    that watch each other in addition to the target process(es).
+
+'''
+
+
 import arrow
 import motor
 import uuid
@@ -388,3 +401,35 @@ class Cuallix(object):
             raise e
 
         raise gen.Return(struct.get('uuid'))
+
+    @gen.coroutine
+    def modify_transaction(self, account, transaction_uuid, struct):
+        '''
+            Modify transaction
+        '''
+        try:
+            transaction = cuallix.Transaction(struct)
+            transaction.validate()
+            transaction = clean_structure(transaction)
+        except Exception, e:
+            logging.error(e)
+            raise e
+
+        logging.info('after the stuff after the stuff after the stuff after the stuff ')
+
+        transaction_num = int(transaction_uuid) - 1
+
+        logging.info('transaction_uuid: {0} transaction_num: {1}'.format(transaction_uuid, transaction_num))
+        
+        try:
+            # missing account !!
+            result = yield self.db.transactions.update(
+                {'transaction':str(transaction_num)},
+                {'$set':transaction}
+            )
+            logging.info(result)            
+        except Exception, e:
+            logging.error(e)
+            message = str(e)
+
+        raise gen.Return(bool(result.get('n')))

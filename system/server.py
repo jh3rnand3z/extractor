@@ -202,11 +202,12 @@ if __name__ == '__main__':
 
             (r'/cuallix/send/money/?', cuallix.SendMoneyHandler),
 
-            (r'/cuallix/transactions/?', cuallix.TransactionsHandler),
-
             (r'/cuallix/transactions/status/?', cuallix.StatusTransactionHandler),
 
             (r'/cuallix/transactions/search/?', cuallix.SearchTransactionsHandler),
+
+            (r'/cuallix/transactions/(?P<transaction_uuid>.+)/?', cuallix.TransactionsHandler),
+            (r'/cuallix/transactions/?', cuallix.TransactionsHandler),
 
             (r'/cuallix/assign/?', cuallix.AssignHandler),
             (r'/cuallix/funds/?', cuallix.LoadFundsHandler),

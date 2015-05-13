@@ -183,21 +183,20 @@ fun.models.Payment = Backbone.Model.extend({
 
 
 fun.models.Transaction = Backbone.Model.extend({
-    idAttribute: 'uuid',
-
-    initialize: function(options) {
-        if (typeof options != 'undefined'){
-            this.transactionId = options.transactionId;
-        }
-    },
+    
+    idAttribute: 'TransactionNum',
 
     urlRoot: fun.conf.urls.transaction,
 
-    url: function() {
+    url: function(){
+        'use strict';
         var url;
-        if (this.transactionId){
-            url = this.urlRoot.replace(fun.conf.transactionId, this.transactionId);
+        if (!this.isNew()){
+            url = this.urlRoot.replace(fun.conf.uuidTransaction, this.id);
+        } else {
+            url = fun.conf.urls.transactions;
         }
+        return url;
     }
 });
 
