@@ -67,17 +67,17 @@ fun.views.reports = Backbone.View.extend({
             startEndLapse,
             models,
             success;
+
+        var clxStart, clxEnd, fromDay, fromMonth, fromYear, toDay, toMonth, toYear;
         
         event.preventDefault();
+
         var fromDate = this.fromDate.data('datepicker').getDate();
         var toDate = this.toDate.data('datepicker').getDate();
         
         // unix timestamps
         this.start = Math.round(fromDate.getTime()/1000);
         this.end = Math.round(toDate.getTime()/1000);
-
-
-        var clxStart, clxEnd, fromDay, fromMonth, fromYear, toDay, toMonth, toYear;
 
         fromDay = fromDate.getDate();
         if (Number(fromDate) < 10) {
@@ -106,24 +106,8 @@ fun.views.reports = Backbone.View.extend({
 
         toYear = toDate.getFullYear()
 
-        //toDate =
-        //toMonth =
-        //toYear =
-
         clxStart = fun.utils.format('%s%s%s', fromDay, fromMonth, fromYear);
         clxEnd = fun.utils.format('%s%s%s', toDay, toMonth, toYear);
-
-        <!--
-
-        //var curr_date = d.getDate();
-
-        //var curr_month = d.getMonth();
-
-        //var curr_year = d.getFullYear();
-
-        //document.write(curr_year + curr_month + curr_date);
-
-        -->
 
         console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
 
@@ -131,7 +115,7 @@ fun.views.reports = Backbone.View.extend({
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "UserId" : fun.conf.clxUserId,
-            "DateFrom" : "20140101",
+            "DateFrom" : "20140101", // check format
             "DateTo" : "20140131"
         };
 

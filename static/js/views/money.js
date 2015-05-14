@@ -225,9 +225,8 @@ fun.views.money = Backbone.View.extend({
                 console.log(response);
                 var message = 'Transaction ' + response['TransactionStatus'];
                 alert(message);
-
+                fun.utils.hideAll();
                 fun.utils.redirect(fun.conf.hash.banner);
-
             },
             error: function(model, error){
                 console.log(error);
