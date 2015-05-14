@@ -77,7 +77,7 @@ fun.views.reports = Backbone.View.extend({
         this.end = Math.round(toDate.getTime()/1000);
 
 
-        var clxStart, clxEnd, fromDay, fromMonth, fromYear;
+        var clxStart, clxEnd, fromDay, fromMonth, fromYear, toDay, toMonth, toYear;
 
         fromDay = fromDate.getDate();
         if (Number(fromDate) < 10) {
@@ -92,12 +92,26 @@ fun.views.reports = Backbone.View.extend({
 
         fromYear = fromDate.getFullYear()
 
+        // need the money 2 buy drugs.
+        toDay = toDate.getDate();
+        if (Number(toDate) < 10) {
+            toDate = '0'+ String(toDate);
+        };
+
+        toMonth = toDate.getMonth();
+        toMonth = Number(toMonth) + 1;
+        if (Number(toMonth) < 10) {
+            toMonth = '0' + String(toMonth);
+        };
+
+        toYear = toDate.getFullYear()
+
         //toDate =
         //toMonth =
         //toYear =
 
         clxStart = fun.utils.format('%s%s%s', fromDay, fromMonth, fromYear);
-        clxEnd = fun.utils.format('%s%s%s', toDate.getDate(), toDate.getMonth(), toDate.getFullYear());
+        clxEnd = fun.utils.format('%s%s%s', toDay, toMonth, toYear);
 
         <!--
 
