@@ -141,7 +141,6 @@ fun.conf.templates = {
     enterprise: fun.utils.format('%s/enterprise.html', fun.conf.html),
     status: fun.utils.format('%s/status.html', fun.conf.html),
 
-
     security: fun.utils.format('%s/security.html', fun.conf.html),
 
     terms: fun.utils.format('%s/terms.html', fun.conf.html),
@@ -192,7 +191,6 @@ fun.conf.templates = {
 
     cuallixError: fun.utils.format('%s/cuallixError.html', fun.conf.html),
     bannerImage: fun.utils.format('%s/bannerImage.html', fun.conf.html),
-
 
     profile: fun.utils.format('%s/profile.html', fun.conf.html),
 
