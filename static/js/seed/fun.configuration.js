@@ -5,12 +5,26 @@ fun.conf = {
     account: 'account',
     context: 'context', // dashboard context "organization"
 
+    environment: 'production'
+
+    clxProductionURL: 'http://201.149.49.175:9027',
+    clxDevelopmentURL: 'http://201.149.49.181:9027',
+
     // CLX conf stuff
-    clxUrl: 'http://201.149.49.181:9027',
-    clxPartner: 'Preway',
+    if (environment === 'production'){
+        url = clxProductionURL;
+    } else {
+        if (environment === 'development'){
+            url = clxDevelopmentURL;
+        }
+    }
+
+    clxUrl: url,
+
+    clxPartner: 'Preway CR',
     clxCulture: 'en-US',
     clxAppId: '26',
-    clxTKN: '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=',
+    clxTKN: 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4=',
     clxUserId: '1517', // this is the userId of preway
 
     html: '/static/html',
