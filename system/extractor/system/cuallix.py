@@ -47,14 +47,14 @@ class Cuallix(object):
         Cuallix system logic
     '''
     production_env_url = 'http://201.149.49.175:9027'
-    development_env_url = '{0}'
+    development_env_url = 'http://201.149.49.181:9027'
 
     environment = 'production'
 
     if environment == 'production':
         url = production_env_url
     else:
-        url development_env_url
+        url = development_env_url
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
