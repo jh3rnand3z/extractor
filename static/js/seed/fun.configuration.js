@@ -1,24 +1,27 @@
 /*
  Configuration seed
 */
+
+var environment, url, productionURL, developmentURL;
+
+productionURL = 'http://201.149.49.175:9027';
+developmentURL = 'http://201.149.49.181:9027';
+
+if (environment === 'production'){
+    url = productionURL;
+} else {
+    if (environment === 'development'){
+        url = developmentURL;
+    }
+};
+
 fun.conf = {
     account: 'account',
     context: 'context', // dashboard context "organization"
 
-    environment: 'production'
-
-    clxProductionURL: 'http://201.149.49.175:9027',
-    clxDevelopmentURL: 'http://201.149.49.181:9027',
+    environment: environment,
 
     // CLX conf stuff
-    if (environment === 'production'){
-        url = clxProductionURL;
-    } else {
-        if (environment === 'development'){
-            url = clxDevelopmentURL;
-        }
-    }
-
     clxUrl: url,
 
     clxPartner: 'Preway CR',
