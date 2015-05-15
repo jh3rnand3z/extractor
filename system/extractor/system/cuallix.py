@@ -46,6 +46,15 @@ class Cuallix(object):
     '''
         Cuallix system logic
     '''
+    production_env_url = 'http://201.149.49.175:9027'
+    development_env_url = '{0}'
+
+    environment = 'production'
+
+    if environment == 'production':
+        url = production_env_url
+    else:
+        url development_env_url
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
@@ -110,7 +119,7 @@ class Cuallix(object):
         '''
             User register on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/User/Register'
+        uri = '{0}/CLXAPI/UserServices/User/Register'.format(url)
         try:
             register = cuallix.Register(struct)
             register.validate()
@@ -138,7 +147,7 @@ class Cuallix(object):
         '''
             Register customer on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Customer/Register'
+        uri = '{0}/CLXAPI/Services/Customer/Register'.format(url)
         try:
             register = cuallix.RegisterCustomer(struct)
             register.validate()
@@ -166,7 +175,7 @@ class Cuallix(object):
         '''
             Search customer on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Customer/Search'
+        uri = '{0}/CLXAPI/Services/Customer/Search'.format(url);
         try:
             customer = cuallix.SearchCustomer(struct)
             customer.validate()
@@ -194,7 +203,7 @@ class Cuallix(object):
         '''
             Request payment URL on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/CrossBranded/RequestUrl'
+        uri = '{0}/CLXAPI/Services/CrossBranded/RequestUrl'.format(url)
         try:
             payment_url = cuallix.PaymentUrl(struct)
             payment_url.validate()
@@ -222,7 +231,7 @@ class Cuallix(object):
         '''
             Send Money on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'
+        uri = '{0}/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'.format(url)
         try:
             send_money = cuallix.SendMoney(struct)
             send_money.validate()
@@ -250,7 +259,7 @@ class Cuallix(object):
         '''
             User assign account
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Account/Assign'
+        uri = '{0}/CLXAPI/UserServices/Account/Assign'.format(url)
         try:
             assign = cuallix.Assign(struct)
             assign.validate()
@@ -278,7 +287,7 @@ class Cuallix(object):
         '''
             Account load funds
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Account/LoadFunds'
+        uri = '{0}/CLXAPI/UserServices/Account/LoadFunds'.format(url)
         try:
             funds = cuallix.LoadFunds(struct)
             funds.validate()
@@ -306,7 +315,7 @@ class Cuallix(object):
         '''
             Settle transaction
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Transactions/Settle'
+        uri = '{0}/CLXAPI/Services/Transactions/Settle'.format(url)
         try:
             settle = payments.SettleTransaction(struct)
             settle.validate()
@@ -334,7 +343,7 @@ class Cuallix(object):
         '''
             Status transaction
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/CustomerServices/Transactions/Status'
+        uri = '{0}/CLXAPI/CustomerServices/Transactions/Status'.format(url)
         try:
             status = payments.TransactionStatus(struct)
             status.validate()
@@ -362,7 +371,7 @@ class Cuallix(object):
         '''
             Search Transactions
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Transactions/Search'
+        uri = '{0}/CLXAPI/UserServices/Transactions/Search'.format(url)
         try:
             result = payments.SearchTransactions(struct)
             result.validate()
@@ -390,7 +399,7 @@ class Cuallix(object):
         '''
             DateRange search transactions
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Transactions/DateRange'
+        uri = '{0}/CLXAPI/UserServices/Transactions/DateRange'.format(url)
         try:
             result = payments.DateRange(struct)
             result.validate()
