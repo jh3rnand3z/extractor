@@ -11,19 +11,6 @@
 __author__ = 'Jean Chassoul'
 
 
-'''
-
-    When writing these for my own daemons I usually make an "undead mode"
-    where a monitor daemon is created to watch the service daemon, and 
-    the service daemon itself acts as the monitor for the monitor daemon.
-
-
-    Some (most?) watchdog/supervisor type systems start two processes 
-    that watch each other in addition to the target process(es).
-
-'''
-
-
 import arrow
 import motor
 import uuid
@@ -46,11 +33,17 @@ class Cuallix(object):
     '''
         Cuallix system logic
     '''
+    
     __environment = 'production'
     __cuallix_production = 'http://201.149.49.175:9027'
     __cuallix_development = 'http://201.149.49.181:9027'
         
-    def __init__(self):
+
+    @gen.coroutine
+    def prepare(self):
+        '''
+            Override this method to perform common initialization regardless of the request method.
+        '''
         self.production_env_url = self.__cuallix_production
         self.development_env_url = self.__cuallix_development
 
