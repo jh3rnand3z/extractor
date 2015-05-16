@@ -46,15 +46,16 @@ class Cuallix(object):
     '''
         Cuallix system logic
     '''
-    self.production_env_url = 'http://201.149.49.175:9027'
-    self.development_env_url = 'http://201.149.49.181:9027'
+    def __init__(self):
+        self.production_env_url = 'http://201.149.49.175:9027'
+        self.development_env_url = 'http://201.149.49.181:9027'
 
-    self.environment = 'production'
+        self.environment = 'production'
 
-    if self.environment == 'production':
-        self.url = self.production_env_url
-    else:
-        self.url = self.development_env_url
+        if self.environment == 'production':
+            self.url = self.production_env_url
+        else:
+            self.url = self.development_env_url
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
