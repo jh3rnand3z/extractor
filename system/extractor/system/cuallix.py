@@ -42,20 +42,19 @@ from extractor.messages import payments
 from extractor.tools import clean_structure, clean_results
 
 
-__environment = 'production'
-__cuallix_production = 'http://201.149.49.175:9027'
-__cuallix_development = 'http://201.149.49.181:9027'
-
-
 class Cuallix(object):
     '''
         Cuallix system logic
     '''
+    __environment = 'production'
+    __cuallix_production = 'http://201.149.49.175:9027'
+    __cuallix_development = 'http://201.149.49.181:9027'
+        
     def __init__(self):
-        self.production_env_url = __cuallix_production
-        self.development_env_url = __cuallix_development
+        self.production_env_url = self.__cuallix_production
+        self.development_env_url = self.__cuallix_development
 
-        self.environment = __environment
+        self.environment = self.__environment
 
         if self.environment == 'production':
             self.url = self.production_env_url
