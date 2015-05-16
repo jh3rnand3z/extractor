@@ -46,15 +46,15 @@ class Cuallix(object):
     '''
         Cuallix system logic
     '''
-    production_env_url = 'http://201.149.49.175:9027'
-    development_env_url = 'http://201.149.49.181:9027'
+    self.production_env_url = 'http://201.149.49.175:9027'
+    self.development_env_url = 'http://201.149.49.181:9027'
 
-    environment = 'production'
+    self.environment = 'production'
 
-    if environment == 'production':
-        url = production_env_url
+    if self.environment == 'production':
+        self.url = self.production_env_url
     else:
-        url = development_env_url
+        self.url = self.development_env_url
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
@@ -119,7 +119,7 @@ class Cuallix(object):
         '''
             User register on the CLX API
         '''
-        uri = '{0}/CLXAPI/UserServices/User/Register'.format(url)
+        uri = '{0}/CLXAPI/UserServices/User/Register'.format(self.url)
         try:
             register = cuallix.Register(struct)
             register.validate()
@@ -147,7 +147,7 @@ class Cuallix(object):
         '''
             Register customer on the CLX API
         '''
-        uri = '{0}/CLXAPI/Services/Customer/Register'.format(url)
+        uri = '{0}/CLXAPI/Services/Customer/Register'.format(self.url)
         try:
             register = cuallix.RegisterCustomer(struct)
             register.validate()
@@ -175,7 +175,7 @@ class Cuallix(object):
         '''
             Search customer on the CLX API
         '''
-        uri = '{0}/CLXAPI/Services/Customer/Search'.format(url);
+        uri = '{0}/CLXAPI/Services/Customer/Search'.format(self.url);
         try:
             customer = cuallix.SearchCustomer(struct)
             customer.validate()
@@ -203,7 +203,7 @@ class Cuallix(object):
         '''
             Request payment URL on the CLX API
         '''
-        uri = '{0}/CLXAPI/Services/CrossBranded/RequestUrl'.format(url)
+        uri = '{0}/CLXAPI/Services/CrossBranded/RequestUrl'.format(self.url)
         try:
             payment_url = cuallix.PaymentUrl(struct)
             payment_url.validate()
@@ -231,7 +231,7 @@ class Cuallix(object):
         '''
             Send Money on the CLX API
         '''
-        uri = '{0}/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'.format(url)
+        uri = '{0}/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'.format(self.url)
         try:
             send_money = cuallix.SendMoney(struct)
             send_money.validate()
@@ -259,7 +259,7 @@ class Cuallix(object):
         '''
             User assign account
         '''
-        uri = '{0}/CLXAPI/UserServices/Account/Assign'.format(url)
+        uri = '{0}/CLXAPI/UserServices/Account/Assign'.format(self.url)
         try:
             assign = cuallix.Assign(struct)
             assign.validate()
@@ -287,7 +287,7 @@ class Cuallix(object):
         '''
             Account load funds
         '''
-        uri = '{0}/CLXAPI/UserServices/Account/LoadFunds'.format(url)
+        uri = '{0}/CLXAPI/UserServices/Account/LoadFunds'.format(self.url)
         try:
             funds = cuallix.LoadFunds(struct)
             funds.validate()
@@ -315,7 +315,7 @@ class Cuallix(object):
         '''
             Settle transaction
         '''
-        uri = '{0}/CLXAPI/Services/Transactions/Settle'.format(url)
+        uri = '{0}/CLXAPI/Services/Transactions/Settle'.format(self.url)
         try:
             settle = payments.SettleTransaction(struct)
             settle.validate()
@@ -343,7 +343,7 @@ class Cuallix(object):
         '''
             Status transaction
         '''
-        uri = '{0}/CLXAPI/CustomerServices/Transactions/Status'.format(url)
+        uri = '{0}/CLXAPI/CustomerServices/Transactions/Status'.format(self.url)
         try:
             status = payments.TransactionStatus(struct)
             status.validate()
@@ -371,7 +371,7 @@ class Cuallix(object):
         '''
             Search Transactions
         '''
-        uri = '{0}/CLXAPI/UserServices/Transactions/Search'.format(url)
+        uri = '{0}/CLXAPI/UserServices/Transactions/Search'.format(self.url)
         try:
             result = payments.SearchTransactions(struct)
             result.validate()
@@ -399,7 +399,7 @@ class Cuallix(object):
         '''
             DateRange search transactions
         '''
-        uri = '{0}/CLXAPI/UserServices/Transactions/DateRange'.format(url)
+        uri = '{0}/CLXAPI/UserServices/Transactions/DateRange'.format(self.url)
         try:
             result = payments.DateRange(struct)
             result.validate()
