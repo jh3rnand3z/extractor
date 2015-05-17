@@ -5,6 +5,8 @@
 var environment, url, productionURL, developmentURL;
 var tokken, tokkenRUN, tokkenDEV;
 
+environment = 'development';
+
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
 
