@@ -37,6 +37,9 @@ class Cuallix(object):
     __environment = 'production'
     __cuallix_production = 'http://201.149.49.175:9027'
     __cuallix_development = 'http://201.149.49.181:9027'
+
+    __dev_tokken = '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+    __run_tokken = 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         
 
     @gen.coroutine
@@ -51,8 +54,10 @@ class Cuallix(object):
 
         if self.environment == 'production':
             self.url = self.production_env_url
+            self.tokken = self.__run_tokken
         else:
             self.url = self.development_env_url
+            self.tokken = self__dev_tokken
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
@@ -129,7 +134,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken)
         }
 
         logging.info(register)
@@ -157,7 +162,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(register)
@@ -185,7 +190,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(customer)
@@ -213,7 +218,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(payment_url)
@@ -241,7 +246,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(send_money)
@@ -269,7 +274,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(assign)
@@ -297,7 +302,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(funds)
@@ -325,7 +330,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(settle)
@@ -353,7 +358,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(status)
@@ -381,7 +386,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(result)
@@ -409,7 +414,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(result)
