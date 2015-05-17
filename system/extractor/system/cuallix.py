@@ -11,7 +11,7 @@
 __author__ = 'Jean Chassoul'
 
 
-import arrow4
+import arrow
 import motor
 import uuid
 
