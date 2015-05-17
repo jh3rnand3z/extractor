@@ -57,7 +57,7 @@ class Cuallix(object):
             self.tokken = self.__run_tokken
         else:
             self.url = self.development_env_url
-            self.tokken = self__dev_tokken
+            self.tokken = self.__dev_tokken
 
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
