@@ -11,7 +11,7 @@
 __author__ = 'Jean Chassoul'
 
 
-import arrow
+import arrow4
 import motor
 import uuid
 
@@ -129,7 +129,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(register)
@@ -157,7 +157,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(register)
@@ -185,7 +185,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(customer)
@@ -213,7 +213,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(payment_url)
@@ -241,7 +241,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(send_money)
@@ -269,7 +269,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(assign)
@@ -297,7 +297,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(funds)
@@ -325,7 +325,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(settle)
@@ -353,7 +353,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(status)
@@ -381,7 +381,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(result)
@@ -409,7 +409,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
         }
 
         logging.info(result)
