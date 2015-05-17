@@ -3,15 +3,21 @@
 */
 
 var environment, url, productionURL, developmentURL;
+var tokken, tokkenRUN, tokkenDEV;
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
 
+tokkenRUN = 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4=';
+tokkenDEV = '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=';
+
 if (environment === 'production'){
     url = productionURL;
+    tokken = tokkenRUN;
 } else {
     if (environment === 'development'){
         url = developmentURL;
+        tokken = tokkenDEV;
     }
 };
 
@@ -27,7 +33,7 @@ fun.conf = {
     clxPartner: 'Preway CR',
     clxCulture: 'en-US',
     clxAppId: '26',
-    clxTKN: 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4=',
+    clxTKN: tokken,
     clxUserId: '1517', // this is the userId of preway
 
     html: '/static/html',
