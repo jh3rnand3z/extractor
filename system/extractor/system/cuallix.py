@@ -34,7 +34,7 @@ class Cuallix(object):
         Cuallix system logic
     '''
     
-    __environment = 'production'
+    __environment = 'development'
     __cuallix_production = 'http://201.149.49.175:9027'
     __cuallix_development = 'http://201.149.49.181:9027'
 
