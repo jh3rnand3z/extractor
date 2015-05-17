@@ -33,6 +33,8 @@ class Cuallix(object):
     '''
         Cuallix system logic
     '''
+
+    # production/development analog to stable/unstable
     
     __environment = 'development'
     __cuallix_production = 'http://201.149.49.175:9027'
