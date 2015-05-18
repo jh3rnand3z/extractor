@@ -80,10 +80,9 @@ fun.views.reports = Backbone.View.extend({
         this.end = Math.round(toDate.getTime()/1000);
 
         fromDay = fromDate.getDate();
-        if (Number(fromDate) < 10) {
-            fromDate = '0'+ String(fromDate);
+        if (Number(fromDay) < 10) {
+            fromDay = '0'+ String(fromDay);
         };
-        
         fromMonth = fromDate.getMonth();
         fromMonth = Number(fromMonth) + 1;
         if (Number(fromMonth) < 10) {
