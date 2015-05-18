@@ -106,6 +106,9 @@ fun.views.reports = Backbone.View.extend({
 
         toYear = toDate.getFullYear()
 
+        console.log(toDay);
+        console.log(fromDay);
+
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
