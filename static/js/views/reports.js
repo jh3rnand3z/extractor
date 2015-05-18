@@ -119,7 +119,7 @@ fun.views.reports = Backbone.View.extend({
             "DateTo" : clxEnd
         };
 
-        var rangeDateCallbacks {
+        var rangeDateCallbacks = {
             success: function(model, response){
                 console.log(response);
             },
