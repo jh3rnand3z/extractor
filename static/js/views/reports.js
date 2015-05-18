@@ -107,7 +107,7 @@ fun.views.reports = Backbone.View.extend({
         toYear = toDate.getFullYear()
 
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
-        clxEnd = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
+        clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
         console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
 
