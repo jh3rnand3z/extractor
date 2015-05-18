@@ -241,6 +241,27 @@ fun.models.Payments = Backbone.Collection.extend({
 });
 
 
+fun.models.DateRange = Backbone.Collection.extend({
+    model: fun.models.Transaction,
+
+    urlRoot: fun.conf.urls.dateRangeTransactions,
+
+    url: function() {
+        return this.urlRoot;
+    },
+
+    sync: function(method, model, options) {
+        options.contentType = 'application/json';
+        return Backbone.sync(method, model, options);
+    },
+    
+    parse: function(response) {
+        return response.transactions;
+    }
+
+});
+
+
 fun.models.PaymentsStartEnd = Backbone.Collection.extend({
     
     model: fun.models.Payment,

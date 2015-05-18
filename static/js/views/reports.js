@@ -119,8 +119,20 @@ fun.views.reports = Backbone.View.extend({
             "DateTo" : clxEnd
         };
 
+        var rangeDateCallbacks {
+            success: function(model, response){
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
         console.log(rangeDateTransactionPayload);
 
+        var rangetrans = new fun.models.DateRange();
+
+        rangetrans.save(rangeDateTransactionPayload, rangeDateCallbacks);
 
         console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
