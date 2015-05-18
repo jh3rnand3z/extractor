@@ -150,6 +150,18 @@ fun.models.paymentUrl = Backbone.Model.extend({
 });
 
 
+
+fun.models.DateRange = Backbone.Model.extend({
+
+    urlRoot: fun.conf.urls.dateRangeTransactions,
+
+    url: function() {
+        return this.urlRoot;
+    },
+
+});
+
+
 fun.models.Payment = Backbone.Model.extend({
     
     idAttribute: 'uuid',
@@ -238,27 +250,6 @@ fun.models.Payments = Backbone.Collection.extend({
     parse: function(response) {
         return response.payments;
     }
-});
-
-
-fun.models.DateRange = Backbone.Collection.extend({
-    model: fun.models.Transaction,
-
-    urlRoot: fun.conf.urls.dateRangeTransactions,
-
-    url: function() {
-        return this.urlRoot;
-    },
-
-    sync: function(method, model, options) {
-        options.contentType = 'application/json';
-        return Backbone.sync(method, model, options);
-    },
-    
-    parse: function(response) {
-        return response.transactions;
-    }
-
 });
 
 
