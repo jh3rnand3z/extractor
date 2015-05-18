@@ -106,8 +106,8 @@ fun.views.reports = Backbone.View.extend({
 
         toYear = toDate.getFullYear()
 
-        clxStart = fun.utils.format('%s%s%s', fromDay, fromMonth, fromYear);
-        clxEnd = fun.utils.format('%s%s%s', toDay, toMonth, toYear);
+        clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
+        clxEnd = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
 
         console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
 
@@ -115,8 +115,8 @@ fun.views.reports = Backbone.View.extend({
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "UserId" : fun.conf.clxUserId,
-            "DateFrom" : "20140101", // check format
-            "DateTo" : "20140131"
+            "DateFrom" : clxStart,
+            "DateTo" : clxEnd
         };
 
         console.log(rangeDateTransactionPayload);
