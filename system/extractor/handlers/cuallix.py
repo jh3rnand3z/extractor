@@ -724,7 +724,7 @@ class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
 
         # write temporal stuff in a db then when jose click on confirm re-load the stuff.
 
-        system_id = ['1517']
+        system_id = ['2229']
 
         struct = {
             'uuid': str(uuid.uuid4()),
