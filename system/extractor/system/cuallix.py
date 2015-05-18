@@ -11,19 +11,6 @@
 __author__ = 'Jean Chassoul'
 
 
-'''
-
-    When writing these for my own daemons I usually make an "undead mode"
-    where a monitor daemon is created to watch the service daemon, and 
-    the service daemon itself acts as the monitor for the monitor daemon.
-
-
-    Some (most?) watchdog/procdoc type systems start two processes 
-    that watch each other in addition to the target process(es).
-
-'''
-
-
 import arrow
 import motor
 import uuid
@@ -47,6 +34,33 @@ class Cuallix(object):
         Cuallix system logic
     '''
 
+    # production/development analog to stable/unstable
+    
+    __environment = 'production'
+    __cuallix_production = 'http://201.149.49.175:9027'
+    __cuallix_development = 'http://201.149.49.181:9027'
+
+    __dev_tokken = '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+    __run_tokken = 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4='
+        
+
+    @gen.coroutine
+    def prepare(self):
+        '''
+            Override this method to perform common initialization regardless of the request method.
+        '''
+        self.production_env_url = self.__cuallix_production
+        self.development_env_url = self.__cuallix_development
+
+        self.environment = self.__environment
+
+        if self.environment == 'production':
+            self.url = self.production_env_url
+            self.tokken = self.__run_tokken
+        else:
+            self.url = self.development_env_url
+            self.tokken = self.__dev_tokken
+
     @gen.coroutine
     def get_transaction_list(self, account, checked, page_num):
         '''
@@ -56,7 +70,6 @@ class Cuallix(object):
         page_size = self.settings.get('page_size')
         transaction_list = []
 
-        # remove phone_2, phone_3 and contact_requests from query stuff and db.
         query = self.db.transactions.find(
             {
                 #'account':account,
@@ -64,9 +77,6 @@ class Cuallix(object):
             },
             {
                 '_id':0,
-                #'phone_2':0,
-                #'phone_3':0,
-                #'contact_requests':0
             }
         )
 
@@ -114,7 +124,7 @@ class Cuallix(object):
         '''
             User register on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/User/Register'
+        uri = '{0}/CLXAPI/UserServices/User/Register'.format(self.url)
         try:
             register = cuallix.Register(struct)
             register.validate()
@@ -126,7 +136,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken)
         }
 
         logging.info(register)
@@ -142,7 +152,7 @@ class Cuallix(object):
         '''
             Register customer on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Customer/Register'
+        uri = '{0}/CLXAPI/Services/Customer/Register'.format(self.url)
         try:
             register = cuallix.RegisterCustomer(struct)
             register.validate()
@@ -154,7 +164,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(register)
@@ -170,7 +180,7 @@ class Cuallix(object):
         '''
             Search customer on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Customer/Search'
+        uri = '{0}/CLXAPI/Services/Customer/Search'.format(self.url);
         try:
             customer = cuallix.SearchCustomer(struct)
             customer.validate()
@@ -182,7 +192,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(customer)
@@ -198,7 +208,7 @@ class Cuallix(object):
         '''
             Request payment URL on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/CrossBranded/RequestUrl'
+        uri = '{0}/CLXAPI/Services/CrossBranded/RequestUrl'.format(self.url)
         try:
             payment_url = cuallix.PaymentUrl(struct)
             payment_url.validate()
@@ -210,7 +220,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(payment_url)
@@ -226,7 +236,7 @@ class Cuallix(object):
         '''
             Send Money on the CLX API
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'
+        uri = '{0}/CLXAPI/CustomerServices/MoneyTransfer/SendMoney'.format(self.url)
         try:
             send_money = cuallix.SendMoney(struct)
             send_money.validate()
@@ -238,7 +248,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(send_money)
@@ -254,7 +264,7 @@ class Cuallix(object):
         '''
             User assign account
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Account/Assign'
+        uri = '{0}/CLXAPI/UserServices/Account/Assign'.format(self.url)
         try:
             assign = cuallix.Assign(struct)
             assign.validate()
@@ -266,7 +276,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(assign)
@@ -282,7 +292,7 @@ class Cuallix(object):
         '''
             Account load funds
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Account/LoadFunds'
+        uri = '{0}/CLXAPI/UserServices/Account/LoadFunds'.format(self.url)
         try:
             funds = cuallix.LoadFunds(struct)
             funds.validate()
@@ -294,7 +304,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(funds)
@@ -310,7 +320,7 @@ class Cuallix(object):
         '''
             Settle transaction
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/Services/Transactions/Settle'
+        uri = '{0}/CLXAPI/Services/Transactions/Settle'.format(self.url)
         try:
             settle = payments.SettleTransaction(struct)
             settle.validate()
@@ -322,7 +332,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(settle)
@@ -338,7 +348,7 @@ class Cuallix(object):
         '''
             Status transaction
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/CustomerServices/Transactions/Status'
+        uri = '{0}/CLXAPI/CustomerServices/Transactions/Status'.format(self.url)
         try:
             status = payments.TransactionStatus(struct)
             status.validate()
@@ -350,7 +360,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(status)
@@ -366,7 +376,7 @@ class Cuallix(object):
         '''
             Search Transactions
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Transactions/Search'
+        uri = '{0}/CLXAPI/UserServices/Transactions/Search'.format(self.url)
         try:
             result = payments.SearchTransactions(struct)
             result.validate()
@@ -378,7 +388,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(result)
@@ -389,13 +399,12 @@ class Cuallix(object):
 
         raise gen.Return(r.content)
 
-
     @gen.coroutine
     def date_range_search_transactions(self, struct):
         '''
             DateRange search transactions
         '''
-        uri = 'http://201.149.49.181:9027/CLXAPI/UserServices/Transactions/DateRange'
+        uri = '{0}/CLXAPI/UserServices/Transactions/DateRange'.format(self.url)
         try:
             result = payments.DateRange(struct)
             result.validate()
@@ -407,7 +416,7 @@ class Cuallix(object):
         headers = {
             'Content-type': 'application/json',
             'Accept': 'text/plain',
-            'Authorization': 'CLXTKN /r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8='
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
         }
 
         logging.info(result)
@@ -417,7 +426,6 @@ class Cuallix(object):
         logging.warning(r.content)
 
         raise gen.Return(r.content)
-
 
     @gen.coroutine
     def new_transaction(self, struct):

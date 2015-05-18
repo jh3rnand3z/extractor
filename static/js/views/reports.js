@@ -25,7 +25,7 @@ fun.views.reports = Backbone.View.extend({
 		this.$el.html(template);
         this.$el.show();
 
-        //this.renderControl();
+        this.renderControl();
 	},
 
 	renderControl : function(){
@@ -67,8 +67,11 @@ fun.views.reports = Backbone.View.extend({
             startEndLapse,
             models,
             success;
+
+        var clxStart, clxEnd, fromDay, fromMonth, fromYear, toDay, toMonth, toYear;
         
         event.preventDefault();
+
         var fromDate = this.fromDate.data('datepicker').getDate();
         var toDate = this.toDate.data('datepicker').getDate();
         
@@ -76,6 +79,62 @@ fun.views.reports = Backbone.View.extend({
         this.start = Math.round(fromDate.getTime()/1000);
         this.end = Math.round(toDate.getTime()/1000);
 
+        fromDay = fromDate.getDate();
+        if (Number(fromDay) < 10) {
+            fromDay = '0'+ String(fromDay);
+        };
+        fromMonth = fromDate.getMonth();
+        fromMonth = Number(fromMonth) + 1;
+        if (Number(fromMonth) < 10) {
+            fromMonth = '0' + String(fromMonth);
+        };
+
+        fromYear = fromDate.getFullYear()
+
+        // need the money 2 buy drugs.
+        toDay = toDate.getDate();
+        if (Number(toDay) < 10) {
+            toDay = '0'+ String(toDay);
+        };
+
+        toMonth = toDate.getMonth();
+        toMonth = Number(toMonth) + 1;
+        if (Number(toMonth) < 10) {
+            toMonth = '0' + String(toMonth);
+        };
+
+        toYear = toDate.getFullYear()
+
+        console.log(toDay);
+        console.log(fromDay);
+
+        clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
+        clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
+
+        console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
+
+        var rangeDateTransactionPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId" : fun.conf.clxUserId,
+            "DateFrom" : clxStart,
+            "DateTo" : clxEnd
+        };
+
+        var rangeDateCallbacks = {
+            success: function(model, response){
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
+        console.log(rangeDateTransactionPayload);
+
+        var rangetrans = new fun.models.DateRange();
+
+        rangetrans.save(rangeDateTransactionPayload, rangeDateCallbacks);
 
         console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
@@ -97,11 +156,6 @@ fun.views.reports = Backbone.View.extend({
 
         var models = {
             payments: new fun.models.PaymentsStartEnd(startEnd),
-            //summary: new fun.models.SummaryStartEnd(startEnd),
-            //summaries: new fun.models.SummariesStartEnd(startEnd),
-            //billing: new fun.models.BillingStartEnd(startEnd)
-
-            // lapseSummary : new fun.models.LapseSummaryStartEnd(startEndLapse)
         };
 
         var success = function() {
@@ -184,8 +238,8 @@ fun.views.reports = Backbone.View.extend({
         */
         var htmlId = this.$('#no-records');
         htmlId.html(_.template(
-                        fun.utils.getTemplate(fun.conf.tpls.warning)
-                    )({msg:'noDataAvailable'})
+                        fun.utils.getTemplate(fun.conf.templates.warning)
+                    )({message:'noDataAvailable'})
         );
     },
 

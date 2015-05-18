@@ -24,5 +24,8 @@ fun.views.error = Backbone.View.extend({
 
 		this.$el.html(template);
         this.$el.show();
+
+        var message = translate('transactionDenied')
+        alert(message);
 	}
 });

@@ -150,6 +150,18 @@ fun.models.paymentUrl = Backbone.Model.extend({
 });
 
 
+
+fun.models.DateRange = Backbone.Model.extend({
+
+    urlRoot: fun.conf.urls.dateRangeTransactions,
+
+    url: function() {
+        return this.urlRoot;
+    },
+
+});
+
+
 fun.models.Payment = Backbone.Model.extend({
     
     idAttribute: 'uuid',
