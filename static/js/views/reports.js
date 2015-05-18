@@ -83,7 +83,7 @@ fun.views.reports = Backbone.View.extend({
         if (Number(fromDate) < 10) {
             fromDate = '0'+ String(fromDate);
         };
-
+        
         fromMonth = fromDate.getMonth();
         fromMonth = Number(fromMonth) + 1;
         if (Number(fromMonth) < 10) {
@@ -94,8 +94,8 @@ fun.views.reports = Backbone.View.extend({
 
         // need the money 2 buy drugs.
         toDay = toDate.getDate();
-        if (Number(toDate) < 10) {
-            toDate = '0'+ String(toDate);
+        if (Number(toDay) < 10) {
+            toDay = '0'+ String(toDay);
         };
 
         toMonth = toDate.getMonth();
