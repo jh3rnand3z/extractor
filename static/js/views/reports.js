@@ -214,12 +214,12 @@ fun.views.reports = Backbone.View.extend({
 
                 console.log(o);
 
-                var data = _.extend(o, {'ki':'ka'});
+                var data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
 
                 console.log(data);
 
                 template = _.template(
-                    fun.utils.getTemplate(fun.conf.templates.transactionRow)
+                    fun.utils.getTemplate(fun.conf.templates.transRow)
                 )(data);
 
                 rows.append(template);
