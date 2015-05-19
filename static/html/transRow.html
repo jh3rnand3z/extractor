@@ -1,0 +1,29 @@
+<tr>
+    <td><%= created %></td>
+    <td><%= merchant %></td>
+    <td><%= email %></td>
+    <td><%= card_name %></td>
+    <td><%= credit_card_number %></td>
+    <td><%= credit_card_cvc %></td>
+    <td><%= credit_card_type %></td>
+    <td><%= exp_month %></td>
+    <td><%= exp_year %></td>
+    <td><%= amount_funds %></td>
+    <td><%= AuthorizationNum %></td>
+    <td><%= Transaction.TransactionNum %></td>
+    <td><i id="<%= uuid %>"class="fa fa-eye"></i></td>
+    <td>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownStatus" data-toggle="dropdown" aria-expanded="true">
+                Select Status
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownStatus">
+                <li><a href="javascript:;" data-toggle="tab"><%= translate("approved") %></a></li>
+                <li><a href="javascript:;" data-toggle="tab"><%= translate("denied") %></a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+

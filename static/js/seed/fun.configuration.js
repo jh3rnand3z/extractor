@@ -179,6 +179,8 @@ fun.conf.templates = {
     dashboard: fun.utils.format('%s/dashboard.html', fun.conf.html),
 
     accountListItem: fun.utils.format('%s/accountListItem.html', fun.conf.html),
+
+    transRow: fun.utils.format('%s/transRow.html', fun.conf.html),
     
     recordRow: fun.utils.format('%s/recordRow.html', fun.conf.html),
     typeRow: fun.utils.format('%s/typeRow.html', fun.conf.html),
