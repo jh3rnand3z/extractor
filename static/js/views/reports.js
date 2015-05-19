@@ -72,8 +72,8 @@ fun.views.reports = Backbone.View.extend({
         
         event.preventDefault();
 
-        var fromDate = this.fromDate.data('datepicker').getDate();
-        var toDate = this.toDate.data('datepicker').getDate();
+        fromDate = this.fromDate.data('datepicker').getDate();
+        toDate = this.toDate.data('datepicker').getDate();
         
         // unix timestamps
         this.start = Math.round(fromDate.getTime()/1000);
@@ -105,13 +105,8 @@ fun.views.reports = Backbone.View.extend({
 
         toYear = toDate.getFullYear()
 
-        console.log(toDay);
-        console.log(fromDay);
-
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
-
-        console.log(fun.utils.format('dates for mexico %s and %s', clxStart, clxEnd));
 
         var rangeDateTransactionPayload = {
             "Culture": fun.conf.clxCulture,
@@ -139,12 +134,12 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
-        var startEnd = {
+        startEnd = {
             start:this.start,
             end:this.end
         };
 
-        var startEndLapse = {
+        startEndLapse = {
             start:this.start,
             end:this.end,
             
@@ -204,6 +199,12 @@ fun.views.reports = Backbone.View.extend({
             data,
             template;
         // transactions length
+
+        // forearch stuff??
+
+        console.log('foreach stuff??');
+
+
         length = this.transactions.length;
         console.log(length)
         if (length > 0){
