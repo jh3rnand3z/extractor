@@ -206,6 +206,12 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(this.transactions);
 
+        _.each(this.transactions, function(o) {
+
+            console.log(o);
+            //alert(o.transaction);
+        });
+
 
         length = this.transactions.length;
         console.log(length);
