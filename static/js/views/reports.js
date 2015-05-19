@@ -124,6 +124,7 @@ fun.views.reports = Backbone.View.extend({
         var rangeDateCallbacks = {
             success: function(model, response){
                 console.log(response);
+                fun.instances.reports.renderTransactionLists(response['TransactionList']);
             },
             error: function(model, error){
                 console.log(error);
