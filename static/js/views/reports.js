@@ -204,11 +204,11 @@ fun.views.reports = Backbone.View.extend({
 
         console.log('foreach stuff??');
 
-        console.lo(this.transactions);
+        console.log(this.transactions);
 
 
         length = this.transactions.length;
-        console.log(length)
+        console.log(length);
         if (length > 0){
             rows = this.tbody.html('');
             for (i; i < length; ++i) {
