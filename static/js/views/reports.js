@@ -181,23 +181,15 @@ fun.views.reports = Backbone.View.extend({
     */
     renderTransactionLists: function(transactions){
         'use strict';
-        var template,
-            allTransactions;
+        
+        
         console.log('render transaction lists');
+        
         if (transactions) {
             this.transactions = transactions;
         }
 
-        template = _.template(
-            fun.utils.getTemplate(fun.conf.templates.allTransactions)
-        );
-
-        allTransactions = this.$('#all-transactions-tab');
-
-        allTransactions.html(template);
-
-        this.tbody = this.$('#transactions-list > tbody');
-        this.$el.show();
+        this.tbody = this.$('#cdr-list > tbody');
         this.renderTransactionRows();
     },
 
