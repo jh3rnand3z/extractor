@@ -14,6 +14,7 @@
 
 __author__ = 'Jean Chassoul'
 
+
 import zmq
 import time
 
@@ -23,9 +24,6 @@ import random
 import motor
 
 import pylibmc as mc
-
-#from tornado.concurrent import Future
-#from tornado.escape import utf8
 
 from tornado import ioloop
 from tornado import gen

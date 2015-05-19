@@ -244,7 +244,18 @@ fun.views.reports = Backbone.View.extend({
         }
     },
     
-    noCalls : function() {
+    noTransactions: function() {
+        /*
+         no data available box
+        */
+        var htmlId = this.$('#no-records');
+        htmlId.html(_.template(
+                        fun.utils.getTemplate(fun.conf.templates.warning)
+                    )({message:'noDataAvailable'})
+        );
+    },
+
+    noCalls: function() {
         /*
          no data available box
         */
