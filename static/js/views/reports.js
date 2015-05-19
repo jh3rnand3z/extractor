@@ -212,9 +212,11 @@ fun.views.reports = Backbone.View.extend({
 
             _.each(this.transactions, function(o) {
 
-                data = _.extend(this.transactions.at(i).toJSON(), {i:i});
-
                 console.log(o);
+
+                var data = _.extend(o.toJSON(), {'ki':'ka'});
+
+                console.log(data);
 
                 template = _.template(
                     fun.utils.getTemplate(fun.conf.templates.transactionRow)
