@@ -47,11 +47,21 @@
                     <section id="nav-pills">
  <!--                       <h2><%= translate("resources") %></h2>-->
                         <div class="tabbable">
+
+                        <!--
+
                             <ul id="myTab" class="nav nav-pills">
                                 <li><a href="javascript:;"><%= translate("accounts") %></a></li>
                                 <li><a href="javascript:;"><%= translate("merchants") %></a></li>
                                 <li class="active"><a href="#report-tab-9" data-toggle="tab"><%= translate("transactions") %></a></li>                                
                             </ul>
+
+Amount: 6
+Fee: 0
+Summary: "MAY 18, 2015 - DEPOSIT FOR BALANCE TRANSFER. - XXXX XXXX XXXX 0555 - #AUT.150518000442"
+TransactionNum: "15051800044"
+
+                        -->
 
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade active in" id="details-tab">
@@ -63,15 +73,9 @@
                                             <tr>
                                                 <th><%= translate("date") %></th>
                                                 <th><%= translate("merchant") %></th>
-                                                <th><%= translate("email") %></th>
-                                                <th><%= translate("nameOnCard") %></th>
-                                                <th><%= translate("credit_card") %></th>
-                                                <th><%= translate("credit_card_cvc") %></th>
-                                                <th><%= translate("credit_card_type") %></th>
-                                                <th><%= translate("exp_month") %></th>
-                                                <th><%= translate("exp_year") %></th>
                                                 <th><%= translate("amount") %></th>
-                                                <th><%= translate("AuthorizationNum") %></th>
+                                                <th><%= translate("fee") %></th>
+                                                <th><%= translate("summary") %></th>
                                                 <th><%= translate("TransactionNum") %></th>
                                                 <th><%= translate("uuid") %></th>
                                                 <th><%= translate("status") %></th>
