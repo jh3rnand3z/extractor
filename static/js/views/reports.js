@@ -175,39 +175,58 @@ fun.views.reports = Backbone.View.extend({
         }
     },
 
-    hours : function(event){
-        /*
-         time lapse in hours
-        */
-        console.log('hours');
+    /*
+    * Render transaction lists
+    */
+    renderTransactionLists: function(transactions){
+        'use strict';
+        var template,
+            allTransactions;
+        console.log('render transaction lists');
+        if (transactions) {
+            this.transactions = transactions;
+        }
+
+        template = _.template(
+            fun.utils.getTemplate(fun.conf.templates.allTransactions)
+        );
+
+        allTransactions = this.$('#all-transactions-tab');
+
+        allTransactions.html(template);
+
+        this.tbody = this.$('#transactions-list > tbody');
+        this.$el.show();
+        this.renderTransactionRows();
     },
 
-    days : function(event){
-        /*
-         time lapse in days
-        */
-        console.log('days');
-    },
+    /*
+    * Render transaction rows
+    */
+    renderTransactionRows: function(){
+        'use strict';
+        var length,
+            i = 0,
+            rows,
+            data,
+            template;
+        // transactions length
+        length = this.transactions.length;
+        console.log(length)
+        if (length > 0){
+            rows = this.tbody.html('');
+            for (i; i < length; ++i) {
+                data = _.extend(this.transactions.at(i).toJSON(), {i:i});
 
-    weeks : function(event){
-        /*
-         time lapse in weeks
-        */
-        console.log('weeks');
-    },
+                template = _.template(
+                    fun.utils.getTemplate(fun.conf.templates.transactionRow)
+                )(data);
 
-    months : function(event){
-        /*
-         time lapse in months
-        */
-        console.log('months');
-    },
-
-    years : function(event){
-        /*
-         time lapse in years
-        */
-        console.log('years');
+                rows.append(template);
+            }
+        } else {
+            this.noTransactions();
+        }
     },
 
     renderDetailsRows : function(){
@@ -290,6 +309,41 @@ fun.views.reports = Backbone.View.extend({
 
     detailsReport: function() {
         console.log('navbar detail reports')
-    }
+    },
+
+    hours : function(event){
+        /*
+         time lapse in hours
+        */
+        console.log('hours');
+    },
+
+    days : function(event){
+        /*
+         time lapse in days
+        */
+        console.log('days');
+    },
+
+    weeks : function(event){
+        /*
+         time lapse in weeks
+        */
+        console.log('weeks');
+    },
+
+    months : function(event){
+        /*
+         time lapse in months
+        */
+        console.log('months');
+    },
+
+    years : function(event){
+        /*
+         time lapse in years
+        */
+        console.log('years');
+    },
 
 });
