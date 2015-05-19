@@ -214,7 +214,7 @@ fun.views.reports = Backbone.View.extend({
 
                 console.log(o);
 
-                var data = _.extend(o.toJSON(), {'ki':'ka'});
+                var data = _.extend(o, {'ki':'ka'});
 
                 console.log(data);
 
