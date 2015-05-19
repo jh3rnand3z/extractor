@@ -198,34 +198,31 @@ fun.views.reports = Backbone.View.extend({
             rows,
             data,
             template;
-        // transactions length
-
-        // forearch stuff??
 
         console.log('foreach stuff??');
 
         console.log(this.transactions);
 
-        _.each(this.transactions, function(o) {
-
-            console.log(o);
-            //alert(o.transaction);
-        });
-
-
         length = this.transactions.length;
+
         console.log(length);
+
         if (length > 0){
             rows = this.tbody.html('');
-            for (i; i < length; ++i) {
+
+            _.each(this.transactions, function(o) {
+
                 data = _.extend(this.transactions.at(i).toJSON(), {i:i});
+
+                console.log(o);
 
                 template = _.template(
                     fun.utils.getTemplate(fun.conf.templates.transactionRow)
                 )(data);
 
                 rows.append(template);
-            }
+            });
+            console.log('processing transactions completed');
         } else {
             this.noTransactions();
         }
