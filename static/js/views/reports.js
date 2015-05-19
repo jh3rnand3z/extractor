@@ -204,6 +204,8 @@ fun.views.reports = Backbone.View.extend({
 
         console.log('foreach stuff??');
 
+        console.lo(this.transactions);
+
 
         length = this.transactions.length;
         console.log(length)
