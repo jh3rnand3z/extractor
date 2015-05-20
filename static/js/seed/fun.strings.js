@@ -12,6 +12,7 @@ fun.strings = {
     manager: "Manager",
     admin: "Admin",
     nameOnCard: "Name on Card",
+    theLast4CCDigits: "The last 4 Card digits"
     iofun: "PreWay Pay",
     from: "From",
     to: "To",
@@ -30,7 +31,7 @@ fun.strings = {
     newPayment: "New Payment",
     newTransaction: "New transaction",
     cardHoldName: "Card Holder Name",
-    
+
     hours: "Hours",
     days: "Days",
     weeks: "Weeks",
