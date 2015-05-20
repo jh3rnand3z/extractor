@@ -12,7 +12,7 @@ fun.strings = {
     manager: "Manager",
     admin: "Admin",
     nameOnCard: "Name on Card",
-    theLast4CCDigits: "The last 4 Card digits",
+    theLast4CCDigits: "Last 4 Digits",
     clientInformation: "Client Information",
     cardType: "Card Type",
     iofun: "PreWay Pay",
