@@ -298,18 +298,5 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this;
         console.log('log iframe bitches!');
-    },
-
-    newClient: function(event){
-        'use strict';
-        event.preventDefault();
-        var view = this;
-        console.log('log new client and popup the stuff');
-
-        $('#clientModal').modal({
-            'show': true,
-            //'backdrop': 'static',
-            //'keyboard': true
-        });
     }
 });
