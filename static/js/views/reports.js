@@ -209,8 +209,8 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(length);
 
-        var amountTotal = 0;
-        var feeTotal = 0;
+        var amount, amountTotal = 0;
+        var fee, feeTotal = 0;
 
         if (length > 0){
             rows = this.tbody.html('');
@@ -218,8 +218,8 @@ fun.views.reports = Backbone.View.extend({
             _.each(this.transactions, function(o) {
 
                 //console.log(o);
-                var amount = Number(o['Amount']);
-                var fee = Number(o['Fee']);
+                amount = Number(o['Amount']);
+                fee = Number(o['Fee']);
 
                 amountTotal += amount;
                 feeTotal += fee;
@@ -227,7 +227,7 @@ fun.views.reports = Backbone.View.extend({
                 o['Amount'] = amount.toFixed(2);
                 o['Fee'] = fee.toFixed(2);
 
-                var data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
+                data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
 
                 console.log(data);
 
