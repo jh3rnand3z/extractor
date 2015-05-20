@@ -7,6 +7,7 @@ fun.views.dashboard = Backbone.View.extend({
         'click #discover-pay-btn': 'discoverAddFunds',
         'click #new-cc-payment': 'newPayment',
         'click #load-iframe': 'loadIframe',
+        'click #new-client': 'newClient'
     },
 
     initialize: function(options){
@@ -299,5 +300,12 @@ fun.views.dashboard = Backbone.View.extend({
         event.preventDefault();
         var view = this;
         console.log('log iframe bitches!');
+    },
+
+    newClent: function(event){
+        'use strict';
+        event.preventDefault();
+        var view = this;
+        console.log('log new client and popup the stuff');
     }
 });
