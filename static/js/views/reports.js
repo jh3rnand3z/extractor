@@ -212,7 +212,9 @@ fun.views.reports = Backbone.View.extend({
 
             _.each(this.transactions, function(o) {
 
-                console.log(o);
+                //console.log(o);
+                var amount = Number(o['Amount']);
+                o['Amount'] = amount.toFixed(2);
 
                 var data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
 
