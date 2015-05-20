@@ -302,7 +302,7 @@ fun.views.dashboard = Backbone.View.extend({
         console.log('log iframe bitches!');
     },
 
-    newClent: function(event){
+    newClient: function(event){
         'use strict';
         event.preventDefault();
         var view = this;
