@@ -16,8 +16,11 @@ fun.views.dashboard = Backbone.View.extend({
         fun.containers.dashboard = this.$el;
 
         this.account = localStorage.getItem("username");
-
         this.userId = localStorage.getItem("UserId");
+        this.clientCCHolder = localStorage.getItem("clientCCHolder");
+        this.clientCCInfo = localStorage.getItem("clientCCInfo");
+        this.clientEmail = localStorage.getItem("clientEmail");
+        this.clientPhone = localStorage.getItem("clientPhone");
     },
 
     render: function(){
