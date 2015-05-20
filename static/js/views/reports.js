@@ -196,6 +196,8 @@ fun.views.reports = Backbone.View.extend({
         var length,
             i = 0,
             rows,
+            totalAmount,
+            totalFee,
             data,
             template;
 
@@ -207,6 +209,9 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(length);
 
+        this.amountTotal = 0;
+        this.feeTotal = 0;
+
         if (length > 0){
             rows = this.tbody.html('');
 
@@ -214,7 +219,13 @@ fun.views.reports = Backbone.View.extend({
 
                 //console.log(o);
                 var amount = Number(o['Amount']);
+                var fee = Number(o['Fee']);
+
+                this.amountTotal += amount;
+                this.feeTotal += fee;
+
                 o['Amount'] = amount.toFixed(2);
+                o['Fee'] = fee.toFixed(2);
 
                 var data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
 
@@ -226,10 +237,23 @@ fun.views.reports = Backbone.View.extend({
 
                 rows.append(template);
             });
+            // testing now the sum of the stuff
+            //this.renderTransactionTotals();
             console.log('processing transactions completed');
         } else {
             this.noTransactions();
         }
+    },
+
+    renderTransactionTotals: function(){
+        'use strict';
+        var amountTotal,
+            feeTotal,
+            data,
+            template;
+
+        console.log(this.amountTotal);
+        console.log(this.feeTotal);
     },
 
     renderDetailsRows : function(){
