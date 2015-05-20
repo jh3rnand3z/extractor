@@ -29,7 +29,8 @@ fun.strings = {
     exp_month: "Exp Month",
     newPayment: "New Payment",
     newTransaction: "New transaction",
-
+    cardHoldName: "Card Holder Name",
+    
     hours: "Hours",
     days: "Days",
     weeks: "Weeks",
