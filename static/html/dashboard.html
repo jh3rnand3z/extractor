@@ -626,21 +626,22 @@
                 <div class="form-group">
                     <input type="text" id="signup_holdername" name="signup_holdername" class="form-control" placeholder="<%= translate("cardHoldName") %>">
                 </div>
-
+                
                 <div class="form-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= translate("cardType") %> <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="javascript:;"><%= translate("dinersClub") %></a></li>
-                            <li><a href="javascript:;"><%= translate("discover") %></a></li>
-                            <li><a href="javascript:;"><%= translate("amex") %></a></li>
-                            <li><a href="javascript:;"><%= translate("masterCard") %></a></li>
-                            <li><a href="javascript:;"><%= translate("visa") %></a></li>
-                        </ul>
-                    </div><!-- /btn-group -->
-                    <input type="text" class="form-control" placeholder="<%= translate("theLast4CCDigits") %>">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= translate("cardType") %> <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="javascript:;"><%= translate("dinersClub") %></a></li>
+                                <li><a href="javascript:;"><%= translate("discover") %></a></li>
+                                <li><a href="javascript:;"><%= translate("amex") %></a></li>
+                                <li><a href="javascript:;"><%= translate("masterCard") %></a></li>
+                                <li><a href="javascript:;"><%= translate("visa") %></a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" placeholder="<%= translate("theLast4CCDigits") %>">
+                    </div>
                 </div>
-
 
                 <div class="form-group">
                     <input type="text" id="signup_email" name="signup_email" class="form-control" placeholder="<%= translate("yourEmail") %>">
