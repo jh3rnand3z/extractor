@@ -656,30 +656,27 @@
                             <ul id="account-list-ul" class="dropdown-menu">
                                 <li>
                                     <input type="radio" id="current_account_0" name="current_account" value="0" checked="">
-                                    <label for="current_account_0">lsd</label>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#settings"><i class="fa fa-users fa-fw"></i> <%= translate("manageOrganizations") %></a>
+                                    <label for="current_account_0"><%= translate("dinersClub") %></label>
                                 </li>
                                 <li>
-                                    <a href="#orgs"><i class="fa fa-plus fa-fw"></i> <%= translate("createOrganization") %></a>
+                                    <input type="radio" id="current_account_0" name="current_account" value="0" checked="">
+                                    <label for="current_account_0"><%= translate("discover") %></label>
                                 </li>
-                                <li class="divider"></li>
+                                <li>
+                                    <input type="radio" id="current_account_0" name="current_account" value="0" checked="">
+                                    <label for="current_account_0"><%= translate("amex") %></label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="current_account_0" name="current_account" value="0" checked="">
+                                    <label for="current_account_0"><%= translate("masterCard") %></label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="current_account_0" name="current_account" value="0" checked="">
+                                    <label for="current_account_0"><%= translate("visa") %></label>
+                                </li>
+
                             </ul>
                         </div>
-
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= translate("cardType") %> <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="javascript:;"><%= translate("dinersClub") %></a></li>
-                                <li><a href="javascript:;"><%= translate("discover") %></a></li>
-                                <li><a href="javascript:;"><%= translate("amex") %></a></li>
-                                <li><a href="javascript:;"><%= translate("masterCard") %></a></li>
-                                <li><a href="javascript:;"><%= translate("visa") %></a></li>
-                            </ul>
-                        </div><!-- /btn-group -->
                         <input type="text" class="form-control" placeholder="<%= translate("theLast4CCDigits") %>">
                     </div>
                 </div>
