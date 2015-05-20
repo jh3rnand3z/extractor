@@ -43,6 +43,11 @@ fun.views.dashboard = Backbone.View.extend({
         }
         this.$el.show();
         console.log("username = " + this.account);
+        $('#clientModal').modal({
+            'show': true,
+            //'backdrop': 'static',
+            //'keyboard': true
+        });
     },
 
     discoverAddFunds: function(event){
