@@ -348,9 +348,8 @@ fun.views.dashboard = Backbone.View.extend({
         };
 
 
-        console.log('%s %s', ccTypes[Number(client_cc_type)], client_cc_info);
+        client_cc_info = ccTypes[Number(client_cc_type)] + ' ' + client_cc_info;
 
-        console.log(ccTypes[Number(client_cc_type)]);
 
         clientHolder.html(client_holder);
         clientInfo.html(client_cc_info);
@@ -361,9 +360,5 @@ fun.views.dashboard = Backbone.View.extend({
         this.clientCCInfo = localStorage.getItem("clientCCInfo");
         this.clientEmail = localStorage.getItem("clientEmail");
         this.clientPhone = localStorage.getItem("clientPhone");
-
-
-
-
     }
 });
