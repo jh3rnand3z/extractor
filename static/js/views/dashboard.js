@@ -330,17 +330,15 @@ fun.views.dashboard = Backbone.View.extend({
         client_cc_info = this.$('#client_cc_digits');
         client_cc_type = this.$('input[name=card_type]:checked', '#account-dropdown');
 
-        //client_cc_type = this.
-
-        console.log(client_cc_type);
 
         
         client_cc_type = client_cc_type.val();
-
         client_email = client_email.val();
         client_phone = client_phone.val();
         client_holder = client_holder.val();
         client_cc_info = client_cc_info.val();
+
+        console.log(client_cc_type);
 
         clientHolder.html(client_holder);
         clientInfo.html(client_cc_info);
