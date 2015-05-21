@@ -338,7 +338,16 @@ fun.views.dashboard = Backbone.View.extend({
         client_holder = client_holder.val();
         client_cc_info = client_cc_info.val();
 
-        console.log(client_cc_type);
+
+        var ccTypes = {
+            0:'Diners Club',
+            1:'Discover',
+            2:'AMEX',
+            3:'MasterCard',
+            4:'Visa'
+        };
+
+        console.log(ccTypes[Number(client_cc_type)];
 
         clientHolder.html(client_holder);
         clientInfo.html(client_cc_info);
