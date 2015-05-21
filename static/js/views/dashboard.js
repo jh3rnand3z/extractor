@@ -347,6 +347,9 @@ fun.views.dashboard = Backbone.View.extend({
             4:'Visa'
         };
 
+
+        console.log('%s %s', ccTypes[Number(client_cc_type)], client_cc_info);
+
         console.log(ccTypes[Number(client_cc_type)]);
 
         clientHolder.html(client_holder);
