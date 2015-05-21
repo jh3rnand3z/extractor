@@ -314,6 +314,7 @@ fun.views.dashboard = Backbone.View.extend({
             client_email,
             client_phone,
             client_holder,
+            client_cc_type,
             client_cc_info;
 
         console.log('A little brain dead bitches!');
