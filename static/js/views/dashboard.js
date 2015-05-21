@@ -306,7 +306,35 @@ fun.views.dashboard = Backbone.View.extend({
     newClient: function(event){
         'use strict';
         event.preventDefault();
-        var view = this;
+        var view = this,
+            clientHolder,
+            clientEmail,
+            clientInfo,
+            clientPhone,
+            client_email,
+            client_phone,
+            client_holder,
+            client_cc_info;
+
         console.log('A little brain dead bitches!');
+
+        clientHolder = this.$('#client-cc-holder');
+        clientInfo = this.$('#client-info');
+        clientEmail = this.$('#client-email');
+        clientPhone = this.$('#client-phone');
+
+        client_phone this.$('#client_phone');
+        client_email = this.$('#client_email');
+        client_holder = this.$('#client_holder_name');
+        client_cc_info = this.$('#client_card_type');
+
+        console.log(clientHolder, clientInfo, clienEmail, clientPhone, client_phone, client_email, client_holder, client_cc_info);
+
+
+        this.clientCCHolder = localStorage.getItem("clientCCHolder");
+        this.clientCCInfo = localStorage.getItem("clientCCInfo");
+        this.clientEmail = localStorage.getItem("clientEmail");
+        this.clientPhone = localStorage.getItem("clientPhone");
+
     }
 });
