@@ -318,7 +318,7 @@ fun.views.dashboard = Backbone.View.extend({
 
         console.log('A little brain dead bitches!');
 
-        clientHolder = this.$('#client-cc-holder');
+        clientHolder = this.$('#client-holdername');
         clientInfo = this.$('#client-info');
         clientEmail = this.$('#client-email');
         clientPhone = this.$('#client-phone');
