@@ -335,11 +335,10 @@ fun.views.dashboard = Backbone.View.extend({
         client_holder = client_holder.val()
         client_cc_info = client_cc_info.val()
 
-        clientEmail.html();
-
-
-        console.log(client_phone.val(), client_email.val(), client_holder.val(), client_cc_info.val());
-
+        clientHolder.html(client_holder);
+        clientInfo.html(client_cc_info);
+        clientEmail.html(client_email);
+        clientPhone.html(client_phone);
 
         this.clientCCHolder = localStorage.getItem("clientCCHolder");
         this.clientCCInfo = localStorage.getItem("clientCCInfo");
