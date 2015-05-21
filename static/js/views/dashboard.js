@@ -325,7 +325,7 @@ fun.views.dashboard = Backbone.View.extend({
 
         client_phone = this.$('#client_phone');
         client_email = this.$('#client_email');
-        client_holder = this.$('#client_holder_name');
+        client_holder = this.$('#client_holdername');
         client_cc_info = this.$('#client_cc_digits');
         //client_cc_type = this.
 
