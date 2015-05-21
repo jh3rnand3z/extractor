@@ -327,13 +327,19 @@ fun.views.dashboard = Backbone.View.extend({
         client_email = this.$('#client_email');
         client_holder = this.$('#client_holdername');
         client_cc_info = this.$('#client_cc_digits');
+        client_cc_type = this.$('input[name=card_type]:checked', '#account-dropdown');
 
         //client_cc_type = this.
 
-        client_email = client_email.val()
-        client_phone = client_phone.val()
-        client_holder = client_holder.val()
-        client_cc_info = client_cc_info.val()
+        console.log(client_cc_type);
+
+        
+        client_cc_type = client_cc_type.val();
+
+        client_email = client_email.val();
+        client_phone = client_phone.val();
+        client_holder = client_holder.val();
+        client_cc_info = client_cc_info.val();
 
         clientHolder.html(client_holder);
         clientInfo.html(client_cc_info);
@@ -344,5 +350,9 @@ fun.views.dashboard = Backbone.View.extend({
         this.clientCCInfo = localStorage.getItem("clientCCInfo");
         this.clientEmail = localStorage.getItem("clientEmail");
         this.clientPhone = localStorage.getItem("clientPhone");
+
+
+
+
     }
 });
