@@ -363,5 +363,7 @@ fun.views.dashboard = Backbone.View.extend({
         //this.clientCCInfo = localStorage.getItem("clientCCInfo");
         //this.clientEmail = localStorage.getItem("clientEmail");
         //this.clientPhone = localStorage.getItem("clientPhone");
+
+        $('#clientModal').modal('hide');
     }
 });
