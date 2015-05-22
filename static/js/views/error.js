@@ -118,7 +118,7 @@ fun.views.error = Backbone.View.extend({
             console.log(error);
         };
 
-        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', error)});
+        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
 
         //.then(null, function (error) {});
 
