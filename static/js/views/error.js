@@ -61,10 +61,12 @@ fun.views.error = Backbone.View.extend({
             console.log("Starting two's ajax");
             $.ajax( {
                 url: '/',
-                success: function() {
+                success: function(response) {
                     
                     // Again, this is where you want to call the next function
                     // in the list if there is one.
+                    console.log(response);
+
                     console.log('Finished with two. Ready to call next.');
                     deferred.resolve();
                     
@@ -81,10 +83,12 @@ fun.views.error = Backbone.View.extend({
             console.log("Starting three's ajax");
             $.ajax( {
                 url: '/',
-                success: function() {
+                success: function(response) {
                     
                     // Again, this is where you want to call the next function
                     // in the list if there is one.
+                    console.log(response);
+
                     console.log('Finished with three. Ready to call next if there is one.');
                     deferred.resolve();
                     
