@@ -36,7 +36,7 @@ fun.conf = {
     clxCulture: 'en-US',
     clxAppId: '26',
     clxTKN: tokken,
-    clxUserId: '2229', // this is the userId of preway
+    clxUserId: '1517' //barnum '2229', // this is the userId of the merchant account
 
     html: '/static/html',
     domain: 'iofun.io',
