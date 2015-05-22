@@ -88,7 +88,7 @@ fun.views.error = Backbone.View.extend({
         =============*/
 
 
-        var demo = function () {
+        var one = function () {
             
             var deferred = Q.defer(); // Don't worry yet what this is
                                       // until after you understand the flow
