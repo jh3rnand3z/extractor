@@ -48,6 +48,10 @@ fun.views.error = Backbone.View.extend({
 
                     console.log('Finished with one. Ready to call next.');
                     deferred.resolve();
+                },
+                error: function(error){
+                    console.log(error);
+                    deferred.reject(new Error(error));
                 }
             });
             
@@ -70,6 +74,10 @@ fun.views.error = Backbone.View.extend({
                     console.log('Finished with two. Ready to call next.');
                     deferred.resolve();
                     
+                },
+                error: function(error){
+                    console.log(error);
+                    deferred.reject(new Error(error));
                 }
                 
             });
@@ -92,6 +100,10 @@ fun.views.error = Backbone.View.extend({
                     console.log('Finished with three. Ready to call next if there is one.');
                     deferred.resolve();
                     
+                },
+                error: function(error){
+                    console.log(error);
+                    deferred.reject(new Error(error));
                 }
                 
             });
