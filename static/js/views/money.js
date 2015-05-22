@@ -38,6 +38,29 @@ fun.views.money = Backbone.View.extend({
 
         var customer = new fun.models.customerSearch();
 
+        var customerPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CountryCode": countryCode,
+            "CellPhone": cellPhone
+        };
+
+        var customerCallback = {
+            success: function(model, response){
+                stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+
+                settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+                statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+ 
+                transactions = new fun.models.Transactions();
+                transactions.fetch(resourceCallbacks);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
         var one = function (uri) {
             
             var deferred = Q.defer(); // Don't worry yet what this is
