@@ -133,7 +133,7 @@ fun.views.money = Backbone.View.extend({
             "CellPhone": cellPhone
         };
 
-        var resource = function(model, response){
+        var resource = function(response){
             _.each(response.transactions, function(o) {
 
                 //console.log(o);
@@ -148,13 +148,13 @@ fun.views.money = Backbone.View.extend({
 
 
         var resourceCallbacks = {
-            success: resource(model, response),
-            error: function(model, error){
+            success: resource(response),
+            error: function(error){
                 console.log(error);
             },
         };
 
-        var find = function(model, response){
+        var find = function(response){
             _.each(response.transactions, function(o) {
 
                     //console.log(o);
@@ -171,7 +171,7 @@ fun.views.money = Backbone.View.extend({
             console.log('resources error model %s error %s', model, error);
         };
 
-        var getTransactions = function(model, response){
+        var getTransactions = function(response){
             stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
             settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
@@ -182,8 +182,8 @@ fun.views.money = Backbone.View.extend({
         };
 
         var customerCallback = {
-            success: getTransactions(model, response),
-            error: function(model, error){
+            success: getTransactions(response),
+            error: function(error){
                 console.log(error);
             }
         };
