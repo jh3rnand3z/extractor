@@ -133,25 +133,25 @@ fun.views.money = Backbone.View.extend({
             "CellPhone": cellPhone
         };
 
+        var resource = function(model, response){
+            _.each(response.transactions, function(o) {
+
+                //console.log(o);
+                //alert(o.transaction);
+
+                search['TransactionNum'] = o.transaction;
+
+                transaction = new fun.models.searchTransactions();
+                transaction.save(searchTransPayload, searchTransCallback);
+            });
+        };
+
 
         var resourceCallbacks = {
-            success: function(model, response){
-
-                _.each(response.transactions, function(o) {
-
-                    //console.log(o);
-                    //alert(o.transaction);
-
-                    search['TransactionNum'] = o.transaction;
-
-                    transaction = new fun.models.searchTransactions();
-                    transaction.save(searchTransPayload, searchTransCallback);
-                });
-
-            },
+            success: resource(model, response),
             error: function(model, error){
-                console.log('resources error');
-            }
+                console.log(error);
+            },
         };
 
         var find = function(model, response){
@@ -165,18 +165,24 @@ fun.views.money = Backbone.View.extend({
                     transaction = new fun.models.searchTransactions();
                     transaction.save(searchTransPayload, searchTransCallback);
             });
-        }
+        };
+
+        var modelErrorHandler = function(model, error){
+            console.log('resources error model %s error %s', model, error);
+        };
+
+        var getTransactions = function(model, response){
+            stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+
+            settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+            settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+ 
+            var transactions = new fun.models.Transactions();
+            transactions.fetch(resourceCallbacks);
+        };
 
         var customerCallback = {
-            success: function(model, response){
-                stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-
-                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
- 
-                var transactions = new fun.models.Transactions();
-                transactions.fetch(resourceCallbacks);
-            },
+            success: getTransactions(model, response),
             error: function(model, error){
                 console.log(error);
             }
@@ -194,7 +200,7 @@ fun.views.money = Backbone.View.extend({
 
         this.model = customer;
 
-        var promise = this.model.save(customerPayload);
+        var promise = this.model.save(customerPayload, cus);
         //, customerCallback
 
         console.log('guagua');
