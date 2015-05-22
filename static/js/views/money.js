@@ -27,6 +27,8 @@ fun.views.money = Backbone.View.extend({
         event.preventDefault();
 
         var stuff = {};
+        var settle = {};
+        var search = {};
 
         var userId = localStorage.getItem("UserId");
 
@@ -40,6 +42,26 @@ fun.views.money = Backbone.View.extend({
 
         var customer = new fun.models.customerSearch();
 
+        var resourceCallbacks = {
+            success: function(model, response){
+
+                _.each(response.transactions, function(o) {
+
+                    //console.log(o);
+                    //alert(o.transaction);
+
+                    search['TransactionNum'] = o.transaction;
+
+                    transaction = new fun.models.searchTransactions();
+                    transaction.save(searchTransPayload, searchTransCallback);
+                });
+
+            },
+            error: function(model, error){
+                console.log('resources error');
+            }
+        };
+
         var customerPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
@@ -52,8 +74,8 @@ fun.views.money = Backbone.View.extend({
             success: function(model, response){
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
-                settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-                statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
  
                 transactions = new fun.models.Transactions();
                 transactions.fetch(resourceCallbacks);
