@@ -1,7 +1,7 @@
 fun.views.money = Backbone.View.extend({
 
     events : {
-        'click #fun-btn-send' : 'sendMoney',
+        'click #fun-btn-send' : 'sendTransfer',
     },
     
     initialize: function(options){
@@ -20,6 +20,113 @@ fun.views.money = Backbone.View.extend({
         }
         
         this.$el.show();
+    },
+
+    sendTransfer: function(event){
+        'use strict';
+        event.preventDefault();
+
+        var userId = localStorage.getItem("UserId");
+
+        if (typeof(userId) != "undefined"){
+            userId = fun.conf.clxUserId;
+        }
+
+        var countryCode = localStorage.getItem("UserCountryCode");
+
+        var cellPhone = localStorage.getItem("UserPhoneNumber").substr(1);
+
+        var customer = new fun.models.customerSearch();
+
+        var one = function (uri) {
+            
+            var deferred = Q.defer(); // Don't worry yet what this is
+                                      // until after you understand the flow
+            
+            console.log("Starting one's ajax");
+            $.ajax( {
+                url: uri,
+                success: function(response) {
+                    
+                    // Here's where you want to call the next function in the
+                    // list if there is one. To do it, call deferred.resolve()
+                    console.log(response);
+
+                    console.log('Finished with one. Ready to call next.');
+                    deferred.resolve();
+                },
+                error: function(error){
+                    console.log('Fail to resolve promise reject error %s.', error);
+                    deferred.reject(new Error(error));
+                }
+            });
+            
+            // The deferred object has a "promise" member, 
+            // which has a "then" function
+            return deferred.promise;
+        };
+
+        var two = function () {
+            var deferred = Q.defer();
+            console.log("Starting two's ajax");
+            $.ajax( {
+                url: '/system/',
+                success: function(response) {
+                    
+                    // Again, this is where you want to call the next function
+                    // in the list if there is one.
+                    console.log(response);
+
+                    console.log('Finished with two. Ready to call next.');
+                    deferred.resolve();
+                    
+                },
+                error: function(error){
+                    console.log('Fail to resolve promise reject error %s.', error);
+                    deferred.reject(new Error(error));
+                }
+                
+            });
+            // The deferred object has a "promise" member,
+            // which has a "then" function
+            return deferred.promise;
+        };
+
+        var three = function () {
+            var deferred = Q.defer();
+            console.log("Starting three's ajax");
+            $.ajax( {
+                url: '/system/',
+                success: function(response) {
+                    
+                    // Again, this is where you want to call the next function
+                    // in the list if there is one.
+                    console.log(response);
+
+                    console.log('Finished with three. Ready to call next if there is one.');
+                    deferred.resolve();
+                    
+                },
+                error: function(error){
+                    console.log('Fail to resolve promise reject error %s.', error);
+                    deferred.reject(new Error(error));
+                }
+                
+            });
+            // The deferred object has a "promise" member, which has a "then" function
+            return deferred.promise;
+        };
+
+        // Test it out. Call the first. Pass the functions 
+        // (without calling them, so no parentheses) into the then calls.
+        var errorHandler = function (error) {
+            console.log('inside error stuff');
+            console.log(JSON.stringify(error));
+        };
+
+        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        
+        customer.save(customerPayload, customerCallback).then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
     },
 
     sendMoney: function (event){
