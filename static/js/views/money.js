@@ -1,90 +1,7 @@
 fun.views.money = Backbone.View.extend({
 
-    events : {
-        'click #fun-btn-send' : 'sendTransfer',
-    },
-    
-    initialize: function(options){
-        fun.containers.reports = this.$el;
-    },
 
-    render: function(){
-        'use strict';
-        var template;
-        if (!this.$el.html()){
-            template = _.template(fun.utils.getTemplate(fun.conf.templates.sendMoney));
-
-            this.confirmAmount = this.$('#s-amount');
-
-            this.$el.html(template);
-        }
-        
-        this.$el.show();
-    },
-
-    sendTransfer: function(event){
-        'use strict';
-        event.preventDefault();
-
-        var stuff = {};
-        var settle = {};
-        var search = {};
-
-        var userId = localStorage.getItem("UserId");
-
-        if (typeof(userId) != "undefined"){
-            userId = fun.conf.clxUserId;
-        }
-
-        var countryCode = localStorage.getItem("UserCountryCode");
-
-        var cellPhone = localStorage.getItem("UserPhoneNumber").substr(1);
-
-        var customer = new fun.models.customerSearch();
-
-        var resourceCallbacks = {
-            success: function(model, response){
-
-                _.each(response.transactions, function(o) {
-
-                    //console.log(o);
-                    //alert(o.transaction);
-
-                    search['TransactionNum'] = o.transaction;
-
-                    transaction = new fun.models.searchTransactions();
-                    transaction.save(searchTransPayload, searchTransCallback);
-                });
-
-            },
-            error: function(model, error){
-                console.log('resources error');
-            }
-        };
-
-        var customerPayload = {
-            "Culture": fun.conf.clxCulture,
-            "ApplicationId": fun.conf.clxAppId,
-            "UserId": userId,
-            "CountryCode": countryCode,
-            "CellPhone": cellPhone
-        };
-
-        var customerCallback = {
-            success: function(model, response){
-                stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-
-                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
- 
-                var transactions = new fun.models.Transactions();
-                transactions.fetch(resourceCallbacks);
-            },
-            error: function(model, error){
-                console.log(error);
-            }
-        };
-
+/*
         var one = function (uri) {
             
             var deferred = Q.defer(); // Don't worry yet what this is
@@ -163,7 +80,109 @@ fun.views.money = Backbone.View.extend({
             // The deferred object has a "promise" member, which has a "then" function
             return deferred.promise;
         };
+*/
 
+
+    events : {
+        'click #fun-btn-send' : 'sendTransfer',
+    },
+    
+    initialize: function(options){
+        fun.containers.reports = this.$el;
+    },
+
+    render: function(){
+        'use strict';
+        var template;
+        if (!this.$el.html()){
+            template = _.template(fun.utils.getTemplate(fun.conf.templates.sendMoney));
+
+            this.confirmAmount = this.$('#s-amount');
+
+            this.$el.html(template);
+        }
+        
+        this.$el.show();
+    },
+
+    sendTransfer: function(event){
+        'use strict';
+        event.preventDefault();
+
+        var stuff = {};
+        var settle = {};
+        var search = {};
+
+        var userId = localStorage.getItem("UserId");
+
+        if (typeof(userId) != "undefined"){
+            userId = fun.conf.clxUserId;
+        }
+
+        var countryCode = localStorage.getItem("UserCountryCode");
+
+        var cellPhone = localStorage.getItem("UserPhoneNumber").substr(1);
+
+        var customer = new fun.models.customerSearch();
+
+        var customerPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId,
+            "CountryCode": countryCode,
+            "CellPhone": cellPhone
+        };
+
+
+        var resourceCallbacks = {
+            success: function(model, response){
+
+                _.each(response.transactions, function(o) {
+
+                    //console.log(o);
+                    //alert(o.transaction);
+
+                    search['TransactionNum'] = o.transaction;
+
+                    transaction = new fun.models.searchTransactions();
+                    transaction.save(searchTransPayload, searchTransCallback);
+                });
+
+            },
+            error: function(model, error){
+                console.log('resources error');
+            }
+        };
+
+        var find = function(model, response){
+            _.each(response.transactions, function(o) {
+
+                    //console.log(o);
+                    //alert(o.transaction);
+
+                    search['TransactionNum'] = o.transaction;
+
+                    transaction = new fun.models.searchTransactions();
+                    transaction.save(searchTransPayload, searchTransCallback);
+            });
+        }
+
+        var customerCallback = {
+            success: function(model, response){
+                stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+
+                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+                settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+ 
+                var transactions = new fun.models.Transactions();
+                transactions.fetch(resourceCallbacks);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
+        
         // Test it out. Call the first. Pass the functions 
         // (without calling them, so no parentheses) into the then calls.
         var errorHandler = function (error) {
@@ -171,15 +190,19 @@ fun.views.money = Backbone.View.extend({
             console.log(JSON.stringify(error));
         };
 
-        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        //one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
 
         this.model = customer;
 
-        var promise = this.model.save(customerPayload, customerCallback);
+        var promise = this.model.save(customerPayload).done(function(response) {console.log("Success!");}).fail(function(response) {console.log("Error!");});
+        //, customerCallback
+
+        console.log('guagua');
 
         $.when(promise).then(undefined, errorHandler).done(function (message) {console.log('hell yeah!');});
 
         console.log('da fuck bro...');
+        
         //var promise = this.model.save(); 
         //$.when(promise).then(null, function(obj) {
         //    console.log(obj);
