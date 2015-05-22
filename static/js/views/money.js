@@ -151,7 +151,9 @@ fun.views.money = Backbone.View.extend({
 
         one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
-        customer.save(customerPayload, customerCallback).then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        customer.save(customerPayload, customerCallback).then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        
+
     },
 
     sendMoney: function (event){
