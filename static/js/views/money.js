@@ -26,6 +26,8 @@ fun.views.money = Backbone.View.extend({
         'use strict';
         event.preventDefault();
 
+        var stuff = {};
+
         var userId = localStorage.getItem("UserId");
 
         if (typeof(userId) != "undefined"){
