@@ -97,7 +97,7 @@ fun.views.error = Backbone.View.extend({
         // Test it out. Call the first. Pass the functions 
         // (without calling them, so no parentheses) into the then calls.
 
-        one('http://news.ycombinator.com').then(two).then(three);
+        one('/system/').then(two).then(three);
 
         /* =====
         Think about where the "then" function comes from. Each function 
