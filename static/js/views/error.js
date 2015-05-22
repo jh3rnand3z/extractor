@@ -60,7 +60,7 @@ fun.views.error = Backbone.View.extend({
             var deferred = Q.defer();
             console.log("Starting two's ajax");
             $.ajax( {
-                url: '/',
+                url: '/system/',
                 success: function(response) {
                     
                     // Again, this is where you want to call the next function
@@ -82,7 +82,7 @@ fun.views.error = Backbone.View.extend({
             var deferred = Q.defer();
             console.log("Starting three's ajax");
             $.ajax( {
-                url: '/',
+                url: '/system/',
                 success: function(response) {
                     
                     // Again, this is where you want to call the next function
