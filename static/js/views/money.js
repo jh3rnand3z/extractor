@@ -172,8 +172,15 @@ fun.views.money = Backbone.View.extend({
         };
 
         one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+
+        this.model = customer;
+
+        var promise = this.model.save(customerPayload, customerCallback);
+        $.when(promise).then(function() {
+             console.log(promise.responseText);
+        });
         
-        customer.save(customerPayload, customerCallback).then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
 
     },
