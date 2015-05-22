@@ -26,76 +26,19 @@ fun.views.error = Backbone.View.extend({
         this.$el.show();
 
         var message = translate('transactionDenied');
+        
         alert(message);
-
 
         // Q sample by Jeff Cogswell
 
-        /*===========
-         We want to call these three functions in sequence, one after the other:
-         
-         First we want to call one, which initiates an ajax call. Once that 
-         ajax call is complete, we want to call two. Once two's ajax call is 
-         complete, we want to call three.
-         
-         BUT, we don't want to just call our three functions in sequence, as this quick 
-         demo will show. Look at this sample function and think about what order 
-         the console.log calls will happen:
-        ===========*/
-
-        var demo = function() {
-            $.ajax( {
-                url: '/',
-                success: function() {
-                    console.log('AJAX FINISHED');
-                }
-            });
-        };
-
-        console.log('Calling demo');
-        demo();
-        console.log('Finished calling demo');
-
-        /*====
-        The function returns almost immediately, before the ajax call is complete.
-        That means we will likely see 'Finished calling demo' before we see the 
-        results of the ajax call: 
-        ====*/
-
-        //Calling demo
-        //Finished calling demo
-        //AJAX FINISHED
-
-        /*==== 
-        If we want to chain a following function, when do we call it? 
-        We call it from inside the success function:
-        ====*/
-
-        var demo = function () {
-            $.ajax( {
-                url: '/',
-                success: function() {
-                    console.log('AJAX FINISHED');
-                    
-                    // >>>> THIS IS WHEN you would call another function <<<<<
-                    
-                }
-            });
-        };
-
-        /* ==============
-         Now let's try using q.
-        =============*/
-
-
-        var one = function () {
+        var one = function (uri) {
             
             var deferred = Q.defer(); // Don't worry yet what this is
                                       // until after you understand the flow
             
             console.log("Starting one's ajax");
             $.ajax( {
-                url: '/',
+                url: uri,
                 success: function() {
                     
                     // Here's where you want to call the next function in the
@@ -154,7 +97,7 @@ fun.views.error = Backbone.View.extend({
         // Test it out. Call the first. Pass the functions 
         // (without calling them, so no parentheses) into the then calls.
 
-        one().then(two).then(three);
+        one('http://news.ycombinator.com').then(two).then(three);
 
         /* =====
         Think about where the "then" function comes from. Each function 
