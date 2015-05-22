@@ -77,7 +77,7 @@ fun.views.money = Backbone.View.extend({
                 settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
  
-                transactions = new fun.models.Transactions();
+                var transactions = new fun.models.Transactions();
                 transactions.fetch(resourceCallbacks);
             },
             error: function(model, error){
