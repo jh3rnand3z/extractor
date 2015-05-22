@@ -50,7 +50,7 @@ fun.views.error = Backbone.View.extend({
                     deferred.resolve();
                 },
                 error: function(error){
-                    console.log(error);
+                    console.log('Fail to resolve promise reject error %s.', error);
                     deferred.reject(new Error(error));
                 }
             });
@@ -76,7 +76,7 @@ fun.views.error = Backbone.View.extend({
                     
                 },
                 error: function(error){
-                    console.log(error);
+                    console.log('Fail to resolve promise reject error %s.', error);
                     deferred.reject(new Error(error));
                 }
                 
@@ -102,7 +102,7 @@ fun.views.error = Backbone.View.extend({
                     
                 },
                 error: function(error){
-                    console.log(error);
+                    console.log('Fail to resolve promise reject error %s.', error);
                     deferred.reject(new Error(error));
                 }
                 
@@ -118,7 +118,7 @@ fun.views.error = Backbone.View.extend({
             console.log(error);
         };
 
-        one('/system/').then(two).then(three).then(null, function (error) {console.log(error)});
+        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', error)});
 
         //.then(null, function (error) {});
 
