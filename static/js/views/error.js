@@ -30,6 +30,7 @@ fun.views.error = Backbone.View.extend({
         alert(message);
 
         // Q sample by Jeff Cogswell
+        // slashed by the usual subject
 
         var one = function (uri) {
             
@@ -39,15 +40,15 @@ fun.views.error = Backbone.View.extend({
             console.log("Starting one's ajax");
             $.ajax( {
                 url: uri,
-                success: function() {
+                success: function(response) {
                     
                     // Here's where you want to call the next function in the
                     // list if there is one. To do it, call deferred.resolve()
+                    console.log(response);
+
                     console.log('Finished with one. Ready to call next.');
                     deferred.resolve();
-                    
                 }
-                
             });
             
             // The deferred object has a "promise" member, 
