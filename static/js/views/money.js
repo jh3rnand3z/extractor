@@ -303,8 +303,8 @@ fun.views.money = Backbone.View.extend({
         $.when(promise)
             .then(two)
             .then(undefined, errorHandler)
-            .done(function(response) {console.log("Success! %s", response);})
-            .fail(function(response) {console.log("Error! %s", response);});
+            .fail(function(response) {console.log("Error! %s", response);})
+            .done(function(response) {console.log("Success! %s", response);});
 
         console.log('transanction completed');
     },
