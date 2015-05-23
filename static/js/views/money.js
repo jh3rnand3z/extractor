@@ -173,8 +173,14 @@ var modelErrorHandler = function(model, error){
 var getTransactions = function(response){
     'use strict';
     var deferred = Q.defer();
-    console.log(response);
-    var token = response['CustomerSummary']['CustomerToken'];
+    console.log(JSON.stringify(response));
+    var summary = response['CustomerSummary'] || undefined;
+    if (summary === undefined) {
+        deferred.reject(new Error("can't get new valid token"));
+    } else {
+        var token = summary['CustomerToken'] || undefined;
+    }
+
     if (token === undefined){
         deferred.reject(new Error("can't get new valid token"));
     } else {
