@@ -30,6 +30,34 @@ var search = {};
         
 //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
 
+function xhr(options) {
+  var deferred = Q.defer(),
+      req = new XMLHttpRequest();
+ 
+  req.open(options.method || 'GET', options.url, true);
+ 
+  // Set request headers if provided.
+  Object.keys(options.headers || {}).forEach(function (key) {
+    req.setRequestHeader(key, options.headers[key]);
+  });
+ 
+  req.onreadystatechange = function(e) {
+    if(req.readyState !== 4) {
+      return;
+    }
+ 
+    if([200,304].indexOf(req.status) === -1) {
+      deferred.reject(new Error('Server responded with a status of ' + req.status));
+    } else {
+      deferred.resolve(e.target.response);
+    }
+  };
+ 
+  req.send(options.data || void 0);
+ 
+  return deferred.promise;
+}
+
 var oneA = function () {
     var d = Q.defer();
     var timeUntilResolve = Math.floor((Math.random()*2000)+1);
