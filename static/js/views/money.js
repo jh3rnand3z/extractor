@@ -156,7 +156,7 @@ var two = function () {
             console.log('Finished with two. Ready to call next.');
             var message = 'hell yeah';
             deferred.resolve(message);
-            return message;
+            //return message;
                     
         },
         error: function(error){
@@ -273,7 +273,7 @@ var errorHandler = function (error) {
 fun.views.money = Backbone.View.extend({
 
     events : {
-        'click #fun-btn-send' : 'sendTransfer',
+        'click #fun-btn-send' : 'sendMoney',
     },
     
     initialize: function(options){
