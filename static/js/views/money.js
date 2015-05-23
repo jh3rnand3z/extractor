@@ -154,7 +154,7 @@ var two = function () {
             console.log(response);
 
             console.log('Finished with two. Ready to call next.');
-            var message = {'hell':'yeah'};
+            var message = 'hell yeah';
             deferred.resolve(message);
                     
         },
