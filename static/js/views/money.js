@@ -1,87 +1,84 @@
+var one = function (uri) {
+            
+    var deferred = Q.defer(); // Don't worry yet what this is
+                              // until after you understand the flow
+            
+    console.log("Starting one's ajax");
+    $.ajax( {
+        url: uri,
+        success: function(response) {
+                    
+            // Here's where you want to call the next function in the
+            // list if there is one. To do it, call deferred.resolve()
+            console.log(response);
+
+            console.log('Finished with one. Ready to call next.');
+            deferred.resolve();
+        },
+        error: function(error){
+            console.log('Fail to resolve promise reject error %s.', error);
+            deferred.reject(new Error(error));
+        }
+    });
+            
+    // The deferred object has a "promise" member, 
+    // which has a "then" function
+    return deferred.promise;
+};
+
+var two = function () {
+    var deferred = Q.defer();
+    console.log("Starting two's ajax");
+    $.ajax( {
+        url: '/system/',
+        success: function(response) {
+                    
+            // Again, this is where you want to call the next function
+            // in the list if there is one.
+            console.log(response);
+
+            console.log('Finished with two. Ready to call next.');
+            deferred.resolve();
+                    
+        },
+        error: function(error){
+            console.log('Fail to resolve promise reject error %s.', error);
+            deferred.reject(new Error(error));
+        }
+                
+    });
+    // The deferred object has a "promise" member,
+    // which has a "then" function
+    return deferred.promise;
+};
+
+var three = function () {
+    var deferred = Q.defer();
+    console.log("Starting three's ajax");
+    $.ajax( {
+        url: '/system/',
+        success: function(response) {
+                    
+            // Again, this is where you want to call the next function
+            // in the list if there is one.
+            console.log(response);
+
+            console.log('Finished with three. Ready to call next if there is one.');
+            deferred.resolve();
+                    
+        },
+        error: function(error){
+            console.log('Fail to resolve promise reject error %s.', error);
+            deferred.reject(new Error(error));
+        }
+                
+    });
+    // The deferred object has a "promise" member, which has a "then" function
+    return deferred.promise;
+};
+
+
 fun.views.money = Backbone.View.extend({
-
-
-/*
-        var one = function (uri) {
-            
-            var deferred = Q.defer(); // Don't worry yet what this is
-                                      // until after you understand the flow
-            
-            console.log("Starting one's ajax");
-            $.ajax( {
-                url: uri,
-                success: function(response) {
-                    
-                    // Here's where you want to call the next function in the
-                    // list if there is one. To do it, call deferred.resolve()
-                    console.log(response);
-
-                    console.log('Finished with one. Ready to call next.');
-                    deferred.resolve();
-                },
-                error: function(error){
-                    console.log('Fail to resolve promise reject error %s.', error);
-                    deferred.reject(new Error(error));
-                }
-            });
-            
-            // The deferred object has a "promise" member, 
-            // which has a "then" function
-            return deferred.promise;
-        };
-
-        var two = function () {
-            var deferred = Q.defer();
-            console.log("Starting two's ajax");
-            $.ajax( {
-                url: '/system/',
-                success: function(response) {
-                    
-                    // Again, this is where you want to call the next function
-                    // in the list if there is one.
-                    console.log(response);
-
-                    console.log('Finished with two. Ready to call next.');
-                    deferred.resolve();
-                    
-                },
-                error: function(error){
-                    console.log('Fail to resolve promise reject error %s.', error);
-                    deferred.reject(new Error(error));
-                }
-                
-            });
-            // The deferred object has a "promise" member,
-            // which has a "then" function
-            return deferred.promise;
-        };
-
-        var three = function () {
-            var deferred = Q.defer();
-            console.log("Starting three's ajax");
-            $.ajax( {
-                url: '/system/',
-                success: function(response) {
-                    
-                    // Again, this is where you want to call the next function
-                    // in the list if there is one.
-                    console.log(response);
-
-                    console.log('Finished with three. Ready to call next if there is one.');
-                    deferred.resolve();
-                    
-                },
-                error: function(error){
-                    console.log('Fail to resolve promise reject error %s.', error);
-                    deferred.reject(new Error(error));
-                }
-                
-            });
-            // The deferred object has a "promise" member, which has a "then" function
-            return deferred.promise;
-        };
-*/
-
 
     events : {
         'click #fun-btn-send' : 'sendTransfer',
@@ -133,6 +130,20 @@ fun.views.money = Backbone.View.extend({
             "CellPhone": cellPhone
         };
 
+        var searchTransPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId": userId
+            //"TransactionNum": "2341100093"
+        };
+
+        var resourceCallbacks = {
+            success: resource(response),
+            error: function(error){
+                console.log(error);
+            },
+        };
+
         var resource = function(response){
             _.each(response.transactions, function(o) {
 
@@ -144,14 +155,6 @@ fun.views.money = Backbone.View.extend({
                 transaction = new fun.models.searchTransactions();
                 transaction.save(searchTransPayload, searchTransCallback);
             });
-        };
-
-
-        var resourceCallbacks = {
-            success: resource(response),
-            error: function(error){
-                console.log(error);
-            },
         };
 
         var find = function(response){
@@ -179,6 +182,9 @@ fun.views.money = Backbone.View.extend({
  
             var transactions = new fun.models.Transactions();
             transactions.fetch(resourceCallbacks);
+
+            return transactions;
+
         };
 
         var customerCallback = {
@@ -200,19 +206,35 @@ fun.views.money = Backbone.View.extend({
 
         this.model = customer;
 
-        var promise = this.model.save(customerPayload, cus);
+        var promise = this.model.save(customerPayload, customerCallback);
         //, customerCallback
 
         console.log('guagua');
 
-        $.when(promise).then(undefined, errorHandler).done(function(response) {console.log("Success! %s", response);}).fail(function(response) {console.log("Error! %s", response);});
+        $.when(promise).then(undefined, errorHandler)
+            .done(function(response) {console.log("Success! %s", response);})
+            .fail(function(response) {console.log("Error! %s", response);});
 
         console.log('da fuck bro...');
+
+        //var deferred = $.Deferred();
+        //deferred.then(function(value) {
+        //  alert(value);
+        //  return 66;
+        //}).then(function(id){
+        //  alert('The answer : ' + id);
+        //});
+
+        //console.log(deferred)
+
+        //deferred.resolve("hello world");
         
         //var promise = this.model.save(); 
         //$.when(promise).then(null, function(obj) {
         //    console.log(obj);
         //});
+
+        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
         //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
