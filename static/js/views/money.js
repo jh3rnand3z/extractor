@@ -31,31 +31,31 @@ var search = {};
 //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
 
 function xhr(options) {
-  var deferred = Q.defer(),
-      req = new XMLHttpRequest();
+    var deferred = Q.defer(),
+    req = new XMLHttpRequest();
  
-  req.open(options.method || 'GET', options.url, true);
+    req.open(options.method || 'GET', options.url, true);
  
-  // Set request headers if provided.
-  Object.keys(options.headers || {}).forEach(function (key) {
-    req.setRequestHeader(key, options.headers[key]);
-  });
+    // Set request headers if provided.
+    Object.keys(options.headers || {}).forEach(function (key) {
+        req.setRequestHeader(key, options.headers[key]);
+    });
  
-  req.onreadystatechange = function(e) {
-    if(req.readyState !== 4) {
-      return;
-    }
+    req.onreadystatechange = function(e) {
+        if(req.readyState !== 4) {
+            return;
+        }
  
-    if([200,304].indexOf(req.status) === -1) {
-      deferred.reject(new Error('Server responded with a status of ' + req.status));
-    } else {
-      deferred.resolve(e.target.response);
-    }
-  };
+        if([200,304].indexOf(req.status) === -1) {
+            deferred.reject(new Error('Server responded with a status of ' + req.status));
+        } else {
+            deferred.resolve(e.target.response);
+        }
+    };
  
-  req.send(options.data || void 0);
+    req.send(options.data || void 0);
  
-  return deferred.promise;
+    return deferred.promise;
 }
 
 var oneA = function () {
@@ -154,7 +154,7 @@ var two = function () {
             console.log(response);
 
             console.log('Finished with two. Ready to call next.');
-            deferred.resolve();
+            deferred.resolve({'hell':'yeah'});
                     
         },
         error: function(error){
