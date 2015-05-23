@@ -204,7 +204,10 @@ fun.views.money = Backbone.View.extend({
         };
 
         var resourceCallbacks = {
-            success: resource(response),
+            success: function(response){
+                console.log(response)
+                resource(response);
+            },
             error: function(error){
                 console.log(error);
             },
