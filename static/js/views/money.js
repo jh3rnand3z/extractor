@@ -154,7 +154,8 @@ var two = function () {
             console.log(response);
 
             console.log('Finished with two. Ready to call next.');
-            deferred.resolve({'hell':'yeah'});
+            var message = {'hell':'yeah'};
+            deferred.resolve(message);
                     
         },
         error: function(error){
@@ -168,9 +169,10 @@ var two = function () {
     return deferred.promise;
 };
 
-var three = function () {
+var three = function (message) {
     var deferred = Q.defer();
     console.log("Starting three's ajax");
+    console.log(message);
     $.ajax( {
         url: '/system/',
         success: function(response) {
@@ -330,6 +332,7 @@ fun.views.money = Backbone.View.extend({
 
         $.when(promise)
             .then(two)
+            .then(three)
             .then(undefined, errorHandler)
             .fail(function(response) {console.log("Error! %s", response);})
             .done(function(response) {console.log("Success! %s", response);});
