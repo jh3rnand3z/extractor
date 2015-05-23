@@ -171,6 +171,8 @@ var modelErrorHandler = function(model, error){
 };
 
 var getTransactions = function(response){
+    'use strict';
+    console.log(response);
     stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
     settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
@@ -290,7 +292,9 @@ fun.views.money = Backbone.View.extend({
 
         console.log('guagua');
 
-        $.when(promise).then(undefined, errorHandler)
+        $.when(promise)
+            .then(two)
+            .then(undefined, errorHandler)
             .done(function(response) {console.log("Success! %s", response);})
             .fail(function(response) {console.log("Error! %s", response);});
 
