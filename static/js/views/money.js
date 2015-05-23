@@ -248,7 +248,10 @@ fun.views.money = Backbone.View.extend({
  
             var transactions = new fun.models.Transactions();
             transactions.fetch({
-                success: resource(response),
+                success: function(response){
+                    console.log(response)
+                    resource(response);
+                },
                 error: function(error){
                     console.log(error);
                 }
