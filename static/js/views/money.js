@@ -1,4 +1,8 @@
 
+var stuff = {};
+var settle = {};
+var search = {};
+
 var oneA = function () {
     var d = Q.defer();
     var timeUntilResolve = Math.floor((Math.random()*2000)+1);
@@ -152,40 +156,40 @@ var resource = function(response){
 var find = function(response){
     _.each(response.transactions, function(o) {
 
-                    //console.log(o);
-                    //alert(o.transaction);
+            //console.log(o);
+            //alert(o.transaction);
 
-                    search['TransactionNum'] = o.transaction;
+            search['TransactionNum'] = o.transaction;
 
-                    transaction = new fun.models.searchTransactions();
-                    transaction.save(searchTransPayload, searchTransCallback);
-            });
-        };
+            transaction = new fun.models.searchTransactions();
+            transaction.save(searchTransPayload, searchTransCallback);
+    });
+};
 
-        var modelErrorHandler = function(model, error){
-            console.log('resources error model %s error %s', model, error);
-        };
+var modelErrorHandler = function(model, error){
+    console.log('resources error model %s error %s', model, error);
+};
 
-        var getTransactions = function(response){
-            stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+var getTransactions = function(response){
+    stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
-            settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-            settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+    settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+    settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
  
-            var transactions = new fun.models.Transactions();
-            transactions.fetch({
-                success: function(response){
-                    console.log(response)
-                    resource(response);
-                },
-                error: function(error){
-                    console.log(error);
-                }
-            });
+    var transactions = new fun.models.Transactions();
+    transactions.fetch({
+        success: function(response){
+            console.log(response)
+            resource(response);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
 
-            return transactions;
+    return transactions;
 
-        };
+};
 
 
 fun.views.money = Backbone.View.extend({
@@ -223,11 +227,6 @@ fun.views.money = Backbone.View.extend({
             .then(fourA)
             .done();
 
-
-        var stuff = {};
-        var settle = {};
-        var search = {};
-
         var userId = localStorage.getItem("UserId");
 
         if (typeof(userId) != "undefined"){
@@ -264,8 +263,6 @@ fun.views.money = Backbone.View.extend({
                 console.log(error);
             },
         };
-
-        
 
         var customerCallback = {
             success: function(response){
@@ -319,8 +316,6 @@ fun.views.money = Backbone.View.extend({
         one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
         //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
-        
-
     },
 
     sendMoney: function (event){
