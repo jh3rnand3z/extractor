@@ -200,10 +200,16 @@ var getTransactions = function(response){
             deferred.reject(new Error(error));
         }
     });
+
     return deferred.promise;
-
     //return transactions;
+};
 
+// Test it out. Call the first. Pass the functions 
+// (without calling them, so no parentheses) into the then calls.
+var errorHandler = function (error) {
+    console.log('inside error handler function stuff');
+    console.log(JSON.stringify(error));
 };
 
 
@@ -235,13 +241,6 @@ fun.views.money = Backbone.View.extend({
         'use strict';
         event.preventDefault();
 
-
-        Q.all([ oneA(), oneB() ])
-            .spread(twoA)
-            .then(function () { return Q.all([ threeA(), threeB() ]); })
-            .then(fourA)
-            .done();
-
         var userId = localStorage.getItem("UserId");
 
         if (typeof(userId) != "undefined"){
@@ -254,7 +253,9 @@ fun.views.money = Backbone.View.extend({
 
         var customer = new fun.models.customerSearch();
 
-        var customerPayload = {
+        this.model = customer;
+
+        var payload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "UserId": userId,
@@ -262,24 +263,7 @@ fun.views.money = Backbone.View.extend({
             "CellPhone": cellPhone
         };
 
-        var searchTransPayload = {
-            "Culture": fun.conf.clxCulture,
-            "ApplicationId": fun.conf.clxAppId,
-            "UserId": userId
-            //"TransactionNum": "2341100093"
-        };
-
-        var resourceCallbacks = {
-            success: function(response){
-                console.log(response)
-                resource(response);
-            },
-            error: function(error){
-                console.log(error);
-            },
-        };
-
-        var customerCallback = {
+        var callbacks = {
             success: function(response){
                 getTransactions(response);
             },
@@ -288,22 +272,13 @@ fun.views.money = Backbone.View.extend({
             }
         };
 
-        
-        // Test it out. Call the first. Pass the functions 
-        // (without calling them, so no parentheses) into the then calls.
-        var errorHandler = function (error) {
-            console.log('inside error stuff');
-            console.log(JSON.stringify(error));
-        };
+        //Q.all([ oneA(), oneB() ])
+        //    .spread(twoA)
+        //    .then(function () { return Q.all([ threeA(), threeB() ]); })
+        //    .then(fourA)
+        //    .done();
 
-        //one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
-
-        this.model = customer;
-
-        var promise = this.model.save(customerPayload, customerCallback);
-        //, customerCallback
-
-        console.log('guagua');
+        var promise = this.model.save(payload, callbacks);
 
         $.when(promise)
             .then(two)
@@ -311,7 +286,7 @@ fun.views.money = Backbone.View.extend({
             .done(function(response) {console.log("Success! %s", response);})
             .fail(function(response) {console.log("Error! %s", response);});
 
-        console.log('da fuck bro...');
+        console.log('transanction completed');
 
         //var deferred = $.Deferred();
         //deferred.then(function(value) {
@@ -330,7 +305,7 @@ fun.views.money = Backbone.View.extend({
         //    console.log(obj);
         //});
 
-        one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        //one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
         
         //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
     },
@@ -409,8 +384,6 @@ fun.views.money = Backbone.View.extend({
             "ApplicationId": fun.conf.clxAppId,
             "UserId": userId
         };
-
-
 
         transactions = {};
 
