@@ -183,7 +183,7 @@ var three = function (message) {
             console.log(response);
 
             console.log('Finished with three. Ready to call next if there is one.');
-            deferred.resolve();
+            deferred.resolve('saprissa');
                     
         },
         error: function(error){
@@ -336,7 +336,7 @@ fun.views.money = Backbone.View.extend({
             .then(three)
             .then(undefined, errorHandler)
             .fail(function(response) {console.log("Error! %s", response);})
-            .done(function(response) {console.log("Success! %s", response);});
+            .done(function(message, saprissa) {console.log("Success! %s %s", message, saprissa);});
 
         console.log('transanction completed');
     },
