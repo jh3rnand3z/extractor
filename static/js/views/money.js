@@ -172,24 +172,31 @@ var modelErrorHandler = function(model, error){
 
 var getTransactions = function(response){
     'use strict';
+    var deferred = Q.defer();
     console.log(response);
-    stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-
-    settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
-    settle['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
- 
+    var token = response['CustomerSummary']['CustomerToken'];
+    if (token === undefined){
+        deferred.reject(new Error("can't get new valid token"));
+    } else {
+        stuff['CustomerToken'] = token;
+        settle['CustomerToken'] = token;
+    };
+    
     var transactions = new fun.models.Transactions();
     transactions.fetch({
         success: function(response){
             console.log(response)
             resource(response);
+            deferred.resolve();
         },
         error: function(error){
             console.log(error);
+            deferred.reject(new Error(error));
         }
     });
+    return deferred.promise;
 
-    return transactions;
+    //return transactions;
 
 };
 
