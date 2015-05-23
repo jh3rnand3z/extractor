@@ -1,3 +1,61 @@
+
+var oneA = function () {
+    var d = Q.defer();
+    var timeUntilResolve = Math.floor((Math.random()*2000)+1);
+    console.log('1A Starting');
+    setTimeout(function () {
+        console.log('1A Finished');
+        d.resolve('1ATime: ' + timeUntilResolve);
+    }, timeUntilResolve);
+    return d.promise;
+};
+
+var oneB = function () {
+    var d = Q.defer();
+    var timeUntilResolve = Math.floor((Math.random()*2000)+1);
+    console.log('1B Starting');
+    setTimeout(function () {
+        console.log('1B Finished');
+        d.resolve('1BTime: ' + timeUntilResolve);
+    }, timeUntilResolve);
+    return d.promise;
+};
+
+// This fuction throws an error which later on we show will be handled
+var twoA = function (oneATime, oneBTime) {
+    var d = Q.defer();
+    console.log('OneA: ' + oneATime + ', OneB: ' + oneBTime);
+    console.log('2 Starting and Finishing, so 3A and 3B should start');
+    d.resolve();
+    //return d.promise;
+};
+
+var threeA = function () {
+    var d = Q.defer();
+    console.log('3A Starting');
+    setTimeout(function () {
+        console.log('3A Finished');
+        d.resolve();
+    }, Math.floor((Math.random()*2000)+1));
+    return d.promise;
+};
+
+var threeB = function () {
+    var d = Q.defer();
+    console.log('3B Starting');
+    setTimeout(function () {
+        console.log('3B Finished');
+        d.resolve();
+    }, Math.floor((Math.random()*5000)+1));
+    return d.promise;
+};
+
+var fourA = function () {
+    console.log('Four is now done');
+};
+
+
+
 var one = function (uri) {
             
     var deferred = Q.defer(); // Don't worry yet what this is
@@ -105,6 +163,14 @@ fun.views.money = Backbone.View.extend({
     sendTransfer: function(event){
         'use strict';
         event.preventDefault();
+
+
+        Q.all([ oneA(), oneB() ])
+            .spread(twoA)
+            .then(function () { return Q.all([ threeA(), threeB() ]); })
+            .then(fourA)
+            .done();
+
 
         var stuff = {};
         var settle = {};
