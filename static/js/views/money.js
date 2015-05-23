@@ -3,6 +3,33 @@ var stuff = {};
 var settle = {};
 var search = {};
 
+//Q.all([ oneA(), oneB() ])
+//    .spread(twoA)
+//    .then(function () { return Q.all([ threeA(), threeB() ]); })
+//    .then(fourA)
+//    .done();
+
+//var deferred = $.Deferred();
+//deferred.then(function(value) {
+//  alert(value);
+//  return 66;
+//}).then(function(id){
+//  alert('The answer : ' + id);
+//});
+
+//console.log(deferred)
+
+//deferred.resolve("hello world");
+        
+//var promise = this.model.save(); 
+//$.when(promise).then(null, function(obj) {
+//    console.log(obj);
+//});
+
+//one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+        
+//then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
+
 var oneA = function () {
     var d = Q.defer();
     var timeUntilResolve = Math.floor((Math.random()*2000)+1);
@@ -57,7 +84,6 @@ var threeB = function () {
 var fourA = function () {
     console.log('Four is now done');
 };
-
 
 
 var one = function (uri) {
@@ -272,12 +298,6 @@ fun.views.money = Backbone.View.extend({
             }
         };
 
-        //Q.all([ oneA(), oneB() ])
-        //    .spread(twoA)
-        //    .then(function () { return Q.all([ threeA(), threeB() ]); })
-        //    .then(fourA)
-        //    .done();
-
         var promise = this.model.save(payload, callbacks);
 
         $.when(promise)
@@ -287,27 +307,6 @@ fun.views.money = Backbone.View.extend({
             .fail(function(response) {console.log("Error! %s", response);});
 
         console.log('transanction completed');
-
-        //var deferred = $.Deferred();
-        //deferred.then(function(value) {
-        //  alert(value);
-        //  return 66;
-        //}).then(function(id){
-        //  alert('The answer : ' + id);
-        //});
-
-        //console.log(deferred)
-
-        //deferred.resolve("hello world");
-        
-        //var promise = this.model.save(); 
-        //$.when(promise).then(null, function(obj) {
-        //    console.log(obj);
-        //});
-
-        //one('/system/').then(two).then(three).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
-        
-        //then(two).then(three).done(function(response) {console.log("Success!");}).fail(function (error) {console.log('inside fail %s', JSON.stringify(error))});
     },
 
     sendMoney: function (event){
