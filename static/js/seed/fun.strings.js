@@ -34,7 +34,8 @@ fun.strings = {
     newPayment: "New Payment",
     newTransaction: "New transaction",
     cardHoldName: "Card Holder Name",
-
+    ccInfo: "Card Info",
+    phone: "Phone",
     hours: "Hours",
     days: "Days",
     weeks: "Weeks",
