@@ -229,6 +229,10 @@ fun.views.reports = Backbone.View.extend({
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch();
 
+                $.when(transinfo)
+                    .fail(function(response) {console.log("Error! %s", response);})
+                    .done(function(message, saprissa) {console.log("Success! %s %s", message, saprissa);});
+
                 //get extra info and render row
 
                 amountTotal += amount;
