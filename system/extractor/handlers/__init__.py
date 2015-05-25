@@ -53,6 +53,9 @@ class BaseHandler(web.RequestHandler):
         # System database
         self.db = self.settings.get('db')
 
+        # enable cache flag
+        self.cache_enabled = self.settings.get('cache_enabled')
+
         # System cache
         self.cache = self.settings.get('cache')
 

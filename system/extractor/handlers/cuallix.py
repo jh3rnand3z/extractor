@@ -383,6 +383,9 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
         # query string checked from string to boolean
         checked = str2bool(str(query_args.get('checked', [False])[0]))
 
+        # cache flag
+        cache_enabled = self.cache_enabled
+
         # cache stuff
         data = None
 
@@ -396,7 +399,8 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
             logging.info('transaction_uuid {0}'.format(transaction_uuid.rstrip('/')))
 
             try:
-                data = self.cache.get('transactions:{0}'.format(transaction_uuid))
+                if cache_enabled:
+                    data = self.cache.get('transactions:{0}'.format(transaction_uuid))
             except Exception, e:
                 logging.error(e)
             # when we're done with the cache stuff get the transaction information
@@ -404,11 +408,11 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
                 logging.info('transactions:{0} done retrieving!'.format(transaction_uuid))
                 result = data
             else:
-                data = yield self.get_transaction(account, transaction_uuid.rstrip('/'))
+                result = yield self.get_transaction(account, transaction_uuid.rstrip('/'))
                 # if cache is off don't do this stuff please!
-                if self.cache.add('transactions:{0}'.format(transaction_uuid), data, 60):
-                    logging.info('new cache entry {0}'.format(str(data)))
-                    result = data
+                if cache_enabled:
+                    if self.cache.add('transactions:{0}'.format(transaction_uuid), result, 60):
+                        logging.info('new cache entry {0}'.format(str(result)))
 
             if not result:
 
