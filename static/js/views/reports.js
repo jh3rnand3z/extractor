@@ -223,7 +223,7 @@ fun.views.reports = Backbone.View.extend({
 
                 var transNum = o['TransactionNum'];
 
-                var res = transNum.slice(0,5) + transNum.slice(7,12);
+                //var res = transNum.slice(0,5) + transNum.slice(7,12);
 
                 var transNum = Number(res) - 1;
 
