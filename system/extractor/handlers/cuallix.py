@@ -383,6 +383,9 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
         # query string checked from string to boolean
         checked = str2bool(str(query_args.get('checked', [False])[0]))
 
+        # cache stuff
+        data = None
+
         if not transaction_uuid:
             # get list of directories
             transactions = yield self.get_transaction_list(account, checked, page_num)
@@ -391,9 +394,12 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
         else:
             # try to get stuff from cache first
             logging.info('transaction_uuid {0}'.format(transaction_uuid.rstrip('/')))
-            
-            data = self.cache.get('transactions:{0}'.format(transaction_uuid))
 
+            try:
+                data = self.cache.get('transactions:{0}'.format(transaction_uuid))
+            except Exception, e:
+                logging.error(e)
+            # when we're done with the cache stuff get the transaction information
             if data is not None:
                 logging.info('transactions:{0} done retrieving!'.format(transaction_uuid))
                 result = data
