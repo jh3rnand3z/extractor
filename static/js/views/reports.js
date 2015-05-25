@@ -229,7 +229,7 @@ fun.views.reports = Backbone.View.extend({
 
                 transNum = Number(transNum) - 1;
 
-                alert(transNum, res);
+                alert('compare this '+ String(transNum) + ' with this '+ String(res));
 
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch();
