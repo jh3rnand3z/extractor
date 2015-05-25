@@ -150,3 +150,9 @@ class Transaction(models.Model):
     application_id = types.StringType()
     system_id = types.StringType()
     authorization = types.StringType()
+    phone = types.StringType() 
+    cc_info = types.StringType()
+    holder_name = types.StringType()
+    email = types.StringType() 
+
+    # {u'phone': 'Rogue field', u'cc_info': 'Rogue field', u'holder_name': 'Rogue field', u'email': 'Rogue field'}
