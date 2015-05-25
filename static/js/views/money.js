@@ -456,6 +456,8 @@ fun.views.money = Backbone.View.extend({
 
                 var transaction_num = response['Transaction']['TransactionNum'];
 
+                var transaction_total = response['Transaction']['Total'];
+
                 settlePayload['TransactionNum'] = transaction_num;
 
                 statusPayload['TransactionNum'] = transaction_num;
@@ -473,9 +475,19 @@ fun.views.money = Backbone.View.extend({
 
                 clientPhone = localStorage.getItem("clientPhone");
 
-                console.log(clientCCHolder, clientCCInfo, clientEmail, clientPhone);
+                //console.log(clientCCHolder, clientCCInfo, clientEmail, clientPhone);
 
-                confirm.save({'checked': true}, {patch: true});
+                var newRandomStuff = {
+                    'holder_name': clientCCHolder,
+                    'cc_info': clientCCInfo,
+                    'email': clientEmail,
+                    'phone': clientPhone,
+                    'checked': true
+                };
+
+                console.log(newRandomStuff);
+
+                confirm.save(newRandomStuff, {patch: true});
 
                 settle = new fun.models.Settle();
                 settle.save(settlePayload, settleCallback);
