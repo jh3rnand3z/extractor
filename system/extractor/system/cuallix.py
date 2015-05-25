@@ -96,15 +96,15 @@ class Cuallix(object):
             raise gen.Return(transaction_list)
 
     @gen.coroutine
-    def get_transaction(self, account, transaction_uuid):
+    def get_transaction(self, account, TransactionNum):
         '''
             Get transaction
         '''
         message = None
-        logging.info('{0} get transaction {1}'.format(account, transaction_uuid))
+        logging.info('{0} get transaction {1}'.format(account, TransactionNum))
         try:
             result = yield self.db.transactions.find_one(
-                {'uuid': transaction_uuid},
+                {'transaction': TransactionNum},
                 {'_id':0} # remove this stuff from db.
             )
 
