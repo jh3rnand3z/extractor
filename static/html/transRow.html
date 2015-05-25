@@ -2,12 +2,30 @@
     <!--
     <td><%= date %></td>
     <td><%= account %></td>
+
+    
+    <th><%= translate("summary") %></th>
+                                                
+                                                <th><%= translate("name") %></th>
+                                                <th><%= translate("email") %></th>
+                                                <th><%= translate("phone") %></th>
+
+                                                <th><%= translate("TransactionNum") %></th>
+                                                <th><%= translate("ccInfo") %></th>
+
+                                                <th><%= translate("amount") %></th>
+                                                <th><%= translate("status") %></th>
+                                                <th><%= translate("uuid") %></th>
+
+
     -->
     <td><%= Summary %></td>
-    <td>$<%= Amount %></td>
-    <td>$<%= Fee %></td>
+    <td>name</td>
+    <td>email</td>
+    <td>phone</td>
     <td><%= TransactionNum %></td>
-    <td><i id="<%= uuid %>"class="fa fa-eye"></i></td>
+    <td>cc_info</td>
+    <td>$<%= Amount %></td>
     <td>
         <%= translate("approved") %>
         <!--
@@ -23,4 +41,5 @@
         </div>
         -->
     </td>
+    <td><i id="<%= uuid %>"class="fa fa-eye"></i></td>
 </tr>
