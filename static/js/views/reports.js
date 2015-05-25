@@ -221,11 +221,11 @@ fun.views.reports = Backbone.View.extend({
                 amount = Number(o['Amount']);
                 fee = Number(o['Fee']);
 
-                var transNum = Number(o['TransactionNum']);
+                var transNum = Number(o['TransactionNum']) - 1;
 
                 alert(transNum);
 
-                var transinfo = new fun.models.Transaction({'TransactionNum':o['TransactionNum']});
+                var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch();
 
                 console.log(transinfo);
