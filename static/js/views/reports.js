@@ -225,7 +225,7 @@ fun.views.reports = Backbone.View.extend({
 
                 //var res = transNum.slice(0,5) + transNum.slice(7,12);
 
-                var transNum = Number(res) - 1;
+                transNum = Number(transNum) - 1;
 
                 alert(transNum);
 
