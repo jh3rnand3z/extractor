@@ -405,6 +405,7 @@ class TransactionsHandler(cuallix.Cuallix, BaseHandler):
                 result = data
             else:
                 data = yield self.get_transaction(account, transaction_uuid.rstrip('/'))
+                # if cache is off don't do this stuff please!
                 if self.cache.add('transactions:{0}'.format(transaction_uuid), data, 60):
                     logging.info('new cache entry {0}'.format(str(data)))
                     result = data
