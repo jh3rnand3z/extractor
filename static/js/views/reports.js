@@ -231,7 +231,7 @@ fun.views.reports = Backbone.View.extend({
 
                 $.when(transinfo)
                     .fail(function(response) {console.log("Error! %s", response);})
-                    .done(function(message, saprissa) {console.log("Success! %s %s", message, saprissa);});
+                    .done(function(message) {console.log("Success! %s", message);console.log(transinfo);});
 
                 //get extra info and render row
 
