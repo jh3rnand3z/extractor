@@ -72,7 +72,7 @@ def options():
     tornado.options.define('sql_password',
         type=str, help=('PostgreSQL username password'))
 
-    tornado.options.define('cached_enabled',
+    tornado.options.define('cache_enabled',
         default=False, type=bool,
         help=('Enable cache'))
 
