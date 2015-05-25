@@ -227,11 +227,14 @@ fun.views.reports = Backbone.View.extend({
                 transNum = Number(transNum) - 1;
 
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
-                transinfo.fetch();
-
-                $.when(transinfo)
-                    .fail(function(response) {console.log("Error! %s", response);})
-                    .done(function(message) {console.log("Success! %s", message);console.log(transinfo);});
+                transinfo.fetch({
+                    success: function(response){
+                        console.log(response);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
 
                 //get extra info and render row
 
