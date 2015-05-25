@@ -508,6 +508,11 @@ fun.views.money = Backbone.View.extend({
 
                     searchTransPayload['TransactionNum'] = o.transaction;
 
+                    transinfo = new fun.models.transaction({'TransactionNum':o.transaction});
+                    transinfo.fetch();
+
+                    console.log(transinfo);
+
                     transaction = new fun.models.searchTransactions();
                     transaction.save(searchTransPayload, searchTransCallback);
                 });

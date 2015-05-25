@@ -223,6 +223,8 @@ fun.views.reports = Backbone.View.extend({
 
                 alert(o['TransactionNum']);
 
+                //get extra info and render row
+
                 amountTotal += amount;
                 feeTotal += fee;
 
