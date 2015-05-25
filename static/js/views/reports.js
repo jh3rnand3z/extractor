@@ -223,7 +223,7 @@ fun.views.reports = Backbone.View.extend({
 
                 //alert(o['TransactionNum']);
 
-                transinfo = new fun.models.Transaction({'TransactionNum':o['TransactionNum']});
+                var transinfo = new fun.models.Transaction({'TransactionNum':o['TransactionNum']});
                 transinfo.fetch();
 
                 console.log(transinfo);
