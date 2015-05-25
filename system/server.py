@@ -184,6 +184,8 @@ if __name__ == '__main__':
 
     base_url = opts.base_url
 
+    cache_enabled = opts.cache_enabled
+
     application = web.Application(
 
         [
@@ -222,6 +224,7 @@ if __name__ == '__main__':
 
         db = db,
         cache = cache,
+        cache_enabled = cache_enabled,
         debug = opts.debug,
         domain = opts.domain,
         page_size = opts.page_size,

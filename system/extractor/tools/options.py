@@ -72,6 +72,10 @@ def options():
     tornado.options.define('sql_password',
         type=str, help=('PostgreSQL username password'))
 
+    tornado.options.define('cached_enabled',
+        default=False, type=bool,
+        help=('Enable cache'))
+
     tornado.options.define('memcached_host',
         default='127.0.0.1', type=str,
         help=('Memcached host'))
