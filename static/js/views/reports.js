@@ -217,23 +217,17 @@ fun.views.reports = Backbone.View.extend({
 
             _.each(this.transactions, function(o) {
 
-                //console.log(o);
                 amount = Number(o['Amount']);
                 fee = Number(o['Fee']);
 
                 var transNum = o['TransactionNum'];
 
-                var res = transNum.slice(0,6) + transNum.slice(7,12);
-
-                res = Number(res) - 1;
+                transNum = transNum.slice(0,6) + transNum.slice(7,12);
 
                 transNum = Number(transNum) - 1;
 
-                alert('compare this '+ String(transNum) + ' with this '+ String(res));
-
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch();
-
 
                 //get extra info and render row
 
