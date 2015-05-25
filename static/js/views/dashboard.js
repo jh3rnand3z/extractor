@@ -52,6 +52,12 @@ fun.views.dashboard = Backbone.View.extend({
             //'backdrop': 'static',
             //'keyboard': true
         });
+
+        this.PhoneNumber = this.$('#client_phone');
+
+        this.PhoneNumber.intlTelInput({
+            utilsScript: "static/js/plugins/libphonenumber/utils.js"
+        });
     },
 
     discoverAddFunds: function(event){
