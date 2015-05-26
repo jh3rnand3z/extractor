@@ -301,7 +301,7 @@ fun.views.reports = Backbone.View.extend({
             });
             
             if (length == 0){
-                alert('1, 2, 3 chocolate stop');
+                alert('1, 2, 3 chocolate stop %s', amountTotal);
             }
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
