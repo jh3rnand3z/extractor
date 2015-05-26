@@ -3,9 +3,11 @@
 */
 
 var environment, url, productionURL, developmentURL;
-var tokken, tokkenRUN, tokkenDEV;
+var tokken, tokkenRUN, tokkenDEV, userId, recipientAccountId;
 
 environment = 'production';
+
+userId = '2217';
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
@@ -23,6 +25,21 @@ if (environment === 'production'){
     }
 };
 
+
+if (userId == '2217' || userId == '1517'){
+    recipientAccountId = 0;
+}
+
+if (userId == '2229'){
+    // barnum
+    recipientAccountId = 1;
+}
+
+if (recipientAccountId === 'undefined'){
+    recipientAccountId = 0;
+}
+
+
 fun.conf = {
     account: 'account',
     context: 'context', // dashboard context "organization"
@@ -31,12 +48,12 @@ fun.conf = {
 
     // CLX conf stuff
     clxUrl: url,
-
+    clxRecipientAccountId: recipientAccountId
     clxPartner: 'Preway CR',
     clxCulture: 'en-US',
     clxAppId: '26',
     clxTKN: tokken,
-    clxUserId: '2217', //barnum '2229', // this is the userId of the merchant account
+    clxUserId: userId, //barnum '2229', // this is the userId of the merchant account
 
     html: '/static/html',
     domain: 'iofun.io',

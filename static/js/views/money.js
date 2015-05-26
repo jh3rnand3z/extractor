@@ -392,7 +392,7 @@ fun.views.money = Backbone.View.extend({
             "ApplicationId": fun.conf.clxAppId,
             "UserId": userId,
             "RecipientId": 1,
-            "RecipientAccountId": 1,
+            "RecipientAccountId": fun.conf.clxRecipientAccountId,
             "Amount": amount
         };
 
