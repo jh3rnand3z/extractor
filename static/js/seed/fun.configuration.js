@@ -5,7 +5,7 @@
 var environment, url, productionURL, developmentURL;
 var tokken, tokkenRUN, tokkenDEV;
 
-environment = 'development';
+environment = 'production';
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
@@ -36,7 +36,7 @@ fun.conf = {
     clxCulture: 'en-US',
     clxAppId: '26',
     clxTKN: tokken,
-    clxUserId: '1517', //barnum '2229', // this is the userId of the merchant account
+    clxUserId: '2217', //barnum '2229', // this is the userId of the merchant account
 
     html: '/static/html',
     domain: 'iofun.io',

@@ -147,52 +147,50 @@ fun.views.reports = Backbone.View.extend({
 
         var reporttrans = new fun.models.reportTransactions();
 
-        
-
         reporttrans.save(rangeDateTransactionPayload, reportCallbacks);
 
         // end of new report method stuff
 
         console.log('outside que putas');
 
+        
+        //console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
-        console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
+        //startEnd = {
+        //    start:this.start,
+        //    end:this.end
+        //};
 
-        startEnd = {
-            start:this.start,
-            end:this.end
-        };
-
-        startEndLapse = {
-            start:this.start,
-            end:this.end,
+        //startEndLapse = {
+        //    start:this.start,
+        //    end:this.end,
             
             // get time lapse from dom
             // lapse:this.lapse,
 
-            lapse:this.lapse
-        };
+        //    lapse:this.lapse
+        //};
 
-        console.log(startEnd)
+        //console.log(startEnd)
 
-        var models = {
-            payments: new fun.models.PaymentsStartEnd(startEnd),
-        };
+        //var models = {
+        //    payments: new fun.models.PaymentsStartEnd(startEnd),
+        //};
 
-        var success = function() {
-            if (++modelCount == _.keys(models).length) {
-                fun.instances.reports.renderRecordsDetails(models.payments);
-            }
-        };
+        //var success = function() {
+        //    if (++modelCount == _.keys(models).length) {
+        //        fun.instances.reports.renderRecordsDetails(models.payments);
+        //    }
+        //};
 
-        for (var x in models){
-            models[x].fetch({
-                success: success,
-                error: function() {
-                    console.log('error');
-                }
-            });
-        }
+        //for (var x in models){
+        //    models[x].fetch({
+        //        success: success,
+        //        error: function() {
+        //            console.log('error');
+        //        }
+        //    });
+        //}
     },
 
     /*
