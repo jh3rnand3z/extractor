@@ -229,7 +229,7 @@ fun.views.reports = Backbone.View.extend({
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch({
                     success: function(response){
-                        console.log(response);
+                        console.log(response.get('cc_info'));
                     },
                     error: function(error){
                         console.log(error);
