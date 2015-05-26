@@ -235,6 +235,8 @@ fun.views.reports = Backbone.View.extend({
 
                 length = Number(length) - 1;
 
+                console.log(length);
+
                 var transNum = o['TransactionNum'];
 
                 var data = {};
@@ -299,10 +301,7 @@ fun.views.reports = Backbone.View.extend({
                     }
                 });
             });
-            
-            if (length == 0){
-                alert(amountTotal);
-            }
+
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
