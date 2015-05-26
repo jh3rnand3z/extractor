@@ -222,13 +222,7 @@ fun.views.reports = Backbone.View.extend({
             data = {},
             template;
 
-        console.log('foreach stuff??');
-
-        console.log(this.transactions);
-
         length = this.transactions.length;
-
-        console.log(length);
 
         var amount, amountTotal = 0;
         var fee, feeTotal = 0;
@@ -268,8 +262,6 @@ fun.views.reports = Backbone.View.extend({
 
                         data = _.extend(o, data);
 
-                        alert(amount);
-
                         console.log(data);
 
                         template = _.template(
@@ -292,8 +284,6 @@ fun.views.reports = Backbone.View.extend({
                         o['Fee'] = fee.toFixed(2);
 
                         data = _.extend(o, data);
-
-                        console.log(data);
 
                         template = _.template(
                             fun.utils.getTemplate(fun.conf.templates.transRow)
