@@ -81,7 +81,7 @@ fun.views.reports = Backbone.View.extend({
 
         fromDay = fromDate.getDate();
         if (Number(fromDay) < 10) {
-            fromDay = '0'+ String(fromDay);
+            fromDay = '0' + String(fromDay);
         };
         fromMonth = fromDate.getMonth();
         fromMonth = Number(fromMonth) + 1;
@@ -89,12 +89,12 @@ fun.views.reports = Backbone.View.extend({
             fromMonth = '0' + String(fromMonth);
         };
 
-        fromYear = fromDate.getFullYear()
+        fromYear = fromDate.getFullYear();
 
         // need the money 2 buy drugs.
         toDay = toDate.getDate();
         if (Number(toDay) < 10) {
-            toDay = '0'+ String(toDay);
+            toDay = '0' + String(toDay);
         };
 
         toMonth = toDate.getMonth();
@@ -103,7 +103,7 @@ fun.views.reports = Backbone.View.extend({
             toMonth = '0' + String(toMonth);
         };
 
-        toYear = toDate.getFullYear()
+        toYear = toDate.getFullYear();
 
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
@@ -119,14 +119,12 @@ fun.views.reports = Backbone.View.extend({
         var rangeDateCallbacks = {
             success: function(model, response){
                 console.log(response);
-                fun.instances.reports.renderTransactionLists(response['TransactionList']);
+                //fun.instances.reports.renderTransactionLists(response['TransactionList']);
             },
             error: function(model, error){
                 console.log(error);
             }
         };
-
-        console.log(rangeDateTransactionPayload);
 
         var rangetrans = new fun.models.DateRange();
 
