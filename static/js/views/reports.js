@@ -275,7 +275,12 @@ fun.views.reports = Backbone.View.extend({
 
                     },
                     error: function(error){
-                        console.log(error);
+                        //console.log(error);
+
+                        data['cc_info'] = 'Unknown';
+                        data['holder_name'] = 'John Doe';
+                        data['email'] = 'john@doe.com';
+                        data['phone'] = '21255555555';
                         
                         console.log('error, error, error!');
                     }
@@ -291,7 +296,7 @@ fun.views.reports = Backbone.View.extend({
 
                 data = _.extend(o, data);
 
-                alert(data);
+                //alert(data);
 
                 console.log(data);
 
