@@ -234,30 +234,50 @@ fun.views.reports = Backbone.View.extend({
                         data['holder_name'] = response.get('holder_name');
                         data['email'] = response.get('email');
                         data['phone'] = response.get('phone');
+                        data['account'] = 'missing';
+                        data['date'] = 'missing';
+                        data['uuid'] = 'missing';
+
+                        amountTotal += amount;
+                        feeTotal += fee;
+
+                        o['Amount'] = amount.toFixed(2);
+                        o['Fee'] = fee.toFixed(2);
+
+                        data = _.extend(o, data);
+
+                        console.log(data);
+
+                        template = _.template(
+                            fun.utils.getTemplate(fun.conf.templates.transRow)
+                        )(data);
+
+                        rows.append(template);
 
                     },
                     error: function(error){
                         console.log(error);
+                        amountTotal += amount;
+                        feeTotal += fee;
+
+                        o['Amount'] = amount.toFixed(2);
+                        o['Fee'] = fee.toFixed(2);
+
+                        data = _.extend(o, data);
+
+                        console.log(data);
+
+                        template = _.template(
+                            fun.utils.getTemplate(fun.conf.templates.transRow)
+                        )(data);
+
+                        rows.append(template);
                     }
                 });
 
                 //get extra info and render row
 
-                amountTotal += amount;
-                feeTotal += fee;
-
-                o['Amount'] = amount.toFixed(2);
-                o['Fee'] = fee.toFixed(2);
-
-                data = _.extend(o, data);
-
-                console.log(data);
-
-                template = _.template(
-                    fun.utils.getTemplate(fun.conf.templates.transRow)
-                )(data);
-
-                rows.append(template);
+                
             });
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
