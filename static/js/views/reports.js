@@ -246,7 +246,6 @@ fun.views.reports = Backbone.View.extend({
                 data['uuid'] = 'missing';
 
                 transNum = transNum.slice(0,6) + transNum.slice(7,12);
-
                 transNum = Number(transNum) - 1;
 
                 amount = Number(o['Amount']);
@@ -269,9 +268,6 @@ fun.views.reports = Backbone.View.extend({
                         data['email'] = response.get('email');
                         data['phone'] = response.get('phone');
                         
-
-                       
-
                         data = _.extend(o, data);
 
                         console.log(data);
