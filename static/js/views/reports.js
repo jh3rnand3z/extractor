@@ -235,8 +235,6 @@ fun.views.reports = Backbone.View.extend({
 
                 length = Number(length) - 1;
 
-                console.log(length);
-
                 var transNum = o['TransactionNum'];
 
                 var data = {};
@@ -252,8 +250,6 @@ fun.views.reports = Backbone.View.extend({
                 fee = Number(o['Fee']);
 
                 amountTotal += amount;
-
-                console.log(amountTotal);
 
                 feeTotal += fee;
 
@@ -300,7 +296,8 @@ fun.views.reports = Backbone.View.extend({
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
-            console.log(amountTotal);
+            console.log('setting up summaries');
+            this.setTotalTransactions(amountTotal);
         } else {
             this.noTransactions();
         }
@@ -337,6 +334,11 @@ fun.views.reports = Backbone.View.extend({
             // Render a no data message
             this.noCalls();
         }
+    },
+
+    setTotalTransactions: function(amount) {
+        var recordTotal = this.$('#records-total');
+        recordTotal.html('$'+String(amount));
     },
     
     noTransactions: function() {
