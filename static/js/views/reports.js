@@ -120,7 +120,7 @@ fun.views.reports = Backbone.View.extend({
             success: function(model, response){
                 console.log(response);
                 console.log('success in range date callback');
-                //fun.instances.reports.renderTransactionLists(response['TransactionList']);
+                fun.instances.reports.renderTransactionLists(response['TransactionList']);
             },
             error: function(model, error){
                 console.log(error);
