@@ -108,6 +108,7 @@ fun.conf.urls = {
 
     transactionStatus: '/cuallix/transactions/status/',
     searchTransactions: '/cuallix/transactions/search/',
+    reportTransactions: '/cuallix/transactions/report/',
 
     dateRangeTransactions: '/cuallix/transactions/range/',
 

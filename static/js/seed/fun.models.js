@@ -130,6 +130,15 @@ fun.models.searchTransactions = Backbone.Model.extend({
 });
 
 
+fun.models.reportTransactions = Backbone.Model.extend({
+    urlRoot: fun.conf.urls.reportTransactions,
+
+    url: function(){
+        return this.urlRoot;
+    },
+});
+
+
 fun.models.sendMoney = Backbone.Model.extend({
     
     urlRoot: fun.conf.urls.sendMoney,
