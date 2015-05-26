@@ -276,35 +276,28 @@ fun.views.reports = Backbone.View.extend({
                     },
                     error: function(error){
                         //console.log(error);
-
                         data['cc_info'] = 'Unknown';
                         data['holder_name'] = 'John Doe';
                         data['email'] = 'john@doe.com';
                         data['phone'] = '21255555555';
                         
-                        console.log('error, error, error!');
+                        amount = Number(o['Amount']);
+
+                        amountTotal += amount;
+
+                        o['Amount'] = amount.toFixed(2);
+
+                        data = _.extend(o, data);
+
+                        template = _.template(
+                            fun.utils.getTemplate(fun.conf.templates.transRow)
+                        )(data);
+
+                        rows.append(template);
                     }
                 });
 
-                amount = Number(o['Amount']);
-
-                amountTotal += amount;
-
-                o['Amount'] = amount.toFixed(2);
-
-                //get extra info and render row
-
-                data = _.extend(o, data);
-
-                //alert(data);
-
-                console.log(data);
-
-                template = _.template(
-                    fun.utils.getTemplate(fun.conf.templates.transRow)
-                )(data);
-
-                rows.append(template);
+                
                 
             });
             // testing now the sum of the stuff
