@@ -428,6 +428,34 @@ class Cuallix(object):
         raise gen.Return(r.content)
 
     @gen.coroutine
+    def report_transactions(self, struct):
+        '''
+            Report Transactions
+        '''
+        uri = '{0}/CLXAPI/Services/Report/Transactions'.format(self.url)
+        try:
+            result = payments.ReportTransactions(struct)
+            result.validate()
+            result = clean_structure(result)
+        except Exception, e:
+            logging.error(e)
+            raise e
+
+        headers = {
+            'Content-type': 'application/json',
+            'Accept': 'text/plain',
+            'Authorization': 'CLXTKN {0}'.format(self.tokken) 
+        }
+
+        logging.info(result)
+
+        r = requests.post(uri, data=json.dumps(result), headers=headers)
+
+        logging.warning(r.content)
+
+        raise gen.Return(r.content)
+
+    @gen.coroutine
     def new_transaction(self, struct):
         '''
             Store new transaction before validate

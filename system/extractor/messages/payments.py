@@ -74,6 +74,17 @@ class SearchTransactions(models.Model):
     TransactionNum = types.StringType()
 
 
+class ReportTransactions(models.Model):
+    '''
+        Cuallix Report Transactions
+    '''
+    Culture = types.StringType()
+    ApplicationId = types.StringType()
+    UserId = types.StringType()
+    DateFrom = types.StringType()
+    DateTo = types.StringType()
+
+
 class DateRange(models.Model):
     '''
         Cuallix DateRange Search Transactions
