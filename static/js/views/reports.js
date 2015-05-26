@@ -233,9 +233,13 @@ fun.views.reports = Backbone.View.extend({
 
             _.each(this.transactions, function(o) {
 
-                
-
                 var transNum = o['TransactionNum'];
+
+                var data = {};
+
+                data['account'] = 'missing';
+                data['date'] = 'missing';
+                data['uuid'] = 'missing';
 
                 transNum = transNum.slice(0,6) + transNum.slice(7,12);
 
@@ -249,9 +253,7 @@ fun.views.reports = Backbone.View.extend({
                         data['holder_name'] = response.get('holder_name');
                         data['email'] = response.get('email');
                         data['phone'] = response.get('phone');
-                        data['account'] = 'missing';
-                        data['date'] = 'missing';
-                        data['uuid'] = 'missing';
+                        
 
                         amount = Number(o['Amount']);
                         fee = Number(o['Fee']);
@@ -275,27 +277,29 @@ fun.views.reports = Backbone.View.extend({
                     error: function(error){
                         console.log(error);
                         
-                        amount = Number(o['Amount']);
-                        fee = Number(o['Fee']);
-
-                        amountTotal += amount;
-                        feeTotal += fee;
-
-                        o['Amount'] = amount.toFixed(2);
-                        o['Fee'] = fee.toFixed(2);
-
-                        data = _.extend(o, data);
-
-                        template = _.template(
-                            fun.utils.getTemplate(fun.conf.templates.transRow)
-                        )(data);
-
-                        rows.append(template);
+                        console.log('error, error, error!');
                     }
                 });
 
+                amount = Number(o['Amount']);
+
+                amountTotal += amount;
+
+                o['Amount'] = amount.toFixed(2);
+
                 //get extra info and render row
 
+                data = _.extend(o, data);
+
+                alert(data);
+
+                console.log(data);
+
+                template = _.template(
+                    fun.utils.getTemplate(fun.conf.templates.transRow)
+                )(data);
+
+                rows.append(template);
                 
             });
             // testing now the sum of the stuff
