@@ -48,7 +48,7 @@ fun.conf = {
 
     // CLX conf stuff
     clxUrl: url,
-    clxRecipientAccountId: recipientAccountId
+    clxRecipientAccountId: recipientAccountId,
     clxPartner: 'Preway CR',
     clxCulture: 'en-US',
     clxAppId: '26',
