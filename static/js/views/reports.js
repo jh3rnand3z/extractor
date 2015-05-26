@@ -198,7 +198,7 @@ fun.views.reports = Backbone.View.extend({
             rows,
             totalAmount,
             totalFee,
-            data,
+            data = {},
             template;
 
         console.log('foreach stuff??');
@@ -229,7 +229,12 @@ fun.views.reports = Backbone.View.extend({
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch({
                     success: function(response){
-                        console.log(response.get('cc_info'));
+                        console.log();
+                        data['cc_info'] = response.get('cc_info');
+                        data['holder_name'] = response.get('holder_name');
+                        data['email'] = response.get('email');
+                        data['phone'] = response.get('phone');
+
                     },
                     error: function(error){
                         console.log(error);
@@ -244,7 +249,7 @@ fun.views.reports = Backbone.View.extend({
                 o['Amount'] = amount.toFixed(2);
                 o['Fee'] = fee.toFixed(2);
 
-                data = _.extend(o, {'uuid':'miss', 'account':'misha', 'date':'miss'});
+                data = _.extend(o, data);
 
                 console.log(data);
 
