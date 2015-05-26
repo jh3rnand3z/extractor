@@ -249,6 +249,17 @@ fun.views.reports = Backbone.View.extend({
 
                 transNum = Number(transNum) - 1;
 
+                amount = Number(o['Amount']);
+                fee = Number(o['Fee']);
+
+                amountTotal += amount;
+
+                console.log(amountTotal);
+
+                feeTotal += fee;
+
+                o['Amount'] = amount.toFixed(2);
+
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch({
                     success: function(response){
@@ -259,13 +270,7 @@ fun.views.reports = Backbone.View.extend({
                         data['phone'] = response.get('phone');
                         
 
-                        amount = Number(o['Amount']);
-                        fee = Number(o['Fee']);
-
-                        amountTotal += amount;
-                        feeTotal += fee;
-
-                        o['Amount'] = amount.toFixed(2);
+                       
 
                         data = _.extend(o, data);
 
@@ -285,12 +290,6 @@ fun.views.reports = Backbone.View.extend({
                         data['email'] = 'john@doe.com';
                         data['phone'] = '21255555555';
 
-                        amount = Number(o['Amount']);
-
-                        amountTotal += amount;
-
-                        o['Amount'] = amount.toFixed(2);
-
                         data = _.extend(o, data);
 
                         template = _.template(
@@ -305,6 +304,7 @@ fun.views.reports = Backbone.View.extend({
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
+            console.log(amountTotal);
         } else {
             this.noTransactions();
         }
