@@ -579,6 +579,65 @@ class RangeTransactionsHandler(cuallix.Cuallix, BaseHandler):
 
 
 @content_type_validation
+class ReportTransactionsHandler(cuallix.Cuallix, BaseHandler):
+    '''
+        HTTP request handlers
+
+        Cuallix ReportTransactions
+    '''
+
+    @gen.coroutine
+    def post(self):
+        '''
+            Cuallix Report Transactions
+        '''
+        # post structure
+        struct = yield check_json(self.request.body)
+
+        # format pass ().
+        format_pass = (True if struct else False)
+        if not format_pass:
+            self.set_status(400)
+            self.finish({'JSON':format_pass})
+            return
+
+        # logging new structure
+        logging.info('cuallix report transactions structure {0}'.format(str(struct)))
+
+        # logging request query arguments
+        logging.info('logging request query arguments... {0}'.format(
+            str(self.request.arguments))
+        )
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get account from new struct
+        account = struct.get('account', None)
+
+        # execute the method function stuff
+        report_transactions = yield self.report_transactions(struct)
+
+        # TODO: a little work on error stuff on cuallix API services.
+        
+        if 'error' in report_transactions:
+            scheme = 'payment'
+            reason = {'duplicates': [
+                (scheme, 'account'),
+                (scheme, 'phone_number')
+            ]}
+            message = yield self.let_it_crash(struct, scheme, report_transactions, reason)
+
+            logging.warning(message)
+            self.set_status(400)
+            self.finish(message)
+            return
+
+        self.set_status(201)
+        self.finish(report_transactions)
+
+
+@content_type_validation
 class LoadFundsHandler(cuallix.Cuallix, BaseHandler):
     '''
         HTTP request handlers

@@ -206,7 +206,9 @@ if __name__ == '__main__':
 
             (r'/cuallix/transactions/search/?', cuallix.SearchTransactionsHandler),
 
-            (r'/cuallix/transactions/range/?', cuallix.RangeTransactionsHandler),            
+            (r'/cuallix/transactions/range/?', cuallix.RangeTransactionsHandler),
+
+            (r'/cuallix/transactions/report/?', cuallix.ReportTransactionsHandler),          
 
             (r'/cuallix/transactions/(?P<transaction_uuid>.+)/?', cuallix.TransactionsHandler),
             (r'/cuallix/transactions/?', cuallix.TransactionsHandler),
