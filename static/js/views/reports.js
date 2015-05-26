@@ -132,6 +132,27 @@ fun.views.reports = Backbone.View.extend({
 
         rangetrans.save(rangeDateTransactionPayload, rangeDateCallbacks);
 
+
+        // new report method and stuff
+
+        var reporttrans = new fun.models.reportTransactions();
+
+        var reportCallbacks = {
+            success: function(model, response){
+                console.log(response);
+                console.log('que putas');
+                //fun.instances.reports.renderTransactionLists(response['TransactionList']);
+            },
+            error: function(model, error){
+                console.log(error);
+            }
+        };
+
+        reporttrans.save(rangeDateTransactionPayload, reportCallbacks);
+
+        // end of new report method stuff
+
+
         console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
         startEnd = {
