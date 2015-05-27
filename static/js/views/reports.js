@@ -229,20 +229,26 @@ fun.views.reports = Backbone.View.extend({
 
             _.each(this.transactions, function(o) {
 
-                length = Number(length) - 1;
+                var data = {};
 
-                console.log(o);
+                length = Number(length) - 1;
 
                 var transNum = o['TransactionNum'];
 
-                var data = {};
+                if (transNum){
+                    transNum = transNum.slice(0,6) + transNum.slice(7,12);
+                    transNum = Number(transNum) - 1;
+                    
+                } else {
+                    if (typeof(transNum) === 'undefined'){
+                        transNum = o['Transaction'];
+                        console.log(o);
+                    }
+                }
 
                 data['account'] = 'missing';
                 data['date'] = 'missing';
                 data['uuid'] = 'missing';
-
-                transNum = transNum.slice(0,6) + transNum.slice(7,12);
-                transNum = Number(transNum) - 1;
 
                 amount = Number(o['Amount']);
                 fee = Number(o['Fee']);
