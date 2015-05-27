@@ -131,7 +131,7 @@ fun.views.reports = Backbone.View.extend({
             success: function(model, response){
                 console.log(response);
                 console.log('success in report transaction callback');
-                //fun.instances.reports.renderTransactionLists(response['TransactionList']);
+                fun.instances.reports.renderTransactionLists(response['Rows']);
             },
             error: function(model, error){
                 console.log(error);
@@ -150,8 +150,6 @@ fun.views.reports = Backbone.View.extend({
         reporttrans.save(rangeDateTransactionPayload, reportCallbacks);
 
         // end of new report method stuff
-
-        console.log('outside que putas');
 
         
         //console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
@@ -198,8 +196,6 @@ fun.views.reports = Backbone.View.extend({
     */
     renderTransactionLists: function(transactions){
         'use strict';
-        
-        
         console.log('render transaction lists');
         
         if (transactions) {
