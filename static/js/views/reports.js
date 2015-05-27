@@ -231,6 +231,8 @@ fun.views.reports = Backbone.View.extend({
 
                 length = Number(length) - 1;
 
+                console.log(o);
+
                 var transNum = o['TransactionNum'];
 
                 var data = {};
