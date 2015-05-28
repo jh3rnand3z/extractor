@@ -70,7 +70,7 @@ class Handler(payments.Payments, BaseHandler):
             self.finish(payment)
             return
 
-        logging.info('Get payments function arguments {0} {1} lapse {2} status {3}'.format(start, end, lapse, status))
+        logging.info('GET payments function arguments {0} {1} lapse {2} status {3}'.format(start, end, lapse, status))
 
         if self.current_user:
             user = self.current_user

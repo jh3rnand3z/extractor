@@ -41,7 +41,7 @@ fun.strings = {
     weeks: "Weeks",
     months: "Months",
     years: "Years",
-
+    TransactionNum: "Transaction Number",
     funds: "Funds",
     address: "Address",
     city: "City",

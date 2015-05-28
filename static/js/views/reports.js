@@ -243,6 +243,7 @@ fun.views.reports = Backbone.View.extend({
                     if (typeof(transNum) === 'undefined'){
                         transNum = o['Transaction'];
                         data['Summary'] = o['Date'] + ' - ' + o['transactionType'];
+                        data['TransactionNum'] = transNum;
                     }
                 }
 
