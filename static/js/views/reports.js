@@ -221,6 +221,8 @@ fun.views.reports = Backbone.View.extend({
 
         length = this.transactions.length;
 
+        var approved = translate("approved");
+        var denied = translate("denied");
         var amount, amountTotal = 0;
         var fee, feeTotal = 0;
 
@@ -270,6 +272,7 @@ fun.views.reports = Backbone.View.extend({
                         data['holder_name'] = response.get('holder_name');
                         data['email'] = response.get('email');
                         data['phone'] = response.get('phone');
+                        data['status'] = approved
                         
                         data = _.extend(o, data);
 
