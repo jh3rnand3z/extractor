@@ -247,6 +247,8 @@ fun.views.reports = Backbone.View.extend({
                 if (transNum){
                     transNum = transNum.slice(0,6) + transNum.slice(7,12);
                     transNum = Number(transNum) - 1;
+                    status = 'APPROVED';
+                    data['status'] = statusMap[status];
                     
                 } else {
                     if (typeof(transNum) === 'undefined'){
