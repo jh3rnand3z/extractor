@@ -254,9 +254,7 @@ fun.views.reports = Backbone.View.extend({
                         status = o['TransactionStatus'];
                         data['Summary'] = o['Date'] + ' - ' + o['TransactionType'];
                         data['TransactionNum'] = transNum;
-                        console.log(status);
-                        alert(status);
-
+                        data['status'] = statusMap[status];
                     }
                 }
 
@@ -283,7 +281,7 @@ fun.views.reports = Backbone.View.extend({
                         data['holder_name'] = response.get('holder_name');
                         data['email'] = response.get('email');
                         data['phone'] = response.get('phone');
-                        data['status'] = approved;
+                        
                         
                         data = _.extend(o, data);
 
@@ -302,7 +300,7 @@ fun.views.reports = Backbone.View.extend({
                         data['holder_name'] = 'John Doe';
                         data['email'] = 'john@doe.com';
                         data['phone'] = '21255555555';
-                        data['status'] = denied;
+                        
 
                         data = _.extend(o, data);
 
