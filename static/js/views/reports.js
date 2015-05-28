@@ -217,7 +217,15 @@ fun.views.reports = Backbone.View.extend({
             totalAmount,
             totalFee,
             data = {},
+            status,
             template;
+
+        var statusMap = {
+            'CANCELLED': 'Denied',
+            '': '',
+            '': '',
+            '': '',
+        };
 
         length = this.transactions.length;
 
@@ -244,8 +252,12 @@ fun.views.reports = Backbone.View.extend({
                 } else {
                     if (typeof(transNum) === 'undefined'){
                         transNum = o['Transaction'];
+                        status = o['TransactionStatus'];
                         data['Summary'] = o['Date'] + ' - ' + o['TransactionType'];
                         data['TransactionNum'] = transNum;
+                        console.log(status);
+                        alert(status);
+
                     }
                 }
 
