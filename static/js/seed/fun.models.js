@@ -3,24 +3,22 @@
 */
 
 /*
-
-    The token needs to be passed in every request using the Authorization header.
-
-    The authorization scheme for this token will be "CLXTKN".
-
-    A request Authorization header must be similar to this one: 
-
-    "Authorization: CLXTKN token_value"
-
-*/
-
-/*
  * Store a version of Backbone.sync to call from the
  * modified version we create
  */
 var backboneSync = Backbone.sync;
 
 Backbone.sync = function (method, model, options) {
+
+    var methodMap = {
+        'create':  'POST',
+        'upgrate': 'PUT',
+        'update':  'PATCH',
+        'delete':  'DELETE',
+        'read':    'GET'
+    };
+
+    options || (options = {});
     /*
      * The jQuery 'ajax' method includes a 'headers' option
      * which lets you set any headers you like
@@ -35,6 +33,29 @@ Backbone.sync = function (method, model, options) {
          */
         'Authorization': 'CLXTKN ' + fun.conf.clxTKN
     };
+
+    /*
+     * This pattern delegates API calls to a new object (extractor),
+     * which could be a Backbone style class that supports events.
+     * This can be safelt tested separately, and potentially 
+     * used with libraries other than Backbone.
+     */
+    switch (method) {
+        case 'create':
+            return extractor.create(model, success, error);
+        case 'upgrate':
+            return extractor.upgrate(model, success, error);
+        case 'update':
+            return extractor.update(model, success, error);
+        case 'delete':
+            return extractor.destroy(model, success, error);
+        case 'read':
+            if (model.attributes[model,idAttribute]) {
+                return extractor.find(model, success, error);
+            } else {
+                return extractor.findAll(model, success, error);
+            }
+    }
     /*
      * Call the stored original Backbone.sync method with
      * extra headers argument added
