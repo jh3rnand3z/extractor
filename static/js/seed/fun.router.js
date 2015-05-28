@@ -254,10 +254,15 @@ fun.Router = Backbone.Router.extend({
     reports: function(page){
         'use strict';
         if(fun.utils.loggedIn()){
+            var reports = translate('reports');
 
             fun.utils.hideAll();
 
             fun.instances.navbar.render();
+
+            fun.instances.subheader.render(reports);
+
+            fun.instances.subheader.renderHeadNavReports();
 
             fun.instances.reports.render();
         } else {
