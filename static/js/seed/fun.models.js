@@ -50,7 +50,7 @@ Backbone.sync = function (method, model, options) {
         case 'delete':
             return extractor.destroy(model, success, error);
         case 'read':
-            if (model.attributes[model,idAttribute]) {
+            if (model.attributes[model.idAttribute]) {
                 return extractor.find(model, success, error);
             } else {
                 return extractor.findAll(model, success, error);
