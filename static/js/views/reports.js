@@ -151,7 +151,7 @@ fun.views.reports = Backbone.View.extend({
 
         // end of new report method stuff
 
-        
+
         //console.log(fun.utils.format('start %s and %s end unix timestamps', this.start, this.end));
 
         //startEnd = {
@@ -162,7 +162,7 @@ fun.views.reports = Backbone.View.extend({
         //startEndLapse = {
         //    start:this.start,
         //    end:this.end,
-            
+
             // get time lapse from dom
             // lapse:this.lapse,
 
