@@ -39,7 +39,7 @@ Backbone.sync = function (method, model, options) {
      * which could be a Backbone style class that supports events.
      * This can be safelt tested separately, and potentially 
      * used with libraries other than Backbone.
-     */
+     
     switch (method) {
         case 'create':
             return extractor.create(model, success, error);
@@ -56,6 +56,8 @@ Backbone.sync = function (method, model, options) {
                 return function (model, success, error){};
             }
     }
+    */
+    
     /*
      * Call the stored original Backbone.sync method with
      * extra headers argument added
