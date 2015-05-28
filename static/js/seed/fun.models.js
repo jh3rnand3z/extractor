@@ -53,7 +53,7 @@ Backbone.sync = function (method, model, options) {
             if (model.attributes[model.idAttribute]) {
                 return extractor.find(model, success, error);
             } else {
-                return extractor.findAll(model, success, error);
+                return function (model, success, error){};
             }
     }
     /*
