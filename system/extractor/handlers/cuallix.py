@@ -858,7 +858,7 @@ class SendErrorHandler(cuallix.Cuallix, BaseHandler):
             'authorization': query_args.get('authorization', [None])[0],
             'culture': 'en-US',
             'application_id': 26,
-            'result': query_args.get('result', [None])[0]
+            'result': query_args.get('result', [None])[0],
             'checked': False
         }
 
