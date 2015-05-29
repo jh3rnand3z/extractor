@@ -277,15 +277,11 @@ fun.views.navbar = Backbone.View.extend({
                 }
             }
         };
-
+/*
         assignCallbacks = {
             success: function(model, response){
                 mangoPayload['AccountNum'] = response['AccountNum'];
-                mangoModel = new fun.models.Account();
-                mangoModel.save(
-                    mangoPayload,
-                    callbacks
-                );
+                
             },
             error: function(model, error){
                 console.log('CLX error on assign callbacks!');
@@ -334,7 +330,7 @@ fun.views.navbar = Backbone.View.extend({
                 "Password": password
             }
         };
-
+*/
         mangoPayload = {
             account: account,
             password: password,
@@ -347,8 +343,14 @@ fun.views.navbar = Backbone.View.extend({
         validForm = $('#agent-form').valid();
         if (validForm){
 
-            this.clxCustomerRegister = new fun.models.customerRegister();
-            this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
+            mangoModel = new fun.models.Account();
+            mangoModel.save(
+                mangoPayload,
+                callbacks
+            );
+
+            //this.clxCustomerRegister = new fun.models.customerRegister();
+            //this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
         }
     },
 
