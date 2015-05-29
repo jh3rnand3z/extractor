@@ -45,8 +45,13 @@ fun.views.navbar = Backbone.View.extend({
             //this.phoneNumber = this.$('#signup_phone');
 
             this.PhoneNumber = this.$('#signup_phone');
+            this.AgentPhoneNumber = this.$('#agent_phone');
 
             this.PhoneNumber.intlTelInput({
+                utilsScript: "static/js/plugins/libphonenumber/utils.js"
+            });
+
+            this.AgentPhoneNumber.intlTelInput({
                 utilsScript: "static/js/plugins/libphonenumber/utils.js"
             });
 
@@ -204,11 +209,11 @@ fun.views.navbar = Backbone.View.extend({
         confirmPassword = this.confirmPassword.val();
         email = this.email.val();
         
-        countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+        countryCode = this.AgentPhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
 
-        cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+        cleanNumber = this.AgentPhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
-        phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+        phoneNumber = this.AgentPhoneNumber.intlTelInput("getNumber");
         
         // form validation rules
         rules = {
