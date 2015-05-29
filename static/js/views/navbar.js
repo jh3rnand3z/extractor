@@ -143,7 +143,9 @@ fun.views.navbar = Backbone.View.extend({
         // test this shit out
         $('#loginModal').modal('hide');
         $('#signupModal').modal({
-            'show': true
+            'show': true,
+            'backdrop': 'static',
+            'keyboard': false
         });
     },
 
