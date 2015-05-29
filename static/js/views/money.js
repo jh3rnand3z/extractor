@@ -382,9 +382,9 @@ fun.views.money = Backbone.View.extend({
             userId = fun.conf.clxUserId;
         }
 
-        countryCode = localStorage.getItem("UserCountryCode");
+        countryCode = localStorage.getItem("clientCountryCode");
 
-        cellPhone = localStorage.getItem("UserPhoneNumber").substr(1);
+        cellPhone = localStorage.getItem("clientPhone").substr(1);
 
         stuff = {
             "Culture": fun.conf.clxCulture,

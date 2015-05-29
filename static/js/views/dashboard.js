@@ -372,14 +372,12 @@ fun.views.dashboard = Backbone.View.extend({
 
         phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
 
-        
         // js split space string
         var nameSplit = client_holder.split(' ')
         var firstName = nameSplit[0];
         var lastName = nameSplit[1];
         var password = uuid.v4();
 
-        
         var clxCustomerPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
@@ -397,29 +395,11 @@ fun.views.dashboard = Backbone.View.extend({
             success: function(model, response){
                 console.log('CLX customer register callback success!');
                 console.log(response)
-                var assignPayload = {
-                    "Culture": fun.conf.clxCulture,
-                    "ApplicationId": fun.conf.clxAppId,
-                    "UserId": response['UserId']
-                };
-                
-                stuff = new fun.models.Assign();
-                stuff.save(assignPayload, assignCallbacks);
             },
             error: function(model, error){
                 console.log('CLX Error');
             }
         };
-
-        var assignCallbacks = {
-            success: function(model, response){
-                console.log('CLX assign callback success!');
-                console.log(response);
-            },
-            error: function(model, error){
-                console.log('CLX error on assign callback!');
-            }
-        }
 
         console.log(clxCustomerPayload);
 
@@ -431,11 +411,6 @@ fun.views.dashboard = Backbone.View.extend({
 
         this.clxCustomerRegister = new fun.models.customerRegister();
         this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
-
-        //this.clientCCHolder = localStorage.getItem("clientCCHolder");
-        //this.clientCCInfo = localStorage.getItem("clientCCInfo");
-        //this.clientEmail = localStorage.getItem("clientEmail");
-        //this.clientPhone = localStorage.getItem("clientPhone");
 
         $('#clientModal').modal('hide');
     }
