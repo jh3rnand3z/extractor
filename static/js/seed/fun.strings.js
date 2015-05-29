@@ -9,6 +9,7 @@ fun.strings = {
     approved: "Approved",
     addPin: "Add Pin",
     denied: "Denied",
+    createSubAccount: "Create SubAccount",
     manager: "Manager",
     admin: "Admin",
     nameOnCard: "Name on Card",
