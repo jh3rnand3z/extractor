@@ -360,6 +360,23 @@ fun.views.dashboard = Backbone.View.extend({
         clientEmail.html(client_email);
         clientPhone.html(client_phone);
 
+        console.log(client_holder.split(' '));
+
+        // js split space string
+
+        var clxCustomerPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "Customer": {
+                "CellPhone": phoneNumber.substr(1),
+                "CountryCode": countryCode,
+                "Email": email,
+                "LastName": lastName, 
+                "Name": firstName,
+                "Password": password
+            }
+        };
+
         localStorage.setItem('clientCCHolder', client_holder);
         localStorage.setItem('clientCCInfo', client_cc_info);
         localStorage.setItem('clientEmail', client_email);

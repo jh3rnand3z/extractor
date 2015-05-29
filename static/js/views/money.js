@@ -1,4 +1,3 @@
-
 var stuff = {};
 var settle = {};
 var search = {};
@@ -426,7 +425,6 @@ fun.views.money = Backbone.View.extend({
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
             "UserId": userId
-            //"TransactionNum": "2341100093"
         };
 
         searchTransCallback = {
@@ -474,8 +472,6 @@ fun.views.money = Backbone.View.extend({
                 clientEmail = localStorage.getItem("clientEmail"); 
 
                 clientPhone = localStorage.getItem("clientPhone");
-
-                //console.log(clientCCHolder, clientCCInfo, clientEmail, clientPhone);
 
                 var newRandomStuff = {
                     'holder_name': clientCCHolder,
