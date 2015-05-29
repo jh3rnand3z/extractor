@@ -108,14 +108,7 @@ fun.views.reports = Backbone.View.extend({
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
-        var rangeDateTransactionPayload = {
-            "Culture": fun.conf.clxCulture,
-            "ApplicationId": fun.conf.clxAppId,
-            "UserId" : fun.conf.clxUserId,
-            "DateFrom" : clxStart,
-            "DateTo" : clxEnd
-        };
-
+/*
         var rangeDateCallbacks = {
             success: function(model, response){
                 //console.log(response);
@@ -127,10 +120,23 @@ fun.views.reports = Backbone.View.extend({
             }
         };
 
+        var rangetrans = new fun.models.DateRange();
+
+        rangetrans.save(reportPayload, rangeDateCallbacks);
+*/
+
+        var reportPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "UserId" : fun.conf.clxUserId,
+            "DateFrom" : clxStart,
+            "DateTo" : clxEnd
+        };
+
         var reportCallbacks = {
             success: function(model, response){
-                //console.log(response);
                 console.log('success in report transaction callback');
+                //console.log(response);
                 fun.instances.reports.renderTransactionLists(response['Rows']);
             },
             error: function(model, error){
@@ -138,16 +144,11 @@ fun.views.reports = Backbone.View.extend({
             }
         };
 
-        var rangetrans = new fun.models.DateRange();
-
-        rangetrans.save(rangeDateTransactionPayload, rangeDateCallbacks);
-
-
         // new report method and stuff
 
         var reporttrans = new fun.models.reportTransactions();
 
-        reporttrans.save(rangeDateTransactionPayload, reportCallbacks);
+        reporttrans.save(reportPayload, reportCallbacks);
 
         // end of new report method stuff
 
