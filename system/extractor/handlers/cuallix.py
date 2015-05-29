@@ -853,12 +853,12 @@ class SendErrorHandler(cuallix.Cuallix, BaseHandler):
 
         struct = {
             'uuid': str(uuid.uuid4()),
-            'user_id': query_args.get('user', ['unknown'])[0],
-            'transaction': query_args.get('transaction')[0],
-            'authorization': query_args.get('authorization', None)[0],
+            'user_id': query_args.get('user', [None])[0],
+            'transaction': query_args.get('transaction', [None])[0],
+            'authorization': query_args.get('authorization', [None])[0],
             'culture': 'en-US',
             'application_id': 26,
-
+            'result': query_args.get('result', [None])[0]
             'checked': False
         }
 
