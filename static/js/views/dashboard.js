@@ -389,12 +389,41 @@ fun.views.dashboard = Backbone.View.extend({
             }
         };
 
+        var clxCallbacks = {
+            success: function(model, response){
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                
+                stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCallbacks);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        var assignCallbacks = {
+            success: function(model, response){
+                console.log('CLX assign callback success!');
+                console.log(response);
+            },
+            error: function(model, error){
+                console.log('CLX error on assign callback!');
+            }
+        }
+
         console.log(clxCustomerPayload);
 
         localStorage.setItem('clientCCHolder', client_holder);
         localStorage.setItem('clientCCInfo', client_cc_info);
         localStorage.setItem('clientEmail', client_email);
         localStorage.setItem('clientPhone', client_phone);
+
+        this.clxCustomerRegister = new fun.models.customerRegister();
+        this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
 
         //this.clientCCHolder = localStorage.getItem("clientCCHolder");
         //this.clientCCInfo = localStorage.getItem("clientCCInfo");
