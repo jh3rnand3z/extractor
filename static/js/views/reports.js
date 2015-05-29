@@ -262,63 +262,64 @@ fun.views.reports = Backbone.View.extend({
                         data['status'] = statusMap[status];
 
                         // check the status and break
-                        console.log();
-                        if (typeof(statusMap[status]) === 'undefined'){
-                            break;
-                        }
+                        console.log(o);
+
                     }
                 }
 
-                data['account'] = 'missing';
-                data['date'] = 'missing';
-                data['uuid'] = 'missing';
+                if (typeof(statusMap[status]) !== 'undefined'){
+                    data['account'] = 'missing';
+                    data['date'] = 'missing';
+                    data['uuid'] = 'missing';
 
-                amount = Number(o['Amount']);
-                fee = Number(o['Fee']);
+                    amount = Number(o['Amount']);
+                    fee = Number(o['Fee']);
 
-                amountTotal += amount;
+                    amountTotal += amount;
 
-                feeTotal += fee;
+                    feeTotal += fee;
 
-                o['Amount'] = amount.toFixed(2);
+                    o['Amount'] = amount.toFixed(2);
 
-                var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
-                transinfo.fetch({
-                    success: function(response){
-                        data['cc_info'] = response.get('cc_info');
-                        data['holder_name'] = response.get('holder_name');
-                        data['email'] = response.get('email');
-                        data['phone'] = response.get('phone');
-                        
-                        
-                        data = _.extend(o, data);
+                    var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
+                    transinfo.fetch({
+                        success: function(response){
+                            data['cc_info'] = response.get('cc_info');
+                            data['holder_name'] = response.get('holder_name');
+                            data['email'] = response.get('email');
+                            data['phone'] = response.get('phone');
+                            
+                            
+                            data = _.extend(o, data);
 
-                        console.log(data);
+                            console.log(data);
 
-                        template = _.template(
-                            fun.utils.getTemplate(fun.conf.templates.transRow)
-                        )(data);
+                            template = _.template(
+                                fun.utils.getTemplate(fun.conf.templates.transRow)
+                            )(data);
 
-                        rows.append(template);
+                            rows.append(template);
 
-                    },
-                    error: function(error){
-                        //console.log(error);
-                        data['cc_info'] = 'Unknown';
-                        data['holder_name'] = 'John Doe';
-                        data['email'] = 'john@doe.com';
-                        data['phone'] = '21255555555';
-                        
+                        },
+                        error: function(error){
+                            //console.log(error);
+                            data['cc_info'] = 'Unknown';
+                            data['holder_name'] = 'John Doe';
+                            data['email'] = 'john@doe.com';
+                            data['phone'] = '21255555555';
+                            
 
-                        data = _.extend(o, data);
+                            data = _.extend(o, data);
 
-                        template = _.template(
-                            fun.utils.getTemplate(fun.conf.templates.transRow)
-                        )(data);
+                            template = _.template(
+                                fun.utils.getTemplate(fun.conf.templates.transRow)
+                            )(data);
 
-                        rows.append(template);
-                    }
-                });
+                            rows.append(template);
+                        }
+                    });
+                }
+                
             });
 
             // testing now the sum of the stuff
