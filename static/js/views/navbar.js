@@ -41,7 +41,15 @@ fun.views.navbar = Backbone.View.extend({
             this.firstName = this.$('#signup_firstname');
             this.lastName = this.$('#signup_lastname');
             this.email = this.$('#signup_email');
-            
+
+            // Cache the DOM stuff
+            this.agentError = this.$('#signup-alert');
+            // Form inputs
+            this.agentAccount = this.$('#agent_username');
+            this.agentFirstName = this.$('#agent_firstname');
+            this.agentLastName = this.$('#agent_lastname');
+            this.agentEmail = this.$('#agent_email');
+
             //this.phoneNumber = this.$('#signup_phone');
 
             this.PhoneNumber = this.$('#signup_phone');
@@ -57,6 +65,11 @@ fun.views.navbar = Backbone.View.extend({
 
             this.password = this.$('#signup_password');
             this.confirmPassword = this.$('#confirm_password');
+
+            this.agentPassword = this.$('#agent_password');
+            this.confirmAgentPassword = this.$('#confirm_agent_password');
+
+
         }
 
         this.$el.show();
@@ -202,12 +215,12 @@ fun.views.navbar = Backbone.View.extend({
         event.preventDefault();
 
         agentError = this.agentError;
-        account = this.account.val();
-        firstName = this.firstName.val();
-        lastName = this.lastName.val();
-        password = this.password.val();
-        confirmPassword = this.confirmPassword.val();
-        email = this.email.val();
+        account = this.agentAccount.val();
+        firstName = this.agentFirstName.val();
+        lastName = this.agentLastName.val();
+        password = this.agentPassword.val();
+        confirmPassword = this.confirmAgentPassword.val();
+        email = this.agentEmail.val();
         
         countryCode = this.AgentPhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
 
