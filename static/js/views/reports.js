@@ -260,6 +260,9 @@ fun.views.reports = Backbone.View.extend({
                         data['Summary'] = o['Date'] + ' - ' + o['TransactionType'];
                         data['TransactionNum'] = transNum;
                         data['status'] = statusMap[status];
+
+                        // check the status and break
+                        console.log(statusMap[status]);
                     }
                 }
 
