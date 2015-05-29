@@ -23,7 +23,7 @@ fun.views.landing = Backbone.View.extend({
         this.$el.html(template);
         this.$el.show();
 
-        $('#signupModal').modal({
+        $('#loginModal').modal({
             'show': true,
             'backdrop': 'static',
             'keyboard': true
