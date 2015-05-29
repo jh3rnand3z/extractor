@@ -391,6 +391,8 @@ fun.views.dashboard = Backbone.View.extend({
 
         var clxCallbacks = {
             success: function(model, response){
+                console.log('CLX customer register callback success!');
+                console.log(response)
                 var assignPayload = {
                     "Culture": fun.conf.clxCulture,
                     "ApplicationId": fun.conf.clxAppId,
