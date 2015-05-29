@@ -824,6 +824,58 @@ class RequestPaymentURLHandler(cuallix.Cuallix, BaseHandler):
         self.finish(request_url)
 
 
+class SendErrorHandler(cuallix.Cuallix, BaseHandler):
+    '''
+        HTTP request handlers
+
+        Cuallix SendError
+    '''
+    @gen.coroutine
+    def get(self):
+        '''
+            Get stuff from cuallix before send money
+        '''
+         # logging request query arguments
+        logging.info('request query arguments {0}'.format(self.request.arguments))
+
+        # request query arguments
+        query_args = self.request.arguments
+
+        # get the current frontend logged username
+        username = self.get_current_username()
+
+        # if the user don't provide an account we use the frontend username as last resort
+        #account = (query_args.get('account', [username])[0] if not account else None)
+
+        #logging.info(account)
+
+        # write temporal stuff in a db then when jose click on confirm re-load the stuff.
+
+        struct = {
+            'uuid': str(uuid.uuid4()),
+            'user_id': query_args.get('user', ['unknown'])[0],
+            'transaction': query_args.get('transaction')[0],
+            'authorization': query_args.get('authorization', None)[0],
+            'culture': 'en-US',
+            'application_id': 26,
+
+            'checked': False
+        }
+
+        # search customer to renew the token
+
+        # to renew the stuff we need a phone_numer and country code.
+
+        # execute get_payment_url function
+        new_transaction = yield self.new_transaction(struct)
+
+        # then send money
+
+        #self.finish({'args':new_transaction})
+
+        self.redirect('http://demo.techgcs.com#error')
+
+
 #@content_type_validation
 class SendMoneyHandler(cuallix.Cuallix, BaseHandler):
     '''
