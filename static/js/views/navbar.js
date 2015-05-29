@@ -5,7 +5,8 @@ fun.views.navbar = Backbone.View.extend({
         "click #fun-signup": 'signupPopup',
         "click #fun-login": 'loginPopup',
         "click #signup-btn": 'signup',
-        "click #new-subaccount": 'signupPopup',
+        "click #new-subaccount": 'agentPopup',
+        "click #new-agent-btn": 'create',
         "click #login-btn": 'login'
 	},
 
@@ -144,6 +145,209 @@ fun.views.navbar = Backbone.View.extend({
         $('#signupModal').modal({
             'show': true
         });
+    },
+
+    agentPopup: function(event){
+        event.preventDefault();
+        console.log("agent popup event");
+
+        // test this shit out
+        $('#loginModal').modal('hide');
+        $('#signupModal').modal('hide');
+        $('#agentModal').modal({
+            'show': true
+        });
+    },
+
+    create: function(event){
+        'use strict';
+        var agentError,
+            view = this,
+            account,
+            firstName,
+            lastName,
+            password,
+            confirmPassword,
+            
+            email,
+            phoneNumber,
+            countryCode,
+            cleanNumber,
+
+            rules,
+            validationRules,
+
+            stuff,
+            callbacks,
+
+            clxCustomerPayload,
+            
+            clxPayload,
+            clxCallbacks,
+            
+            assignPayload,
+            assignCallbacks,
+            
+            mangoModel,
+            mangoPayload,
+            validForm;
+        
+        event.preventDefault();
+
+        signupError = this.signupError;
+        account = this.account.val();
+        firstName = this.firstName.val();
+        lastName = this.lastName.val();
+        password = this.password.val();
+        confirmPassword = this.confirmPassword.val();
+        email = this.email.val();
+        
+        countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+
+        cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+
+        phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+        
+        // form validation rules
+        rules = {
+            rules: {
+                agent_username: {
+                    minlength: 2,
+                    required: true
+                },
+                agent_lastname: {
+                    minlength: 2,
+                    required: true
+                },
+                agent_firstname: {
+                    minlength: 2,
+                    required: true
+                },
+                agent_email: {
+                    required: true,
+                    email: true
+                },
+                agent_phone: {
+                    required: true,
+                    minlength: 8
+                },
+                agent_password: {
+                    minlength: 8,
+                    required: true
+                },
+                agent_password: {
+                    required: false,
+                    minlength: 8,
+                    equalTo: '#agent_password'
+                    
+                }
+            }
+        }
+        validationRules = $.extend(rules, fun.utils.validationRules);
+
+        $('#agent-form').validate(validationRules);
+        
+        // new user account callbacks
+        callbacks = {
+            success: function(){
+                // Clear the stuff from the inputs ;)
+                view.$('#agent_username').val('');
+                view.$('#agent_email').val('');
+                view.$('#agent_password').val('');
+                view.$('#agent_password').val('');
+                view.$('#agent_phone').val('');
+
+                signupError.hide();
+            },
+
+            error: function(model, error){
+                // Catch duplicate errors or some random stuff
+                agentError.show();
+                // TODO: on error add class error and label to the input field
+                if (error.responseText.indexOf('account') != -1){
+                    agentError.find('p').html('Username is already taken.');
+                }
+                else if (error.responseText.indexOf('email') != -1){
+                    agentError.find('p').html('Email is invalid or already taken.');
+                }
+                else {
+                    agentError.find('p').html('what daa!?');
+                }
+            }
+        };
+
+        assignCallbacks = {
+            success: function(model, response){
+                mangoPayload['AccountNum'] = response['AccountNum'];
+                mangoModel = new fun.models.Account();
+                mangoModel.save(
+                    mangoPayload,
+                    callbacks
+                );
+            },
+            error: function(model, error){
+                console.log('CLX error on assign callbacks!');
+            }
+        }
+
+        clxCallbacks = {
+            success: function(model, response){
+                assignPayload = {
+                    "Culture": fun.conf.clxCulture,
+                    "ApplicationId": fun.conf.clxAppId,
+                    "UserId": response['UserId']
+                };
+                mangoPayload['UserId'] = response['UserId'];
+
+                stuff = new fun.models.Assign();
+                stuff.save(assignPayload, assignCallbacks);
+            },
+            error: function(model, error){
+                console.log('CLX Error');
+            }
+        };
+
+        clxPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "User": {
+                "CellPhone": phoneNumber.substr(1),
+                "CountryCode": countryCode,
+                "Email": email,
+                "LastName": lastName, 
+                "Name": firstName,
+                "Password": password
+            }
+        };
+
+        clxCustomerPayload = {
+            "Culture": fun.conf.clxCulture,
+            "ApplicationId": fun.conf.clxAppId,
+            "Customer": {
+                "CellPhone": phoneNumber.substr(1),
+                "CountryCode": countryCode,
+                "Email": email,
+                "LastName": lastName, 
+                "Name": firstName,
+                "Password": password
+            }
+        };
+
+        mangoPayload = {
+            account: account,
+            password: password,
+            email: email,
+            phone_number: phoneNumber,
+            country_code: countryCode
+        };
+        
+        // check for a valid form and create the new user account
+        validForm = $('#agent-form').valid();
+        if (validForm){
+
+            this.clxCustomerRegister = new fun.models.customerRegister();
+            this.clxCustomerRegister.save(clxCustomerPayload, clxCallbacks);
+        }
     },
 
     // missing this.[signupError, account, password, confirmPassword, email, etc] 

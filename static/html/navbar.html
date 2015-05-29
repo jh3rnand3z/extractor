@@ -30,7 +30,54 @@
 
     </nav>
 
+<!-- signup Modal popup -->
+<div class="modal fade" id="subaccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <h4 class="modal-title" id="myModalLabel"><%= translate("createSubAccount") %></h4>
+            </div>
+            <div class="modal-body">
 
+                <form id="agent-form" class="form-signup" novalidate="novalidate">
+
+                <div class="form-group">
+                    <input type="text" id="agent_username" name="agent_username" class="form-control" placeholder="<%= translate("username") %>">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="signup_firstname" name="signup_firstname" class="form-control" placeholder="<%= translate("firstName") %>">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="agent_lastname" name="agent_lastname" class="form-control" placeholder="<%= translate("lastName") %>">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="agent_email" name="agent_email" class="form-control" placeholder="<%= translate("email") %>">
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="agent_phone" name="agent_phone" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="agent_password" name="agent_password" placeholder="<%= translate("password") %>"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="<%= translate("confirmPassword") %>"/>
+                </div>
+            </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button id="new-agent-btn" class="btn btn-lg btn-primary btn-block" type="submit"><%= translate("create") %></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- signup Modal popup -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -38,7 +85,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                <h4 class="modal-title" id="myModalLabel"><%= translate("createSubAccout") %></h4>
+                <h4 class="modal-title" id="myModalLabel"><%= translate("createYourUserAccount") %></h4>
             </div>
             <div class="modal-body">
 
@@ -75,7 +122,8 @@
                 
             </div>
             <div class="modal-footer">
-                <button id="signup-btn" class="btn btn-lg btn-primary btn-block" type="submit"><%= translate("create") %></button>
+                <button id="signup-btn" class="btn btn-lg btn-primary btn-block" type="submit"><%= translate("signUp") %></button>
+                <button id="fun-login" type="button" class="btn btn-lg btn-default btn-block"><%= translate("login") %></button>
             </div>
         </div>
     </div>
