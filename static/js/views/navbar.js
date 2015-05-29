@@ -5,7 +5,7 @@ fun.views.navbar = Backbone.View.extend({
         "click #fun-signup": 'signupPopup',
         "click #fun-login": 'loginPopup',
         "click #signup-btn": 'signup',
-        "click #new-subaccount": 'signup',
+        "click #new-subaccount": 'signupPopup',
         "click #login-btn": 'login'
 	},
 
