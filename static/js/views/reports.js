@@ -273,8 +273,6 @@ fun.views.reports = Backbone.View.extend({
 
                 o['Amount'] = amount.toFixed(2);
 
-                console.log(o);
-
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch({
                     success: function(response){
