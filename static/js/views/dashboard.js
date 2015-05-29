@@ -370,8 +370,10 @@ fun.views.dashboard = Backbone.View.extend({
 
         
         // js split space string
-
-        console.log(client_holder.split(' '));
+        var nameSplit = client_holder.split(' ')
+        var firstName = nameSplit[0];
+        var lastName = nameSplit[1];
+        var password = uuid.v4();
 
         
         var clxCustomerPayload = {
@@ -380,12 +382,14 @@ fun.views.dashboard = Backbone.View.extend({
             "Customer": {
                 "CellPhone": phoneNumber.substr(1),
                 "CountryCode": countryCode,
-                "Email": email,
+                "Email": client_email,
                 "LastName": lastName, 
                 "Name": firstName,
                 "Password": password
             }
         };
+
+        console.log(clxCustomerPayload);
 
         localStorage.setItem('clientCCHolder', client_holder);
         localStorage.setItem('clientCCInfo', client_cc_info);
