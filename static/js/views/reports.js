@@ -136,7 +136,6 @@ fun.views.reports = Backbone.View.extend({
         var reportCallbacks = {
             success: function(model, response){
                 console.log('success in report transaction callback');
-                //console.log(response);
                 fun.instances.reports.renderTransactionLists(response['Rows']);
             },
             error: function(model, error){
@@ -198,8 +197,10 @@ fun.views.reports = Backbone.View.extend({
     renderTransactionLists: function(transactions){
         'use strict';
         console.log('render transaction lists');
+
         
         if (transactions) {
+            console.log(transactions);
             this.transactions = transactions;
         }
 
