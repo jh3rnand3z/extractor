@@ -223,7 +223,8 @@ fun.views.reports = Backbone.View.extend({
         var statusMap = {
             'CANCELLED': 'Denied',
             'APPROVED': 'Approved',
-            'DENIED': 'Denied'
+            'DENIED': 'Denied',
+            'AUTHORISED': 'Approved'
         };
 
         length = this.transactions.length;
