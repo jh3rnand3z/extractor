@@ -262,7 +262,10 @@ fun.views.reports = Backbone.View.extend({
                         data['status'] = statusMap[status];
 
                         // check the status and break
-                        console.log(statusMap[status]);
+                        console.log();
+                        if (typeof(statusMap[status]) === 'undefined'){
+                            break;
+                        }
                     }
                 }
 
