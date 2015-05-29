@@ -278,6 +278,7 @@ fun.views.navbar = Backbone.View.extend({
                 view.$('#agent_phone').val('');
 
                 signupError.hide();
+                $('#agentModal').modal('hide');
             },
 
             error: function(model, error){
