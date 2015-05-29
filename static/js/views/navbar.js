@@ -272,9 +272,11 @@ fun.views.navbar = Backbone.View.extend({
             success: function(){
                 // Clear the stuff from the inputs ;)
                 view.$('#agent_username').val('');
+                view.$('#agent_firstname').val('');
+                view.$('#agent_lastname').val('');
                 view.$('#agent_email').val('');
                 view.$('#agent_password').val('');
-                view.$('#agent_password').val('');
+                view.$('#confirm_agent_password').val('');
                 view.$('#agent_phone').val('');
 
                 signupError.hide();
