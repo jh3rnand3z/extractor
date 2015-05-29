@@ -118,7 +118,7 @@ fun.views.reports = Backbone.View.extend({
 
         var rangeDateCallbacks = {
             success: function(model, response){
-                console.log(response);
+                //console.log(response);
                 console.log('success in range date callback');
                 fun.instances.reports.renderTransactionLists(response['TransactionList']);
             },
@@ -129,7 +129,7 @@ fun.views.reports = Backbone.View.extend({
 
         var reportCallbacks = {
             success: function(model, response){
-                console.log(response);
+                //console.log(response);
                 console.log('success in report transaction callback');
                 fun.instances.reports.renderTransactionLists(response['Rows']);
             },
@@ -276,7 +276,6 @@ fun.views.reports = Backbone.View.extend({
                 var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
                 transinfo.fetch({
                     success: function(response){
-                        console.log();
                         data['cc_info'] = response.get('cc_info');
                         data['holder_name'] = response.get('holder_name');
                         data['email'] = response.get('email');
