@@ -391,7 +391,7 @@ fun.views.dashboard = Backbone.View.extend({
 
         var clxCallbacks = {
             success: function(model, response){
-                assignPayload = {
+                var assignPayload = {
                     "Culture": fun.conf.clxCulture,
                     "ApplicationId": fun.conf.clxAppId,
                     "UserId": response['UserId']
