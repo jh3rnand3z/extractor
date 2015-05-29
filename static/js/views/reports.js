@@ -224,6 +224,7 @@ fun.views.reports = Backbone.View.extend({
 
         var statusMap = {
             'CANCELLED': 'Denied',
+            'REFUSED': 'Denied',
             'APPROVED': 'Approved',
             'DENIED': 'Denied',
             'AUTHORISED': 'Approved'
