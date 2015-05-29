@@ -29,6 +29,8 @@ fun.views.error = Backbone.View.extend({
         
         alert(message);
 
+        
+
         // Q sample by Jeff Cogswell
         // slashed by the usual subject
 
