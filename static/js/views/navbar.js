@@ -196,7 +196,7 @@ fun.views.navbar = Backbone.View.extend({
         
         event.preventDefault();
 
-        signupError = this.signupError;
+        agentError = this.agentError;
         account = this.account.val();
         firstName = this.firstName.val();
         lastName = this.lastName.val();
