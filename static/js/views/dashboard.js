@@ -181,7 +181,6 @@ fun.views.dashboard = Backbone.View.extend({
 
                 settle.save(settlePayload, settleCallback);
 
-                
                 if (response['Status']['Code'] == 200000){
                     message = translate('transactionSubmitted'); 
                     alert(message);
@@ -213,7 +212,7 @@ fun.views.dashboard = Backbone.View.extend({
         view.$('#discover-merchant').val('');
         view.$('#discover-address').val('');
         view.$('#discover-phone').val('');
-        
+
         view.$('#discover-email').val('');
         view.$('#discover-funds').val('');
         view.$('#discover-cc-number').val('');
@@ -320,31 +319,33 @@ fun.views.dashboard = Backbone.View.extend({
             client_email,
             client_phone,
             client_holder,
+            client_cc_info,
             client_cc_type,
-            client_cc_info;
+            ccTypes,
+            countryCode,
+            cleanNumber,
+            phoneNumber;
 
-        console.log('A little brain dead bitches!');
+        console.log('Processing new client information');
 
         clientHolder = this.$('#client-holdername');
-        clientInfo = this.$('#client-cc-info');
         clientEmail = this.$('#client-email');
+        clientInfo = this.$('#client-cc-info');
         clientPhone = this.$('#client-phone');
 
-        client_phone = this.$('#client_phone');
         client_email = this.$('#client_email');
+        client_phone = this.$('#client_phone');
         client_holder = this.$('#client_holdername');
         client_cc_info = this.$('#client_cc_digits');
         client_cc_type = this.$('input[name=card_type]:checked', '#account-dropdown');
 
-
-        client_cc_type = client_cc_type.val();
         client_email = client_email.val();
         client_phone = client_phone.val();
         client_holder = client_holder.val();
         client_cc_info = client_cc_info.val();
+        client_cc_type = client_cc_type.val();
 
-
-        var ccTypes = {
+        ccTypes = {
             0:'Diners Club',
             1:'Discover',
             2:'AMEX',
@@ -352,18 +353,27 @@ fun.views.dashboard = Backbone.View.extend({
             4:'Visa'
         };
 
-
         client_cc_info = ccTypes[Number(client_cc_type)] + ' ' + client_cc_info;
 
         clientHolder.html(client_holder);
-        clientInfo.html(client_cc_info);
         clientEmail.html(client_email);
+        clientInfo.html(client_cc_info);
         clientPhone.html(client_phone);
+
+
+        // get the phone number stuff
+        countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+
+        cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+
+        phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+
+        
+        // js split space string
 
         console.log(client_holder.split(' '));
 
-        // js split space string
-
+        
         var clxCustomerPayload = {
             "Culture": fun.conf.clxCulture,
             "ApplicationId": fun.conf.clxAppId,
