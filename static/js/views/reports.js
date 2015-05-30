@@ -237,6 +237,10 @@ fun.views.reports = Backbone.View.extend({
         var amount, amountTotal = 0;
         var fee, feeTotal = 0;
 
+        //new totals by status
+        var approvedTotal = 0;
+        var deniedTotal = 0;
+
         if (length > 0){
             rows = this.tbody.html('');
 
@@ -276,6 +280,14 @@ fun.views.reports = Backbone.View.extend({
                     amount = Number(o['Amount']);
                     fee = Number(o['Fee']);
 
+                    if (data['status'] == 'Approved'){
+                        approvedTotal += amount;
+                    }
+
+                    if (data['status'] == 'Denied'){
+                        deniedTotal += amount;
+                    }
+
                     amountTotal += amount;
 
                     feeTotal += fee;
@@ -283,6 +295,9 @@ fun.views.reports = Backbone.View.extend({
                     o['Amount'] = amount.toFixed(2);
 
                     var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
+
+                    console.log(approvedTotal, deniedTotal);
+
                     transinfo.fetch({
                         success: function(response){
                             data['cc_info'] = response.get('cc_info');
