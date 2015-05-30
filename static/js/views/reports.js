@@ -338,11 +338,17 @@ fun.views.reports = Backbone.View.extend({
                 
             });
 
+            var summary = {
+                'amount': amountTotal,
+                'approved': approvedTotal,
+                'denied': deniedTotal
+            };
+
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
             console.log('setting up summaries');
-            this.setTotalTransactions(amountTotal);
+            this.setTotalTransactions(summary);
         } else {
             this.noTransactions();
         }
