@@ -1,5 +1,5 @@
 fun.views.reports = Backbone.View.extend({
-	
+    
     events : {
         'click #fun-btn-find' : 'findReport',
         'click #fun-btn-hours' : 'hours',
@@ -10,25 +10,25 @@ fun.views.reports = Backbone.View.extend({
         'click #fun-btn-years' : 'years'
     },
     
-	initialize: function(options){
+    initialize: function(options){
         fun.containers.reports = this.$el;
-	},
+    },
 
-	render: function(){
+    render: function(){
         'use strict';
         var template;
-		
+        
         console.log('render reports view');
 
-		template = _.template(fun.utils.getTemplate(fun.conf.templates.reports));
+        template = _.template(fun.utils.getTemplate(fun.conf.templates.reports));
 
-		this.$el.html(template);
+        this.$el.html(template);
         this.$el.show();
 
         this.renderControl();
-	},
+    },
 
-	renderControl : function(){
+    renderControl : function(){
         'use strict';
         var templateFrom, templateTo, templateFindLapse;
 
@@ -241,6 +241,9 @@ fun.views.reports = Backbone.View.extend({
         var approvedTotal = 0;
         var deniedTotal = 0;
 
+        var approvedCount = 0;
+        var deniedCount = 0;
+
         if (length > 0){
             rows = this.tbody.html('');
 
@@ -282,10 +285,12 @@ fun.views.reports = Backbone.View.extend({
 
                     if (data['status'] == 'Approved'){
                         approvedTotal += amount;
+                        approvedCount += 1;
                     }
 
                     if (data['status'] == 'Denied'){
                         deniedTotal += amount;
+                        deniedCount += 1;
                     }
 
                     amountTotal += amount;
@@ -341,6 +346,8 @@ fun.views.reports = Backbone.View.extend({
             var summary = {
                 'amount': amountTotal,
                 'approved': approvedTotal,
+                'approvedCount': approvedCount,
+                'deniedCount': deniedCount,
                 'denied': deniedTotal
             };
 
