@@ -356,6 +356,7 @@ fun.views.reports = Backbone.View.extend({
             console.log('processing transactions completed');
             console.log('setting up summaries');
             this.setTotalTransactions(summary);
+            this.getSettlement(summary);
         } else {
             this.noTransactions();
         }
@@ -370,6 +371,33 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(this.amountTotal);
         console.log(this.feeTotal);
+    },
+
+    getSettlement: function(data){
+        'use strict';
+        // get fees and totals
+        var fees  = {
+            'transaction': 15,      //15%
+            'rolling_reserve': 10,  //10%
+            'per_transaction': 0.85
+        }
+        console.log(data, fees);
+        var amountProcessed = this.$('#settle-amount-processed');
+        var approvedCount = this.$('#settle-approved-count');
+        var deniedCount = this.$('#settle-denied-count');
+
+        var totalProcessingFee = this.$('#settle-total-processing-fee');
+        var rollCount = this.$('#settle-count-roll-reserve');
+        var perTransTotal = this.$('#settle-total-per-trans-fee');
+        var netTotal = this.$('#settle-net-total');
+
+        amountProcessed.html();
+        approvedCount.html();
+        deniedCount.html();
+        totalProcessingFee.htm();
+        rollCount.html();
+        perTransTotal.html();
+        netTotal.html();
     },
 
     renderDetailsRows : function(){
