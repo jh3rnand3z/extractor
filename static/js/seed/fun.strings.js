@@ -300,6 +300,14 @@ fun.strings = {
     popularCampaigns: "Popular Campaigns",
     contributedTo: "Contributed to",
     contributionActivity: "Contribution Activity",
+    totalAmountProcessed: "TOTAL AMOUNT PROCESSED",
+    approved: "APPROVED",
+    denied: "DENIED",
+    merchant: "MERCHANT",
+    paymentPeriod: "PAYMENT PERIOD",
+    
+
+
     received: "Received",
     answer: "Answer",
     missed: "Missed",
