@@ -397,7 +397,7 @@ fun.views.reports = Backbone.View.extend({
         amountProcessed.html(data['amount']);
         approvedCount.html(data['approvedCount']);
         deniedCount.html(data['deniedCount']);
-        totalProcessingFee.htm(stuff);
+        totalProcessingFee.html(stuff);
         rollCount.html(data['approvedCount']);
         perTransTotal.html(Number(data['approvedCount']) * fees['per_transaction']);
         netTotal.html();
