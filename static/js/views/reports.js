@@ -398,7 +398,7 @@ fun.views.reports = Backbone.View.extend({
         var sumApplied = this.$('#sum-approved');
         var sumDenied = this.$('#sum-denied');
 
-        recordTotal.html('$'+String(amount));
+        recordTotal.html('$'+String(random));
         sumApplied.html('$'+String(applied));
         sumDenied.html('$'+String(denied));
     },
