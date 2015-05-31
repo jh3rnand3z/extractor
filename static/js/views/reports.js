@@ -391,9 +391,9 @@ fun.views.reports = Backbone.View.extend({
         var perTransTotal = this.$('#settle-total-per-trans-fee');
         var netTotal = this.$('#settle-net-total');
 
-        amountProcessed.html();
-        approvedCount.html();
-        deniedCount.html();
+        amountProcessed.html(data['amount']);
+        approvedCount.html(data['approvedCount']);
+        deniedCount.html(data['deniedCount']);
         totalProcessingFee.htm();
         rollCount.html();
         perTransTotal.html();
