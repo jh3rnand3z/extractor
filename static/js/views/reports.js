@@ -391,7 +391,7 @@ fun.views.reports = Backbone.View.extend({
         var perTransTotal = this.$('#settle-total-per-trans-fee');
         var netTotal = this.$('#settle-net-total');
 
-        var stuff = (Number(data['amount']) * 0.fees['transaction']);
+        var stuff = (Number(data['amount']) * 0.10);// 0.fees['transaction']);
 
 
         amountProcessed.html(data['amount']);
