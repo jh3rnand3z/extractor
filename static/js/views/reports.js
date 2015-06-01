@@ -371,6 +371,8 @@ fun.views.reports = Backbone.View.extend({
             data,
             template;
 
+        console.log(rows);
+
         this.tbody = this.$('#cdr-list > tbody');
 
         tbody = this.tbody.html('');
