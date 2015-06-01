@@ -524,10 +524,16 @@ fun.views.money = Backbone.View.extend({
 
         customerCallback = {
             success: function(model, response){
+
+                console.log(response);
+
                 stuff['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
 
                 settlePayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
                 statusPayload['CustomerToken'] = response['CustomerSummary']['CustomerToken'];
+
+                console.log(settlePayload);
+                console.log(statusPayload);
  
                 transactions = new fun.models.Transactions();
                 transactions.fetch(resourceCallbacks);
