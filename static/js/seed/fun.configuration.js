@@ -7,7 +7,7 @@ var tokken, tokkenRUN, tokkenDEV, userId, recipientAccountId;
 
 environment = 'development';
 
-userId = '2217';
+userId = '1517';
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
@@ -16,10 +16,12 @@ tokkenRUN = 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4=';
 tokkenDEV = '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=';
 
 if (environment === 'production'){
+    if (userId ==)
     url = productionURL;
     tokken = tokkenRUN;
 } else {
     if (environment === 'development'){
+
         url = developmentURL;
         tokken = tokkenDEV;
     }
@@ -27,16 +29,12 @@ if (environment === 'production'){
 
 
 if (userId == '2217' || userId == '1517'){
-    recipientAccountId = 4;
-}
-
-if (userId == '2229'){
-    // barnum
-    recipientAccountId = 1;
-}
-
-if (recipientAccountId === 'undefined'){
-    recipientAccountId = 1;
+    if (environment === 'development'){
+        recipientAccountId = 1;    
+    } else {
+        recipientAccountId = 4;
+    }
+    
 }
 
 
