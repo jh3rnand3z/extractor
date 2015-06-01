@@ -409,16 +409,20 @@ fun.views.reports = Backbone.View.extend({
 
         var rollStuff = (Number(data['approved']) * 0.10);// 0.fees['transaction']);
         var proveStuff = (Number(data['approved']) * 0.15);
+        
+
+        proveStuff = fun.utils.format('$%s', proveStuff.toFixed(2));
+
         var perTrans = (Number(data['approvedCount']) * fees['per_transaction'])
 
         var totalFee = (rollStuff + proveStuff + perTrans);
         var netPay = (Number(data['approved']) - totalFee);
 
-        datePeriod.html(fun.utils.format('%s-%s', data['to'], data['from']));
+        datePeriod.html(fun.utils.format('%s - %s', data['to'], data['from']));
         amountProcessed.html(data['approved']);
         approvedCount.html(data['approvedCount']);
         deniedCount.html(data['deniedCount']);
-        totalProcessingFee.html(proveStuff.toFixed(2));
+        totalProcessingFee.html(proveStuff);
         rollCount.html(rollStuff.toFixed(2));
         perTransTotal.html(perTrans.toFixed(2));
         netTotal.html(netPay.toFixed(2));
