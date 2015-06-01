@@ -220,7 +220,7 @@ fun.views.reports = Backbone.View.extend({
         'use strict';
         var length,
             i = 0,
-            rows,
+            rows = [],
             totalAmount,
             totalFee,
             data = {},
@@ -250,7 +250,6 @@ fun.views.reports = Backbone.View.extend({
         var deniedCount = 0;
 
         if (length > 0){
-            rows = this.tbody.html('');
 
             _.each(this.transactions, function(o) {
 
@@ -318,13 +317,15 @@ fun.views.reports = Backbone.View.extend({
                             
                             data = _.extend(o, data);
 
-                            console.log(data);
+                            rows.append(data);
+                            /*
 
                             template = _.template(
                                 fun.utils.getTemplate(fun.conf.templates.transRow)
                             )(data);
 
                             rows.append(template);
+                            */
 
                         },
                         error: function(error){
@@ -337,16 +338,23 @@ fun.views.reports = Backbone.View.extend({
 
                             data = _.extend(o, data);
 
+                            rows.append(data);
+
+                            /*
                             template = _.template(
                                 fun.utils.getTemplate(fun.conf.templates.transRow)
                             )(data);
 
                             rows.append(template);
+                            */
                         }
                     });
                 }
                 
             });
+
+            var tbody = this.tbody.html('');
+            console.log(rows);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
