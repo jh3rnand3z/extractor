@@ -415,10 +415,11 @@ fun.views.reports = Backbone.View.extend({
         proveStuff = fun.utils.format('$%s', proveStuff.toFixed(2));
         rollStuff = fun.utils.format('$%s', rollStuff.toFixed(2));
         perTrans = fun.utils.format('$%s', perTrans.toFixed(2));
-        netPay = fun.utils.format('$%s', netPay.toFixed(2));
-
+        
         var totalFee = (rollStuff + proveStuff + perTrans);
         var netPay = (Number(data['approved']) - totalFee);
+
+        netPay = fun.utils.format('$%s', netPay.toFixed(2));
 
         datePeriod.html(fun.utils.format('%s - %s', data['to'], data['from']));
         amountProcessed.html(data['approved']);
