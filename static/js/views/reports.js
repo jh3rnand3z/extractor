@@ -273,7 +273,7 @@ fun.views.reports = Backbone.View.extend({
                         data['status'] = statusMap[status];
 
                         // check the status and break
-                        console.log(o);
+                        //console.log(o);
 
                     }
                 }
@@ -304,15 +304,13 @@ fun.views.reports = Backbone.View.extend({
 
                     var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
 
-                    console.log(approvedTotal, deniedTotal);
-
                     transinfo.fetch({
                         success: function(response){
                             data['cc_info'] = response.get('cc_info');
                             data['holder_name'] = response.get('holder_name');
                             data['email'] = response.get('email');
                             data['phone'] = response.get('phone');
-                            
+
                             
                             data = _.extend(o, data);
 
@@ -320,7 +318,6 @@ fun.views.reports = Backbone.View.extend({
 
                         },
                         error: function(error){
-                            //console.log(error);
                             data['cc_info'] = 'Unknown';
                             data['holder_name'] = 'John Doe';
                             data['email'] = 'john@doe.com';
@@ -374,11 +371,18 @@ fun.views.reports = Backbone.View.extend({
         var tbody,
             data,
             template;
+
+        this.tbody = this.$('#cdr-list > tbody');
+
         tbody = this.tbody.html('');
     
         data = _.sortBy(rows, 'date');
 
+        console.log('prison');
+
         _.each(data, function(o) {
+
+            console.log(o);
 
             template = _.template(
                 fun.utils.getTemplate(fun.conf.templates.transRow)
