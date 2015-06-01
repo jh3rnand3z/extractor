@@ -395,8 +395,8 @@ fun.views.reports = Backbone.View.extend({
             'transaction': 15,      //15%
             'rolling_reserve': 10,  //10%
             'per_transaction': 0.85
-        }
-        console.log(data, fees);
+        };
+
         var datePeriod = this.$('#settle-date-period');
         var amountProcessed = this.$('#settle-amount-processed');
         var approvedCount = this.$('#settle-approved-count');
@@ -407,17 +407,16 @@ fun.views.reports = Backbone.View.extend({
         var perTransTotal = this.$('#settle-total-per-trans-fee');
         var netTotal = this.$('#settle-net-total');
 
-        var rollStuff = (Number(data['approved']) * 0.10);// 0.fees['transaction']);
+        var rollStuff = (Number(data['approved']) * 0.10);      // 0.fees['transaction']);
         var proveStuff = (Number(data['approved']) * 0.15);
         
+        var perTrans = (Number(data['approvedCount']) * fees['per_transaction']);
 
         proveStuff = fun.utils.format('$%s', proveStuff.toFixed(2));
         rollStuff = fun.utils.format('$%s', rollStuff.toFixed(2));
         perTrans = fun.utils.format('$%s', perTrans.toFixed(2));
         netPay = fun.utils.format('$%s', netPay.toFixed(2));
-        
 
-        var perTrans = (Number(data['approvedCount']) * fees['per_transaction']);
         var totalFee = (rollStuff + proveStuff + perTrans);
         var netPay = (Number(data['approved']) - totalFee);
 
