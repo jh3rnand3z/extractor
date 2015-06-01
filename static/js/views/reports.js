@@ -333,8 +333,6 @@ fun.views.reports = Backbone.View.extend({
                 
             });
 
-            this.genRows(rows);
-
             var summary = {
                 'amount': amountTotal.toFixed(2),
                 'approved': approvedTotal.toFixed(2),
@@ -347,6 +345,7 @@ fun.views.reports = Backbone.View.extend({
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
             console.log('setting up summaries');
+            this.genRows(rows);
             this.setTotalTransactions(summary);
             this.getSettlement(summary);
             console.log(this.dates);
@@ -379,6 +378,8 @@ fun.views.reports = Backbone.View.extend({
         data = _.sortBy(rows, 'date');
 
         console.log('prison');
+
+        console.log(data);
 
         _.each(data, function(o) {
 
