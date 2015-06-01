@@ -205,7 +205,6 @@ fun.views.reports = Backbone.View.extend({
 
         
         if (transactions) {
-            console.log(transactions);
             this.transactions = transactions;
         }
 
@@ -384,6 +383,10 @@ fun.views.reports = Backbone.View.extend({
             template = _.template(
                 fun.utils.getTemplate(fun.conf.templates.transRow)
             )(o);
+
+            console.log(template);
+
+            console.log(o);
 
             tbody.append(template);
         });
