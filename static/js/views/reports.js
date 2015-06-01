@@ -318,14 +318,6 @@ fun.views.reports = Backbone.View.extend({
                             data = _.extend(o, data);
 
                             rows.push(data);
-                            /*
-
-                            template = _.template(
-                                fun.utils.getTemplate(fun.conf.templates.transRow)
-                            )(data);
-
-                            rows.append(template);
-                            */
 
                         },
                         error: function(error){
@@ -339,25 +331,13 @@ fun.views.reports = Backbone.View.extend({
                             data = _.extend(o, data);
 
                             rows.push(data);
-
-                            /*
-                            template = _.template(
-                                fun.utils.getTemplate(fun.conf.templates.transRow)
-                            )(data);
-
-                            rows.append(template);
-                            */
                         }
                     });
                 }
                 
             });
 
-            var tbody = this.tbody.html('');
-            console.log(rows);
-            var dada = _.sortBy(rows, 'date');
-
-            console.log(data);
+            this.genRows(rows);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
@@ -388,6 +368,27 @@ fun.views.reports = Backbone.View.extend({
 
         console.log(this.amountTotal);
         console.log(this.feeTotal);
+    },
+
+    genRows: function(rows){
+        'use strict';
+        var tbody,
+            data,
+            template;
+        tbody = this.tbody.html('');
+    
+        data = _.sortBy(rows, 'date');
+
+        _.each(data, function(o) {
+
+            template = _.template(
+                fun.utils.getTemplate(fun.conf.templates.transRow)
+            )(o);
+
+            tbody.append(template);
+        }
+
+        console.log('done!');
     },
 
     getSettlement: function(data){
