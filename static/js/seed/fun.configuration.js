@@ -5,7 +5,7 @@
 var environment, url, productionURL, developmentURL;
 var tokken, tokkenRUN, tokkenDEV, userId, recipientAccountId;
 
-environment = 'production';
+environment = 'development';
 
 userId = '2217';
 
