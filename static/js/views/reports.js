@@ -220,7 +220,7 @@ fun.views.reports = Backbone.View.extend({
         'use strict';
         var length,
             i = 0,
-            rows = [],
+            rows = this.tbody.html(''),
             totalAmount,
             totalFee,
             data = {},
@@ -317,15 +317,12 @@ fun.views.reports = Backbone.View.extend({
                             
                             data = _.extend(o, data);
 
-                            rows.push(data);
-                            /*
-
                             template = _.template(
                                 fun.utils.getTemplate(fun.conf.templates.transRow)
                             )(data);
 
                             rows.append(template);
-                            */
+                            
 
                         },
                         error: function(error){
@@ -338,27 +335,20 @@ fun.views.reports = Backbone.View.extend({
 
                             data = _.extend(o, data);
 
-                            rows.push(data);
-
-                            /*
                             template = _.template(
                                 fun.utils.getTemplate(fun.conf.templates.transRow)
                             )(data);
 
                             rows.append(template);
-                            */
                         }
                     });
                 }
                 
             });
 
-            var tbody = this.tbody.html('');
-            console.log(rows);
-
-            var dada = _.sortBy(rows, 'date');
-
-            console.log(dada);
+            //var dada = _.sortBy(rows, 'date');
+            //
+            //console.log(dada);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
@@ -372,6 +362,7 @@ fun.views.reports = Backbone.View.extend({
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
             console.log('setting up summaries');
+            
             this.setTotalTransactions(summary);
             this.getSettlement(summary);
             console.log(this.dates);
