@@ -386,7 +386,7 @@ fun.views.reports = Backbone.View.extend({
             )(o);
 
             tbody.append(template);
-        }
+        });
 
         console.log('done!');
     },
