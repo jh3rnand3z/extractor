@@ -344,11 +344,11 @@ fun.views.reports = Backbone.View.extend({
             });
 
             var summary = {
-                'amount': amountTotal,
-                'approved': approvedTotal,
+                'amount': amountTotal.toFixed(2),
+                'approved': approvedTotal.toFixed(2),
                 'approvedCount': approvedCount,
                 'deniedCount': deniedCount,
-                'denied': deniedTotal
+                'denied': deniedTotal.toFixed(2)
             };
 
             // testing now the sum of the stuff
