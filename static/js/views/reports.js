@@ -274,7 +274,7 @@ fun.views.reports = Backbone.View.extend({
                         data['status'] = statusMap[status];
 
                         // check the status and break
-                        console.log(o);
+                        //console.log(o);
 
                     }
                 }
@@ -354,7 +354,7 @@ fun.views.reports = Backbone.View.extend({
             });
 
             var tbody = this.tbody.html('');
-            console.log(rows);
+            //console.log(rows);
             var dada = _.sortBy(rows, 'date');
 
             console.log(data);
@@ -392,7 +392,7 @@ fun.views.reports = Backbone.View.extend({
 
     genRows: function(rows){
         'use strict';
-        
+
     }
 
     getSettlement: function(data){
