@@ -205,6 +205,7 @@ fun.views.reports = Backbone.View.extend({
 
         
         if (transactions) {
+            console.log(transactions);
             this.transactions = transactions;
         }
 
@@ -273,7 +274,7 @@ fun.views.reports = Backbone.View.extend({
                         data['status'] = statusMap[status];
 
                         // check the status and break
-                        //console.log(o);
+                        console.log(o);
 
                     }
                 }
@@ -304,20 +305,31 @@ fun.views.reports = Backbone.View.extend({
 
                     var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
 
+                    console.log(approvedTotal, deniedTotal);
+
                     transinfo.fetch({
                         success: function(response){
                             data['cc_info'] = response.get('cc_info');
                             data['holder_name'] = response.get('holder_name');
                             data['email'] = response.get('email');
                             data['phone'] = response.get('phone');
-
+                            
                             
                             data = _.extend(o, data);
 
                             rows.push(data);
+                            /*
+
+                            template = _.template(
+                                fun.utils.getTemplate(fun.conf.templates.transRow)
+                            )(data);
+
+                            rows.append(template);
+                            */
 
                         },
                         error: function(error){
+                            //console.log(error);
                             data['cc_info'] = 'Unknown';
                             data['holder_name'] = 'John Doe';
                             data['email'] = 'john@doe.com';
@@ -327,13 +339,25 @@ fun.views.reports = Backbone.View.extend({
                             data = _.extend(o, data);
 
                             rows.push(data);
+
+                            /*
+                            template = _.template(
+                                fun.utils.getTemplate(fun.conf.templates.transRow)
+                            )(data);
+
+                            rows.append(template);
+                            */
                         }
                     });
                 }
                 
             });
-            
+
+            var tbody = this.tbody.html('');
             console.log(rows);
+            var dada = _.sortBy(rows, 'date');
+
+            console.log(data);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
@@ -347,7 +371,6 @@ fun.views.reports = Backbone.View.extend({
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
             console.log('setting up summaries');
-            this.genRows(rows);
             this.setTotalTransactions(summary);
             this.getSettlement(summary);
             console.log(this.dates);
@@ -369,39 +392,8 @@ fun.views.reports = Backbone.View.extend({
 
     genRows: function(rows){
         'use strict';
-        var tbody,
-            data,
-            template;
-
-        console.log(rows);
-
-        this.tbody = this.$('#cdr-list > tbody');
-
-        tbody = this.tbody.html('');
-    
-        data = _.sortBy(rows, 'date');
-
-        console.log('prison');
-
-        console.log(data);
-
-        _.each(data, function(o) {
-
-            console.log(o);
-
-            template = _.template(
-                fun.utils.getTemplate(fun.conf.templates.transRow)
-            )(o);
-
-            console.log(template);
-
-            console.log(o);
-
-            tbody.append(template);
-        });
-
-        console.log('done!');
-    },
+        
+    }
 
     getSettlement: function(data){
         'use strict';
