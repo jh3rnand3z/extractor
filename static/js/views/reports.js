@@ -108,6 +108,11 @@ fun.views.reports = Backbone.View.extend({
         clxStart = fun.utils.format('%s%s%s', toYear, toMonth, toDay);
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
+        this.dates = {
+            'from': clxStart,
+            'to': clxEnd
+        }
+
 /*
         var rangeDateCallbacks = {
             success: function(model, response){
@@ -357,6 +362,7 @@ fun.views.reports = Backbone.View.extend({
             console.log('setting up summaries');
             this.setTotalTransactions(summary);
             this.getSettlement(summary);
+            console.log(this.dates);
         } else {
             this.noTransactions();
         }
