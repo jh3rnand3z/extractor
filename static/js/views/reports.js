@@ -354,10 +354,11 @@ fun.views.reports = Backbone.View.extend({
             });
 
             var tbody = this.tbody.html('');
-            //console.log(rows);
+            console.log(rows);
+
             var dada = _.sortBy(rows, 'date');
 
-            console.log(data);
+            console.log(dada);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
