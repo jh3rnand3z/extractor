@@ -420,7 +420,7 @@ fun.views.reports = Backbone.View.extend({
 
         netPay = fun.utils.format('$%s', netPay.toFixed(2));
 
-        datePeriod.html(fun.utils.format('%s - %s', data['to'], data['from']));
+        datePeriod.html(fun.utils.format('%s - %s', data['from'], data['to']));
         amountProcessed.html(data['approved']);
         approvedCount.html(data['approvedCount']);
         deniedCount.html(data['deniedCount']);
