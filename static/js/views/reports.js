@@ -109,8 +109,8 @@ fun.views.reports = Backbone.View.extend({
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
         this.dates = {
-            'from': fun.utils.format('%s-%s-%s', toMonth, toDay, toYear),
-            'to': fun.utils.format('%s-%s-%s', fromMonth, fromDay, fromYear)
+            'from': fun.utils.format('%s/%s/%s', toMonth, toDay, toYear),
+            'to': fun.utils.format('%s/%s/%s', fromMonth, fromDay, fromYear)
         }
 /*
         var rangeDateCallbacks = {
@@ -397,6 +397,7 @@ fun.views.reports = Backbone.View.extend({
             'per_transaction': 0.85
         }
         console.log(data, fees);
+        var datePeriod = this.$('#settle-date-period');
         var amountProcessed = this.$('#settle-amount-processed');
         var approvedCount = this.$('#settle-approved-count');
         var deniedCount = this.$('#settle-denied-count');
@@ -413,6 +414,7 @@ fun.views.reports = Backbone.View.extend({
         var totalFee = (rollStuff + proveStuff + perTrans);
         var netPay = (Number(data['approved']) - totalFee);
 
+        datePeriod.html(fun.utils.format('%s-%s', data['to'], data['from']));
         amountProcessed.html(data['approved']);
         approvedCount.html(data['approvedCount']);
         deniedCount.html(data['deniedCount']);
