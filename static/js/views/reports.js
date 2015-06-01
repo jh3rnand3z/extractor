@@ -332,6 +332,8 @@ fun.views.reports = Backbone.View.extend({
                 }
                 
             });
+            
+            console.log(rows);
 
             var summary = {
                 'amount': amountTotal.toFixed(2),
