@@ -16,12 +16,10 @@ tokkenRUN = 'MBl9MnCcCvcqpXUWMbLeLbvBlE+ker65O4LWQx0ULp4=';
 tokkenDEV = '/r+1NILWP7jwHK1sDsy35P5dE77sdae6ZSoK4v6FVz8=';
 
 if (environment === 'production'){
-    if (userId ==)
     url = productionURL;
     tokken = tokkenRUN;
 } else {
     if (environment === 'development'){
-
         url = developmentURL;
         tokken = tokkenDEV;
     }
