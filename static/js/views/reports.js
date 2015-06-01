@@ -317,7 +317,7 @@ fun.views.reports = Backbone.View.extend({
                             
                             data = _.extend(o, data);
 
-                            rows.append(data);
+                            rows.push(data);
                             /*
 
                             template = _.template(
@@ -338,7 +338,7 @@ fun.views.reports = Backbone.View.extend({
 
                             data = _.extend(o, data);
 
-                            rows.append(data);
+                            rows.push(data);
 
                             /*
                             template = _.template(
