@@ -393,7 +393,7 @@ fun.views.reports = Backbone.View.extend({
     genRows: function(rows){
         'use strict';
 
-    }
+    },
 
     getSettlement: function(data){
         'use strict';
