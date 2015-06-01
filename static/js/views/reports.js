@@ -109,10 +109,9 @@ fun.views.reports = Backbone.View.extend({
         clxEnd = fun.utils.format('%s%s%s', fromYear, fromMonth, fromDay);
 
         this.dates = {
-            'from': clxStart,
-            'to': clxEnd
+            'from': fun.utils.format('%s-%s-%s', toMonth, toDay, toYear),
+            'to': fun.utils.format('%s-%s-%s', fromMonth, fromDay, fromYear)
         }
-
 /*
         var rangeDateCallbacks = {
             success: function(model, response){
@@ -358,6 +357,8 @@ fun.views.reports = Backbone.View.extend({
                 'denied': deniedTotal.toFixed(2)
             };
 
+            summary = _.extend(summary, this.dates);
+
             // testing now the sum of the stuff
             //this.renderTransactionTotals();
             console.log('processing transactions completed');
@@ -365,7 +366,7 @@ fun.views.reports = Backbone.View.extend({
             
             this.setTotalTransactions(summary);
             this.getSettlement(summary);
-            console.log(this.dates);
+            console.log(summary);
         } else {
             this.noTransactions();
         }
