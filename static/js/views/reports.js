@@ -407,10 +407,10 @@ fun.views.reports = Backbone.View.extend({
         amountProcessed.html(data['approved']);
         approvedCount.html(data['approvedCount']);
         deniedCount.html(data['deniedCount']);
-        totalProcessingFee.html(proveStuff);
-        rollCount.html(rollStuff);
-        perTransTotal.html(perTrans);
-        netTotal.html(netPay);
+        totalProcessingFee.html(proveStuff.toFixed(2));
+        rollCount.html(rollStuff.toFixed(2));
+        perTransTotal.html(perTrans.toFixed(2));
+        netTotal.html(netPay.toFixed(2));
     },
 
     renderDetailsRows : function(){
@@ -508,7 +508,7 @@ fun.views.reports = Backbone.View.extend({
             var data = {
                 minutes:0,
                 records:0,
-                rec_avg: 0,
+                rec_avg:0,
                 billing:0.0
             };
         }
