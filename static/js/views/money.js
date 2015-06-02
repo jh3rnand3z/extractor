@@ -289,7 +289,7 @@ fun.views.money = Backbone.View.extend({
 
             this.$el.html(template);
         }
-        
+        $("#fun-money").show();
         this.$el.show();
     },
 
