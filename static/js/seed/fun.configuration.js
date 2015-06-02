@@ -5,9 +5,9 @@
 var environment, url, productionURL, developmentURL;
 var tokken, tokkenRUN, tokkenDEV, userId, recipientAccountId;
 
-environment = 'development';
+environment = 'production';
 
-userId = '1517';
+userId = '2229';
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
@@ -33,6 +33,11 @@ if (userId == '2217' || userId == '1517'){
         recipientAccountId = 4;
     }
     
+}
+
+
+if (userId == '2229'){
+    recipientAccountId = 1;
 }
 
 
