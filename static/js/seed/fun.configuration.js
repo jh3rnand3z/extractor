@@ -5,9 +5,9 @@
 var environment, url, productionURL, developmentURL;
 var tokken, tokkenRUN, tokkenDEV, userId, recipientAccountId;
 
-environment = 'production';
+environment = 'development';
 
-userId = '2217';
+userId = '1517';
 
 productionURL = 'http://201.149.49.175:9027';
 developmentURL = 'http://201.149.49.181:9027';
