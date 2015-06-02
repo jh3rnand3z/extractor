@@ -58,6 +58,13 @@ fun.views.dashboard = Backbone.View.extend({
         this.PhoneNumber.intlTelInput({
             utilsScript: "static/js/plugins/libphonenumber/utils.js"
         });
+
+        
+        //countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+
+        //cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+
+        //phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
     },
 
     discoverAddFunds: function(event){
@@ -369,6 +376,8 @@ fun.views.dashboard = Backbone.View.extend({
         cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 
         phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+
+        console.log(cleanNumber, phoneNumber);
 
         // js split space string
         var nameSplit = client_holder.split(' ')
