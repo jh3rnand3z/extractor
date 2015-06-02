@@ -37,7 +37,7 @@ fun.strings = {
     netTotal: "NET TOTAL",
     done: "Done",
     cardType: "Card Type",
-    iofun: "PreWay Pay",
+    iofun: "Merchants",
     from: "From",
     to: "To",
     fee: "Fee",
