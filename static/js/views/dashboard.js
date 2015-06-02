@@ -338,6 +338,15 @@ fun.views.dashboard = Backbone.View.extend({
         client_cc_type = this.$('input[name=card_type]:checked', '#account-dropdown');
 
         client_email = client_email.val();
+
+
+        var countryCode = this.PhoneNumber.intlTelInput("getSelectedCountryData")['dialCode'];
+
+        var cleanNumber = this.PhoneNumber.intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+
+        var phoneNumber = this.PhoneNumber.intlTelInput("getNumber");
+
+        console.log(countryCode, cleanNumber, phoneNumber);
         
         // can chain this?
         client_phone = client_phone.val();
