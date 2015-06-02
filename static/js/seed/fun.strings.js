@@ -16,6 +16,23 @@ fun.strings = {
     theLast4CCDigits: "Last 4 Digits",
     newClient: "New Client",
     clientInformation: "Client Information",
+
+
+    totalAmountProcessed: "TOTAL AMOUNT PROCESSED",
+    approvedTransactions: "APPROVED TRANSACTIONS",
+    declinedTransactions: "DECLINED TRANSACTIONS",
+    fraudIdVerification: "FRAUD & ID VERIFICATION",
+    fees: "FEES",
+    processingFee: "PROCESSING FEE",
+    rollingReserve: "ROLLING RESERVE",
+    perTransactionFees: "PER TRANSACTION FEES",
+    payoutDone: "PAYOUT DONE",
+    bcDeduction: "BC DEDUCTION",
+    wireFee: "WIRE FEE",
+    fullfillment: "FULLFILLMENT",
+    paymentToMerchant: "PAYMENT TO MERCHANT",
+    netTotal: "NET TOTAL",
+
     cardType: "Card Type",
     iofun: "PreWay Pay",
     from: "From",
