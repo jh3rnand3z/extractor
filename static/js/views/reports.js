@@ -304,8 +304,6 @@ fun.views.reports = Backbone.View.extend({
 
                     var transinfo = new fun.models.Transaction({'TransactionNum':transNum});
 
-                    console.log(approvedTotal, deniedTotal);
-
                     transinfo.fetch({
                         success: function(response){
                             data['cc_info'] = response.get('cc_info');
