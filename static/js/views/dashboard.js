@@ -263,7 +263,7 @@ fun.views.dashboard = Backbone.View.extend({
              "ApplicationId": fun.conf.clxAppId,
              "UserId": userId,
              "Service": 3,
-             "SessionDuration": 5,
+             "SessionDuration": 10,
              "urlOk": "http://demo.techgcs.com/cuallix/send/money/",
              "urlError": "http://demo.techgcs.com/cuallix/send/error/"
         },

@@ -96,7 +96,7 @@ class PaymentUrl(models.Model):
     ApplicationId = types.StringType()
     UserId = types.StringType()
     Service = types.StringType(default='3')
-    SessionDuration = types.StringType(default='5')
+    SessionDuration = types.StringType(default='10')
     urlOk = types.StringType()
     urlError = types.StringType()
     Extra = types.StringType()
