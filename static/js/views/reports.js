@@ -540,6 +540,8 @@ fun.views.reports = Backbone.View.extend({
 
     transDetail: function() {
         console.log('class stuff works dude!');
+        var id = this.id;
+        console.log(id);
     },
 
     hours : function(event){
