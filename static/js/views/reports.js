@@ -3,7 +3,8 @@ fun.views.reports = Backbone.View.extend({
     events : {
         'click #fun-btn-find' : 'findReport',
         'click #fun-btn-hours' : 'hours',
-        "click #details-report-btn": 'detailsReport',
+        'click #details-report-btn': 'detailsReport',
+        'click .fun-popup': 'transDetail',
         'click #fun-btn-days' : 'days',
         'click #fun-btn-weeks' : 'weeks',
         'click #fun-btn-months' : 'months',
@@ -534,7 +535,11 @@ fun.views.reports = Backbone.View.extend({
     },
 
     detailsReport: function() {
-        console.log('navbar detail reports')
+        console.log('navbar detail reports');
+    },
+
+    transDetail: function() {
+        console.log('class stuff works dude!');
     },
 
     hours : function(event){
