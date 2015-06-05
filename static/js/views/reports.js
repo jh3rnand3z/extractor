@@ -542,6 +542,10 @@ fun.views.reports = Backbone.View.extend({
         console.log('class stuff works dude!');
         var id = this.id;
         console.log(id);
+        console.log($(event.target));
+        console.log($(event.target).data);
+        var id = $(event.target).data('id');
+        console.log(id);
     },
 
     hours : function(event){
