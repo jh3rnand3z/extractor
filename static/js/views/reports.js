@@ -543,8 +543,7 @@ fun.views.reports = Backbone.View.extend({
         var id = this.id;
         console.log(id);
         console.log($(event.target));
-        console.log($(event.target).data);
-        var id = $(event.target).data('id');
+        var id = $(event.target).data('name');
         console.log(id);
     },
 
