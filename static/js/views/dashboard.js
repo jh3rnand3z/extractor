@@ -413,7 +413,7 @@ fun.views.dashboard = Backbone.View.extend({
         localStorage.setItem('clientCCHolder', client_holder);
         localStorage.setItem('clientCCInfo', client_cc_info);
         localStorage.setItem('clientEmail', client_email);
-        localStorage.setItem('clientPhone', client_phone);
+        localStorage.setItem('clientPhone', phoneNumber);
         localStorage.setItem('clientCountryCode', countryCode);
 
         this.clxCustomerRegister = new fun.models.customerRegister();
