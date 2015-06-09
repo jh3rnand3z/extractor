@@ -123,7 +123,11 @@ class BaseHandler(web.RequestHandler):
             
             message = {
                 'error': u'nonsense',
-                'message': u'there is no error'
+                'message': u'there is no error',
+                'struct': struct,
+                'scheme': scheme,
+                'error': error,
+                'reason': reason
             }
 
         else:
