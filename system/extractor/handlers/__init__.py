@@ -118,6 +118,8 @@ class BaseHandler(web.RequestHandler):
 
         elif error is not None:
             logging.warning(str_error)
+
+            logging.error(struct, scheme, error, reason)
             
             message = {
                 'error': u'nonsense',
