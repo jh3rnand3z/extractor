@@ -742,6 +742,8 @@ class SearchCustomerHandler(cuallix.Cuallix, BaseHandler):
         # execute user register function
         get_token = yield self.search_customer(struct)
 
+        logging.error(get_token)
+
         # TODO: more work on error stuff on cuallix API services.
         if 'error' in get_token:
             scheme = 'contact' # ???
