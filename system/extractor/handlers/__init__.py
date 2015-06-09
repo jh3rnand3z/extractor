@@ -117,16 +117,15 @@ class BaseHandler(web.RequestHandler):
             message = error_handler.value()
 
         elif error is not None:
-            logging.warning(str_error)
+            #logging.warning(str_error)
 
-            logging.error(struct, scheme, error, reason, 'master')
+            #logging.error(struct, scheme, error, reason, 'master')
             
             message = {
-                'error': u'nonsense',
-                'message': u'there is no error',
+                'message': error['Status']['Message'],
                 'struct': struct,
                 'scheme': scheme,
-                'error': error,
+                'error': error['Status']['Code'],
                 'reason': reason
             }
 
