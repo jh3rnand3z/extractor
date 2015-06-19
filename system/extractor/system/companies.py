@@ -30,7 +30,7 @@ from extractor.tools import clean_results
 from extractor.tools import check_times
 
 
-class companies(object):
+class Companies(object):
     '''
         companies resources
     '''
