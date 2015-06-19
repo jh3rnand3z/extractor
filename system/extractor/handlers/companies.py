@@ -23,17 +23,17 @@ from tornado import web
 
 import logging
 
-# Mango system
+# extractor system
 from extractor.system import companies
 
-from mango.tools import content_type_validation
-from mango.tools import check_json
-from mango.tools import new_resource
+from extractor.tools import content_type_validation
+from extractor.tools import check_json
+from extractor.tools import new_resource
 
-from mango.tools import errors
+from extractor.tools import errors
 
 # system handlers
-from mango.handlers import BaseHandler
+from extractor.handlers import BaseHandler
 
 
 @content_type_validation
