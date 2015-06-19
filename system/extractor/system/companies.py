@@ -83,7 +83,7 @@ class Companies(object):
             
             while (yield query.fetch_next):
                 result = query.next_object()
-                company_list.append(companies.company(result))
+                company_list.append(companies.Company(result))
 
         except Exception, e:
             logging.exception(e)
@@ -116,7 +116,7 @@ class Companies(object):
         
         try:
             for company in (yield query.to_list()):
-                result.append(companies.company(company))
+                result.append(companies.Company(company))
             
             struct = {'results':result}
 
@@ -135,7 +135,7 @@ class Companies(object):
             Create a new company entry
         '''
         try:
-            company = companies.company(struct)
+            company = companies.Company(struct)
             company.validate()
         except Exception, e:
             logging.exception(e)
