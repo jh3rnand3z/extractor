@@ -47,6 +47,7 @@ class Company(models.Model):
     incorporated_address = types.StringType()
 
     status = types.StringType()
+    account = types.StringType()
 
     checked = types.BooleanType(default=False)
     checked_by = types.StringType()
