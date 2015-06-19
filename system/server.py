@@ -35,6 +35,7 @@ from extractor.handlers import UploadHandler
 
 from extractor.handlers import cuallix
 from extractor.handlers import payments
+from extractor.handlers import companies
 
 from extractor.handlers import get_command
 from extractor.handlers import process_message
@@ -224,6 +225,11 @@ if __name__ == '__main__':
             (r'/cuallix/payments/start/(?P<start>.*)/?', payments.Handler),
             (r'/cuallix/payments/end/(?P<end>.*)/?', payments.Handler),
             (r'/cuallix/payments/page/(?P<page_num>\d+)/?', payments.Handler),
+
+            # Greg's companies and stuff
+            (r'/companies/?', companies.CompaniesHandler),
+            (r'/companies/(?P<company_uuid>.+)/?', companies.CompaniesHandler),
+
         ],
 
         db = db,
