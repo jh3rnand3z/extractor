@@ -51,7 +51,7 @@ class Companies(object):
                                                     {'_id':0})
         try:
             if company:
-                company = companies.company(company)
+                company = companies.Company(company)
                 company.validate()
         except Exception, e:
             logging.exception(e) # catch some daemon here!
