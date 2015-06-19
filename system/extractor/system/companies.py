@@ -27,7 +27,6 @@ from extractor.messages import companies
 
 from extractor.tools import clean_structure
 from extractor.tools import clean_results
-from extractor.tools import check_times
 
 
 class Companies(object):
