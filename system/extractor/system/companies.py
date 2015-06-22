@@ -72,7 +72,7 @@ class Companies(object):
             logging.error('not account get public list');
             
             # {'public':False}
-            query = self.db.companies.find({},{'_id':0})
+            query = self.db.companies.find({}, {'_id':0})
 
         elif type(account) is list:
             logging.error('list of accounts get compound list');
