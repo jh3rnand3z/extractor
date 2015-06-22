@@ -105,9 +105,9 @@ class CompaniesHandler(companies.Companies, BaseHandler):
 
     ###@web.authenticated
     @gen.coroutine
-    def get(self, account=None, page_num=0):
+    def get(self, company_uuid=None, start=None, end=None, page_num=0, lapse='hours'):
         '''
-            Get user companies
+            Get companies handler
         '''
         # logging request query arguments
         logging.info('request query arguments {0}'.format(self.request.arguments))
@@ -130,8 +130,8 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         # return result message
         result = None
         
-        if not account:
-            companies = yield self.get_company_list(account_type, page_num)
+        if not company_uuid:
+            companies = yield self.get_company_list(account, page_num)
             self.finish({'companies':companies})
         else:
             # try to get stuff from cache first
