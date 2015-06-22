@@ -71,7 +71,8 @@ class Companies(object):
         if not account:
             logging.error('not account get public list');
             
-            query = self.db.companies.find({'public':True})
+            query = self.db.companies.find({'public':False},{'_id':0})
+
         elif type(account) is list:
             logging.error('list of accounts get compound list');
             
@@ -99,7 +100,7 @@ class Companies(object):
 
         try:
             struct = {'results': company_list}
-            message = reports.BaseResult(struct)
+            message = companies.BaseResult(struct)
             message.validate()
             message = clean_results(message)
         except Exception, e:

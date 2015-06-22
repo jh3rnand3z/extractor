@@ -62,3 +62,10 @@ class Company(models.Model):
     updated_at = types.DateTimeType()
 
     uri = types.StringType()
+
+
+class BaseResult(models.Model):
+    '''
+        base result
+    '''
+    results = compound.ListType(compound.ModelType(Company))
