@@ -121,9 +121,6 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         # if the user don't provide an account we use the frontend username as last resort
         account = (query_args.get('account', [username])[0] if not account else account)
 
-        logging.error(account)
-
-
         # account type flag
         account_type = 'user'
 
