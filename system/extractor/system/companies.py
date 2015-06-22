@@ -69,13 +69,21 @@ class Companies(object):
         company_list = []
         
         if not account:
+            logging.error('not account get public list');
+            
             query = self.db.companies.find({'public':True})
         elif type(account) is list:
+            logging.error('list of accounts get compound list');
+            
             accounts = [{'accountcode':a, 'assigned': True} for a in account]
             query = self.db.companies.find({'$or':accounts})
         else:
-            query = self.db.companies.find({'accountcode':account,
-                                        'assigned':True})
+            logging.error('not account get public list');
+            
+            query = self.db.companies.find({
+                'account':account,
+                'assigned':True
+            })
         
         query = query.sort([('uuid', -1)]).skip(page_num * page_size).limit(page_size)
         
