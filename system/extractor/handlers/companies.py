@@ -134,7 +134,7 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         result = None
         
         if not company_uuid:
-            companies = yield self.get_company_list(account, page_num)
+            companies = yield self.get_company_list(account, start, end, page_num, lapse)
             self.finish({'companies':companies})
         else:
             # try to get stuff from cache first
