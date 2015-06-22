@@ -170,9 +170,11 @@ if __name__ == '__main__':
     #sql = queries.TornadoSession(uri=postgresql_uri)
 
     # Set default database
+    global db
     db = document
     
-    # Set default cache 
+    # Set default cache
+    global cache
     cache = memcache
 
     # logging database hosts
@@ -186,6 +188,9 @@ if __name__ == '__main__':
     base_url = opts.base_url
 
     cache_enabled = opts.cache_enabled
+
+    if cache_enabled:
+        logging.info('Memcached server: {0}:{1}'.format(opts.memcached_host, opts.memcached_port))
 
     application = web.Application(
 
