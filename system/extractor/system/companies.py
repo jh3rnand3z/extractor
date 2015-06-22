@@ -80,12 +80,15 @@ class Companies(object):
             accounts = [{'accountcode':a, 'assigned': True} for a in account]
             query = self.db.companies.find({'$or':accounts})
         else:
-            logging.error('not account get public list');
+            logging.error('account {0} getting list of companies'.format(account));
             
-            query = self.db.companies.find({
-                'account':account,
-                'assigned':True
-            })
+            query = self.db.companies.find({}, {'_id':0})
+
+            #query = self.db.companies.find({
+            #    'account':account,
+            #    'assigned':True
+            #})
+
         
         query = query.sort([('uuid', -1)]).skip(page_num * page_size).limit(page_size)
         
