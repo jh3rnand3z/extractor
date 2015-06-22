@@ -105,7 +105,7 @@ class CompaniesHandler(companies.Companies, BaseHandler):
 
     ###@web.authenticated
     @gen.coroutine
-    def get(self, company_uuid=None, start=None, end=None, page_num=0, lapse='hours'):
+    def get(self, account=None, company_uuid=None, start=None, end=None, page_num=0, lapse='hours'):
         '''
             Get companies handler
         '''
@@ -120,6 +120,9 @@ class CompaniesHandler(companies.Companies, BaseHandler):
 
         # if the user don't provide an account we use the frontend username as last resort
         account = (query_args.get('account', [username])[0] if not account else account)
+
+        logging.error(account)
+
 
         # account type flag
         account_type = 'user'
