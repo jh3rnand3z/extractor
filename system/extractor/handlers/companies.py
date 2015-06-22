@@ -105,7 +105,7 @@ class CompaniesHandler(companies.Companies, BaseHandler):
 
     ###@web.authenticated
     @gen.coroutine
-    def get(self, account=None, company_uuid=None, start=None, end=None, page_num=0, lapse='hours'):
+    def get(self, account=None, company_uuid=None, start=None, end=None, lapse='hours', page_num=0):
         '''
             Get companies handler
         '''
@@ -134,7 +134,7 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         result = None
         
         if not company_uuid:
-            companies = yield self.get_company_list(account, start, end, page_num, lapse)
+            companies = yield self.get_company_list(account, start, end, lapse, page_num)
             self.finish({'companies':companies})
         else:
             # try to get stuff from cache first
