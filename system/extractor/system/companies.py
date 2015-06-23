@@ -39,6 +39,7 @@ class Companies(object):
         '''
             Get a detail company
         '''
+        message = None
         if not account:
             company = yield self.db.companies.find_one({'uuid':company_uuid},{'_id':0})
         else:
@@ -55,7 +56,8 @@ class Companies(object):
                 company.validate()
                 message = clean_results(company)
         except Exception, e:
-            logging.exception(e) # catch some daemon here!
+            logging.error(e) # catch some daemon here!
+            message = str(e) # clean this or something...
             raise e
         finally:
             raise gen.Return(message)
