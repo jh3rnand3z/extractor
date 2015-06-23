@@ -41,15 +41,20 @@ class Companies(object):
         '''
         message = None
         if not account:
-            company = yield self.db.companies.find_one({'uuid':company_uuid},{'_id':0})
+            company = yield self.db.companies.find_one(
+                {'uuid':company_uuid},
+                {'_id':0}
+            )
         else:
 
             # change accountcode to account, because the accountcode is a uuid
             # and we're expecting an account name.
 
-            company = yield self.db.companies.find_one({'uuid':company_uuid,
-                                                     'account':account},
-                                                    {'_id':0})
+            company = yield self.db.companies.find_one(
+                {'uuid':company_uuid,
+                 'account':account},
+                {'_id':0}
+            )
         try:
             if company:
                 company = companies.Company(company)

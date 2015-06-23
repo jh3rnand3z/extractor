@@ -146,18 +146,16 @@ class CompaniesHandler(companies.Companies, BaseHandler):
                 data = yield self.get_company(None, company_uuid)
                 try:
                     if self.cache.add('companies:{0}'.format(company_uuid), data, 60):
-                        logging.info('new cache entry {0}'.format(str(data)))
+                        logging.info('new cache entry {0}'.format(data.get('uuid')))
                 except Exception, e:
                     logging.exception(e)
 
             result = (data if data else None)
             
-            #result = yield self.get_company(account.rstrip('/'), account_type)
-
             if not result:
                 # -- need more info
                 self.set_status(400)
-                self.finish({'missing':account.rstrip('/')})
+                self.finish({'missing':company_uuid})
             else:
                 self.set_status(200)
                 self.finish(result)
