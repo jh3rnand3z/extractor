@@ -54,7 +54,7 @@ class Companies(object):
             if company:
                 company = companies.Company(company)
                 company.validate()
-                message = clean_results(company)
+                message = clean_structure(company)
         except Exception, e:
             logging.error(e) # catch some daemon here!
             message = str(e) # clean this or something...
