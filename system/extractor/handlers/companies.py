@@ -59,49 +59,44 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         # if the user don't provide an account we use the frontend username as last resort
         account = (query_args.get('account', [username])[0] if not account else account)
 
-        # account type flag
-        account_type = 'user'
-
         # cache data
         data = None
 
-        # return result message
-        result = None
-
-        if not account:
-            companies = yield self.get_company_list(account_type, page_num)
-            self.finish({'companies':companies})
+        # return message
+        message = None
+        
+        if not company_uuid:
+            companies = yield self.get_company_list(account, start, end, lapse, page_num)
+            self.finish(companies)
         else:
             # try to get stuff from cache first
-            logging.info('getting companies:{0} from cache'.format(account))
+            logging.info('getting companies:{0} from cache'.format(company_uuid))
 
             try:
-                data = self.cache.get('companies:{0}'.format(account))
+                data = self.cache.get('companies:{0}'.format(company_uuid))
             except Exception, e:
                 logging.exception(e)
 
             if data is not None:
-                logging.info('companies:{0} done retrieving!'.format(account))
-                result = data
+                logging.info('companies:{0} done retrieving!'.format(company_uuid))
             else:
-                data = yield self.get_company(account.rstrip('/'), account_type)
+                #company_uuid = company_uuid.rstrip('/')
+                data = yield self.get_company(None, company_uuid)
                 try:
-                    if self.cache.add('companies:{0}'.format(account), data, 60):
-                        logging.info('new cache entry {0}'.format(str(data)))
+                    if self.cache.add('companies:{0}'.format(company_uuid), data, 60):
+                        logging.info('new cache entry companies:{0}'.format(company_uuid))
                 except Exception, e:
                     logging.exception(e)
+
+            message = (data if data else None)
             
-            result = (data if data else None)
-
-            if not result:
-
-                # -- nead moar info
-
+            if not message:
+                # -- need more info
                 self.set_status(400)
-                self.finish({'missing':account.rstrip('/')})
+                self.finish({'missing':company_uuid})
             else:
                 self.set_status(200)
-                self.finish(result)
+                self.finish(message)
 
     ###@web.authenticated
     @gen.coroutine
@@ -124,8 +119,8 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         # cache data
         data = None
 
-        # return result message
-        result = None
+        # return message
+        message = None
         
         if not company_uuid:
             companies = yield self.get_company_list(account, start, end, lapse, page_num)
@@ -146,19 +141,19 @@ class CompaniesHandler(companies.Companies, BaseHandler):
                 data = yield self.get_company(None, company_uuid)
                 try:
                     if self.cache.add('companies:{0}'.format(company_uuid), data, 60):
-                        logging.info('new cache entry {0}'.format(data.get('uuid')))
+                        logging.info('new cache entry companies:{0}'.format(company_uuid))
                 except Exception, e:
                     logging.exception(e)
 
-            result = (data if data else None)
+            message = (data if data else None)
             
-            if not result:
+            if not message:
                 # -- need more info
                 self.set_status(400)
                 self.finish({'missing':company_uuid})
             else:
                 self.set_status(200)
-                self.finish(result)
+                self.finish(message)
                 
     @gen.coroutine
     def post(self):
