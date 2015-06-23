@@ -53,11 +53,12 @@ class Companies(object):
             if company:
                 company = companies.Company(company)
                 company.validate()
+                message = clean_results(company)
         except Exception, e:
             logging.exception(e) # catch some daemon here!
             raise e
         finally:
-            raise gen.Return(company)
+            raise gen.Return(message)
 
     @gen.coroutine
     def get_company_list(self, account, start, end, lapse, page_num):
