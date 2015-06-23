@@ -143,7 +143,7 @@ class CompaniesHandler(companies.Companies, BaseHandler):
                 logging.info('companies:{0} done retrieving!'.format(company_uuid))
             else:
                 #company_uuid = company_uuid.rstrip('/')
-                data = yield self.get_company(company_uuid=company_uuid)
+                data = yield self.get_company(None, company_uuid)
                 try:
                     if self.cache.add('companies:{0}'.format(company_uuid), data, 60):
                         logging.info('new cache entry {0}'.format(str(data)))
