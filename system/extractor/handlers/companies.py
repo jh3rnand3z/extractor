@@ -121,9 +121,6 @@ class CompaniesHandler(companies.Companies, BaseHandler):
         # if the user don't provide an account we use the frontend username as last resort
         account = (query_args.get('account', [username])[0] if not account else account)
 
-        # account type flag
-        account_type = 'user'
-
         # cache data
         data = None
 
@@ -135,19 +132,20 @@ class CompaniesHandler(companies.Companies, BaseHandler):
             self.finish(companies)
         else:
             # try to get stuff from cache first
-            logging.info('getting companies:{0} from cache'.format(account))
+            logging.info('getting companies:{0} from cache'.format(company_uuid))
 
             try:
-                data = self.cache.get('companies:{0}'.format(account))
+                data = self.cache.get('companies:{0}'.format(company_uuid))
             except Exception, e:
                 logging.exception(e)
 
             if data is not None:
-                logging.info('companies:{0} done retrieving!'.format(account))
+                logging.info('companies:{0} done retrieving!'.format(company_uuid))
             else:
-                data = yield self.get_company(account.rstrip('/'), account_type)
+                #company_uuid = company_uuid.rstrip('/')
+                data = yield self.get_company(company_uuid=company_uuid)
                 try:
-                    if self.cache.add('companies:{0}'.format(account), data, 60):
+                    if self.cache.add('companies:{0}'.format(company_uuid), data, 60):
                         logging.info('new cache entry {0}'.format(str(data)))
                 except Exception, e:
                     logging.exception(e)
